@@ -17,4 +17,5 @@ public struct Product
     public string Category { get; set; }
     public double Price { get; set; }
     public int InStock { get; set; }
+    public bool isDeleted { set; get; }
 }
