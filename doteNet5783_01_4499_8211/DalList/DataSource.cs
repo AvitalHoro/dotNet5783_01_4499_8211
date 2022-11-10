@@ -1,20 +1,19 @@
-﻿using DalFacade.DalApi;
-using DalFacade.DO;
+﻿using DO;
 
 namespace Dal;
 
- public class DataSource
+ internal class DataSource
 {
-    DataSource()
+   private DataSource()
     {
         s_Initialize();
     }
 
     static readonly Random CreateRandNum= new Random();
     internal static DataSource s_instance { get; } = new DataSource();
-    internal List<Product> ListProduct { get; } = new List<Product>() { };
-    internal List<Order> ListOrder { get; } = new List<Order>() { };
-    internal List<OrderItem> ListOrderItem { get; } = new List<OrderItem>() { };
+    internal List<Product?> ListProduct { get; } = new List<Product?>() { };
+    internal List<Order?> ListOrder { get; } = new List<Order?>() { };
+    internal List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>() { };
 
 
     internal static class Config
@@ -32,19 +31,20 @@ namespace Dal;
         internal static int NextOrderItemNumber { get => ++s_nextOrderItemNumber; }
     }
 
-    private void AddProduct()
+    private void CreateProduct()
     {
         Product product = new Product();
+        product.Name = 
         ListProduct.Add(product); 
     }
 
-    private void AddOrder()
+    private void CreateOrder()
     {
         Order order = new Order();
         ListOrder.Add(order);
     }
 
-    private void AddOrderItem()
+    private void CreateOrderItem()
     {
         OrderItem item = new OrderItem();
         ListOrderItem.Add(item);

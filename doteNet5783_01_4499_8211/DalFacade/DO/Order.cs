@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace DalFacade.DO;
+namespace DO;
 
 public struct Order
 {

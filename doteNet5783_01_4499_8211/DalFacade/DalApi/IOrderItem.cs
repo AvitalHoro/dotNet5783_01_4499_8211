@@ -1,6 +1,6 @@
-﻿using DalFacade.DO;
+﻿using DO;
 
-namespace DalFacade.DalApi;
+namespace DalApi;
 
 public interface IOrderItem : ICrud<OrderItem>
 {

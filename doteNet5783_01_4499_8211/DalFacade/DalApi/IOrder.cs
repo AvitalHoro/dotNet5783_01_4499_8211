@@ -1,29 +1,14 @@
-﻿using DalFacade.DO;
+﻿using DO;
 
-namespace DalFacade.DalApi;
+namespace DalApi;
 
 public interface IOrder :ICrud<Order>
 {
-    int Add(Order item)
-    {
-
-    }
-    Order GetById(int id)
-    {
-
-    }
-    void Update(Order item)
-    {
-
-    }
-    void Delete(int id)
-    {
-
-    }
+    int Add(Order item);
+    Order GetById(int id);
+    void Update(Order item);
+    void Delete(int id);
 
     //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
-    IEnumerable<Order> GetAll()
-    {
-
-    }
+    IEnumerable<Order> GetAll();
 }

@@ -1,6 +1,6 @@
-﻿using DalFacade.DO;
+﻿using DO;
 
-namespace DalFacade.DalApi;
+namespace DalApi;
 
 public interface IProduct : ICrud<Product>
 {

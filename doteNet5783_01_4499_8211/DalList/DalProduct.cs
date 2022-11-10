@@ -1,6 +1,6 @@
-﻿
-namespace Dal;
+﻿namespace Dal;
 
 public class DalProduct
 {
+
 }

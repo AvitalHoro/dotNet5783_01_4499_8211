@@ -1,6 +1,11 @@
-﻿
+﻿using DalApi;
+using DO;
+
+
 namespace Dal;
 
-public class DalOrder
+public class DalOrder :IOrder
 {
+
+
 }
