@@ -1,8 +1,7 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace DalFacade.DO;
+namespace DO;
 
 public struct Product
 {
@@ -17,4 +16,5 @@ public struct Product
     public string Category { get; set; }
     public double Price { get; set; }
     public int InStock { get; set; }
+    public bool isDeleted { set; get; }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace DalFacade.DO;
+namespace DO;
 
 public struct Order
 {
@@ -19,4 +19,5 @@ public struct Order
     public DateTime OrderDate { set; get; }
     public DateTime ShipDate { set; get; }
     public DateTime DeliveryDate { set; get; }
+    public bool isDeleted { set; get; }
 }

@@ -1,11 +1,10 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace DalFacade.DO;
+namespace DO;
 
 public struct OrderItem
-//{
+{
 //    public override string ToString() => $@"
 //	Item ID={ID}: {Name}, 
 //	category - {Category}
@@ -17,5 +16,6 @@ public struct OrderItem
     public int OrderID { set; get; }
     public double Price { set; get; }
     public int Amount { set; get; }
+public bool isDeleted { set; get; }
 }
 
