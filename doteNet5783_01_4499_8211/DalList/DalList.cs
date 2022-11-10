@@ -2,11 +2,11 @@
 
 namespace Dal;
 
-sealed internal class DalList:IDal
+sealed internal class DalList: IDal
 {
-    public IOrdered Order => new DalOrder();
+    public IOrder Order => new DalOrder();
 
     public IProduct Product => new DalProduct();
 
-    public IOrderedItem OrderItem => new DalOrderItem();
+    public IOrderItem OrderItem => new DalOrderItem();
 }

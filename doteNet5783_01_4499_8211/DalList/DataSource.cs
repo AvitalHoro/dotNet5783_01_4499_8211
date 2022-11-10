@@ -1,4 +1,5 @@
-﻿using DO;
+﻿using DalApi;
+using DO;
 
 namespace Dal;
 
@@ -9,11 +10,11 @@ namespace Dal;
         s_Initialize();
     }
 
-    static readonly Random CreateRandNum= new Random();
+    static readonly Random randNum= new Random();
     internal static DataSource s_instance { get; } = new DataSource();
-    internal List<Product?> ListProduct { get; } = new List<Product?>() { };
-    internal List<Order?> ListOrder { get; } = new List<Order?>() { };
-    internal List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>() { };
+    internal static List<Product> ListProduct { get; } = new List<Product>() { };
+    internal static List<Order> ListOrder { get; } = new List<Order>() { };
+    internal static List<OrderItem> ListOrderItem { get; } = new List<OrderItem>() { };
 
 
     internal static class Config
@@ -33,29 +34,93 @@ namespace Dal;
 
     private void CreateProduct()
     {
-        Product product = new Product();
-        product.Name = 
-        ListProduct.Add(product); 
+        string[] clothes = { "shirt", "pants", "overall", ""  };
+        string[] toys = {"University" };
+        string[] carts = {"Royal"};
+        string[] bottles = {"Avent" };
+        string[] diapers={"Pampers" };
+        for(int i=0;i<clothes.Length;i++)
+        {
+            ListProduct.Add(new Product
+            { 
+                ID=  Config.NextOrderItemNumber,
+                Name=clothes[randNum.Next(clothes.Length)],  
+                Category= (Category)(0),
+                Price= randNum.Next(50,100),
+                InStock= randNum.Next(0,30),
+                isDeleted=false,
+            });
+        }
+        for (int i = 0; i < clothes.Length; i++)
+        {
+            ListProduct.Add(new Product
+            {
+                ID = Config.NextOrderItemNumber,
+                Name = clothes[randNum.Next(clothes.Length)],
+                Category = (Category)(0),
+                Price = randNum.Next(50, 100),
+                InStock = randNum.Next(0, 30),
+                isDeleted = false,
+            });
+        }
+        for (int i = 0; i < clothes.Length; i++)
+        {
+            ListProduct.Add(new Product
+            {
+                ID = Config.NextOrderItemNumber,
+                Name = clothes[randNum.Next(clothes.Length)],
+                Category = (Category)(0),
+                Price = randNum.Next(50, 100),
+                InStock = randNum.Next(0, 30),
+                isDeleted = false,
+            });
+        }
+        for (int i = 0; i < clothes.Length; i++)
+        {
+            ListProduct.Add(new Product
+            {
+                ID = Config.NextOrderItemNumber,
+                Name = clothes[randNum.Next(clothes.Length)],
+                Category = (Category)(0),
+                Price = randNum.Next(50, 100),
+                InStock = randNum.Next(0, 30),
+                isDeleted = false,
+            });
+        }
+        for (int i = 0; i < clothes.Length; i++)
+        {
+            ListProduct.Add(new Product
+            {
+                ID = Config.NextOrderItemNumber,
+                Name = clothes[randNum.Next(clothes.Length)],
+                Category = (Category)(0),
+                Price = randNum.Next(50, 100),
+                InStock = randNum.Next(0, 30),
+                isDeleted = false,
+            });
+        }
     }
 
     private void CreateOrder()
     {
-        Order order = new Order();
-        ListOrder.Add(order);
+        ListOrder.Add(new Order
+        {
+
+        });
     }
 
     private void CreateOrderItem()
     {
-        OrderItem item = new OrderItem();
-        ListOrderItem.Add(item);
+        ListOrderItem.Add(new OrderItem
+        {
+
+        });
     }
 
     private void s_Initialize()
     {
-        AddProduct();
-        AddOrder(); 
-        AddOrderItem(); 
+        CreateProduct();
+        CreateOrder(); 
+        CreateOrderItem(); 
     }
-
-
 }

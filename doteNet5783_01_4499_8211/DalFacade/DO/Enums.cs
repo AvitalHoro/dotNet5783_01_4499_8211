@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using System.Xml.Linq;
-
+﻿
 namespace DO;
 
 public struct Enums
 {
 
 }
+
+public enum Category { Clothes, Toys, Carts, Diapers, Bottles };
