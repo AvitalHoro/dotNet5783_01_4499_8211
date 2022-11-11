@@ -6,4 +6,4 @@ public struct Enums
 
 }
 
-public enum Category { Clothes, Toys, Carts, Diapers, Bottles };
+public enum Category { Clothes, Toys, Carts, Bottles, Diapers };
