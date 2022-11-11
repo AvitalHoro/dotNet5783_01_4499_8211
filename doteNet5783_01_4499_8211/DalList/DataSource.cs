@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Net.Http.Headers;
 
 namespace Dal;
 
@@ -132,12 +133,14 @@ namespace Dal;
 
     private void CreateOrderItem()
     {
+        Product product = ListProduct[randNum.Next(ListProduct.Count)];
         ListOrderItem.Add(new OrderItem
         {
             ID= Config.NextOrderItemNumber,
-            ProductID= ,
-            OrderID=,
-
+            ProductID= product.ID,
+            Price= product.Price,
+            OrderID= randNum.Next(Config.s_startOrderNumber,Config.s_startOrderNumber+10),
+            Amount=randNum.Next(5,30)
         });
     }
 
