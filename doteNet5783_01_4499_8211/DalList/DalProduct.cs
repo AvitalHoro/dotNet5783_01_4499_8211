@@ -8,7 +8,7 @@ public class DalProduct: IProduct
     public int Add(Product product)
     {
         DataSource.ListProduct.Add(product);
-        return 0;
+        return DataSource.ListProduct.Count();
     }
     public Product GetById(int id)
     {
