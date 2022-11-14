@@ -39,6 +39,7 @@ class Program
                 d - UPDATE ORDER
                 e - DELETE ORDER");
         string option = Console.ReadLine();
+
   //      case 'n':cout << "enter the discussion title (with no space) "; cin >> val; tl.addNewTree(val); break;
 		//case 's':cout << "enter the discussion title (with no space) "; cin >> title;
   //      cout << "enter the last message (with no space) "; cin >> father;
@@ -116,6 +117,34 @@ class Program
     }
 
 
+    //static void Main(string[] args, int x, double f)
+    //{
+
+    //    Days d;//= Days.Fri;
+
+    //    d = (Days)Console.Read();
+
+    //    switch (d)
+    //    {
+    //        case Days.Sat:
+    //            break;
+    //        case Days.Sun:
+    //            break;
+    //        case Days.Mon:
+    //            break;
+    //        case Days.Tue:
+    //            break;
+    //        case Days.Wed:
+    //            break;
+    //        case Days.Thu:
+    //            break;
+    //        case Days.Fri:
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //    Console.ReadLine();
+    //}
 
 
 }

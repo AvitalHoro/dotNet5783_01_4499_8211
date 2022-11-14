@@ -118,6 +118,7 @@ namespace Dal;
                                    "Kiryat-Gat","Kiryat-Shmona","Kiryat-Motzkin","Kiryat-Shmuel","Katserin","Haifa",
                                     "Bne-Brak","Ramat-Gan", "Givat-Shmuel"};
 
+
         ListOrder.Add(new Order
         {
          ID=Config.NextOrderNumber, 
@@ -128,6 +129,28 @@ namespace Dal;
          ShipDate= DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
          DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)),//,צריך שיהיה אחרי הזתאריך של המשלוח לסדר
          isDeleted= false,
+        });
+
+        ListOrder.Add(new Order
+        {
+            ID = Config.NextOrderNumber,
+            CostumerName = costumerName[randNum.Next(costumerName.Length)],
+            CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
+            CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
+            OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+            isDeleted = false,
+        });
+
+        ListOrder.Add(new Order
+        {
+            ID = Config.NextOrderNumber,
+            CostumerName = costumerName[randNum.Next(costumerName.Length)],
+            CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
+            CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
+            OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+            ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
+            DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)),//,צריך שיהיה אחרי הזתאריך של המשלוח לסדר
+            isDeleted = false,
         });
     }
 
@@ -140,7 +163,7 @@ namespace Dal;
             ProductID= product.ID,
             Price= product.Price,
             OrderID= randNum.Next(Config.s_startOrderNumber,Config.s_startOrderNumber+10),
-            Amount=randNum.Next(5,30)
+            Amount=randNum.Next(1,30)
         });
     }
 
