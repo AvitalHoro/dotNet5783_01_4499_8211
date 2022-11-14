@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using DalApi;
 using DO;
 
@@ -26,6 +27,56 @@ class Program
                 c - DISPLAY ORDER ITEM LIST
                 d - UPDATE ORDER ITEM
                 e - DELETE ORDER ITEM");
+        string option = Console.ReadLine();
+        switch (option)
+        {
+            case "a":
+                OrderItem tmpItem = new OrderItem();
+                Console.WriteLine("enter the new item ID");
+                tmpItem.ID = Console.Read();
+                Console.WriteLine("enter the new product ID");
+                tmpItem.ProductID = Console.Read();
+                Console.WriteLine("enter the new Order ID");
+                tmpItem.OrderID = Console.Read();
+                Console.WriteLine("enter the new order item price");
+                tmpItem.Price = Console.Read();
+                Console.WriteLine("enter the new order item amount");
+                tmpItem.Amount = Console.Read();
+                item.Add(tmpItem);
+                break;
+            case "b":
+                Console.WriteLine("enter the order item ID");
+                int myId = Console.Read();
+                Console.WriteLine(item.GetById(myId));
+                break;
+            case "c":
+                foreach (OrderItem oItem in item.GetAll())
+                {
+                    Console.WriteLine(oItem);
+                }
+                /// מדפיסים את הכל
+                break;
+            case "d":
+                OrderItem tmpItem2 = new OrderItem();
+                OrderItem tmpItem2 = new OrderItem();
+                Console.WriteLine("enter the new item ID");
+                tmpItem2.ID = Console.Read();
+                Console.WriteLine("enter the new product ID");
+                tmpItem2.ProductID = Console.Read();
+                Console.WriteLine("enter the new Order ID");
+                tmpItem2.OrderID = Console.Read();
+                Console.WriteLine("enter the new order item price");
+                tmpItem2.Price = Console.Read();
+                Console.WriteLine("enter the new order item amount");
+                tmpItem2.Amount = Console.Read();
+                item.Update(tmpItem2);
+                break;
+            case "e":
+                Console.WriteLine("enter the product ID");
+                myId = Console.Read();
+                .Delete(myId);
+                break;
+        }
     }
 
     static void testProduct(DalProduct product)
@@ -38,31 +89,14 @@ class Program
                 d - UPDATE PRODUCT
                 e - DELETE PRODUCT");
         string option = Console.ReadLine();
-  //      case 'n':cout << "enter the discussion title (with no space) "; cin >> val; tl.addNewTree(val); break;
-		//case 's':cout << "enter the discussion title (with no space) "; cin >> title;
-  //      cout << "enter the last message (with no space) "; cin >> father;
-  //      cout << "enter the new respond "; cin >> son;
-  //      if (tl.addResponse(title, father, son)) cout << "success\n"; else cout << "ERROR\n"; break;
-		//case 'd':cout << "enter the discussion title (with no space) "; cin >> title;
-  //      cout << "enter string of subtree to delete (with no space) "; cin >> val;
-  //      if (tl.delResponse(title, val)) cout << "success\n"; else cout << "ERROR\n"; break;
-		//case 'p':tl.printAllTrees(); break;
-		//case 'r':
-		//	cout << "enter the discussion title (with no space) "; cin >> title;
-  //      cout << "enter the last message (with no space) "; cin >> val;
-  //      tl.printSubTree(title, val); cout << endl; break;
-		//case 'w':cout << "enter a string (with no space) "; cin >> val;
-  //      tl.searchAndPrint(val); cout << endl; break;
-		//case 'e':cout << "bye "; break;
-  //      default: cout << "ERROR\n"; break;
         switch (option)
         {
             case "a":
-                Product prdct = new Product();
+                Product tmpProduct = new Product();
                 Console.WriteLine("enter the new product ID");
-                prdct.ID = Console.Read();
+                tmpProduct.ID = Console.Read();
                 Console.WriteLine("enter the new product name");
-                prdct.Name = Console.ReadLine();
+                tmpProduct.Name = Console.ReadLine();
                 Console.WriteLine(@"enter the new product catgory: 
                                         Clothes-0, 
                                         Toys-1, 
@@ -73,29 +107,29 @@ class Program
                 switch(ctg)
                 {
                     case 0:
-                        prdct.Category = Category.Clothes;
+                        tmpProduct.Category = Category.Clothes;
                         break;
                     case 1:
-                        prdct.Category = Category.Toys;
+                        tmpProduct.Category = Category.Toys;
                         break;
                     case 2:
-                        prdct.Category = Category.Carts;
+                        tmpProduct.Category = Category.Carts;
                         break;
                     case 3:
-                        prdct.Category = Category.Bottles;
+                        tmpProduct.Category = Category.Bottles;
                         break;
                     case 4:
-                        prdct.Category = Category.Diapers;
+                        tmpProduct.Category = Category.Diapers;
                         break;
                     default:
                         Console.WriteLine("ERROR");
                         break;
                 }
                 Console.WriteLine("enter the new product price");
-                prdct.Price = Console.Read();
+                tmpProduct.Price = Console.Read();
                 Console.WriteLine("enter the new product amount");
-                prdct.InStock = Console.Read();
-                product.Add(prdct);
+                tmpProduct.InStock = Console.Read();
+                product.Add(tmpProduct);
                 break;
             case "b":
                 Console.WriteLine("enter the product ID");
@@ -103,14 +137,19 @@ class Program
                 Console.WriteLine(product.GetById(myId));
                 break;
             case "c":
-                Console.WriteLine(product.GetAll());//איך מדפיסים את הכל?
+                foreach (Product item in product.GetAll())
+                {
+                    Console.WriteLine(item);   
+                }
+               
+                    ;/// מדפיסים את הכל
                 break;
             case "d":
-                Product prdct2 = new Product();
+                Product tmpProduct2 = new Product();
                 Console.WriteLine("enter the new product ID");
-                prdct2.ID = Console.Read();
+                tmpProduct2.ID = Console.Read();
                 Console.WriteLine("enter the new product name");
-                prdct2.Name = Console.ReadLine();
+                tmpProduct2.Name = Console.ReadLine();
                 Console.WriteLine(@"enter the new product catgory: 
                                         Clothes-0, 
                                         Toys-1, 
@@ -121,29 +160,29 @@ class Program
                 switch (ctg)
                 {
                     case 0:
-                        prdct2.Category = Category.Clothes;
+                        tmpProduct2.Category = Category.Clothes;
                         break;
                     case 1:
-                        prdct2.Category = Category.Toys;
+                        tmpProduct2.Category = Category.Toys;
                         break;
                     case 2:
-                        prdct2.Category = Category.Carts;
+                        tmpProduct2.Category = Category.Carts;
                         break;
                     case 3:
-                        prdct2.Category = Category.Bottles;
+                        tmpProduct2.Category = Category.Bottles;
                         break;
                     case 4:
-                        prdct2.Category = Category.Diapers;
+                        tmpProduct2.Category = Category.Diapers;
                         break;
                     default:
                         Console.WriteLine("ERROR");
                         break;
                 }
                 Console.WriteLine("enter the new product price");
-                prdct2.Price = Console.Read();
+                tmpProduct2.Price = Console.Read();
                 Console.WriteLine("enter the new product amount");
-                prdct2.InStock = Console.Read();
-                product.Update(prdct2);
+                tmpProduct2.InStock = Console.Read();
+                product.Update(tmpProduct2);
                 break;
             case "e":
                 Console.WriteLine("enter the product ID");
