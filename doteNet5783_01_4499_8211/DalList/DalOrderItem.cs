@@ -17,7 +17,7 @@ public class DalOrderItem : IOrderItem
     }
     public void Update(OrderItem? item)
     {
-        OrderItem? temp = DataSource.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.ID);
+        OrderItem? temp = DataSource.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
         if (temp==null) 
              return;
         DataSource.ListOrderItem.Remove(temp);
