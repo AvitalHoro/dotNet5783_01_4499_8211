@@ -9,7 +9,7 @@ public class DalOrder :IOrder
    public int Add(Order item)
     {
         DataSource.ListOrder.Add(item);
-        return DataSource.ListOrder.Count;//צריך להחזיר פה את התז של המוצר
+        return item.ID;//צריך להחזיר פה את התז של המוצר
     }
     public Order GetById(int id)
     {
@@ -20,7 +20,7 @@ public class DalOrder :IOrder
         Order order= DataSource.ListOrder.Find(found => found.ID == item.ID);
         //if (order==null) 
         //    return; //לשאול את נורית
-        DataSource.ListOrder.Remove(order);
+        DataSource.ListOrder.update(order);
         DataSource.ListOrder.Add(item);    
     }
     public  void Delete(int id)
