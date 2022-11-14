@@ -9,7 +9,7 @@ public class DalOrderItem : IOrderItem
     public int Add(OrderItem item)
     {
         DataSource.ListOrderItem.Add(item);
-        return DataSource.ListOrderItem.Count();
+        return DataSource.ListOrderItem.Count();//צריך להחזיר פה את התז
     }
     public OrderItem GetById(int id)
     {
