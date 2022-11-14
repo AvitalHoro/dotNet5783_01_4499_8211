@@ -9,7 +9,7 @@ public class DalOrder :IOrder
    public int Add(Order item)
     {
         DataSource.ListOrder.Add(item);
-        return DataSource.ListOrder.Count();  
+        return DataSource.ListOrder.Count;//צריך להחזיר פה את התז של המוצר
     }
     public Order GetById(int id)
     {
