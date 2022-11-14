@@ -16,6 +16,51 @@ class Program
                 c - DISPLAY ORDER LIST
                 d - UPDATE ORDER
                 e - DELETE ORDER");
+        string option = Console.ReadLine();
+        switch (option)
+        {
+            case "a":
+                Order tmpOrder = new Order();
+                Console.WriteLine("enter the new order ID");
+                tmpOrder.ID = Console.Read();
+                Console.WriteLine("enter the costumer name");
+                tmpOrder.CostumerName = Console.ReadLine();
+                Console.WriteLine("enter the costumer email");
+                tmpOrder.CostumerEmail = Console.ReadLine();
+                Console.WriteLine("enter the costumer adress");
+                tmpOrder.CostumerAdress = Console.ReadLine();
+                order.Add(tmpOrder);
+                break;
+            case "b":
+                Console.WriteLine("enter the order ID");
+                int myId = Console.Read();
+                Console.WriteLine(order.GetById(myId));
+                break;
+            case "c":
+                foreach (Order? item in order.GetAll())
+                {
+                    Console.WriteLine(item);
+                }
+                /// מדפיסים את הכל
+                break;
+            case "d":
+                Order tmpOrder2 = new Order();
+                Console.WriteLine("enter the new order ID");
+                tmpOrder2.ID = Console.Read();
+                Console.WriteLine("enter the costumer name");
+                tmpOrder2.CostumerName = Console.ReadLine();
+                Console.WriteLine("enter the costumer email");
+                tmpOrder2.CostumerEmail = Console.ReadLine();
+                Console.WriteLine("enter the costumer adress");
+                tmpOrder2.CostumerAdress = Console.ReadLine();
+                order.Update(tmpOrder2);
+                break;
+            case "e":
+                Console.WriteLine("enter the product ID");
+                myId = Console.Read();
+                order.Delete(myId);
+                break;
+        }
     }
 
     static void testOrderItem(DalOrderItem item)
@@ -74,7 +119,7 @@ class Program
             case "e":
                 Console.WriteLine("enter the product ID");
                 myId = Console.Read();
-                .Delete(myId);
+                item.Delete(myId);
                 break;
         }
     }
@@ -89,23 +134,6 @@ class Program
                 d - UPDATE PRODUCT
                 e - DELETE PRODUCT");
         string option = Console.ReadLine();
-  //      case 'n':cout << "enter the discussion title (with no space) "; cin >> val; tl.addNewTree(val); break;
-		//case 's':cout << "enter the discussion title (with no space) "; cin >> title;
-  //      cout << "enter the last message (with no space) "; cin >> father;
-  //      cout << "enter the new respond "; cin >> son;
-  //      if (tl.addResponse(title, father, son)) cout << "success\n"; else cout << "ERROR\n"; break;
-		//case 'd':cout << "enter the discussion title (with no space) "; cin >> title;
-  //      cout << "enter string of subtree to delete (with no space) "; cin >> val;
-  //      if (tl.delResponse(title, val)) cout << "success\n"; else cout << "ERROR\n"; break;
-		//case 'p':tl.printAllTrees(); break;
-		//case 'r':
-		//	cout << "enter the discussion title (with no space) "; cin >> title;
-  //      cout << "enter the last message (with no space) "; cin >> val;
-  //      tl.printSubTree(title, val); cout << endl; break;
-		//case 'w':cout << "enter a string (with no space) "; cin >> val;
-  //      tl.searchAndPrint(val); cout << endl; break;
-		//case 'e':cout << "bye "; break;
-  //      default: cout << "ERROR\n"; break;
         switch (option)
         {
             case "a":
