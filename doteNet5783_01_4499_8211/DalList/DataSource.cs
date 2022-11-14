@@ -17,9 +17,9 @@ namespace Dal;
 
     static readonly Random randNum= new Random();
     internal static DataSource s_instance { get; } = new DataSource();
-    internal static List<Product> ListProduct { get; } = new List<Product>() { };
-    internal static List<Order> ListOrder { get; } = new List<Order>() { };
-    internal static List<OrderItem> ListOrderItem { get; } = new List<OrderItem>() { };
+    internal static List<Product?> ListProduct { get; } = new List<Product?>() { };
+    internal static List<Order?> ListOrder { get; } = new List<Order?>() { };
+    internal static List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>() { };
 
 
     internal static class Config
@@ -118,31 +118,65 @@ namespace Dal;
                                    "Kiryat-Gat","Kiryat-Shmona","Kiryat-Motzkin","Kiryat-Shmuel","Katserin","Haifa",
                                     "Bne-Brak","Ramat-Gan", "Givat-Shmuel"};
 
-        ListOrder.Add(new Order
+        for (int i = 0; i < 24; i++)
         {
-         ID=Config.NextOrderNumber, 
-         CostumerName= costumerName[randNum.Next(costumerName.Length)],
-         CostumerEmail= costumerEmail[randNum.Next(costumerEmail.Length)],
-         CostumerAdress= costumerAdress[randNum.Next(costumerAdress.Length)],
-         OrderDate= DateTime.Now- new TimeSpan(randNum.NextInt64(10L*1000L*3600L*24L*100L)), //לחזור לבדוק עם המצגת שקופית 40
-         ShipDate= DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
-         DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)),//,צריך שיהיה אחרי הזתאריך של המשלוח לסדר
-         isDeleted= false,
-        });
+            ListOrder.Add(new Order
+            {
+                ID = Config.NextOrderNumber,
+                CostumerName = costumerName[randNum.Next(costumerName.Length)],
+                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
+                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
+                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
+                DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)),//,צריך שיהיה אחרי הזתאריך של המשלוח לסדר
+                isDeleted = false,
+            });
+        }
+
+        for (int i = 0; i <8; i++)
+        {
+            ListOrder.Add(new Order
+            {
+                ID = Config.NextOrderNumber,
+                CostumerName = costumerName[randNum.Next(costumerName.Length)],
+                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
+                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
+                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+                isDeleted = false,
+            });
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            ListOrder.Add(new Order
+            {
+                ID = Config.NextOrderNumber,
+                CostumerName = costumerName[randNum.Next(costumerName.Length)],
+                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
+                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
+                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
+                isDeleted = false,
+            });
+
+        }
     }
 
     private void CreateOrderItem()
     {
-        Product product = ListProduct[randNum.Next(ListProduct.Count)];
-        ListOrderItem.Add(new OrderItem
+        for(int i = 0; i < 30; i++)
         {
-            ID= Config.NextOrderItemNumber,
-            ProductID= product.ID,
-            Price= product.Price,
-            OrderID= randNum.Next(Config.s_startOrderNumber,Config.s_startOrderNumber+10),
-            Amount=randNum.Next(5,30)
-        });
-    }
+            Product? product = ListProduct[randNum.Next(ListProduct.Count)];
+            ListOrderItem.Add(new OrderItem
+            {
+                ID = Config.NextOrderItemNumber,
+                ProductID = product.GetValueOrDefault().ID,
+                Price = product.GetValueOrDefault().Price,
+                OrderID = randNum.Next(Config.s_startOrderNumber, Config.s_startOrderNumber + ListOrder.Count),
+                Amount = randNum.Next(1, 5)
+            });
+        }
+    } 
 
     private void s_Initialize()
     {

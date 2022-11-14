@@ -89,6 +89,23 @@ class Program
                 d - UPDATE PRODUCT
                 e - DELETE PRODUCT");
         string option = Console.ReadLine();
+  //      case 'n':cout << "enter the discussion title (with no space) "; cin >> val; tl.addNewTree(val); break;
+		//case 's':cout << "enter the discussion title (with no space) "; cin >> title;
+  //      cout << "enter the last message (with no space) "; cin >> father;
+  //      cout << "enter the new respond "; cin >> son;
+  //      if (tl.addResponse(title, father, son)) cout << "success\n"; else cout << "ERROR\n"; break;
+		//case 'd':cout << "enter the discussion title (with no space) "; cin >> title;
+  //      cout << "enter string of subtree to delete (with no space) "; cin >> val;
+  //      if (tl.delResponse(title, val)) cout << "success\n"; else cout << "ERROR\n"; break;
+		//case 'p':tl.printAllTrees(); break;
+		//case 'r':
+		//	cout << "enter the discussion title (with no space) "; cin >> title;
+  //      cout << "enter the last message (with no space) "; cin >> val;
+  //      tl.printSubTree(title, val); cout << endl; break;
+		//case 'w':cout << "enter a string (with no space) "; cin >> val;
+  //      tl.searchAndPrint(val); cout << endl; break;
+		//case 'e':cout << "bye "; break;
+  //      default: cout << "ERROR\n"; break;
         switch (option)
         {
             case "a":
@@ -232,6 +249,34 @@ class Program
     }
 
 
+    //static void Main(string[] args, int x, double f)
+    //{
+
+    //    Days d;//= Days.Fri;
+
+    //    d = (Days)Console.Read();
+
+    //    switch (d)
+    //    {
+    //        case Days.Sat:
+    //            break;
+    //        case Days.Sun:
+    //            break;
+    //        case Days.Mon:
+    //            break;
+    //        case Days.Tue:
+    //            break;
+    //        case Days.Wed:
+    //            break;
+    //        case Days.Thu:
+    //            break;
+    //        case Days.Fri:
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //    Console.ReadLine();
+    //}
 
 
 }
