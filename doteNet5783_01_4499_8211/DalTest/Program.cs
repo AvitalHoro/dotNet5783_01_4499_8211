@@ -34,7 +34,8 @@ class Program
                 break;
             case "b":
                 Console.WriteLine("enter the order ID");
-                int myId = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                int myId = id;
                 Console.WriteLine(order.GetById(myId));
                 break;
             case "c":
@@ -47,7 +48,8 @@ class Program
             case "d":
                 Order tmpOrder2 = new Order();
                 Console.WriteLine("enter the new order ID");
-                tmpOrder2.ID = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpOrder2.ID = id;
                 Console.WriteLine("enter the costumer name");
                 tmpOrder2.CostumerName = Console.ReadLine();
                 Console.WriteLine("enter the costumer email");
@@ -58,7 +60,8 @@ class Program
                 break;
             case "e":
                 Console.WriteLine("enter the product ID");
-                myId = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                myId = id;
                 order.Delete(myId);
                 break;
         }
@@ -79,20 +82,28 @@ class Program
             case "a":
                 OrderItem tmpItem = new OrderItem();
                 Console.WriteLine("enter the new item ID");
-                tmpItem.ID = Console.Read();
+                int id;
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem.ID = id;
+
                 Console.WriteLine("enter the new product ID");
-                tmpItem.ProductID = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem.ProductID = id;
                 Console.WriteLine("enter the new Order ID");
-                tmpItem.OrderID = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem.OrderID = id;
                 Console.WriteLine("enter the new order item price");
-                tmpItem.Price = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem.Price = id;
                 Console.WriteLine("enter the new order item amount");
-                tmpItem.Amount = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem.Amount = id;
                 item.Add(tmpItem);
                 break;
             case "b":
                 Console.WriteLine("enter the order item ID");
-                int myId = Console.Read();
+                int myId;
+                int.TryParse(Console.ReadLine(), out myId);
                 Console.WriteLine(item.GetById(myId));
                 break;
             case "c":
@@ -105,11 +116,14 @@ class Program
             case "d":
                 OrderItem tmpItem2 = new OrderItem();
                 Console.WriteLine("enter the new item ID");
-                tmpItem2.ID = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem2.ID = id;
                 Console.WriteLine("enter the new product ID");
-                tmpItem2.ProductID = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem2.ProductID = id;
                 Console.WriteLine("enter the new Order ID");
                 tmpItem2.OrderID = Console.Read();
+                
                 Console.WriteLine("enter the new order item price");
                 tmpItem2.Price = Console.Read();
                 Console.WriteLine("enter the new order item amount");
