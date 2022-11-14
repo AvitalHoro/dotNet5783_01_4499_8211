@@ -122,17 +122,19 @@ class Program
                 int.TryParse(Console.ReadLine(), out id);
                 tmpItem2.ProductID = id;
                 Console.WriteLine("enter the new Order ID");
-                tmpItem2.OrderID = Console.Read();
-                
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem2.OrderID = id;
                 Console.WriteLine("enter the new order item price");
-                tmpItem2.Price = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem2.Price = id;
                 Console.WriteLine("enter the new order item amount");
-                tmpItem2.Amount = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpItem2.Amount = id;
                 item.Update(tmpItem2);
                 break;
             case "e":
                 Console.WriteLine("enter the product ID");
-                myId = Console.Read();
+                int.TryParse(Console.ReadLine(), out myId);
                 item.Delete(myId);
                 break;
         }
@@ -153,7 +155,9 @@ class Program
             case "a":
                 Product tmpProduct = new Product();
                 Console.WriteLine("enter the new product ID");
-                tmpProduct.ID = Console.Read();
+                int id;
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct.ID = id;
                 Console.WriteLine("enter the new product name");
                 tmpProduct.Name = Console.ReadLine();
                 Console.WriteLine(@"enter the new product catgory: 
@@ -162,7 +166,8 @@ class Program
                                         Carts-2, 
                                         Bottles-3, 
                                         Diapers-4");
-                int ctg = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                int ctg = id;
                 switch (ctg)
                 {
                     case 0:
@@ -185,14 +190,17 @@ class Program
                         break;
                 }
                 Console.WriteLine("enter the new product price");
-                tmpProduct.Price = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct.Price = id;
                 Console.WriteLine("enter the new product amount");
-                tmpProduct.InStock = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct.InStock = id;
                 product.Add(tmpProduct);
                 break;
             case "b":
                 Console.WriteLine("enter the product ID");
-                int myId = Console.Read();
+                int myId;
+                int.TryParse(Console.ReadLine(), out myId);
                 Console.WriteLine(product.GetById(myId));
                 break;
             case "c":
@@ -206,7 +214,8 @@ class Program
             case "d":
                 Product tmpProduct2 = new Product();
                 Console.WriteLine("enter the new product ID");
-                tmpProduct2.ID = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct2.ID = id;
                 Console.WriteLine("enter the new product name");
                 tmpProduct2.Name = Console.ReadLine();
                 Console.WriteLine(@"enter the new product catgory: 
@@ -215,7 +224,7 @@ class Program
                                         Carts-2, 
                                         Bottles-3, 
                                         Diapers-4");
-                ctg = Console.Read();
+                int.TryParse(Console.ReadLine(), out ctg);
                 switch (ctg)
                 {
                     case 0:
@@ -238,14 +247,16 @@ class Program
                         break;
                 }
                 Console.WriteLine("enter the new product price");
-                tmpProduct2.Price = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct2.Price = id;
                 Console.WriteLine("enter the new product amount");
-                tmpProduct2.InStock = Console.Read();
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct2.InStock = id;
                 product.Update(tmpProduct2);
                 break;
             case "e":
                 Console.WriteLine("enter the product ID");
-                myId = Console.Read();
+                int.TryParse(Console.ReadLine(), out myId);
                 product.Delete(myId);
                 break;
         }
