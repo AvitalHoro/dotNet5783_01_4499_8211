@@ -6,32 +6,34 @@ namespace Dal;
 
 public class DalOrder :IOrder
 {
-   public int Add(Order? item)
+    DataSource ds= DataSource.s_instance;
+    //יש פה שורה עם איסטנסט
+   public int Add( Order? item)
     {
-        DataSource.ListOrder.Add(item);
+        ds.ListOrder.Add(item);
         return item.GetValueOrDefault().ID;//צריך להחזיר פה את התז של המוצר
     }
     public Order? GetById(int id)
     {
-        return (DataSource.ListOrder.Find(item => item.GetValueOrDefault().ID == id));
+        return (ds.ListOrder.Find(item => item.GetValueOrDefault().ID == id));
     }
     public void Update(Order? item)
     {
-        Order? order= DataSource.ListOrder.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
+        Order? order= ds.ListOrder.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
         if (order==null) 
             return;
-       int i= DataSource.ListOrder.IndexOf(order);
-       DataSource.ListOrder[i] = item;
+       int i= ds.ListOrder.IndexOf(order);
+       ds.ListOrder[i] = item;
     }
     public  void Delete(int id)
     {
-        DataSource.ListOrder.RemoveAll(item => item.GetValueOrDefault().ID == id);
+        ds.ListOrder.RemoveAll(item => item.GetValueOrDefault().ID == id);
     }
 
     //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
     public IEnumerable<Order?> GetAll()
     {
-        List<Order?> temp = DataSource.ListOrder;
+        List<Order?> temp = ds.ListOrder;
         return temp;
     }
 

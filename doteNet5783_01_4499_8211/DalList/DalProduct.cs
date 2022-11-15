@@ -5,32 +5,34 @@ namespace Dal;
 
 public class DalProduct: IProduct
 {
+    DataSource ds = DataSource.s_instance;
+
     public int Add(Product? product)
     {
-        DataSource.ListProduct.Add(product);
-        return DataSource.ListProduct.Count();//צריך להחזיר כאן את התז
+        ds.ListProduct.Add(product);
+        return ds.ListProduct.Count();//צריך להחזיר כאן את התז
     }
     public Product? GetById(int id)
     {
-        return (DataSource.ListProduct.Find(product => product.GetValueOrDefault().ID == id));
+        return (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id));
     }
     public void Update(Product? product)
     {
-        Product? temp = DataSource.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
+        Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
         if (temp==null) 
            return; 
-       int i= DataSource.ListProduct.IndexOf(temp);
-        DataSource.ListProduct[i]=product;
+       int i= ds.ListProduct.IndexOf(temp);
+        ds.ListProduct[i]=product;
     }
     public void Delete(int id)
     {
-        DataSource.ListProduct.RemoveAll(product => product.GetValueOrDefault().ID == id);
+        ds.ListProduct.RemoveAll(product => product.GetValueOrDefault().ID == id);
     }
 
     //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
     public IEnumerable<Product?> GetAll()
     {
-        List <Product?> temp= DataSource.ListProduct;
+        List <Product?> temp= ds.ListProduct;
         return temp; //לבדוק שבאמת עושה העתקה רדודה
     }
 }
