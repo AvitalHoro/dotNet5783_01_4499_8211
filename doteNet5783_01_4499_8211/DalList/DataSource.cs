@@ -164,6 +164,8 @@ namespace Dal;
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+                DeliveryDate=null,
+                ShipDate=null,
                 isDeleted = false,
             });
         }
@@ -178,6 +180,7 @@ namespace Dal;
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
                 ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
+                DeliveryDate = null,
                 isDeleted = false,
             });
 
