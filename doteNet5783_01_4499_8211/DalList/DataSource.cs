@@ -4,10 +4,6 @@ using DO;
 namespace Dal;
 public class DataSource
 {
-    //size אולי להוסיף למחלקה של המוצר?
-    //color
-    //חברה מייצרת
-
     private DataSource()
     {
         s_Initialize();
