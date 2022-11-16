@@ -9,7 +9,7 @@ public class DalProduct: IProduct
     DataSource ds = DataSource.s_instance; 
 
     public int Add(Product? product)
-        //adds a new product to the store
+     //adds a new product to the store and returns the id of the new product
     {
         //if(ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID)!=null) //checks if the product is already in the store
         //    throw new Exception "The product ia alredey in the store";
@@ -17,6 +17,7 @@ public class DalProduct: IProduct
         return product.GetValueOrDefault().ID;
     }
     public Product? GetById(int id)
+     //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
         return (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id));
     }
