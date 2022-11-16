@@ -2,8 +2,7 @@
 using DO;
 
 namespace Dal;
-
-internal sealed class DataSource
+public class DataSource
 {
     //size אולי להוסיף למחלקה של המוצר?
     //color
@@ -14,7 +13,7 @@ internal sealed class DataSource
         s_Initialize();
     }
     //internal static DataSource s_instance { get; }
-    //static DataSource() => s_Initialize();
+    //  static DataSource() => s_Initialize();
 
     private void s_Initialize()
     //activates all the methods that initializes the lists of the products, orders and order items
@@ -159,6 +158,8 @@ internal sealed class DataSource
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+                DeliveryDate=null,
+                ShipDate=null,
                 isDeleted = false,
             });
         }
@@ -173,6 +174,7 @@ internal sealed class DataSource
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
                 ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)), //לשאול את נורית איך זה בדיוק עובד
+                DeliveryDate = null,
                 isDeleted = false,
             });
 
