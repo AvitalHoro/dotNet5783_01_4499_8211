@@ -31,6 +31,7 @@ class Program
                 tmpOrder.CostumerEmail = Console.ReadLine();
                 Console.WriteLine("enter the costumer adress");
                 tmpOrder.CostumerAdress = Console.ReadLine();
+                tmpOrder.OrderDate=DateTime.Now;
                 order.Add(tmpOrder);
                 break;
             case "b":
