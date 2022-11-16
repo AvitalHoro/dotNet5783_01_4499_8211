@@ -1,24 +1,36 @@
 ﻿using DalApi;
 using DO;
+using System.Security.Cryptography;
 
 namespace Dal;
 
- internal class DataSource
+ public sealed class DataSource
 {
     //size אולי להוסיף למחלקה של המוצר?
     //color
     //חברה מייצרת
 
-   private DataSource()
+   //internal static DataSource s_instance { get;  }
+   // private static readonly Random s_rand = new();
+   // static DataSource() => s_Initialize();
+
+    static readonly Random randNum= new Random();
+    internal static DataSource s_instance { get; } = new DataSource();
+    internal List<Product?> ListProduct { get; } = new List<Product?>{ };
+    internal List<Order?> ListOrder { get; } = new List<Order?> { };
+    internal List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>{ };
+
+    private DataSource()
     {
      s_Initialize();
     }
 
-    static readonly Random randNum= new Random(); //enters a random number to "randNum"
-    internal static DataSource s_instance { get; } = new DataSource(); //ctor
-    internal static List<Product?> ListProduct { get; } = new List<Product?>() { }; //
-    internal static List<Order?> ListOrder { get; }= new List<Order?>() { };
-    internal static List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>() { };
+    private void s_Initialize()
+    {
+        CreateProduct();
+        CreateOrder();
+        CreateOrderItem();
+    }
 
     internal static class Config
     {
@@ -43,76 +55,83 @@ namespace Dal;
         string[] carts = {"Royal","RECARO","Baby Jogger", "Chico","Cybex","Twigy","Sport Line", "Phil&Teds","Mountain Buggy","Babyhome","BEBECAR"};
         string[] bottles = {"Avent", "Chicco", "Tommee Tippee", "Lansinoh","Twigy", "MAM","Medela" };
         string[] diapers={"Pampers", "Huggies","Babysitter", "Titulim","Life","Luvs","DYPER","Hello Bello","Coterie" };
-        for(int i=0;i<clothes.Length;i++)
-            //initializes the list with new products from the clothes category
+
+       // List<Product?> ListProduct = new List<Product?>() { };
+        for (int i = 0; i < clothes.Length; i++)
         {
-            ListProduct.Add(new Product
-            { 
-                ID=  Config.NextProductNumber, //runing number
-                Name=clothes[randNum.Next(clothes.Length)],  //selects a random name from the array of names of clothes
-                Category= (Category)(0),//category=clothes
-                Price= randNum.Next(50,100), //selects a random price in range of 50-100
-                InStock= randNum.Next(0,30),//selects a random amount in stock in range of 0-30
-                isDeleted =false, //the new product isn't deleted
-            });
+            Product product = new()
+            {
+                ID = Config.NextProductNumber,
+                Name = clothes[randNum.Next(clothes.Length)],
+                Category = (Category)(0),
+                Price = randNum.Next(50, 100),
+                InStock = randNum.Next(0, 30),
+                isDeleted = false,
+            };
+            ListProduct.Add(product);
         }
         for (int i = 0; i < toys.Length; i++)
         //initializes the list with new products from the toys category
         {
-            ListProduct.Add(new Product
+            Product product = new()
             {
-                ID = Config.NextProductNumber,//runing number
-                Name = toys[randNum.Next(clothes.Length)],//selects a random name from the array of names of toys
-                Category = (Category)(1),//category=toys
-                Price = randNum.Next(30, 300),//selects a random price in range of 50-100
-                InStock = randNum.Next(0, 10),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
-            });
+                ID = Config.NextProductNumber,
+                Name = toys[randNum.Next(clothes.Length)],
+                Category = (Category)(1),
+                Price = randNum.Next(30, 300),
+                InStock = randNum.Next(0, 10),
+                isDeleted = false,
+            };
+            ListProduct.Add(product);
         }
         for (int i = 0; i < carts.Length; i++)
         //initializes the list with new products from the carts category
         {
-            ListProduct.Add(new Product
+            Product product = new()
             {
-                ID = Config.NextProductNumber,//runing number
-                Name = carts[randNum.Next(clothes.Length)],//selects a random name from the array of names of carts
-                Category = (Category)(2),//category=carts
-                Price = randNum.Next(200, 400),//selects a random price in range of 50-100
-                InStock = randNum.Next(0, 15),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
-            });
+                ID = Config.NextProductNumber,
+                Name = carts[randNum.Next(clothes.Length)],
+                Category = (Category)(2),
+                Price = randNum.Next(200, 400),
+                InStock = randNum.Next(0, 15),
+                isDeleted = false,
+            };
+            ListProduct.Add(product);
         }
         for (int i = 0; i < bottles.Length; i++)
         //initializes the list with new products from the bottels category
         {
-            ListProduct.Add(new Product
+            Product product = new()
             {
-                ID = Config.NextProductNumber,//runing number
-                Name = bottles[randNum.Next(clothes.Length)],//selects a random name from the array of names of bottels
-                Category = (Category)(3),//category=bottels
-                Price = randNum.Next(20, 60),//selects a random price in range of 50-100
-                InStock = randNum.Next(0, 40),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
-            });
+                ID = Config.NextProductNumber,
+                Name = bottles[randNum.Next(clothes.Length)],
+                Category = (Category)(3),
+                Price = randNum.Next(20, 60),
+                InStock = randNum.Next(0, 40),
+                isDeleted = false,
+            };
+            ListProduct.Add(product);
         }
         for (int i = 0; i < diapers.Length; i++)
         //initializes the list with new products from the diapers category
         {
-            ListProduct.Add(new Product
+            Product product = new()
             {
-                ID = Config.NextProductNumber,//runing number
-                Name = diapers[randNum.Next(clothes.Length)],//selects a random name from the array of names of diapers
-                Category = (Category)(4),//category=diapers
-                Price = randNum.Next(50, 80),//selects a random price in range of 50-100
-                InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
-            });
+                ID = Config.NextProductNumber,
+                Name = diapers[randNum.Next(clothes.Length)],
+                Category = (Category)(4),
+                Price = randNum.Next(50, 80),
+                InStock = randNum.Next(0, 30),
+                isDeleted = false,
+            };
+            ListProduct.Add(product);
         }
     }
 
     private void CreateOrder()
     //creates list of new orders
     {
+        //List<Order?> ListOrder = new List<Order?>() { };
         string[] costumerName = {"Reut cohen", "Avital Shalom", "Emuna Ben-Shimol","Rivka Adler","Sara Davidi", "Rachel Perel","Hadar Muchtar"
                                  ,"Yaakov Vinberg","Israel Levin","Matnya Chadad", "Dor Bar-Sheshet","Shmuel Emanuel","Moshe Ben-Yair","Shira Ben-Pazi"
                                  ,"Osnat Asher","Halel Paz", "Ava Kor","Ayala Lopez", "Shimon Harary","Harry Alexander","Shilo Horovitz"};
@@ -125,7 +144,7 @@ namespace Dal;
 
         for (int i = 0; i < 24; i++)
         {
-            ListOrder.Add(new Order
+            Order order = new()
             {
                 ID = Config.NextOrderNumber,
                 CostumerName = costumerName[randNum.Next(costumerName.Length)],
@@ -133,9 +152,12 @@ namespace Dal;
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
                 ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
-                DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)),//,צריך שיהיה אחרי הזתאריך של המשלוח לסדר
+                DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 3L)),//,צריך שיהיה אחרי הזתאריך של המשלוח לסדר
                 isDeleted = false,
-            });
+            };
+
+
+            ListOrder.Add(order);
         }
 
         for (int i = 0; i <8; i++)
@@ -147,6 +169,8 @@ namespace Dal;
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
+                DeliveryDate=null,
+                ShipDate=null,
                 isDeleted = false,
             });
         }
@@ -161,6 +185,7 @@ namespace Dal;
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
                 ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 7L)), //לשאול את נורית איך זה בדיוק עובד
+                DeliveryDate = null,
                 isDeleted = false,
             });
 
@@ -170,7 +195,8 @@ namespace Dal;
     private void CreateOrderItem()
 
     {
-        for(int i = 0; i < 30; i++)
+        List<OrderItem?> ListOrderItem = new List<OrderItem?>() { };
+        for (int i = 0; i < 30; i++)
         {
             Product? product = ListProduct[randNum.Next(ListProduct.Count)];
             ListOrderItem.Add(new OrderItem
@@ -184,11 +210,5 @@ namespace Dal;
         }
     } 
 
-    private void s_Initialize()
-    //activates all the methods that initializes the lists of the products, orders and order items
-    {
-        CreateProduct();
-        CreateOrder(); 
-        CreateOrderItem(); 
-    }
+ 
 }

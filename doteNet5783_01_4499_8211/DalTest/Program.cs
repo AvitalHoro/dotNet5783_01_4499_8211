@@ -1,6 +1,7 @@
 ﻿
 using DalApi;
 using DO;
+using System.Data.Common;
 
 namespace Dal;
 
@@ -139,7 +140,7 @@ class Program
                 break;
         }
     }
-
+   
     static void testProduct(DalProduct product)
     {
         Console.WriteLine(@"test product:
