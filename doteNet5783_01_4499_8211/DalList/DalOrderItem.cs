@@ -5,6 +5,7 @@ using DO;
 namespace Dal;
 
 public class DalOrderItem : IOrderItem
+//realizes all the methods of the order items
 {
     DataSource ds = DataSource.s_instance;
 

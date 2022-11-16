@@ -4,13 +4,17 @@ using DO;
 namespace Dal;
 
 public class DalProduct: IProduct
+//realizes all the methods of the products
 {
-    DataSource ds = DataSource.s_instance;
+    DataSource ds = DataSource.s_instance; 
 
     public int Add(Product? product)
+        //adds a new product to the store
     {
+        //if(ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID)!=null) //checks if the product is already in the store
+        //    throw new Exception "The product ia alredey in the store";
         ds.ListProduct.Add(product);
-        return ds.ListProduct.Count();//צריך להחזיר כאן את התז
+        return product.GetValueOrDefault().ID;
     }
     public Product? GetById(int id)
     {

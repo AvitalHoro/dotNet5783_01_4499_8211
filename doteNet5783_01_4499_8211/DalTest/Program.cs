@@ -31,7 +31,13 @@ class Program
                 tmpOrder.CostumerEmail = Console.ReadLine();
                 Console.WriteLine("enter the costumer adress");
                 tmpOrder.CostumerAdress = Console.ReadLine();
-                order.Add(tmpOrder);
+               // try
+               // {
+               //     order.Add(tmpOrder);
+               // }
+               // catch(string msg) 
+               // { 
+               // }
                 break;
             case "b":
                 Console.WriteLine("enter the order ID");

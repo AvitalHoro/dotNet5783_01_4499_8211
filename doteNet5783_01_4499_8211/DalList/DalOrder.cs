@@ -5,9 +5,10 @@ using DO;
 namespace Dal;
 
 public class DalOrder :IOrder
+//realizes all the methods of the orders
 {
     DataSource ds= DataSource.s_instance;
-    //יש פה שורה עם איסטנסט
+    
    public int Add( Order? item)
     {
         ds.ListOrder.Add(item);
