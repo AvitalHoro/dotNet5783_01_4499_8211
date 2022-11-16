@@ -7,6 +7,7 @@ public class DalProduct: IProduct
 {
     public int Add(Product? product)
     {
+       
         DataSource.ListProduct.Add(product);
         return DataSource.ListProduct.Count();//צריך להחזיר כאן את התז
     }
