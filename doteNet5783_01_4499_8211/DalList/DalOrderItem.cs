@@ -21,7 +21,7 @@ public class DalOrderItem : IOrderItem
         // מקבלת ת"ז ומחזירה את ההזמנה שז הת"ז שלה
     {
         if (ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
-            throw new DontExitException(id);
+            throw new DontExistException(id);
         return (ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id));
     }
     public void Update(OrderItem? item)
@@ -29,14 +29,14 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem? temp = ds.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
         if (temp==null)
-            throw new DontExitException(item.GetValueOrDefault().ID);
+            throw new DontExistException(item.GetValueOrDefault().ID);
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
     }
     public void Delete(int id)
     {
         if (ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
-            throw new DontExitException(id);
+            throw new DontExistException(id);
         ds.ListOrderItem.RemoveAll(item => item.GetValueOrDefault().ID == id);
     }
 

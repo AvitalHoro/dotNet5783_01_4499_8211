@@ -20,7 +20,7 @@ public class DalProduct: IProduct
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
         if (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id)==null) //checks if the product is already in the store
-            throw new DontExitException(id);
+            throw new DontExistException(id);
         return (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id));
     }
     public void Update(Product? product)
@@ -28,7 +28,7 @@ public class DalProduct: IProduct
     {
         Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
         if (temp==null)
-            throw new DontExitException(product.GetValueOrDefault().ID);
+            throw new DontExistException(product.GetValueOrDefault().ID);
         int i= ds.ListProduct.IndexOf(temp);
         ds.ListProduct[i]=product;
     }
@@ -36,7 +36,7 @@ public class DalProduct: IProduct
         //מוחק מוצר מהרשימה
     {
         if (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
-            throw new DontExitException(id);
+            throw new DontExistException(id);
         ds.ListProduct.RemoveAll(product => product.GetValueOrDefault().ID == id);
         //foreach (Product? product in ds.ListProduct) { if(product.GetValueOrDefault().ID == id) product.isDeleted(true);}
     }

@@ -19,21 +19,21 @@ public class DalOrder :IOrder
     public Order? GetById(int id)
     {
         if (ds.ListProduct.Find(order => order.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
-            throw new DontExitException(id);
+            throw new DontExistException(id);
         return (ds.ListOrder.Find(item => item.GetValueOrDefault().ID == id));
     }
     public void Update(Order? item)
     {
         Order? order= ds.ListOrder.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
         if (order==null)
-            throw new DontExitException(item.GetValueOrDefault().ID);
+            throw new DontExistException(item.GetValueOrDefault().ID);
         int i= ds.ListOrder.IndexOf(order);
        ds.ListOrder[i] = item;
     }
     public  void Delete(int id)
     {
         if (ds.ListProduct.Find(order => order.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
-            throw new DontExitException(id);
+            throw new DontExistException(id);
         ds.ListOrder.RemoveAll(item => item.GetValueOrDefault().ID == id);
     }
 
