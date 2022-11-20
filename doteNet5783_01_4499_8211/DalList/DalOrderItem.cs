@@ -12,25 +12,31 @@ public class DalOrderItem : IOrderItem
     public int Add(OrderItem? item)
         //מוסיפה הזמנה חדשה לרשימה
     {
+        if (ds.ListOrder.Find(i => item.GetValueOrDefault().ID == i.GetValueOrDefault().ID) != null) //checks if the order is already in the system
+            throw new AlreadyExistsException(item.GetValueOrDefault().ID);
         ds.ListOrderItem.Add(item);
         return ds.ListOrderItem.Count();//צריך להחזיר פה את התז
     }
     public OrderItem? GetById(int id)
         // מקבלת ת"ז ומחזירה את ההזמנה שז הת"ז שלה
     {
+        if (ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
+            throw new DontExitException(id);
         return (ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id));
     }
     public void Update(OrderItem? item)
         //מעדכנת הזמנה קיימת
     {
         OrderItem? temp = ds.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
-        if (temp==null) 
-             return;
+        if (temp==null)
+            throw new DontExitException(item.GetValueOrDefault().ID);
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
     }
     public void Delete(int id)
     {
+        if (ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
+            throw new DontExitException(id);
         ds.ListOrderItem.RemoveAll(item => item.GetValueOrDefault().ID == id);
     }
 

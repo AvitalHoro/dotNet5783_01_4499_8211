@@ -11,31 +11,32 @@ public class DalProduct: IProduct
     public int Add(Product? product)
      //פונקציה להוספת מוצר חדש לרשימת המוצרים
     {
-        if(ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID)!=null) 
-            //checks if the product is already in the store
-           throw new Exception ("The product ia alredey in the store");
-        ds.ListProduct.Add(product); //מוסיף לרשימה
-        return product.GetValueOrDefault().ID; //מחזיר את הת"ז של המוצר החדש
+        //if(ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID)!=null) //checks if the product is already in the store
+        //    throw new Exception "The product ia alredey in the store";
+        ds.ListProduct.Add(product);
+        return product.GetValueOrDefault().ID;
     }
     public Product? GetById(int id)
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
+        if (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id)==null) //checks if the product is already in the store
+            throw new DontExitException(id);
         return (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id));
     }
     public void Update(Product? product)
         //הפונקציה מעדכנת מוצר מסוים ברשימת הפרודוקטים, ומוצאת את הקודם ע"י הת"ז שנשארת אותו הדבר
     {
         Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
-        //מכניס למשתנה הזמני את המוצר הישן שאנחנו רוצים לעדכן
-        if (temp==null) //אם המוצר לא היה ברשימה
-           return; 
-       int i= ds.ListProduct.IndexOf(temp);  //מוצא את האינדקס ברשימה של האיבר הישן
-        ds.ListProduct[i]=product; //הפונקציה מכניסה את המוצר המעודכן לאותו מקום בדיוק של הישן
+        if (temp==null)
+            throw new DontExitException(product.GetValueOrDefault().ID);
+        int i= ds.ListProduct.IndexOf(temp);
+        ds.ListProduct[i]=product;
     }
     public void Delete(int id)
         //מוחק מוצר מהרשימה
     {
-        //צריך למחוק בכאילו, לא באמת, רק לשנות את האיז דיליטד
+        if (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
+            throw new DontExitException(id);
         ds.ListProduct.RemoveAll(product => product.GetValueOrDefault().ID == id);
         //foreach (Product? product in ds.ListProduct) { if(product.GetValueOrDefault().ID == id) product.isDeleted(true);}
     }
