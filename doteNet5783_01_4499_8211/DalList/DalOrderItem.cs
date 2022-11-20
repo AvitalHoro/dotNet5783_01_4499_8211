@@ -5,20 +5,23 @@ using DO;
 namespace Dal;
 
 public class DalOrderItem : IOrderItem
-//realizes all the methods of the order items
+//מממשת את כל הפונקציות שב"IORDER" 
 {
     DataSource ds = DataSource.s_instance;
 
     public int Add(OrderItem? item)
+        //מוסיפה הזמנה חדשה לרשימה
     {
         ds.ListOrderItem.Add(item);
         return ds.ListOrderItem.Count();//צריך להחזיר פה את התז
     }
     public OrderItem? GetById(int id)
+        // מקבלת ת"ז ומחזירה את ההזמנה שז הת"ז שלה
     {
         return (ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id));
     }
     public void Update(OrderItem? item)
+        //מעדכנת הזמנה קיימת
     {
         OrderItem? temp = ds.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
         if (temp==null) 
