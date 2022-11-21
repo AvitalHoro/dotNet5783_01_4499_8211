@@ -1,8 +1,10 @@
 ﻿
 namespace DO;
 
+//ממשק של מוצר
 public struct Product
 {
+    //מדפיסה את כל פרטי המוצר
     public override string ToString() => $@"
 	Product ID={ID}: {Name}, 
 	category - {Category}

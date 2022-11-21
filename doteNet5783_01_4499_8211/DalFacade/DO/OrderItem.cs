@@ -2,7 +2,9 @@
 namespace DO;
 
 public struct OrderItem
+    //ממשק של פריט שהוזמן
 {
+    //מדפיסה את כל פרטי הפריט
     public override string ToString() => $@"
     	Item ID: {ID} 
         Product ID: {ProductID} 

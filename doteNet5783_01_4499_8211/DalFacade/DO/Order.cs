@@ -2,7 +2,9 @@
 namespace DO;
 
 public struct Order
+//ממשק של הזמנה
 {
+    //מדפיס את כל פרטי ההזמנה
     public override string ToString() => $@"
     Order ID: {ID}
     Costumer Name: {CostumerName}

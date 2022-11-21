@@ -1,6 +1,7 @@
 ﻿
 using DalApi;
 using DO;
+using System.Data;
 
 namespace Dal;
 
@@ -15,7 +16,7 @@ public class DalOrderItem : IOrderItem
         if (ds.ListOrder.Find(i => item.GetValueOrDefault().ID == i.GetValueOrDefault().ID) != null) //checks if the order is already in the system
             throw new AlreadyExistsException(item.GetValueOrDefault().ID);
         ds.ListOrderItem.Add(item);
-        return ds.ListOrderItem.Count();//צריך להחזיר פה את התז
+        return item.GetValueOrDefault().ID;//צריך להחזיר פה את התז
     }
     public OrderItem? GetById(int id)
         // מקבלת ת"ז ומחזירה את ההזמנה שז הת"ז שלה
@@ -34,10 +35,23 @@ public class DalOrderItem : IOrderItem
         ds.ListOrderItem.Add(item);
     }
     public void Delete(int id)
+        //מוחקת הזמנה מהרשימה לפי הת"ז שהיא מקבלת
     {
-        if (ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
+        OrderItem? found = ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id);
+        if (found == null)
+            //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DontExistException(id);
-        ds.ListOrderItem.RemoveAll(item => item.GetValueOrDefault().ID == id);
+
+        OrderItem item = new OrderItem
+        {
+            ID = id,
+            ProductID=found.GetValueOrDefault().ProductID,
+            OrderID= found.GetValueOrDefault().OrderID,
+            Price = found.GetValueOrDefault().Price,
+            Amount = found.GetValueOrDefault().Amount,  
+            isDeleted = true
+        };
+        Update(item);
     }
 
     //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null)

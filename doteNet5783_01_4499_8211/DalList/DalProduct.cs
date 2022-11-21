@@ -33,20 +33,32 @@ public class DalProduct: IProduct
         ds.ListProduct[i]=product;
     }
     public void Delete(int id)
-        //מוחק מוצר מהרשימה
+    //מוחק מוצר מהרשימה
+   //הפונקציה לא באמת מוחקת את ההזמנה אלא רק מכדכנת בפרטים שלה שהיא מחוקה
     {
-        if (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
-            throw new DontExistException(id);
-        ds.ListProduct.RemoveAll(product => product.GetValueOrDefault().ID == id);
-        //foreach (Product? product in ds.ListProduct) { if(product.GetValueOrDefault().ID == id) product.isDeleted(true);}
+        Product? found = ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id);
+        if (found == null)
+           //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
+         throw new DontExistException(id);
+   
+        Product product = new Product //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
+        {
+            ID = id,
+            Name = found.GetValueOrDefault().Name,
+            Category = found.GetValueOrDefault().Category,
+            InStock = found.GetValueOrDefault().InStock,
+            Price = found.GetValueOrDefault().Price,
+            isDeleted = true
+        };
+        Update(product); //מעדכן ברשימה את ההזמנה המחוקה
     }
 
-    //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
-    public IEnumerable<Product?> GetAll()
+        //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
+     public IEnumerable<Product?> GetAll()
         //מחזירה את כל הרשימה של המוצרים בהעתקה רדודה, אי אפשר לשנות דרכה את הרשימה
-    {
+     {
         List <Product?> temp= ds.ListProduct;
         return temp; 
-    }
+     }
 }
 
