@@ -57,8 +57,9 @@ public class DalProduct: IProduct
      public IEnumerable<Product?> GetAll()
         //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
      {
-        List <Product?> temp= ds.ListProduct;
-        return temp; 
+        List<Product?> newListProduct = new List<Product?> { };
+        foreach (Product product in ds.ListProduct) { newListProduct.Add(product); };
+        return newListProduct;
      }
 }
 

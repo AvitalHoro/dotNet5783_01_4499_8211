@@ -285,19 +285,31 @@ class Program
                 Console.WriteLine("ERROR");
                 break;
             }
-            switch (num)
+            try
             {
-                case 1:
-                    testOrder(order);
-                    break;
-                case 2:
-                    testOrderItem(item);
-                    break;
-                case 3:
-                    testProduct(product);
-                    break;
-                default:
-                    break;
+                switch (num)
+                {
+                    case 1:
+                        testOrder(order);
+                        break;
+                    case 2:
+                        testOrderItem(item);
+                        break;
+                    case 3:
+                        testProduct(product);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            catch(DontExistException ex)
+            {
+                Console.WriteLine(ex);
+            }
+            catch (AlreadyExistsException ex)
+            {
+                Console.WriteLine(ex);
             }
 
         }

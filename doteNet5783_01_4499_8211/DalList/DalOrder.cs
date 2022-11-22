@@ -60,8 +60,8 @@ public class DalOrder :IOrder
     public IEnumerable<Order?> GetAll()
     //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        List<Order?> temp = ds.ListOrder;
-        return temp;
+        List<Order?> newListOrder = new List<Order?> { };
+        foreach (Order order in ds.ListOrder) { newListOrder.Add(order); };
+        return newListOrder;
     }
-
 }
