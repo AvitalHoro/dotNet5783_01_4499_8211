@@ -22,12 +22,12 @@ public class DataSource
 
     static readonly Random randNum = new Random(); //enters a random number to "randNum"
     internal static DataSource s_instance { get; } = new DataSource(); //ctor
-    internal  List<Product?> ListProduct { get; } = new List<Product?> { }; //
+    internal  List<Product?> ListProduct { get; } = new List<Product?> { }; 
     internal  List<Order?> ListOrder { get; } = new List<Order?>{ };
     internal  List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>{ };
 
     internal static class Config
-     //manages all the
+     //מנהל את כל המספרים הרצים בשביל האיתחול של הרשימות
     {
         internal const int s_startOrderNumber = 1000;
         private static int s_nextOrderNumber = s_startOrderNumber;
@@ -132,46 +132,54 @@ public class DataSource
                                    "Kiryat-Gat","Kiryat-Shmona","Kiryat-Motzkin","Kiryat-Shmuel","Katserin","Haifa",
                                     "Bne-Brak","Ramat-Gan", "Givat-Shmuel"};
         //מערכים שמתוכם נגריל את שם הלקוח, האימייל והכתובת שלו
+        //מוסיף 60% מההזמנות עם תאריך הזמנה,שליחה ומסירה 
         for (int i = 0; i < 24; i++)
         {
             ListOrder.Add(new Order
             {
-                ID = Config.NextOrderNumber,
-                CostumerName = costumerName[randNum.Next(costumerName.Length)],
-                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
-                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
+                ID = Config.NextOrderNumber, //מספר רץ
+                CostumerName = costumerName[randNum.Next(costumerName.Length)], //מגריל שם של לקוח רנדומלי מהמערך של השמות
+                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)], //מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
+                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],  //מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
                 OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), 
-                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)), 
+                //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
+                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)),
+                //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן שליחה הגיוני
                 DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 3L)),
+                //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן מסירה הגיוני
                 isDeleted = false,
             });
         }
-
+        // מוסיף 20% מההזמנות עם תאריך הזמנה בלבד 
         for (int i = 0; i < 8; i++)
         {
             ListOrder.Add(new Order
             {
-                ID = Config.NextOrderNumber,
-                CostumerName = costumerName[randNum.Next(costumerName.Length)],
-                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
-                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
-                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
-                DeliveryDate=null,
+                ID = Config.NextOrderNumber,//מספר רץ
+                CostumerName = costumerName[randNum.Next(costumerName.Length)],//מגריל שם של לקוח רנדומלי מהמערך של השמות
+                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)], //מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
+                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],//מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
+                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)),
+                //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
+                DeliveryDate =null, 
                 ShipDate=null,
                 isDeleted = false,
             });
         }
 
+        //מוסיף 20% עם תאריך הזמנה ושליחה
         for (int i = 0; i < 8; i++)
         {
             ListOrder.Add(new Order
             {
-                ID = Config.NextOrderNumber,
-                CostumerName = costumerName[randNum.Next(costumerName.Length)],
-                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],
-                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],
-                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), //לחזור לבדוק עם המצגת שקופית 40
-                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)), //לשאול את נורית איך זה בדיוק עובד
+                ID = Config.NextOrderNumber,//מספר רץ
+                CostumerName = costumerName[randNum.Next(costumerName.Length)],//מגריל שם של לקוח רנדומלי מהמערך של השמות
+                CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],//מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
+                CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],//מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
+                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)),
+                //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
+                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)),
+                //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן שליחה הגיוני
                 DeliveryDate = null,
                 isDeleted = false,
             });
@@ -180,18 +188,19 @@ public class DataSource
     }
 
     private void CreateOrderItem()
-
+     // מאתחל את הרשימה של המוצרים שהוזמנו עם מוצרים חדשים
     {
         for (int i = 0; i < 30; i++)
         {
-            Product? product = ListProduct[randNum.Next(ListProduct.Count)];
+            Product? product = ListProduct[randNum.Next(ListProduct.Count)]; // מגריל מוצר רנדומלי מהרשימה של המוצרים
             ListOrderItem.Add(new OrderItem
             {
-                ID = Config.NextOrderItemNumber,
-                ProductID = product.GetValueOrDefault().ID,
-                Price = product.GetValueOrDefault().Price,
+                ID = Config.NextOrderItemNumber, //מספר רץ
+                ProductID = product.GetValueOrDefault().ID, //לוקח את הת"ז מהמוצר שהוגרל
+                Price = product.GetValueOrDefault().Price, //לוקח את המחיר של המוצר שהוגרל
                 OrderID = randNum.Next(Config.s_startOrderNumber, Config.s_startOrderNumber + ListOrder.Count),
-                Amount = randNum.Next(1, 5)
+                //מגריל ת"ז רנדומלית של הזמנה , הבאנו לו טווח של מינימום ומקסימום
+                Amount = randNum.Next(1, 5) // מגריל כמות שהוזמנה עד 5 פריטים
             });
         }
     }
