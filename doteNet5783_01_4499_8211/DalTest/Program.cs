@@ -5,6 +5,8 @@ using System.Data.Common;
 
 namespace Dal;
 
+//תוכנית ראשית זמנית הבודקת את נכונות כל הקבצים בשכבת הנתונים שעשינו עד כה
+
 class Program
 {
     static void testOrder(DalOrder order)
