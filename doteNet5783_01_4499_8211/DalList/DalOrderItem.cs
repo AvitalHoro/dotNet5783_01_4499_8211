@@ -58,16 +58,17 @@ public class DalOrderItem : IOrderItem
  
     public IEnumerable<OrderItem?> GetAll()
     {
-        List < OrderItem?> temp = ds.ListOrderItem;
-        return temp;
+        List<OrderItem?> newListOrderItem = new List<OrderItem?> { };
+        foreach (OrderItem item in ds.ListOrderItem) { newListOrderItem.Add(item); };
+        return newListOrderItem;
     }
 
     public IEnumerable<OrderItem?> GetAll(int IdOrder)
     //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        List<OrderItem?> newListOrderItem = new List<OrderItem?> { };
-        foreach (OrderItem item in ds.ListOrderItem) { newListOrderItem.Add(item); };
-        return newListOrderItem;
+        //List<OrderItem?> newListOrderItem = new List<OrderItem?> { };
+        //foreach (OrderItem item in ds.ListOrderItem) { newListOrderItem.Add(item); };
+        //return newListOrderItem;
     }
 
     public OrderItem? getItem(int IdOrder, int IdItem)

@@ -1,11 +1,14 @@
 ﻿
+using System.Reflection;
+
 namespace DalApi;
 
 public class DalFactory
 {
     public static IDal? GetDal()
     {
-        //IDal? DalInstace =;
+
+        //IDal? DalInstace = 
         //return DalInstance;
     }
 
