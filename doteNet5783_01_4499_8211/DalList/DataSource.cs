@@ -50,6 +50,8 @@ public class DataSource
         string[] carts = { "Royal", "RECARO", "Baby Jogger", "Chico", "Cybex", "Twigy", "Sport Line", "Phil&Teds", "Mountain Buggy", "Babyhome", "BEBECAR" };
         string[] bottles = { "Avent", "Chicco", "Tommee Tippee", "Lansinoh", "Twigy", "MAM", "Medela" };
         string[] diapers = { "Pampers", "Huggies", "Babysitter", "Titulim", "Life", "Luvs", "DYPER", "Hello Bello", "Coterie" };
+        //מערכים שמהם נגריל מחרוזות של סוגים של מוצרים
+
         for (int i = 0; i < clothes.Length; i++)
         //initializes the list with new products from the clothes category
         {
@@ -129,7 +131,7 @@ public class DataSource
         string[] costumerAdress = {"Neta", "Jerusalem","Tel-Aviv","Yafo","Dimona","Bet-El", "Bne-Dkalim", "Rehovot",
                                    "Kiryat-Gat","Kiryat-Shmona","Kiryat-Motzkin","Kiryat-Shmuel","Katserin","Haifa",
                                     "Bne-Brak","Ramat-Gan", "Givat-Shmuel"};
-
+        //מערכים שמתוכם נגריל את שם הלקוח, האימייל והכתובת שלו
         for (int i = 0; i < 24; i++)
         {
             ListOrder.Add(new Order

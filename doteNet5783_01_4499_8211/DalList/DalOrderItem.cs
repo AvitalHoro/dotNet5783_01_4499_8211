@@ -63,6 +63,7 @@ public class DalOrderItem : IOrderItem
     }
 
     public IEnumerable<OrderItem?> GetAll(int IdOrder)
+    //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
         List<OrderItem?> temp = ds.ListOrderItem.FindAll(item => item.GetValueOrDefault().ID == IdOrder);
         return temp;

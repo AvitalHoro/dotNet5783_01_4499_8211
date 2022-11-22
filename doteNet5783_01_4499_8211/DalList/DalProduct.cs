@@ -55,7 +55,7 @@ public class DalProduct: IProduct
 
         //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
      public IEnumerable<Product?> GetAll()
-        //מחזירה את כל הרשימה של המוצרים בהעתקה רדודה, אי אפשר לשנות דרכה את הרשימה
+        //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
      {
         List <Product?> temp= ds.ListProduct;
         return temp; 

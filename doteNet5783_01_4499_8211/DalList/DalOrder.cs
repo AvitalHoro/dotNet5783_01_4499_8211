@@ -58,7 +58,7 @@ public class DalOrder :IOrder
 
     //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
     public IEnumerable<Order?> GetAll()
-        //מחזיר את כל הרשימה של ההזמנות  
+    //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
         List<Order?> temp = ds.ListOrder;
         return temp;
