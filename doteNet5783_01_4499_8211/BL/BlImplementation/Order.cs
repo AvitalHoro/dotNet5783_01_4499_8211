@@ -6,7 +6,7 @@ namespace BlImplementation;
 
 internal class Order: IOrder
 {
-    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");;
+    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
@@ -23,7 +23,7 @@ internal class Order: IOrder
             foreach (var item in OrderItems)
             { sum = sum + (item.GetValueOrDefault().Price * item.GetValueOrDefault().Amount); };
             boOrder.TotalPrice = sum;
-                newList.Add(boOrder);
+            newList.Add(boOrder);
         }
         return newList; 
     }

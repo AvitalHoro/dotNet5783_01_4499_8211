@@ -1,6 +1,4 @@
 ﻿using BLApi;
-using BO;
-using DO;
 
 namespace BlImplementation;
 
@@ -14,7 +12,7 @@ internal class Product : IProduct
         List<BO.ProductForList?> newList = new List<BO.ProductForList?> { };
         foreach (DO.Product? product in tmp)
         {
-            newList.Add(new ProductForList
+            newList.Add(new BO.ProductForList
             {
                 ID = product.GetValueOrDefault().ID,
                 Name = product.GetValueOrDefault().Name,
@@ -163,5 +161,4 @@ internal class Product : IProduct
         }
         catch(DO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
     } 
-
 }
