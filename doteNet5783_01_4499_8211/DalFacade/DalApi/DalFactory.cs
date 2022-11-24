@@ -9,7 +9,7 @@ public class DalFactory
     {
 
         //IDal? DalInstace = 
-        //return DalInstance;
+        return DalInstance;
     }
 
 }

@@ -57,6 +57,7 @@ public class DalOrderItem : IOrderItem
     //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null)
  
     public IEnumerable<OrderItem?> GetAll()
+      // מחזירה את כל הרשימה, גם את האיברים שכביכול נמחקו
     {
         List<OrderItem?> newListOrderItem = new List<OrderItem?> { };
         foreach (OrderItem item in ds.ListOrderItem) { newListOrderItem.Add(item); };
@@ -66,13 +67,17 @@ public class DalOrderItem : IOrderItem
     public IEnumerable<OrderItem?> GetAll(int IdOrder)
     //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        //List<OrderItem?> newListOrderItem = new List<OrderItem?> { };
-        //foreach (OrderItem item in ds.ListOrderItem) { newListOrderItem.Add(item); };
-        //return newListOrderItem;
+        return (from OrderItem? order in ds.ListOrderItem where order.GetValueOrDefault().OrderID == IdOrder select order).ToList();
     }
 
-    public OrderItem? getItem(int IdOrder, int IdItem)
+    public OrderItem? getItem(int IdOrder, int IdProduct)
+    { 
+        return ds.ListOrderItem.Find(item => (item.GetValueOrDefault().OrderID == IdOrder)&& (item.GetValueOrDefault().ProductID== IdProduct));
+    }
+
+    public IEnumerable<OrderItem?> GetAllProduct (int IdProduct)
+     //מקבלת מזהה מוצר ולכל פריט שהוזמן בודקת האם הוא זהה למוצר שהתקבל ואם כן, מחזירה אותו
     {
-        return ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == IdOrder);
+        return (from OrderItem? order in ds.ListOrderItem where order.GetValueOrDefault().ProductID == IdProduct select order).ToList();
     }
 }
