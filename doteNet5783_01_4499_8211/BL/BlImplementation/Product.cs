@@ -18,7 +18,7 @@ internal class Product : IProduct
             {
                 ID = product.GetValueOrDefault().ID,
                 Name = product.GetValueOrDefault().Name,
-                Category = product.GetValueOrDefault().Category,
+                Category =(BO.Category)(product.GetValueOrDefault().Category),
                 Price = product.GetValueOrDefault().Price,
             }
             );
