@@ -3,7 +3,7 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    private DalApi.IDal Dal = DalApi.DalFactory.GetDal();
+    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");;
 
     public BO.Cart? AddProduct(BO.Cart cart, int idProduct)
     public BO.Cart? UpdateAmountProduct(BO.Cart cart, int idProduct, int amount);

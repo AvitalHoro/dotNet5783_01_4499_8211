@@ -6,7 +6,7 @@ namespace BlImplementation;
 
 internal class Product : IProduct
 {
-    private DalApi.IDal Dal = DalApi.DalFactory.GetDal();
+    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
