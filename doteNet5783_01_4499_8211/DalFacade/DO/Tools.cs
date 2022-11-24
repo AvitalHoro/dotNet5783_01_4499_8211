@@ -9,15 +9,12 @@ namespace DO;
 
 public static class Tools
 {
-    public static void PrintProperty<T>(T t)
+    public static string ToStringProperty<T>(this T t)
     {
-        Type Ttype = t.GetType();
-        PropertyInfo[] info = Ttype.GetProperties();
-        foreach (PropertyInfo item in info)
-        {
-            Console.WriteLine
-            ("name: {0,-15} value: {1,-15}"
-                , item.Name, item.GetValue(t, null));
-        }
+        string str = "";
+        foreach (PropertyInfo item in t.GetType().GetProperties())
+            str += "\n" + item.Name + ": " + item.GetValue(t, null);
+
+        return str;
     }
 }

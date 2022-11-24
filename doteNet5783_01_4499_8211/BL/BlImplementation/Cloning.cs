@@ -16,3 +16,5 @@ static class Cloning
         return copyToObject;    
     }
 }
+
+//אולי פשוט לכתוב הרבה פונקציות של המרה לכל סוג של המרה?
