@@ -10,12 +10,19 @@ internal class Product:IProduct
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
         IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
+        //return from item in GetUsers()
+        //       where condition(item)
+        //       select item;
+
+
         //ProductForList product =
-        //from product1 in tmp 
+        //from product1 in tmp
+        //where product1 =
         //select ;
-        List<BO.ProductForList> newList = new List<BO.ProductForList> { };
-        newList.Add(new BO.ProductForList());
-        foreach (Product product in tmp) { BO.ProductForList=new ProductForList() };
+
+        //List<BO.ProductForList> newList = new List<BO.ProductForList> { };
+        //newList.Add(new BO.ProductForList());
+        foreach (var product in tmp) {product=> };
 
     }
     public BO.Product? GetProductDetails(int idProduct);//מנהל
