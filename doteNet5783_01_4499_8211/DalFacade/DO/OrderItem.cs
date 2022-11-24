@@ -10,7 +10,7 @@ public struct OrderItem
         Product ID: {ProductID} 
         Order ID: {OrderID}
     	Price: {Price}
-        Amount in stock: {Amount}
+        Amount in order: {Amount}
     	";
     public int ID { set; get; }
     public int ProductID { set; get; }
