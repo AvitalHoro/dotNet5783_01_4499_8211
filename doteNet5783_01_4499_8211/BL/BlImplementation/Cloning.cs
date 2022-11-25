@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using BLApi;
 
 namespace BlImplementation;
 
@@ -44,6 +45,9 @@ static class Cloning
     //    propertyInfo.SetValue(copyToObject,propertyInfo.GetValue(original, null), null);   
     //    return copyToObject;    
     //}
+
 }
+
+
 
 //אולי פשוט לכתוב הרבה פונקציות של המרה לכל סוג של המרה?
