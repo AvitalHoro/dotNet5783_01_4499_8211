@@ -19,11 +19,12 @@ public class DalOrderItem : IOrderItem
         return item.GetValueOrDefault().ID;//צריך להחזיר פה את התז
     }
     public OrderItem? GetById(int id)
-        // מקבלת ת"ז ומחזירה את ההזמנה שז הת"ז שלה
+        // מקבלת ת"ז ומחזירה את הפריט שז הת"ז שלו
     {
-        if (ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id) == null) //checks if the product is already in the store
+        OrderItem? item = ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id); 
+        if (item == null) //checks if the item is already in the store
             throw new DontExistException(id);
-        return (ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id));
+        return item;
     }
     public void Update(OrderItem? item)
         //מעדכנת הזמנה קיימת

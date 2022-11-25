@@ -64,7 +64,18 @@ internal class Order : IOrder
 
     public BO.Order? UpdateShipDate(int IdOrder)
     {
+        try //אם הת"ז שלילית, זורקים חריגה
+        {
+            if (IdOrder < 0)
+                throw new BO.InvalidIDException(IdOrder);
+        }
+        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        try
+        {
+            DO.Order? order = Dal.Order.GetById(IdOrder);
+            if(order == null)
 
+        }
     }
     public BO.Order? UpdateDeliveryDate(int IdOrder)
     {

@@ -19,9 +19,10 @@ public class DalProduct: IProduct
     public Product? GetById(int id)
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
-        if (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id)==null) //checks if the product is already in the store
+        Product? product = ds.ListProduct.Find(pro => pro.GetValueOrDefault().ID == id);
+        if (product==null) //checks if the product is already in the store
             throw new DontExistException(id);
-        return (ds.ListProduct.Find(product => product.GetValueOrDefault().ID == id));
+        return product;
     }
     public void Update(Product? product)
         //הפונקציה מעדכנת מוצר מסוים ברשימת הפרודוקטים, ומוצאת את הקודם ע"י הת"ז שנשארת אותו הדבר
@@ -29,8 +30,8 @@ public class DalProduct: IProduct
         Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
         if (temp==null)
             throw new DontExistException(product.GetValueOrDefault().ID);
-        int i= ds.ListProduct.IndexOf(temp);
-        ds.ListProduct[i]=product;
+       ds.ListProduct.Remove(temp);
+        ds.ListProduct.Add(product);
     }
     public void Delete(int id)
     //מוחק מוצר מהרשימה
@@ -57,9 +58,7 @@ public class DalProduct: IProduct
      public IEnumerable<Product?> GetAll()
         //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
      {
-        List<Product?> newListProduct = new List<Product?> { };
-        foreach (Product product in ds.ListProduct) { newListProduct.Add(product); };
-        return newListProduct;
+      return ds.ListProduct;
      }
 }
 

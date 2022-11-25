@@ -21,9 +21,10 @@ public class DalOrder :IOrder
     public Order? GetById(int id)
         //מחזיר את ההזמנה שהת"ז שלה זו הת"ז שהפונקציה קיבלה
     {
-        if (ds.ListProduct.Find(order => order.GetValueOrDefault().ID == id) == null) //אם ההזמנה לא נמצאת ברשימה, זורק חריגה
+        Order? order = ds.ListOrder.Find(item => item.GetValueOrDefault().ID == id);
+        if (order == null) //אם ההזמנה לא נמצאת ברשימה, זורק חריגה
             throw new DontExistException(id);
-        return (ds.ListOrder.Find(item => item.GetValueOrDefault().ID == id));//מחזיר את ההזמנה
+        return order;//מחזיר את ההזמנה
     }
     public void Update(Order? item)
         //מעדכן הזמנה קיימת, מזהה את ההזמנה עפ"י הת"ז
@@ -31,8 +32,8 @@ public class DalOrder :IOrder
         Order? order= ds.ListOrder.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID); //מוציא את ההזמנה מתוך הרשימה 
         if (order==null) //אם ההזמנה שווה לנל זה אומר שההיא לא נמצאת ברשימה, זורקים חריגה
             throw new DontExistException(item.GetValueOrDefault().ID);
-        int i= ds.ListOrder.IndexOf(order); //מוצאים את האינדקס של ההזמנה הקודמת
-       ds.ListOrder[i] = item; //מכניסים את ההזמנה המעודכנת לאותו המקום של ההזמנה הישנה
+        ds.ListOrder.Remove(order);
+        ds.ListOrder.Add(item); 
     }
     public  void Delete(int id)
         //מוחקת את ההזמנה שהת"ז שלה היא זאת שקיבלנו
@@ -60,8 +61,6 @@ public class DalOrder :IOrder
     public IEnumerable<Order?> GetAll()
     //מחזירה את כל הרשימה של ההזמנות בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        List<Order?> newListOrder = new List<Order?> { };
-        foreach (Order order in ds.ListOrder) { newListOrder.Add(order); };
-        return newListOrder;
+        return ds.ListOrder;
     }
 }
