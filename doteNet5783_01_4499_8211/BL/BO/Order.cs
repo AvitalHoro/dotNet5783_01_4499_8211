@@ -15,6 +15,6 @@ public class Order
     public DateTime? ShipDate { set; get; }
     public DateTime? DeliveryDate { set; get; }
     public bool isDeleted { set; get; }
-    public List <OrderItem> Items { set; get; }
+    public List <OrderItem?> Items { set; get; }
     public double TotalPrice { get; set; }
 }
