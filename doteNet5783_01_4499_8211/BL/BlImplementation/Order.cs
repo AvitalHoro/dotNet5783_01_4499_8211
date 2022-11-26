@@ -138,11 +138,52 @@ internal class Order : IOrder
     }
     public BO.OrderTracking? Tracking(int IdOrder)
     {
-
+        try //אם הת"ז שלילית, זורקים חריגה
+        {
+            if (IdOrder < 0)
+                throw new BO.InvalidIDException(IdOrder);
+        }
+        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        DO.Order? orderDo= Dal.Order.GetById(IdOrder);
+        BO.OrderTracking orderTracking = new BO.OrderTracking();
+        orderTracking.ID = orderDo.GetValueOrDefault().ID;
+        if(orderDo.GetValueOrDefault().DeliveryDate == null)
+        {
+            if (orderDo.GetValueOrDefault().ShipDate == null)
+            {
+                orderTracking.State = BO.Status.approved;
+                Tuple<DateTime, string> t = new Tuple<DateTime, string> (orderDo.GetValueOrDefault().OrderDate , "The order was approved");
+                orderTracking.Tracking.Add(t);
+            }    
+            else
+            {
+                orderTracking.State = BO.Status.sent;
+                Tuple<DateTime, string> t = new Tuple<DateTime, string>(orderDo.GetValueOrDefault().ShipDate, "The order was sent");
+                orderTracking.Tracking.Add(t);
+            }     
+        }
+        else
+        {
+            orderTracking.State = BO.Status.delivered;
+            Tuple<DateTime, string> t = new Tuple<DateTime, string>(orderDo.GetValueOrDefault().DeliveryDate, "The order was delivered");
+            orderTracking.Tracking.Add(t);
+        }
+        return orderTracking;
     }
-    public void UpdateOrder(int IdOrder)
+    public void UpdateOrder(int IdOrder, int IdProduct, int newAmount)
         //בונוס, בשביל המנהל
     {
-
+        if (newAmount < 0)
+            throw new Exception("the amount is not okay"); //לחזור לפה, לעשות חריגה נורמלית
+        DO.OrderItem? item= Dal.OrderItem.getItem(IdOrder, IdProduct);
+        Dal.OrderItem.Update(new DO.OrderItem
+        {
+            ID= item.GetValueOrDefault().ID,
+            OrderID=IdOrder,
+            ProductID=IdProduct,
+            Price= item.GetValueOrDefault().Price,  
+            Amount=newAmount,
+            isDeleted=false
+        });
     }
 }

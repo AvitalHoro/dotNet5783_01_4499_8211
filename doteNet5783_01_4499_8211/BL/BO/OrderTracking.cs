@@ -11,7 +11,5 @@ public class OrderTracking
 {
     public int ID { get; set; }
     public Status State { get; set; }
-
     public List<Tuple<DateTime, string>>? Tracking { set; get; }//מעקב הזמנה - רשימה של צמדים המכילה תאריך והסבר מה קרה בתאריך זה
-
 }
