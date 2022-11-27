@@ -118,3 +118,18 @@ public class AlreadyExistsException : Exception
     override public string ToString() => "AlreadyExistsException: The ID " + ID + " already exist in the system.";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
+
+[Serializable]
+public class ProductNotExistInCartException : Exception
+//הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
+{
+    public int ID { get; private set; } //ת"ז של ישות, בכדי שנוכל לכתוב למשתמש לאיזו ת"ז אנו מתכוונים
+    public ProductNotExistInCartException(int id) : base() { ID = id; }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public ProductNotExistInCartException(int id, string message) : base(message) { ID = id; }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public ProductNotExistInCartException(int id, string message, Exception inner) : base(message, inner) { ID = id; }
+    protected ProductNotExistInCartException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
+    override public string ToString() => "ProductNotExistInCartException: The product with the ID " + ID + " not exist in your cart.";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
