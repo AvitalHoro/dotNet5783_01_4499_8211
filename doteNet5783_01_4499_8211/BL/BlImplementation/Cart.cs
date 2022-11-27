@@ -1,19 +1,18 @@
 ﻿using BLApi;
 using BO;
+using Dal;
 
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");;
+    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     public BO.Cart? AddProduct(BO.Cart? cart, int idProduct)
     {
-        DO.Product? product = Dal.Product.GetById(idProduct);
         try
         {
-            if (product == null)
-                throw new BO.InvalidIDException(idProduct);
+            DO.Product? product = Dal.Product.GetById(idProduct);
             BO.OrderItem? item = cart.orderItems.Find(oi => oi.ProductID == idProduct);//למה לא עובד פה גט ווליו אור דיפולט?
 
             if (item == null)
@@ -22,7 +21,7 @@ internal class Cart : ICart
                     throw new BO.OutOfStockException(idProduct);
                 cart.orderItems.Add(new BO.OrderItem
                 {
-                    ID = 2345,//מה לשים פה????
+                    ID = 1234,//מה לשים פה????
                     ProductID = idProduct,
                     NameProduct = product.GetValueOrDefault().Name,
                     Price = product.GetValueOrDefault().Price,
@@ -31,7 +30,6 @@ internal class Cart : ICart
                     isDeleted = false,
                 });
                 cart.TotalPrice += product.GetValueOrDefault().Price;
-
             }
             else
             {
