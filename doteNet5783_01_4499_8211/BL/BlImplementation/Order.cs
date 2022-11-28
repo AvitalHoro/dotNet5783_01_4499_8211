@@ -170,7 +170,7 @@ internal class Order : IOrder
         }
         return orderTracking;
     }
-    public void UpdateOrder(int IdOrder, int IdProduct, int newAmount)
+    public DO.Order? UpdateOrder(int IdOrder, int IdProduct, int newAmount)
         //בונוס, בשביל המנהל
     {
         if (newAmount < 0)
