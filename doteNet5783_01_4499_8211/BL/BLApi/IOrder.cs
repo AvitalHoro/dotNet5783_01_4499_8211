@@ -8,5 +8,5 @@ public interface IOrder
     public BO.Order? UpdateShipDate (int IdOrder);
     public BO.Order? UpdateDeliveryDate(int IdOrder);
     public BO.OrderTracking? Tracking (int IdOrder);
-    public DO.Order? UpdateOrder(int IdOrder, int IdProduct, int newAmount);
+    public DO.OrderItem? UpdateOrder(int IdOrder, int IdProduct, int newAmount);
 }

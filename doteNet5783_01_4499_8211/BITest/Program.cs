@@ -65,26 +65,47 @@ class Program
         }
     }
 
-    static void testCart(IBl bCart)
+    static void testCart(IBl bCart, BO.Cart? myCart)
     {
-        Console.WriteLine(@"test order item:
-                Choose one of the following:
+        int id = 0;
+        string option = "";
+        while (option != "d")
+        {
+            int numOfProduct = myCart.orderItems.Count();
+            Console.WriteLine("Your basket has" + numOfProduct + "products");
+            Console.WriteLine(@"Choose one of the following:
                 a - ADD PRODUCT TO THE CART
                 b - UPDATE AMOUNT OF PRODUCT
                 c - APPROVE ORDER
+                d - BACK TO THE MAIN MENU
                 ");
-        string option = Console.ReadLine();
-        switch (option)
-        {
-            case "a":
-               
-                break;
-            case "b":
-             
-                break;
-            case "c":
-               
-                break;
+            option = Console.ReadLine();
+            switch (option)
+            {
+                case "a":
+                    Console.WriteLine("enter the product ID:");
+                    int.TryParse(Console.ReadLine(), out id);
+                    Console.WriteLine(bCart.Cart.AddProduct(myCart, id));
+                    break;
+                case "b":
+                    Console.WriteLine("enter the product ID:");
+                    int.TryParse(Console.ReadLine(), out id);
+                    Console.WriteLine("enter the new amount:");
+                    int amount;
+                    int.TryParse(Console.ReadLine(), out amount);
+                    Console.WriteLine(bCart.Cart.UpdateAmountProduct(myCart, id,amount));
+                    break;
+                case "c":
+                    id = bCart.Cart.MakeOrder(myCart);
+                    Console.WriteLine("Your order has been confirmed.");
+                    Console.WriteLine("Your order id is: " + id);
+                    break;
+                case "d":
+                    break;
+                default:
+                    Console.WriteLine("ERROR");
+                    break;
+            }
         }
     }
 
@@ -102,19 +123,19 @@ class Program
         switch (option)
         {
             case "c":
-                
+
                 break;
             case "b":
-               
+
                 break;
             case "a":
-               
+
                 break;
             case "d":
-                
+
                 break;
             case "e":
-            
+
                 break;
         }
     }
@@ -123,6 +144,7 @@ class Program
     {
         IBl bl = BlFactory.GetBl();
         IDal dal = DalFactory.GetDal();
+        BO.Cart? myCart = new BO.Cart();
         int num = 1;
         while (num != 0)
         {
@@ -144,7 +166,7 @@ class Program
                             testOrder(bl);
                             break;
                         case 2:
-                            testCart(bl);
+                            testCart(bl, myCart);
                             break;
                         case 3:
                             testProduct(bl);

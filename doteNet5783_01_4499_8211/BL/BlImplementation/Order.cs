@@ -170,11 +170,11 @@ internal class Order : IOrder
         }
         return orderTracking;
     }
-    public DO.Order? UpdateOrder(int IdOrder, int IdProduct, int newAmount)
+    public DO.OrderItem? UpdateOrder(int IdOrder, int IdProduct, int newAmount)
         //בונוס, בשביל המנהל
     {
         if (newAmount < 0)
-            throw new Exception("the amount is not okay"); //לחזור לפה, לעשות חריגה נורמלית
+            throw new BO.AmountException();
         DO.OrderItem? item= Dal.OrderItem.getItem(IdOrder, IdProduct);
         Dal.OrderItem.Update(new DO.OrderItem
         {
@@ -185,5 +185,6 @@ internal class Order : IOrder
             Amount=newAmount,
             isDeleted=false
         });
+        return Dal.OrderItem.getItem(IdOrder, IdProduct);
     }
 }
