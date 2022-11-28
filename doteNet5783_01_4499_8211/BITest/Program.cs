@@ -111,6 +111,7 @@ class Program
 
     static void testProduct(IBl bProduct)
     {
+        int id;
         Console.WriteLine(@"test product:
                 Choose one of the following:
                 a - Get product list to the manager
@@ -122,20 +123,118 @@ class Program
         string option = Console.ReadLine();
         switch (option)
         {
-            case "c":
-
+            case "a":
+                foreach (var item in bProduct.Product.GetProductList())
+                {
+                    Console.WriteLine(item);
+                }
+                /// מדפיסים את הכל
                 break;
             case "b":
-
+                Console.WriteLine("enter the product ID");
+                int.TryParse(Console.ReadLine(), out id);
+                Console.WriteLine(bProduct.Product.GetProductDetails(id));
                 break;
-            case "a":
-
+            case "c":
+                BO.Product? tmpProduct = new BO.Product();
+                Console.WriteLine("enter the new product ID");
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct.ID = id;
+                Console.WriteLine("enter the new product name");
+                tmpProduct.Name = Console.ReadLine();
+                Console.WriteLine(@"enter the new product catgory: 
+                                        Clothes-0, 
+                                        Toys-1, 
+                                        Carts-2, 
+                                        Bottles-3, 
+                                        Diapers-4");
+                int.TryParse(Console.ReadLine(), out id);
+                int ctg = id;
+                switch (ctg)
+                {
+                    case 0:
+                        tmpProduct.Category = BO.Category.Clothes;
+                        break;
+                    case 1:
+                        tmpProduct.Category = BO.Category.Toys;
+                        break;
+                    case 2:
+                        tmpProduct.Category = BO.Category.Carts;
+                        break;
+                    case 3:
+                        tmpProduct.Category = BO.Category.Bottles;
+                        break;
+                    case 4:
+                        tmpProduct.Category = BO.Category.Diapers;
+                        break;
+                    default:
+                        Console.WriteLine("ERROR");
+                        break;
+                }
+                Console.WriteLine("enter the new product price");
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct.Price = id;
+                Console.WriteLine("enter the new product amount");
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct.InStock = id;
+                bProduct.Product.AddProduct(tmpProduct);
                 break;
             case "d":
-
+                Console.WriteLine("enter the product ID");
+                int.TryParse(Console.ReadLine(), out id);
+                bProduct.Product.RemoveProduct(id);
+                Console.WriteLine("DELETED");
                 break;
             case "e":
-
+                BO.Product? tmpProduct2 = new BO.Product();
+                Console.WriteLine("enter the new product ID");
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct2.ID = id;
+                Console.WriteLine("enter the new product name");
+                tmpProduct2.Name = Console.ReadLine();
+                Console.WriteLine(@"enter the new product catgory: 
+                                        Clothes-0, 
+                                        Toys-1, 
+                                        Carts-2, 
+                                        Bottles-3, 
+                                        Diapers-4");
+                int.TryParse(Console.ReadLine(), out id);
+                ctg = id;
+                switch (ctg)
+                {
+                    case 0:
+                        tmpProduct2.Category = BO.Category.Clothes;
+                        break;
+                    case 1:
+                        tmpProduct2.Category = BO.Category.Toys;
+                        break;
+                    case 2:
+                        tmpProduct2.Category = BO.Category.Carts;
+                        break;
+                    case 3:
+                        tmpProduct2.Category = BO.Category.Bottles;
+                        break;
+                    case 4:
+                        tmpProduct2.Category = BO.Category.Diapers;
+                        break;
+                    default:
+                        Console.WriteLine("ERROR");
+                        break;
+                }
+                Console.WriteLine("enter the new product price");
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct2.Price = id;
+                Console.WriteLine("enter the new product amount");
+                int.TryParse(Console.ReadLine(), out id);
+                tmpProduct2.InStock = id;
+                bProduct.Product.UpdateProductDetails(tmpProduct2);
+                break;
+            case "f":
+                foreach (var item in bProduct.Product.GetProductList())//לשנות לקטלוג!!
+                {
+                    Console.WriteLine(item);
+                }
+                /// מדפיסים את הכל
                 break;
         }
     }
