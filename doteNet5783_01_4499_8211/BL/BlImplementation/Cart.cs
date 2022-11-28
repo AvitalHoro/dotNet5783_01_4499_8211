@@ -1,11 +1,12 @@
 ﻿using BLApi;
 using BO;
+using Dal;
 
 namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");;
+    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     public BO.Cart? AddProduct(BO.Cart? cart, int idProduct)
     {
@@ -20,7 +21,7 @@ internal class Cart : ICart
                     throw new BO.OutOfStockException(idProduct);
                 cart.orderItems.Add(new BO.OrderItem
                 {
-                    ID = 2345,//מה לשים פה????
+                    ID = 1234,//מה לשים פה????
                     ProductID = idProduct,
                     NameProduct = product.GetValueOrDefault().Name,
                     Price = product.GetValueOrDefault().Price,
@@ -29,7 +30,6 @@ internal class Cart : ICart
                     isDeleted = false,
                 });
                 cart.TotalPrice += product.GetValueOrDefault().Price;
-
             }
             else
             {
