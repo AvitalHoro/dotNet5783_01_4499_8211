@@ -133,3 +133,59 @@ public class ProductNotExistInCartException : Exception
     override public string ToString() => "ProductNotExistInCartException: The product with the ID " + ID + " not exist in your cart.";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
+
+[Serializable]
+public class NoCostumerNameException : Exception
+//הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
+{
+    public NoCostumerNameException() : base() {}
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public NoCostumerNameException(int id, string message) : base(message) {}
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public NoCostumerNameException(int id, string message, Exception inner) : base(message, inner) {}
+    protected NoCostumerNameException(int id, SerializationInfo info, StreamingContext context) : base(info, context) {}
+    override public string ToString() => "NoCostumerNameException: We dont have your name";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
+
+[Serializable]
+public class NoCostumerAdressException : Exception
+//הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
+{
+    public NoCostumerAdressException() : base() { }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public NoCostumerAdressException(int id, string message) : base(message) { }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public NoCostumerAdressException(int id, string message, Exception inner) : base(message, inner) { }
+    protected NoCostumerAdressException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
+    override public string ToString() => "NoCostumerAdressException: We dont have your adress";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
+
+[Serializable]
+public class NoCostumerEmailException : Exception
+//הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
+{
+    public NoCostumerEmailException() : base() { }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public NoCostumerEmailException(int id, string message) : base(message) { }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public NoCostumerEmailException(int id, string message, Exception inner) : base(message, inner) { }
+    protected NoCostumerEmailException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
+    override public string ToString() => "NoCostumerEmailException: We dont have your email";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
+
+[Serializable]
+public class AmountException : Exception
+//הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
+{
+    public AmountException() : base() { }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public AmountException(int id, string message) : base(message) { }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public AmountException(int id, string message, Exception inner) : base(message, inner) {}
+    protected AmountException(int id, SerializationInfo info, StreamingContext context) : base(info, context) {}
+    override public string ToString() => "AmountException: Negative or incorrect amount";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}

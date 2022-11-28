@@ -85,21 +85,69 @@ internal class Cart : ICart
     }
 
 
-    public int MakeOrder(BO.Cart cart, string costumerName, string costumerEmail, string costumerAdress)
+    public int MakeOrder(BO.Cart cart)
     {
         try
         {
             if (cart.CostumerName == null)
-                throw new BO.NoNameException(0);//איזה תז לזרוק?
+                throw new BO.NoCostumerNameException();
             if (cart.CostumerEmail == null || cart.CostumerEmail.Contains('@'))
-                throw;
+                throw new BO.NoCostumerEmailException();
             if (cart.CostumerAdress == null)
-                throw;
+                throw new BO.NoCostumerAdressException();
             foreach (OrderItem item in cart.orderItems)
-                if (cart.)
-
+            {
+                DO.Product? product = Dal.Product.GetById(item.ProductID);
+                if (item.Amount < 1)
+                    throw new BO.AmountException();
+                if (product.GetValueOrDefault().InStock < item.Amount)
+                    throw new BO.OutOfStockException(product.GetValueOrDefault().ID);
+            }
+            DO.Order order = new DO.Order
+            {
+                //ID = 1234,//אוף, שוב!
+                CostumerAdress = cart.CostumerAdress,
+                CostumerEmail = cart.CostumerEmail,
+                CostumerName = cart.CostumerName,
+                OrderDate = DateTime.Now,
+                DeliveryDate = null,
+                ShipDate = null,
+                isDeleted = false
+            };
+            Dal.Order.Add(order);
+            foreach (OrderItem item in cart.orderItems)
+            //תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
+            {
+                DO.Product? product = Dal.Product.GetById(item.ProductID);
+                DO.OrderItem? orderItem = new DO.OrderItem
+                {
+                    ID = item.ID,
+                    OrderID = order.ID,
+                    ProductID = product.GetValueOrDefault().ID,
+                    Amount = item.Amount,
+                    Price = item.Price / item.Amount,//מחיר לפריט בודד?
+                    isDeleted = false,
+                };
+                Dal.OrderItem.Add(orderItem);
+                DO.Product? newProduct = new DO.Product
+                {
+                    ID = product.GetValueOrDefault().ID,
+                    Name = product.GetValueOrDefault().Name,
+                    Price = product.GetValueOrDefault().Price,
+                    Category = product.GetValueOrDefault().Category,
+                    InStock = product.GetValueOrDefault().InStock - item.Amount,
+                    isDeleted = product.GetValueOrDefault().isDeleted,
+                };
+                Dal.Product.Update(newProduct);
+            }
+            return order.ID;
         }
-        catch () { }
+        catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(); }
+        catch (BO.NoCostumerEmailException ex) { throw new BO.NoCostumerEmailException(); }
+        catch (BO.NoCostumerAdressException ex) { throw new BO.NoCostumerAdressException(); }
+        catch (BO.DontExistException ex) { throw new DO.DontExistException(ex.ID); }
+        catch (BO.AlreadyExistsException ex) { throw new DO.AlreadyExistsException(ex.ID); }
+        catch (BO.AmountException ex) { throw new BO.AmountException(); }
+        catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
     }
-
 }

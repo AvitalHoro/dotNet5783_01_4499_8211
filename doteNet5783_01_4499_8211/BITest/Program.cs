@@ -2,8 +2,10 @@
 using Dal;
 using
 using BlImplementation;
+using DalApi;
+using BlApi;
 
-namespace BITest;
+namespace BlTest;
 
 class Program
 {
@@ -266,7 +268,8 @@ class Program
 
     static void Main(string[] args)
     {
-        IBl bl = Bl.instance;
+        IBl bl = BlFactory.GetBl();
+        IDal dal = DalFactory.GetDal();
         int num = 1;
         while (num != 0)
         {

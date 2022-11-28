@@ -1,7 +1,10 @@
-﻿
-namespace BLApi;
+﻿using BLApi;
+using BlImplementation;
 
-public static class BlFactory
+namespace BlApi
 {
-    public static IBl Get() => new BlImplementation.Bl();
+    public static class BlFactory
+    {
+        public static IBl GetBl() => Bl.instance;
+    }
 }

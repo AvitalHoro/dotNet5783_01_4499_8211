@@ -2,6 +2,7 @@
 using DalApi;
 using DO;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace Dal;
 
@@ -268,8 +269,9 @@ class Program
 
     static void Main(string[] args)
     {
-
-        DalList list = new DalList();
+        IDal dal = DalFactory.GetDal();
+        //DalList dl = Instance
+        //DalList list = new DalList();
         DalProduct product = new DalProduct();
         DalOrder order = new DalOrder();
         DalOrderItem item = new DalOrderItem();

@@ -1,6 +1,4 @@
 ﻿
-using BlImplementation;
-
 namespace BLApi;
 
 public interface IProduct
