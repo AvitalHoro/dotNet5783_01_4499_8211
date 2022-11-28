@@ -13,7 +13,8 @@ public class DalOrderItem : IOrderItem
     public int Add(OrderItem? item)
         //מוסיפה הזמנה חדשה לרשימה
     {
-        if (ds.ListOrder.Find(i => item.GetValueOrDefault().ID == i.GetValueOrDefault().ID) != null) //checks if the order is already in the system
+        OrderItem? it = ds.ListOrderItem.Find(i => item.GetValueOrDefault().ID == i.GetValueOrDefault().ID);
+        if (it != null && !item.GetValueOrDefault().isDeleted) //checks if the order is already in the system
             throw new AlreadyExistsException(item.GetValueOrDefault().ID);
         ds.ListOrderItem.Add(item);
         return item.GetValueOrDefault().ID;//צריך להחזיר פה את התז
@@ -22,7 +23,7 @@ public class DalOrderItem : IOrderItem
         // מקבלת ת"ז ומחזירה את הפריט שז הת"ז שלו
     {
         OrderItem? item = ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id); 
-        if (item == null) //checks if the item is already in the store
+        if (item == null || item.GetValueOrDefault().isDeleted) //checks if the item is already in the store
             throw new DontExistException(id);
         return item;
     }
@@ -30,7 +31,7 @@ public class DalOrderItem : IOrderItem
         //מעדכנת הזמנה קיימת
     {
         OrderItem? temp = ds.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
-        if (temp==null)
+        if (temp==null || item.GetValueOrDefault().isDeleted)
             throw new DontExistException(item.GetValueOrDefault().ID);
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
@@ -39,7 +40,7 @@ public class DalOrderItem : IOrderItem
         //מוחקת הזמנה מהרשימה לפי הת"ז שהיא מקבלת
     {
         OrderItem? found = ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id);
-        if (found == null)
+        if (found == null || found.GetValueOrDefault().isDeleted)
             //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DontExistException(id);
 
@@ -54,15 +55,11 @@ public class DalOrderItem : IOrderItem
         };
         Update(item);
     }
-
-    //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null)
  
     public IEnumerable<OrderItem?> GetAll()
       // מחזירה את כל הרשימה, גם את האיברים שכביכול נמחקו
     {
-        List<OrderItem?> newListOrderItem = new List<OrderItem?> { };
-        foreach (OrderItem item in ds.ListOrderItem) { newListOrderItem.Add(item); };
-        return newListOrderItem;
+        return ds.ListOrderItem;
     }
 
     public IEnumerable<OrderItem?> GetAll(int IdOrder)
@@ -80,5 +77,10 @@ public class DalOrderItem : IOrderItem
      //מקבלת מזהה מוצר ולכל פריט שהוזמן בודקת האם הוא זהה למוצר שהתקבל ואם כן, מחזירה אותו
     {
         return (from OrderItem? order in ds.ListOrderItem where order.GetValueOrDefault().ProductID == IdProduct select order).ToList();
+    }
+
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
+    {
+        return (from OrderItem? orderItem in ds.ListOrderItem where filter(orderItem) select orderItem).ToList();
     }
 }

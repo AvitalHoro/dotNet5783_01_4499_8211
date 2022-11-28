@@ -63,6 +63,7 @@ public class DataSource
                 Price = randNum.Next(50, 100), //selects a random price in range of 50-100
                 InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
                 isDeleted = false, //the new product isn't deleted
+                Path=""
             });
         }
         for (int i = 0; i < toys.Length; i++)
@@ -76,6 +77,7 @@ public class DataSource
                 Price = randNum.Next(30, 300),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 10),//selects a random amount in stock in range of 0-30
                 isDeleted = false,//the new product isn't deleted
+                Path = ""
             });
         }
         for (int i = 0; i < carts.Length; i++)
@@ -89,6 +91,7 @@ public class DataSource
                 Price = randNum.Next(200, 400),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 15),//selects a random amount in stock in range of 0-30
                 isDeleted = false,//the new product isn't deleted
+                Path = ""
             });
         }
         for (int i = 0; i < bottles.Length; i++)
@@ -102,6 +105,7 @@ public class DataSource
                 Price = randNum.Next(20, 60),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 40),//selects a random amount in stock in range of 0-30
                 isDeleted = false,//the new product isn't deleted
+                Path = ""
             });
         }
         for (int i = 0; i < diapers.Length; i++)
@@ -115,6 +119,7 @@ public class DataSource
                 Price = randNum.Next(50, 80),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
                 isDeleted = false,//the new product isn't deleted
+                Path = ""
             });
         }
     }

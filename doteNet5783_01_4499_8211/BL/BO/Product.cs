@@ -12,4 +12,6 @@ public class Product
     public double Price { get; set; }
     public int InStock { get; set; }
     public bool isDeleted { set; get; }
+    public string Path { set; get; }
+    public override string ToString() { return this.ToStringProperty(); }
 }
