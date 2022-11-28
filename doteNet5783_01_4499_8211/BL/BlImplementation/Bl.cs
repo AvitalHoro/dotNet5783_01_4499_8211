@@ -9,5 +9,5 @@ sealed internal class Bl: IBl
 
     public IOrder Order { set; get; } = new Order();
     public IProduct Product { set; get; } = new Product();
-    public ICart cart { set; get; } = new Cart();
+    public ICart Cart { set; get; } = new Cart();
 }
