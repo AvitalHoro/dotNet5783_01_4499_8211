@@ -277,11 +277,7 @@ class Program
                 else
                     Console.WriteLine("ERROR");
             }
-            catch (BO.DontExistException ex)
-            {
-                Console.WriteLine(ex);
-            }
-            catch (BO.AlreadyExistsException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
