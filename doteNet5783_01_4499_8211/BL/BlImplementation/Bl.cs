@@ -1,8 +1,11 @@
 ﻿using BLApi;
+
 namespace BlImplementation;
 
-sealed public class Bl: IBl
+sealed internal class Bl: IBl
 {
+    public static IBl instance { get; } = new Bl();
+    private Bl() { }
     public IOrder Order { set; get; } = new Order();
     public IProduct Product { set; get; } = new Product();
     public ICart cart { set; get; } = new Cart();

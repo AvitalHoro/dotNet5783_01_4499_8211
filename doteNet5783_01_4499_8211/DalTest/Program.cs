@@ -268,6 +268,8 @@ class Program
 
     static void Main(string[] args)
     {
+
+        DalList list = new DalList();
         DalProduct product = new DalProduct();
         DalOrder order = new DalOrder();
         DalOrderItem item = new DalOrderItem();

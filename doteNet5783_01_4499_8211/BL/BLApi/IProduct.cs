@@ -12,3 +12,4 @@ public interface IProduct
     public void RemoveProduct(int idProduct);
     public void UpdateProductDetails(BO.Product? product);
 }
+

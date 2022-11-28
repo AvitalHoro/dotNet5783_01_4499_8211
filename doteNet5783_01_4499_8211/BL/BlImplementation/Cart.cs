@@ -9,11 +9,9 @@ internal class Cart : ICart
 
     public BO.Cart? AddProduct(BO.Cart? cart, int idProduct)
     {
-        DO.Product? product = Dal.Product.GetById(idProduct);
         try
         {
-            if (product == null)
-                throw new BO.InvalidIDException(idProduct);
+            DO.Product? product = Dal.Product.GetById(idProduct);
             BO.OrderItem? item = cart.orderItems.Find(oi => oi.ProductID == idProduct);//למה לא עובד פה גט ווליו אור דיפולט?
 
             if (item == null)
@@ -46,6 +44,7 @@ internal class Cart : ICart
             }
 
         }
+        catch (DO.DontExistException ex) { throw new BO.DontExistException(ex.ID); }
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
         catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
         return cart;
@@ -91,13 +90,13 @@ internal class Cart : ICart
         try
         {
             if (cart.CostumerName == null)
-                throw;
+                throw new BO.NoNameException(0);//איזה תז לזרוק?
             if (cart.CostumerEmail == null || cart.CostumerEmail.Contains('@'))
                 throw;
             if (cart.CostumerAdress == null)
                 throw;
-            foreach(OrderItem item in cart.orderItems )
-            if(cart.)
+            foreach (OrderItem item in cart.orderItems)
+                if (cart.)
 
         }
         catch () { }
