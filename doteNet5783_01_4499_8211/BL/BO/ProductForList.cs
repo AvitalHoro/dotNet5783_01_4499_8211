@@ -13,5 +13,6 @@ public class ProductForList
     public string Name { get; set; }
     public Category Category { get; set; }
     public double Price { get; set; }
-
+    public bool isDeleted { set; get; }
+    public string Path { set; get; }
 }

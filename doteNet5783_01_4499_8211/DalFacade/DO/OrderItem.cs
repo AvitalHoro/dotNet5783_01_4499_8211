@@ -5,13 +5,7 @@ public struct OrderItem
     //ממשק של פריט שהוזמן
 {
     //מדפיסה את כל פרטי הפריט
-    public override string ToString() => $@"
-    	Item ID: {ID} 
-        Product ID: {ProductID} 
-        Order ID: {OrderID}
-    	Price: {Price}
-        Amount in order: {Amount}
-    	";
+    public override string ToString() { return this.ToStringProperty(); }
     public int ID { set; get; }
     public int ProductID { set; get; }
     public int OrderID { set; get; }

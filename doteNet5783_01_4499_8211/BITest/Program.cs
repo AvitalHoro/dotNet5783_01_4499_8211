@@ -10,6 +10,7 @@ namespace BlTest;
 class Program
 {
     //תוכנית ראשית זמנית הבודקת את נכונות כל הקבצים בשכבת הנתונים שעשינו עד כה
+    Bl
     static void testOrder(DalOrder order)
     {
         Console.WriteLine(@"test order:

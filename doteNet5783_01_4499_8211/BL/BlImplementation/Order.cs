@@ -152,20 +152,20 @@ internal class Order : IOrder
             if (orderDo.GetValueOrDefault().ShipDate == null)
             {
                 orderTracking.State = BO.Status.approved;
-                Tuple<DateTime, string> t = new Tuple<DateTime, string> (orderDo.GetValueOrDefault().OrderDate , "The order was approved");
+                Tuple<DateTime?, string> t = new (orderDo.GetValueOrDefault().OrderDate , "The order was approved");
                 orderTracking.Tracking.Add(t);
             }    
             else
             {
                 orderTracking.State = BO.Status.sent;
-                Tuple<DateTime, string> t = new Tuple<DateTime, string>(orderDo.GetValueOrDefault().ShipDate, "The order was sent");
+                Tuple<DateTime?, string> t = new (orderDo.GetValueOrDefault().ShipDate, "The order was sent");
                 orderTracking.Tracking.Add(t);
             }     
         }
         else
         {
             orderTracking.State = BO.Status.delivered;
-            Tuple<DateTime, string> t = new Tuple<DateTime, string>(orderDo.GetValueOrDefault().DeliveryDate, "The order was delivered");
+            Tuple<DateTime?, string> t = new (orderDo.GetValueOrDefault().DeliveryDate, "The order was delivered");
             orderTracking.Tracking.Add(t);
         }
         return orderTracking;

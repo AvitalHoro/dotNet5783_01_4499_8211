@@ -1,17 +1,13 @@
 ﻿
+using System.Reflection.Metadata.Ecma335;
+
 namespace DO;
 
 public struct Order
 //ממשק של הזמנה
 {
     //מדפיס את כל פרטי ההזמנה
-    public override string ToString() => $@"
-    Order ID: {ID}
-    Costumer Name: {CostumerName}
-    Costumer Email: {CostumerEmail}
-    Costumer Adress: {CostumerAdress}
-    OrderDate: {OrderDate} Ship Date: {ShipDate} Delivery Date: {DeliveryDate}
-    ";
+    public override string ToString() { return this.ToStringProperty(); }
     public int ID { set; get; }
     public string CostumerName { set; get; }
     public string CostumerEmail { set; get; }

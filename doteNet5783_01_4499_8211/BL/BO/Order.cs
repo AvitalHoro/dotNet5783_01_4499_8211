@@ -17,4 +17,5 @@ public class Order
     public bool isDeleted { set; get; }
     public List <OrderItem?> Items { set; get; }
     public double TotalPrice { get; set; }
+    public override string ToString() { return this.ToStringProperty(); }
 }

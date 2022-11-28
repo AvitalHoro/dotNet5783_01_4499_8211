@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Security.Cryptography;
 
 namespace Dal;
 
@@ -11,8 +12,9 @@ public class DalProduct: IProduct
     public int Add(Product? product)
      //פונקציה להוספת מוצר חדש לרשימת המוצרים
     {
-        //if(ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID)!=null) //checks if the product is already in the store
-        //    throw new Exception "The product ia alredey in the store";
+        Product? pro = ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID);
+        if(pro != null && !pro.GetValueOrDefault().isDeleted) //checks if the product is already in the store
+            throw new AlreadyExistsException(product.GetValueOrDefault().ID);
         ds.ListProduct.Add(product);
         return product.GetValueOrDefault().ID;
     }
@@ -20,7 +22,7 @@ public class DalProduct: IProduct
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
         Product? product = ds.ListProduct.Find(pro => pro.GetValueOrDefault().ID == id);
-        if (product==null) //checks if the product is already in the store
+        if (product==null ||product.GetValueOrDefault().isDeleted) //checks if the product is already in the store
             throw new DontExistException(id);
         return product;
     }
@@ -28,7 +30,7 @@ public class DalProduct: IProduct
         //הפונקציה מעדכנת מוצר מסוים ברשימת הפרודוקטים, ומוצאת את הקודם ע"י הת"ז שנשארת אותו הדבר
     {
         Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
-        if (temp==null)
+        if (temp==null|| temp.GetValueOrDefault().isDeleted)
             throw new DontExistException(product.GetValueOrDefault().ID);
        ds.ListProduct.Remove(temp);
         ds.ListProduct.Add(product);
@@ -38,7 +40,7 @@ public class DalProduct: IProduct
    //הפונקציה לא באמת מוחקת את ההזמנה אלא רק מכדכנת בפרטים שלה שהיא מחוקה
     {
         Product? found = ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id);
-        if (found == null)
+        if (found == null|| found.GetValueOrDefault().isDeleted)
            //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
          throw new DontExistException(id);
    
@@ -49,16 +51,21 @@ public class DalProduct: IProduct
             Category = found.GetValueOrDefault().Category,
             InStock = found.GetValueOrDefault().InStock,
             Price = found.GetValueOrDefault().Price,
-            isDeleted = true
+            isDeleted = true,
+            Path = found.GetValueOrDefault().Path,
         };
         Update(product); //מעדכן ברשימה את ההזמנה המחוקה
     }
 
-        //IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
      public IEnumerable<Product?> GetAll()
         //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
      {
-      return ds.ListProduct;
+        return ds.ListProduct;
      }
+
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
+    {
+        return (from Product? product in ds.ListProduct where filter(product) select product).ToList();
+    }
 }
 

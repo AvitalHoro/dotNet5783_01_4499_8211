@@ -18,6 +18,7 @@ internal class Product : IProduct
                 Name = product.GetValueOrDefault().Name,
                 Category = (BO.Category)product.GetValueOrDefault().Category,
                 Price = product.GetValueOrDefault().Price,
+                Path= product.GetValueOrDefault().Path
             }
             );
         };
@@ -44,6 +45,7 @@ internal class Product : IProduct
                 Price = product.GetValueOrDefault().Price,
                 InStock = product.GetValueOrDefault().InStock,
                 isDeleted = product.GetValueOrDefault().isDeleted,
+                Path= product.GetValueOrDefault().Path  
             };
             return boProduct;
         }
@@ -65,6 +67,7 @@ internal class Product : IProduct
                 Category = (BO.Category)product.GetValueOrDefault().Category,
                 Price = product.GetValueOrDefault().Price,
                 isInStock = (product.GetValueOrDefault().InStock > 0), //אולי אפשר לעשות פה דלגט??
+                Path = product.GetValueOrDefault().Path
             };
             return productItem;
         }
@@ -99,6 +102,7 @@ internal class Product : IProduct
             Price = newProduct.Price,
             InStock = newProduct.InStock,
             isDeleted = newProduct.isDeleted,
+            Path = newProduct.Path,
         };
         try
         {
@@ -154,6 +158,7 @@ internal class Product : IProduct
             Price = product.Price,
             InStock = product.InStock,
             isDeleted = product.isDeleted,
+            Path = product.Path,
         };
         try
         {
