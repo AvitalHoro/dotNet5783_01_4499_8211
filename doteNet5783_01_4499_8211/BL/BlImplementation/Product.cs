@@ -1,4 +1,5 @@
 ﻿using BLApi;
+using System.Security.Cryptography;
 
 namespace BlImplementation;
 
@@ -11,6 +12,7 @@ internal class Product : IProduct
         IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
         List<BO.ProductForList?> newList = new List<BO.ProductForList?> { };
         BO.ProductForList? productBo = new BO.ProductForList();
+       // from DO.Product? product in tmp select ;
         foreach (DO.Product? productDo in tmp)
         {
             BO.Tools.CopyPropTo(productDo, productBo);
