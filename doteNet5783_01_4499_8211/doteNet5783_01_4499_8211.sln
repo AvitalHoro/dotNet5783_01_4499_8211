@@ -21,6 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BITest", "BITest\BITest.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{9EA6EFDF-6952-4C19-8A27-9D9FFA97AE38}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{BE28C0C9-82D2-404A-A64F-76247E7326B8}"
+	ProjectSection(SolutionItems) = preProject
+		dal-config.xml = dal-config.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
