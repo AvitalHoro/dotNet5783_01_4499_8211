@@ -15,4 +15,5 @@ public class ProductForList
     public double Price { get; set; }
     public bool isDeleted { set; get; }
     public string Path { set; get; }
+    public override string ToString() { return this.ToStringProperty(); }
 }

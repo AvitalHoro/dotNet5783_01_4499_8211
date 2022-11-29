@@ -34,7 +34,7 @@ class Program
                 Console.WriteLine(bOrder.Order.getDetailsOrder(id));
                 break;
             case "c":
-                foreach (var item in bOrder.Order.getOrderList())
+                foreach (BO.OrderForList item in bOrder.Order.getOrderList())
                 {
                     Console.WriteLine(item);
                 }
@@ -69,10 +69,12 @@ class Program
     {
         int id = 0;
         string option = "";
+        int numOfProduct = 0;
         while (option != "d")
         {
-            int numOfProduct = myCart.orderItems.Count();
-            Console.WriteLine("Your basket has" + numOfProduct + "products");
+            if(myCart.orderItems!=null)
+                numOfProduct = myCart.orderItems.Count();
+            Console.WriteLine("Your basket has " + numOfProduct + " products");
             Console.WriteLine(@"Choose one of the following:
                 a - ADD PRODUCT TO THE CART
                 b - UPDATE AMOUNT OF PRODUCT
@@ -124,7 +126,7 @@ class Program
         switch (option)
         {
             case "a":
-                foreach (var item in bProduct.Product.GetProductList())
+                foreach (BO.ProductForList item in bProduct.Product.GetProductList())
                 {
                     Console.WriteLine(item);
                 }

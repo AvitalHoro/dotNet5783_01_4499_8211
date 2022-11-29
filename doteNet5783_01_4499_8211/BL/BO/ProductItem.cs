@@ -12,4 +12,5 @@ public class ProductItem
     public bool isInStock { get; set; } 
     public int AmountInCart { get; set; }
     public string Path { set; get; }
+    public override string ToString() { return this.ToStringProperty(); }
 }

@@ -11,19 +11,34 @@ namespace BO;
 
 public static class Tools
 {
-    public static string ToStringProperty<T>(this T t)
+    //public static string ToStringProperty<T>(this T t)
+    //{
+    //    string str = "";
+    //    foreach (PropertyInfo property in t.GetType().GetProperties())
+    //    {
+    //        var value = property.GetValue(t, null);
+    //        if (value is IEnumerable)
+    //            foreach (var item in (IEnumerable)value)
+    //                str += item.ToStringProperty(" ");
+    //        else
+    //            str += "\n" + property.Name +": " + property.GetValue(t, null);
+    //    }
+
+    //    return str;
+    //}
+
+    public static string ToStringProperty<T>(this T t, string suffix = "")
     {
         string str = "";
-        foreach (PropertyInfo property in t.GetType().GetProperties())
+        foreach (PropertyInfo prop in t.GetType().GetProperties())
         {
-            var value = property.GetValue(t, null);
+            var value = prop.GetValue(t, null);
             if (value is IEnumerable)
                 foreach (var item in (IEnumerable)value)
-                    str += item.ToStringProperty();
+                    str += item.ToStringProperty("   ");
             else
-                str += "\n" + property.Name +": " + property.GetValue(t, null);
+                str += "\n" + suffix + prop.Name + ": " + value;
         }
-
         return str;
     }
 

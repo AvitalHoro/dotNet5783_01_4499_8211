@@ -43,6 +43,8 @@ internal class Order : IOrder
 
         foreach (DO.Order? order in tmp)
         {
+            sum = 0;
+            amount = 0;
             BO.Tools.CopyPropTo(order, boOrder);
             var OrderItems = Dal.OrderItem.GetAll(order.GetValueOrDefault().ID);
             foreach (var item in OrderItems)
