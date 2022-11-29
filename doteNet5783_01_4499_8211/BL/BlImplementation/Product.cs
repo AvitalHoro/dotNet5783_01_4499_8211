@@ -10,17 +10,23 @@ internal class Product : IProduct
     {
         IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
         List<BO.ProductForList?> newList = new List<BO.ProductForList?> { };
-        foreach (DO.Product? product in tmp)
+        BO.ProductForList? productBo = new BO.ProductForList();
+        foreach (DO.Product? productDo in tmp)
         {
-            newList.Add(new BO.ProductForList
-            {
-                ID = product.GetValueOrDefault().ID,
-                Name = product.GetValueOrDefault().Name,
-                Category = (BO.Category)product.GetValueOrDefault().Category,
-                Price = product.GetValueOrDefault().Price,
-                Path= product.GetValueOrDefault().Path
-            }
-            );
+            BO.Tools.CopyPropTo(productDo, productBo);
+            newList.Add(productBo);
+        };
+        return newList;
+    }
+
+    public IEnumerable<BO.Product?> GetCatalog()
+    {
+        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
+        List<BO.Product?> newList = new List<BO.Product?> { };
+        BO.Product productBo = new BO.Product();
+        foreach (DO.Product? productDo in tmp)
+        {
+            BO.Tools.CopyPropTo(productDo, productBo);
         };
         return newList;
     }
@@ -37,16 +43,8 @@ internal class Product : IProduct
 
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
-            BO.Product boProduct = new BO.Product
-            {
-                ID = product.GetValueOrDefault().ID,
-                Name = product.GetValueOrDefault().Name,
-                Category = (BO.Category)product.GetValueOrDefault().Category,
-                Price = product.GetValueOrDefault().Price,
-                InStock = product.GetValueOrDefault().InStock,
-                isDeleted = product.GetValueOrDefault().isDeleted,
-                Path= product.GetValueOrDefault().Path  
-            };
+            BO.Product boProduct = new BO.Product();
+            BO.Tools.CopyPropTo(product, boProduct);
             return boProduct;
         }
         catch (BO.DontExistException ex)
@@ -60,15 +58,9 @@ internal class Product : IProduct
         try
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
-            BO.ProductItem productItem = new BO.ProductItem
-            {
-                ID = product.GetValueOrDefault().ID,
-                Name = product.GetValueOrDefault().Name,
-                Category = (BO.Category)product.GetValueOrDefault().Category,
-                Price = product.GetValueOrDefault().Price,
-                isInStock = (product.GetValueOrDefault().InStock > 0), //אולי אפשר לעשות פה דלגט??
-                Path = product.GetValueOrDefault().Path
-            };
+            BO.ProductItem productItem = new BO.ProductItem();
+            BO.Tools.CopyPropTo(product, productItem);
+            productItem.isInStock = (product.GetValueOrDefault().InStock > 0);
             return productItem;
         }
         catch (BO.DontExistException ex)
@@ -94,16 +86,8 @@ internal class Product : IProduct
         catch (BO.InvalidPriceException ex) { Console.WriteLine(ex); }
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
 
-        DO.Product product = new DO.Product
-        {
-            ID = newProduct.ID,
-            Name = newProduct.Name,
-            Category = (DO.Category)newProduct.Category,
-            Price = newProduct.Price,
-            InStock = newProduct.InStock,
-            isDeleted = newProduct.isDeleted,
-            Path = newProduct.Path,
-        };
+        DO.Product product = new DO.Product();
+        BO.Tools.CopyPropTo(newProduct, product);
         try
         {
             Dal.Product.Add(product);
@@ -150,16 +134,8 @@ internal class Product : IProduct
         catch (BO.NoNameException ex) { Console.WriteLine(ex); }
         catch (BO.InvalidPriceException ex) { Console.WriteLine(ex); }
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
-        DO.Product productDo = new DO.Product
-        {
-            ID = product.ID,
-            Name = product.Name,
-            Category = (DO.Category)product.Category,
-            Price = product.Price,
-            InStock = product.InStock,
-            isDeleted = product.isDeleted,
-            Path = product.Path,
-        };
+        DO.Product productDo = new DO.Product();
+        BO.Tools.CopyPropTo(product, productDo);
         try
         {
             Dal.Product.Update(productDo);

@@ -26,6 +26,36 @@ public static class Tools
 
         return str;
     }
+
+    public static void CopyPropTo<Source, Target>(this Source source, Target target)
+    {
+
+        if (source is not null && target is not null)
+        {
+            Dictionary<string, PropertyInfo> propertiesInfoTarget = target.GetType().GetProperties()
+                .ToDictionary(p => p.Name, p => p);
+
+            IEnumerable<PropertyInfo> propertiesInfoSource = source.GetType().GetProperties();
+
+            foreach (var propertyInfo in propertiesInfoSource)
+            {
+                if (propertiesInfoTarget.ContainsKey(propertyInfo.Name)
+                    && (propertyInfo.PropertyType == typeof(string) || !propertyInfo.PropertyType.IsClass))
+                {
+                    propertiesInfoTarget[propertyInfo.Name].SetValue(target, propertyInfo.GetValue(source));
+                }
+            }
+        }
+    }
+
+    public static Target CopyPropToStruct<Source, Target>(this Source source, Target target) where Target : struct
+    {
+        object obj = target;
+
+        source.CopyPropTo(obj);
+
+        return (Target)obj;
+    }
 }
 
 //public static string ToStringProperty<T>(this T t, string suffix = "")
