@@ -24,3 +24,4 @@ namespace DalApi
         public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
     }
 }
+
