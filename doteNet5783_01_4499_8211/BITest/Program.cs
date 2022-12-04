@@ -232,7 +232,7 @@ class Program
                 bProduct.Product.UpdateProductDetails(tmpProduct2);
                 break;
             case "f":
-                foreach (var item in bProduct.Product.GetProductList())//לשנות לקטלוג!!
+                foreach (var item in bProduct.Product.GetCatalog())
                 {
                     Console.WriteLine(item);
                 }

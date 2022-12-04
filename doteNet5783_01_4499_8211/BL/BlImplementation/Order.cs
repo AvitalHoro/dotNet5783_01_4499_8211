@@ -1,4 +1,5 @@
 ﻿using BLApi;
+using BO;
 using Dal;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -151,6 +152,8 @@ internal class Order : IOrder
         catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
         DO.Order? orderDo= Dal.Order.GetById(IdOrder);
         BO.OrderTracking orderTracking = new BO.OrderTracking();
+        orderTracking.Tracking = new List<Tuple<DateTime?, string>> { };
+
         orderTracking.ID = orderDo.GetValueOrDefault().ID;
         if(orderDo.GetValueOrDefault().DeliveryDate == null)
         {

@@ -12,9 +12,11 @@ internal class Cart : ICart
     {
         try
         {
+            cart.orderItems = new List<BO.OrderItem?> { };
             DO.Product? product = Dal.Product.GetById(idProduct);
-            BO.OrderItem? item = cart.orderItems.Find(oi => oi.ProductID == idProduct);//למה לא עובד פה גט ווליו אור דיפולט?
-
+            BO.OrderItem? item = null;
+            if (cart.orderItems!=null)
+                item = cart.orderItems.Find(oi => oi.ProductID == idProduct);//למה לא עובד פה גט ווליו אור דיפולט?
             if (item == null)
             {
                 if (product.GetValueOrDefault().InStock < 1)
