@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +36,17 @@ public static class Tools
             var value = prop.GetValue(t, null);
             if (value is IEnumerable)
                 foreach (var item in (IEnumerable)value)
+                {
+                    var val = item.GetType();
+                    if(val.Name == "Tuple`2")
+                    {
+                      str+= ; 
+                    }
+                    else
                     str += item.ToStringProperty("   ");
+                }
+ 
+
             else
                 str += "\n" + suffix + prop.Name + ": " + value;
         }

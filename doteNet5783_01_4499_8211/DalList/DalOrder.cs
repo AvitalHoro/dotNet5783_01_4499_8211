@@ -12,6 +12,10 @@ public class DalOrder :IOrder
    public int Add(Order? item)
         //מוסיפה הזמנה חדשה לרשימת ההזמנות
     {
+        if(item.GetValueOrDefault().ID== null || item.GetValueOrDefault().ID == 0)
+        {
+
+        }
         Order? order = ds.ListOrder.Find(o => item.GetValueOrDefault().ID == o.GetValueOrDefault().ID);
         if (order != null && !order.GetValueOrDefault().isDeleted) 
             //בודק אם ההזמנה כבר נמצאת ברשימה, ואם היא כבר נמצאת זורק חריגה

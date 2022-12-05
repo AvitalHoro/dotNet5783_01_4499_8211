@@ -86,6 +86,15 @@ internal class Cart : ICart
         return cart;
     }
 
+    public OrderItem fu(OrderItem item)
+    {
+        DO.Product? product = Dal.Product.GetById(item.ProductID);
+        if (item.Amount < 1)
+            throw new BO.AmountException();
+        if (product.GetValueOrDefault().InStock < item.Amount)
+            throw new BO.OutOfStockException(product.GetValueOrDefault().ID);
+        return item;
+    }
 
     public int MakeOrder(BO.Cart cart)
     {
@@ -97,14 +106,7 @@ internal class Cart : ICart
                 throw new BO.NoCostumerEmailException();
             if (cart.CostumerAdress == null)
                 throw new BO.NoCostumerAdressException();
-            foreach (OrderItem item in cart.orderItems)
-            {
-                DO.Product? product = Dal.Product.GetById(item.ProductID);
-                if (item.Amount < 1)
-                    throw new BO.AmountException();
-                if (product.GetValueOrDefault().InStock < item.Amount)
-                    throw new BO.OutOfStockException(product.GetValueOrDefault().ID);
-            }
+            cart.orderItems = (from OrderItem item in cart.orderItems select fu(item)).ToList();
             DO.Order order = new DO.Order
             {
                 //ID = 1234,//אוף, שוב!

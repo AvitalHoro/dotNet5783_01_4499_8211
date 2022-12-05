@@ -9,7 +9,6 @@ internal class Product : IProduct
 
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
-        // List<BO.ProductForList?> newList = new List<BO.ProductForList?> { };
         IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
         BO.ProductForList? productBo = new BO.ProductForList();
         var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
