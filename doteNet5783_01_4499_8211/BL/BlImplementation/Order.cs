@@ -14,13 +14,13 @@ internal class Order : IOrder
         //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
     {
         double total = 0;
-        BO.Tools.CopyPropTo(orderDo, orderBo);
+        BO.Tools.CopyPropTo(orderDo, ref orderBo);
         var list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         List<BO.OrderItem> newList = new List<BO.OrderItem>();
         BO.OrderItem orderItemBo = new BO.OrderItem();
         foreach (var item in list) //ממירים כל פריט בהזמנה לפריט מסוג שכבת הלוגיקה 
         {
-            BO.Tools.CopyPropTo(item, orderItemBo); //מעתיקים את כל השדות שיש בשניהם
+            BO.Tools.CopyPropTo(item, ref orderItemBo); //מעתיקים את כל השדות שיש בשניהם
             try { orderItemBo.NameProduct = (Dal.Product.GetById(orderItemBo.ProductID)).GetValueOrDefault().Name; }
             //מעדכנים את שם המוצר בכל פריט
             catch (BO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
@@ -46,7 +46,7 @@ internal class Order : IOrder
         {
             sum = 0;
             amount = 0;
-            BO.Tools.CopyPropTo(order, boOrder);
+            BO.Tools.CopyPropTo(order, ref boOrder);
             var OrderItems = Dal.OrderItem.GetAll(order.GetValueOrDefault().ID);
             foreach (var item in OrderItems)
             { amount += item.GetValueOrDefault().Amount; }

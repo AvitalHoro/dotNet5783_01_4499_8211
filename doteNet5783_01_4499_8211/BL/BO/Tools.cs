@@ -42,7 +42,7 @@ public static class Tools
         return str;
     }
 
-    public static void CopyPropTo<Source, Target>(this Source source, Target target)
+    public static Target CopyPropTo<Source, Target>(this Source source, ref Target target)
     {
 
         if (source is not null && target is not null)
@@ -61,13 +61,14 @@ public static class Tools
                 }
             }
         }
+        return target;
     }
 
-    public static Target CopyPropToStruct<Source, Target>(this Source source, Target target) where Target : struct
+    public static Target CopyPropToStruct<Source, Target>(this Source source, ref Target target) where Target : struct
     {
         object obj = target;
 
-        source.CopyPropTo(obj);
+        source.CopyPropTo(ref obj);
 
         return (Target)obj;
     }

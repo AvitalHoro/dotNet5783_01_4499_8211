@@ -9,27 +9,18 @@ internal class Product : IProduct
 
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
+        // List<BO.ProductForList?> newList = new List<BO.ProductForList?> { };
         IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
-        List<BO.ProductForList?> newList = new List<BO.ProductForList?> { };
         BO.ProductForList? productBo = new BO.ProductForList();
-       // from DO.Product? product in tmp select ;
-        foreach (DO.Product? productDo in tmp)
-        {
-            BO.Tools.CopyPropTo(productDo, productBo);
-            newList.Add(productBo);
-        };
+        var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
         return newList;
     }
 
     public IEnumerable<BO.Product?> GetCatalog()
     {
         IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
-        List<BO.Product?> newList = new List<BO.Product?> { };
         BO.Product productBo = new BO.Product();
-        foreach (DO.Product? productDo in tmp)
-        {
-            BO.Tools.CopyPropTo(productDo, productBo);
-        };
+        var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
         return newList;
     }
 
@@ -42,11 +33,10 @@ internal class Product : IProduct
         }
         catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
         try
-
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.Product boProduct = new BO.Product();
-            BO.Tools.CopyPropTo(product, boProduct);
+            BO.Tools.CopyPropTo(product, ref boProduct);
             return boProduct;
         }
         catch (BO.DontExistException ex)
@@ -61,7 +51,7 @@ internal class Product : IProduct
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
-            BO.Tools.CopyPropTo(product, productItem);
+            BO.Tools.CopyPropTo(product, ref productItem);
             productItem.isInStock = (product.GetValueOrDefault().InStock > 0);
             return productItem;
         }
@@ -89,7 +79,7 @@ internal class Product : IProduct
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
 
         DO.Product product = new DO.Product();
-        BO.Tools.CopyPropTo(newProduct, product);
+        BO.Tools.CopyPropTo(newProduct, ref product);
         try
         {
             Dal.Product.Add(product);
@@ -137,11 +127,11 @@ internal class Product : IProduct
         catch (BO.InvalidPriceException ex) { Console.WriteLine(ex); }
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
         DO.Product productDo = new DO.Product();
-        BO.Tools.CopyPropTo(product, productDo);
+        BO.Tools.CopyPropTo(product, ref productDo);
         try
         {
             Dal.Product.Update(productDo);
         }
-        catch(DO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
-    } 
+        catch (DO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
+    }
 }
