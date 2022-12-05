@@ -3,6 +3,7 @@ using Dal;
 using BlImplementation;
 using DalApi;
 using BlApi;
+using BO;
 
 namespace BlTest;
 
@@ -67,6 +68,16 @@ class Program
 
     static void testCart(IBl bCart, BO.Cart? myCart)
     {
+        ///אתחול הסל
+        myCart = myCart ?? new BO.Cart();
+        Console.WriteLine("enter your name:");
+        myCart.CostumerName = Console.ReadLine();
+        Console.WriteLine("enter your email:");
+        myCart.CostumerEmail = Console.ReadLine();
+        Console.WriteLine("enter your adress:");
+        myCart.CostumerAdress = Console.ReadLine();
+        myCart.orderItems = new List<BO.OrderItem?> { };
+        ///אתחול הסל
         int id = 0;
         string option = "";
         int numOfProduct = 0;
