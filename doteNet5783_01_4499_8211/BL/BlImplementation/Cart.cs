@@ -12,7 +12,6 @@ internal class Cart : ICart
     {
         try
         {
-            cart.orderItems = new List<BO.OrderItem?> { };
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.OrderItem? item = null;
             if (cart.orderItems!=null)
@@ -93,7 +92,7 @@ internal class Cart : ICart
         {
             if (cart.CostumerName == null)
                 throw new BO.NoCostumerNameException();
-            if (cart.CostumerEmail == null || cart.CostumerEmail.Contains('@'))
+            if (cart.CostumerEmail == null || !(cart.CostumerEmail.Contains('@')))
                 throw new BO.NoCostumerEmailException();
             if (cart.CostumerAdress == null)
                 throw new BO.NoCostumerAdressException();
