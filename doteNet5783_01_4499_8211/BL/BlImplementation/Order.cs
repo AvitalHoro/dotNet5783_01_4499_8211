@@ -147,35 +147,27 @@ internal class Order : IOrder
         catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
         DO.Order? orderDo = Dal.Order.GetById(IdOrder);
         BO.OrderTracking orderTracking = new BO.OrderTracking();
-        orderTracking.Tracking = new List<Tuple<DateTime?, string>> { };
+        List <Tuple<DateTime?, string>> listTuples = new List<Tuple<DateTime?, string>> { };
         orderTracking.ID = orderDo.GetValueOrDefault().ID;
         if (orderDo.GetValueOrDefault().DeliveryDate == null)
         {
             if (orderDo.GetValueOrDefault().ShipDate == null)
             {
                 orderTracking.State = BO.Status.approved;
-                Tuple<DateTime?, string> t = new(orderDo.GetValueOrDefault().OrderDate, "The order was approved");
-                orderTracking.Tracking.Add(t);
-                //Console.WriteLine(t.Item1);
-                //Console.WriteLine(t.Item2);
+                listTuples.Add(Tuple.Create(orderDo.GetValueOrDefault().OrderDate, "The order was approved"));
             }
             else
             {
                 orderTracking.State = BO.Status.sent;
-                Tuple<DateTime?, string> t = new(orderDo.GetValueOrDefault().ShipDate, "The order was sent");
-                orderTracking.Tracking.Add(t);
-                //Console.WriteLine(t.Item1);
-                //Console.WriteLine(t.Item2);
+                listTuples.Add(Tuple.Create(orderDo.GetValueOrDefault().ShipDate, "The order was sent"));
             }
         }
         else
         {
             orderTracking.State = BO.Status.delivered;
-            Tuple<DateTime?, string> t = new(orderDo.GetValueOrDefault().DeliveryDate, "The order was delivered");
-            orderTracking.Tracking.Add(t);
-            //Console.WriteLine(t.Item1);
-            //Console.WriteLine(t.Item2);
+            listTuples.Add(Tuple.Create(orderDo.GetValueOrDefault().DeliveryDate, "The order was delivered"));
         }
+        orderTracking.Tracking = listTuples;
         return orderTracking;
     }
     public DO.OrderItem? UpdateOrder(int IdOrder, int IdProduct, int newAmount)

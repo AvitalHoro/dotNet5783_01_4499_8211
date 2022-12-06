@@ -14,7 +14,7 @@ public class DalOrder :IOrder
     {
         if(item.GetValueOrDefault().ID== null || item.GetValueOrDefault().ID == 0)
         {
-
+            ds.ListOrder.Add(item); 
         }
         Order? order = ds.ListOrder.Find(o => item.GetValueOrDefault().ID == o.GetValueOrDefault().ID);
         if (order != null && !order.GetValueOrDefault().isDeleted) 

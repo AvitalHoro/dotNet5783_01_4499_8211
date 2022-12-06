@@ -34,22 +34,16 @@ public static class Tools
         foreach (PropertyInfo prop in t.GetType().GetProperties())
         {
             var value = prop.GetValue(t, null);
-            if (value is IEnumerable)
+            if (value is IEnumerable && value is not string)
+            {
+                str+= "\n"+ prop.Name + ":";
                 foreach (var item in (IEnumerable)value)
-                {
-                    //var val = item.GetType();
-                    //if(val.Name == "Tuple`2")
-                    //{
-                    //  str+= ; 
-                    //}
-                    //else
                     str += item.ToStringProperty("   ");
-                }
- 
-
+            }
             else
                 str += "\n" + suffix + prop.Name + ": " + value;
         }
+        str += "\n";
         return str;
     }
 
