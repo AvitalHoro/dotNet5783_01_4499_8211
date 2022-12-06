@@ -12,7 +12,7 @@ internal class Cart : ICart
     {
         try
         {
-            DO.Product product = Dal.Product.GetById(idProduct);
+            DO.Product product = Dal.Product.GetById(idProduct);//מוצא את המוצר אותו רצינו להכניס לעגלה. אם המזהה לא קיים הפונקציה תזרוק חריגה
             BO.OrderItem item =
                 cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? new()
@@ -40,7 +40,7 @@ internal class Cart : ICart
     }
 
 
-    public BO.Cart? UpdateAmountProduct(BO.Cart cart, int idProduct, int amount)
+    public BO.Cart UpdateAmountProduct(BO.Cart cart, int idProduct, int amount)
     {
         DO.Product? product = Dal.Product.GetById(idProduct);
         try

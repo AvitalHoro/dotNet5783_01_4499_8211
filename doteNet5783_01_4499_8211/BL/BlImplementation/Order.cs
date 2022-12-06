@@ -55,7 +55,6 @@ internal class Order : IOrder
         //    return newList;
         //}
 
-        IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
         BO.OrderForList boOrder = new BO.OrderForList();
         //double total = 0;
