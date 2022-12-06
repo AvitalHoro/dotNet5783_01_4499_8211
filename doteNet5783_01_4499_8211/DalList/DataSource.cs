@@ -195,18 +195,23 @@ public class DataSource
     private void CreateOrderItem()
      // מאתחל את הרשימה של המוצרים שהוזמנו עם מוצרים חדשים
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < ListOrder.Count; i++)
         {
-            Product? product = ListProduct[randNum.Next(ListProduct.Count)]; // מגריל מוצר רנדומלי מהרשימה של המוצרים
-            ListOrderItem.Add(new OrderItem
+            Order order = ListOrder[i] ?? new Order();
+            int max = randNum.Next(1, 4);
+            for (int j = 0; j < max; j++)
             {
-                ID = Config.NextOrderItemNumber, //מספר רץ
-                ProductID = product.GetValueOrDefault().ID, //לוקח את הת"ז מהמוצר שהוגרל
-                Price = product.GetValueOrDefault().Price, //לוקח את המחיר של המוצר שהוגרל
-                OrderID = randNum.Next(Config.s_startOrderNumber, Config.s_startOrderNumber + ListOrder.Count),
-                //מגריל ת"ז רנדומלית של הזמנה , הבאנו לו טווח של מינימום ומקסימום
-                Amount = randNum.Next(1, 5) // מגריל כמות שהוזמנה עד 5 פריטים
-            });
+                Product product = ListProduct[randNum.Next(0, ListProduct.Count)] ?? new Product(); // מגריל מוצר רנדומלי מהרשימה של המוצרים
+                ListOrderItem.Add(new OrderItem
+                {
+                    ID = Config.NextOrderItemNumber, //מספר רץ
+                    ProductID = product.ID, //לוקח את הת"ז מהמוצר שהוגרל
+                    Price = product.Price, //לוקח את המחיר של המוצר שהוגרל
+                    OrderID = order.ID,//לוקח את התז של ההזמנה הנוכחית
+                    //מגריל ת"ז רנדומלית של הזמנה , הבאנו לו טווח של מינימום ומקסימום
+                    Amount = randNum.Next(1, 5) // מגריל כמות שהוזמנה עד 5 פריטים
+                });
+            }
         }
     }
 
