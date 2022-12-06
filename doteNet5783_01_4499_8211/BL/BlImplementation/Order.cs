@@ -47,13 +47,7 @@ internal class Order : IOrder
 
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
-        //public IEnumerable<BO.ProductForList?> GetProductList()
-        //{
-        //    IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
-        //    BO.ProductForList? productBo = new BO.ProductForList();
-        //    var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
-        //    return newList;
-        //}
+      
 
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
         BO.OrderForList boOrder = new BO.OrderForList();
