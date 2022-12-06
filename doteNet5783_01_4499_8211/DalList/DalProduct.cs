@@ -12,47 +12,59 @@ public class DalProduct: IProduct
     public int Add(Product product)
      //פונקציה להוספת מוצר חדש לרשימת המוצרים
     {
-        Product? pro = ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID);
-        if(pro != null && !pro.GetValueOrDefault().isDeleted) //checks if the product is already in the store
-            throw new AlreadyExistsException(product.GetValueOrDefault().ID);
+        Product? newProduct = ds.ListProduct.FirstOrDefault(p => product.ID == p?.ID);
+        if (newProduct != null)
+            if ((bool)newProduct?.isDeleted!)
+                ds.ListOrder.RemoveAll(p => product.ID == p?.ID);
+            else
+                throw new AlreadyExistsException(product.ID);
         ds.ListProduct.Add(product);
-        return product.GetValueOrDefault().ID;
+        return product.ID;
     }
+
+
     public Product GetById(int id)
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
-        Product? product = ds.ListProduct.Find(pro => pro.GetValueOrDefault().ID == id);
-        if (product==null ||product.GetValueOrDefault().isDeleted) //checks if the product is already in the store
-            throw new DoesNotExistException(id);
+        Product product = ds.ListProduct.FirstOrDefault(p => p?.ID == id)
+            ?? throw new DoesNotExistException(id);
+        if (product.isDeleted) throw new DoesNotExistException(id);//checks if the product is already in the store
         return product;
     }
-    public void Update(Product? product)
+
+
+    public void Update(Product product)
         //הפונקציה מעדכנת מוצר מסוים ברשימת הפרודוקטים, ומוצאת את הקודם ע"י הת"ז שנשארת אותו הדבר
     {
-        Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
-        if (temp==null|| temp.GetValueOrDefault().isDeleted)
-            throw new DoesNotExistException(product.GetValueOrDefault().ID);
-       ds.ListProduct.Remove(temp);
+        Product newProduct = ds.ListProduct.FirstOrDefault(found => found?.ID == product.ID)
+            ?? throw new DoesNotExistException(product.ID);
+        if (newProduct.isDeleted)
+            throw new DoesNotExistException(product.ID);
+        ds.ListProduct.Remove(newProduct);
         ds.ListProduct.Add(product);
     }
+
+
     public void Delete(int id)
     //מוחק מוצר מהרשימה
-   //הפונקציה לא באמת מוחקת את ההזמנה אלא רק מכדכנת בפרטים שלה שהיא מחוקה
+   //הפונקציה לא באמת מוחקת את ההזמנה אלא רק מעדכנת בפרטים שלה שהיא מחוקה
     {
-        Product? found = ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id);
-        if (found == null|| found.GetValueOrDefault().isDeleted)
-           //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
-         throw new DoesNotExistException(id);
+        Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id) 
+            ?? throw new DoesNotExistException(id);
+
+        if (found.isDeleted)
+                    //בודק אם ההזמנה מחוקה כבר ברשימה, ואם כן זורק חריגה
+            throw new DoesNotExistException(id);
    
         Product product = new() //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
         {
             ID = id,
-            Name = found.GetValueOrDefault().Name,
-            Category = found.GetValueOrDefault().Category,
-            InStock = found.GetValueOrDefault().InStock,
-            Price = found.GetValueOrDefault().Price,
+            Name = found.Name,
+            Category = found.Category,
+            InStock = found.InStock,
+            Price = found.Price,
             isDeleted = true,
-            Path = found.GetValueOrDefault().Path,
+            Path = found.Path,
         };
         Update(product); //מעדכן ברשימה את ההזמנה המחוקה
     }
