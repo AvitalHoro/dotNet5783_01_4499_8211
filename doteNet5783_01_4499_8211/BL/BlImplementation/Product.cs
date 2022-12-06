@@ -30,7 +30,7 @@ internal class Product : IProduct
             if (idProduct <= 0)
                 throw new BO.InvalidIDException(idProduct);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
         try
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
@@ -72,10 +72,10 @@ internal class Product : IProduct
             if (newProduct.InStock <= 0)
                 throw new BO.OutOfStockException(newProduct.ID);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
-        catch (BO.NoNameException ex) { Console.WriteLine(ex); }
-        catch (BO.InvalidPriceException ex) { Console.WriteLine(ex); }
-        catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
+        catch (BO.NoNameException ex) { throw new BO.NoNameException(ex.ID); }
+        catch (BO.InvalidPriceException ex) { throw new BO.InvalidPriceException(ex.ID); }
+        catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
 
         DO.Product product = new DO.Product();
         BO.Tools.CopyPropTo(newProduct, ref product);
@@ -98,7 +98,7 @@ internal class Product : IProduct
         }
         catch (BO.DoesNotExistException ex)
         {
-            Console.WriteLine(ex);
+            throw new BO.ProductExistInOrderException(ex.ID);
         }
         try
         {
@@ -121,10 +121,10 @@ internal class Product : IProduct
             if (product.InStock <= 0)
                 throw new BO.OutOfStockException(product.ID);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
-        catch (BO.NoNameException ex) { Console.WriteLine(ex); }
-        catch (BO.InvalidPriceException ex) { Console.WriteLine(ex); }
-        catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
+        catch (BO.NoNameException ex) { throw new BO.NoNameException(ex.ID); }
+        catch (BO.InvalidPriceException ex) { throw new BO.InvalidPriceException(ex.ID); }
+        catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
         DO.Product productDo = new DO.Product();
         BO.Tools.CopyPropTo(product, ref productDo);
         try

@@ -1,6 +1,7 @@
 ﻿using BLApi;
 using BO;
 using Dal;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -35,7 +36,7 @@ internal class Order : IOrder
         orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
 
-    public BO.OrderForList? doOrderToOrderForList(DO.Order? DoOrder, BO.OrderForList? BoOrder, ref double total, ref int amount)
+    public BO.OrderForList? doOrderToOrderForList(DO.Order? DoOrder, BO.OrderForList? BoOrder /*, ref double total, ref int amount*/)
     {
         BO.Tools.CopyPropTo(DoOrder, ref BoOrder);
         var OrderItems = Dal.OrderItem.GetAll(DoOrder.GetValueOrDefault().ID);
@@ -46,12 +47,20 @@ internal class Order : IOrder
 
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
+        //public IEnumerable<BO.ProductForList?> GetProductList()
+        //{
+        //    IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
+        //    BO.ProductForList? productBo = new BO.ProductForList();
+        //    var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
+        //    return newList;
+        //}
+
         IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
         BO.OrderForList boOrder = new BO.OrderForList();
-        double total = 0;
-        int amount = 0;
-        var newList = (from DO.Order item in tmp select doOrderToOrderForList(item, boOrder, ref total, ref amount)).ToList();
-        return newList;
+        //double total = 0;
+        //int amount = 0;
+        return from DO.Order item in tmp select doOrderToOrderForList(item, boOrder /*, ref total, ref amount*/);
+        //return newList;
     }
 
     public BO.Order? getDetailsOrder(int IdOrder)
@@ -63,7 +72,7 @@ internal class Order : IOrder
             if (IdOrder < 0)
                 throw new BO.InvalidIDException(IdOrder);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { new BO.InvalidIDException(ex.ID); }
         DO.Order? orderDo = Dal.Order.GetById(IdOrder); //מבקשים משכבת הנתונים את ההזמנה הרצויה
         //עושים המרה מהזמנה מסוג שכבת הנתונים להזמנה מסוג שכבת הלוגיקה
         BO.Order? orderBo = new BO.Order();
@@ -78,7 +87,7 @@ internal class Order : IOrder
             if (IdOrder < 0)
                 throw new BO.InvalidIDException(IdOrder);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
         try
         {
             DO.Order? orderDo = Dal.Order.GetById(IdOrder);
@@ -111,7 +120,7 @@ internal class Order : IOrder
             if (IdOrder < 0)
                 throw new BO.InvalidIDException(IdOrder);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
         try
         {
             DO.Order? orderDo = Dal.Order.GetById(IdOrder);
@@ -144,7 +153,7 @@ internal class Order : IOrder
             if (IdOrder < 0)
                 throw new BO.InvalidIDException(IdOrder);
         }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (BO.InvalidIDException ex) { new BO.InvalidIDException(ex.ID); }
         DO.Order? orderDo = Dal.Order.GetById(IdOrder);
         BO.OrderTracking orderTracking = new BO.OrderTracking();
         List <Tuple<DateTime?, string>> listTuples = new List<Tuple<DateTime?, string>> { };
