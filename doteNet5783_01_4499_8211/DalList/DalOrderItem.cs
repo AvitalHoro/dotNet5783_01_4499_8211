@@ -13,44 +13,47 @@ public class DalOrderItem : IOrderItem
     public int Add(OrderItem item)
     //מוסיפה הזמנה חדשה לרשימה
     {
-        OrderItem? it = ds.ListOrderItem.Find(i => item.ID == i.GetValueOrDefault().ID);
+        OrderItem? it = ds.ListOrderItem.FirstOrDefault(i => item.ID == i?.ID);
         if (it != null && !item.isDeleted) //checks if the order is already in the system
             throw new AlreadyExistsException(item.ID);
         ds.ListOrderItem.Add(item);
         return item.ID;//צריך להחזיר פה את התז
     }
-    public OrderItem? GetById(int id)
+    public OrderItem GetById(int id)
     // מקבלת ת"ז ומחזירה את הפריט שז הת"ז שלו
     {
-        OrderItem? item = ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id);
-        if (item == null || item.GetValueOrDefault().isDeleted) //checks if the item is already in the store
+        OrderItem item = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
+            ?? throw new DoesNotExistException(id);
+        if (item.isDeleted) //checks if the item is already in the store
             throw new DoesNotExistException(id);
         return item;
     }
-    public void Update(OrderItem? item)
+    public void Update(OrderItem item)
     //מעדכנת הזמנה קיימת
     {
-        OrderItem? temp = ds.ListOrderItem.Find(found => found.GetValueOrDefault().ID == item.GetValueOrDefault().ID);
-        if (temp == null || item.GetValueOrDefault().isDeleted)
-            throw new DoesNotExistException(item.GetValueOrDefault().ID);
+        OrderItem temp = ds.ListOrderItem.FirstOrDefault(found => found?.ID == item.ID)
+            ?? throw new DoesNotExistException(item.ID);
+        if (item.isDeleted)
+            throw new DoesNotExistException(item.ID);
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
     }
     public void Delete(int id)
     //מוחקת הזמנה מהרשימה לפי הת"ז שהיא מקבלת
     {
-        OrderItem? found = ds.ListOrderItem.Find(item => item.GetValueOrDefault().ID == id);
-        if (found == null || found.GetValueOrDefault().isDeleted)
+        OrderItem found = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
+            ?? throw new DoesNotExistException(id); ;
+        if (found.isDeleted)
             //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DoesNotExistException(id);
 
         OrderItem item = new()
         {
             ID = id,
-            ProductID = found.GetValueOrDefault().ProductID,
-            OrderID = found.GetValueOrDefault().OrderID,
-            Price = found.GetValueOrDefault().Price,
-            Amount = found.GetValueOrDefault().Amount,
+            ProductID = found.ProductID,
+            OrderID = found.OrderID,
+            Price = found.Price,
+            Amount = found.Amount,
             isDeleted = true
         };
         Update(item);
@@ -81,6 +84,6 @@ public class DalOrderItem : IOrderItem
 
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        return (from OrderItem? orderItem in ds.ListOrderItem where filter(orderItem) select orderItem).ToList();
+        return (from OrderItem? orderItem in ds.ListOrderItem where filter!(orderItem) select orderItem).ToList();
     }
 }

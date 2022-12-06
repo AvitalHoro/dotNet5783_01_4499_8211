@@ -44,20 +44,21 @@ public class DalOrder : IOrder
     public void Delete(int id)
     //מוחקת את ההזמנה שהת"ז שלה היא זאת שקיבלנו
     {
-        Order? found = ds.ListOrder.Find(item => item.GetValueOrDefault().ID == id);
-        if (found == null || found.GetValueOrDefault().isDeleted)
+        Order found = ds.ListOrder.FirstOrDefault(item => item?.ID == id)
+             ?? throw new DoesNotExistException(id); ;
+        if (found.isDeleted)
             //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DoesNotExistException(id);
 
         Order order = new()
         {
             ID = id,
-            CostumerName = found.GetValueOrDefault().CostumerName,
-            CostumerEmail = found.GetValueOrDefault().CostumerEmail,
-            CostumerAdress = found.GetValueOrDefault().CostumerAdress,
-            OrderDate = found.GetValueOrDefault().OrderDate,
-            DeliveryDate = found.GetValueOrDefault().DeliveryDate,
-            ShipDate = found.GetValueOrDefault().ShipDate,
+            CostumerName = found.CostumerName,
+            CostumerEmail = found.CostumerEmail,
+            CostumerAdress = found.CostumerAdress,
+            OrderDate = found.OrderDate,
+            DeliveryDate = found.DeliveryDate,
+            ShipDate = found.ShipDate,
             isDeleted = true
         };
         Update(order);
@@ -70,6 +71,6 @@ public class DalOrder : IOrder
     }
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
     {
-        return (from Order? order in ds.ListOrder where filter(order) select order).ToList();
+        return (from Order? order in ds.ListOrder where filter!(order) select order).ToList();
     }
 }
