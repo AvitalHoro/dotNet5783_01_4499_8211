@@ -15,7 +15,7 @@ internal class Order : IOrder
 
     public BO.OrderItem? updateItemListForOrder(DO.OrderItem? DoOrder, BO.OrderItem? BoOrder, ref double total)
     {
-        BO.Tools.CopyPropTo(DoOrder, ref BoOrder);
+        BO.Tools.CopyPropTo(DoOrder,  BoOrder);
         try { BoOrder.NameProduct = (Dal.Product.GetById(BoOrder.ProductID)).Name; }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
         BoOrder.TotalPrice = DoOrder.GetValueOrDefault().Price * DoOrder.GetValueOrDefault().Amount;
@@ -27,8 +27,8 @@ internal class Order : IOrder
     //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
     {
         double total = 0;
-        BO.Tools.CopyPropTo(orderDo, ref orderBo);
-        IEnumerable<DO.OrderItem?> list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
+        BO.Tools.CopyPropTo(orderDo,  orderBo);
+        IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         BO.OrderItem orderItemBo = new BO.OrderItem();
         var newList = (from DO.OrderItem item in list select updateItemListForOrder(item, orderItemBo, ref total)).ToList();
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
@@ -37,16 +37,16 @@ internal class Order : IOrder
 
     public BO.OrderForList? doOrderToOrderForList(DO.Order? DoOrder, BO.OrderForList? BoOrder, ref double total, ref int amount)
     {
-        BO.Tools.CopyPropTo(DoOrder, ref BoOrder);
+        BO.Tools.CopyPropTo(DoOrder,  BoOrder);
         var OrderItems = Dal.OrderItem.GetAll(DoOrder.GetValueOrDefault().ID);
-        BoOrder.ItemsAmount = OrderItems.Sum(item => item.GetValueOrDefault().Amount);
-        BoOrder.TotalPrice = OrderItems.Sum(item => item.GetValueOrDefault().Price * item.GetValueOrDefault().Amount);
+        BoOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
+        BoOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
         return BoOrder;
     }
 
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
-        IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
+        IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
         BO.OrderForList boOrder = new BO.OrderForList();
         double total = 0;
         int amount = 0;

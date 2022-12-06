@@ -14,8 +14,9 @@ public class DalOrderItem : IOrderItem
     //מוסיפה הזמנה חדשה לרשימה
     {
         OrderItem? it = ds.ListOrderItem.FirstOrDefault(i => item.ID == i?.ID);
-        if (it != null && !item.isDeleted) //checks if the order is already in the system
-            throw new AlreadyExistsException(item.ID);
+        if (it != null) //checks if the order is already in the system
+            if ((bool)it?.isDeleted!)
+                ds.ListOrderItem.RemoveAll(i => item.ID == i?.ID);
         ds.ListOrderItem.Add(item);
         return item.ID;//צריך להחזיר פה את התז
     }
@@ -59,32 +60,38 @@ public class DalOrderItem : IOrderItem
         Update(item);
     }
 
-    public IEnumerable<OrderItem?> GetAll()
+    public IEnumerable<OrderItem> GetAll()
     // מחזירה את כל הרשימה, גם את האיברים שכביכול נמחקו
     {
-        return ds.ListOrderItem;
+        return (from OrderItem? item in ds.ListOrderItem where item != null select (OrderItem)item).ToList();
     }
 
-    public IEnumerable<OrderItem?> GetAll(int IdOrder)
+    public IEnumerable<OrderItem> GetAll(int IdOrder)
     //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        return (from OrderItem? order in ds.ListOrderItem where order.GetValueOrDefault().OrderID == IdOrder select order).ToList();
+        return (from OrderItem? item in ds.ListOrderItem 
+                where item?.OrderID == IdOrder 
+                select (OrderItem)item)
+                .ToList();
     }
 
     public OrderItem getItem(int IdOrder, int IdProduct)
     {
-        return ds.ListOrderItem.FirstOrDefault(item => (item.GetValueOrDefault().OrderID == IdOrder) && (item.GetValueOrDefault().ProductID == IdProduct))
+        return ds.ListOrderItem.FirstOrDefault(item => (item?.OrderID == IdOrder) && (item?.ProductID == IdProduct))
             ?? throw new DoesNotExistException(IdOrder);
     }
 
-    public IEnumerable<OrderItem?> GetAllProduct(int IdProduct)
+    public IEnumerable<OrderItem> GetAllProduct(int IdProduct)
     //מקבלת מזהה מוצר ולכל פריט שהוזמן בודקת האם הוא זהה למוצר שהתקבל ואם כן, מחזירה אותו
     {
-        return (from OrderItem? order in ds.ListOrderItem where order.GetValueOrDefault().ProductID == IdProduct select order).ToList();
+        return (from OrderItem? item in ds.ListOrderItem 
+                where item?.ProductID == IdProduct 
+                select (OrderItem)item)
+                .ToList();
     }
 
-    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
+    public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        return (from OrderItem? orderItem in ds.ListOrderItem where filter!(orderItem) select orderItem).ToList();
+        return (from OrderItem? orderItem in ds.ListOrderItem where filter!(orderItem) select (OrderItem)orderItem).ToList();
     }
 }

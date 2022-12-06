@@ -26,7 +26,7 @@ public static class Tools
         return str;
     }
 
-    public static Target CopyPropTo<Source, Target>(this Source source, ref Target target)
+    public static Target CopyPropTo<Source, Target>(this Source source, Target target)
     {
 
         if (source is not null && target is not null)
@@ -39,7 +39,7 @@ public static class Tools
             foreach (var propertyInfo in propertiesInfoSource)
             {
                 if (propertiesInfoTarget.ContainsKey(propertyInfo.Name)
-                    && (propertyInfo.PropertyType == typeof(string) || !propertyInfo.PropertyType.IsClass))
+                    && (propertyInfo.PropertyType == typeof(string) || !(propertyInfo.PropertyType.IsClass)))
                 {
                     propertiesInfoTarget[propertyInfo.Name].SetValue(target, propertyInfo.GetValue(source));
                 }
@@ -48,13 +48,27 @@ public static class Tools
         return target;
     }
 
-    public static Target CopyPropToStruct<Source, Target>(this Source source, ref Target target) where Target : struct
-    {
-        object obj = target;
+    //public static T CopyPropTo<T, S>(this S from, T to)
+    //{
+    //    foreach (PropertyInfo propTo in to.GetType().GetProperties())//loop on all the properties in the new object
+    //    {
+    //        PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);//check if there is property with the same name in the source object and get it
+    //        if (propFrom == null)
+    //            continue;
+    //        var value = propFrom.GetValue(from, null);//get the value of the prperty
+    //        if (value is ValueType || value is string)
+    //            propTo.SetValue(to, value);//insert the value to the suitable property
+    //    }
+    //    return to;
+    //}
 
-        source.CopyPropTo(ref obj);
 
-        return (Target)obj;
-    }
+
+     public static object CopyPropToStruct<S>(this S from, Type type)//get the typy we want to copy to 
+        {
+            object to = Activator.CreateInstance(type); // new object of the Type
+            from.CopyPropTo(to);//copy all value of properties with the same name to the new object
+            return to;
+        }
 }
 

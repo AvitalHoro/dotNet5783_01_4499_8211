@@ -9,17 +9,18 @@ internal class Product : IProduct
 
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
-        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
+        IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
         BO.ProductForList? productBo = new BO.ProductForList();
-        var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
-        return newList;
+        return (from DO.Product? product in tmp 
+                select BO.Tools.CopyPropTo(product, productBo)); 
     }
 
     public IEnumerable<BO.Product?> GetCatalog()
     {
-        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
+        IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
         BO.Product productBo = new BO.Product();
-        var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
+        var newList = from DO.Product? product in tmp 
+                      select BO.Tools.CopyPropTo(product,  productBo);
         return newList;
     }
 
@@ -35,7 +36,7 @@ internal class Product : IProduct
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.Product boProduct = new BO.Product();
-            BO.Tools.CopyPropTo(product, ref boProduct);
+            BO.Tools.CopyPropTo(product,  boProduct);
             return boProduct;
         }
         catch (BO.DoesNotExistException ex)
@@ -50,7 +51,7 @@ internal class Product : IProduct
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
-            BO.Tools.CopyPropTo(product, ref productItem);
+            BO.Tools.CopyPropTo(product,  productItem);
             productItem.isInStock = (product.GetValueOrDefault().InStock > 0);
             return productItem;
         }
@@ -78,10 +79,9 @@ internal class Product : IProduct
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
 
         DO.Product product = new DO.Product();
-        BO.Tools.CopyPropTo(newProduct, ref product);
         try
         {
-            Dal.Product.Add(product);
+            Dal.Product.Add((DO.Product)BO.Tools.CopyPropToStruct(newProduct, typeof(DO.Product)));
         }
         catch (DO.AlreadyExistsException ex) { throw new BO.AlreadyExistsException(ex.ID, ex.Message, ex); }
     }
@@ -126,7 +126,7 @@ internal class Product : IProduct
         catch (BO.InvalidPriceException ex) { Console.WriteLine(ex); }
         catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
         DO.Product productDo = new DO.Product();
-        BO.Tools.CopyPropTo(product, ref productDo);
+        BO.Tools.CopyPropTo(product,  productDo);
         try
         {
             Dal.Product.Update(productDo);

@@ -64,13 +64,14 @@ public class DalOrder : IOrder
         Update(order);
     }
 
-    public IEnumerable<Order?> GetAll()
+    public IEnumerable<Order> GetAll()
     //מחזירה את כל הרשימה של ההזמנות בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        return ds.ListOrder;
+        return (from Order? order in ds.ListOrderItem where order != null select (Order)order).ToList();
     }
-    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
+
+    public IEnumerable<Order> GetAll(Func<Order?, bool>? filter = null)
     {
-        return (from Order? order in ds.ListOrder where filter!(order) select order).ToList();
+        return (from Order? order in ds.ListOrder where filter!(order) select (Order)order).ToList();
     }
 }

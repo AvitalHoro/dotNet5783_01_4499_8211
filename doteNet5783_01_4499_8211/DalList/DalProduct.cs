@@ -22,7 +22,6 @@ public class DalProduct: IProduct
         return product.ID;
     }
 
-
     public Product GetById(int id)
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
@@ -69,15 +68,15 @@ public class DalProduct: IProduct
         Update(product); //מעדכן ברשימה את ההזמנה המחוקה
     }
 
-     public IEnumerable<Product?> GetAll()
+     public IEnumerable<Product> GetAll()
         //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
      {
-        return ds.ListProduct;
+        return (from Product? product in ds.ListProduct where product != null select (Product)product).ToList();
      }
 
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
+    public IEnumerable<Product> GetAll(Func<Product?, bool>? filter = null)
     {
-        return (from Product? product in ds.ListProduct where filter(product) select product).ToList();
+        return (from Product? product in ds.ListProduct where filter(product) select (Product)product).ToList();
     }
 }
 
