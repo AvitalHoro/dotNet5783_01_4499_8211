@@ -68,8 +68,8 @@ internal class Cart : ICart
             }
 
         }
-        catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
+        catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
         return cart;
     }
 

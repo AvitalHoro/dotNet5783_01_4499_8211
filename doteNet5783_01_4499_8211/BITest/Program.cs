@@ -288,7 +288,10 @@ class Program
                     }
                 }
                 else
+                {
                     Console.WriteLine("ERROR");
+                    num = 1;
+                }
             }
             catch (Exception ex)
             {
