@@ -16,8 +16,8 @@ internal class Order : IOrder
     public BO.OrderItem? updateItemListForOrder(DO.OrderItem? DoOrder, BO.OrderItem? BoOrder, ref double total)
     {
         BO.Tools.CopyPropTo(DoOrder, ref BoOrder);
-        try { BoOrder.NameProduct = (Dal.Product.GetById(BoOrder.ProductID)).GetValueOrDefault().Name; }
-        catch (BO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
+        try { BoOrder.NameProduct = (Dal.Product.GetById(BoOrder.ProductID)).Name; }
+        catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
         BoOrder.TotalPrice = DoOrder.GetValueOrDefault().Price * DoOrder.GetValueOrDefault().Amount;
         total += BoOrder.TotalPrice;
         return BoOrder;
@@ -101,7 +101,7 @@ internal class Order : IOrder
                 return orderBo;
             }
         }
-        catch (BO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
+        catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
         return null;
     }
     public BO.Order? UpdateDeliveryDate(int IdOrder)
@@ -134,7 +134,7 @@ internal class Order : IOrder
                 return orderBo;
             }
         }
-        catch (BO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
+        catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
         return null;
     }
     public BO.OrderTracking? Tracking(int IdOrder)
