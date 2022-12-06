@@ -67,7 +67,10 @@ public class DalOrder : IOrder
     public IEnumerable<Order> GetAll()
     //מחזירה את כל הרשימה של ההזמנות בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
     {
-        return (from Order? order in ds.ListOrderItem where order != null select (Order)order).ToList();
+        return (from Order? order in ds.ListOrder 
+                where (order != null) 
+                select (Order)order)
+                .ToList();
     }
 
     public IEnumerable<Order> GetAll(Func<Order?, bool>? filter = null)
