@@ -14,7 +14,7 @@ public class DalOrder : IOrder
     {
         Order? order = ds.ListOrder.FirstOrDefault(o => item.ID == o?.ID);
         if (order != null)
-            if ((bool)order?.isDeleted!)
+            if ((bool)order?.IsDeleted!)
                 ds.ListOrder.RemoveAll(o => item.ID == o?.ID);
             else
                 throw new AlreadyExistsException(item.ID);
@@ -28,7 +28,7 @@ public class DalOrder : IOrder
     {
         Order order = ds.ListOrder.FirstOrDefault(item => item?.ID == id)
             ?? throw new DoesNotExistException(id);
-        if (order.isDeleted) throw new DoesNotExistException(id);
+        if (order.IsDeleted) throw new DoesNotExistException(id);
         return order;//מחזיר את ההזמנה
     }
     public void Update(Order item)
@@ -36,7 +36,7 @@ public class DalOrder : IOrder
     {
         Order order = ds.ListOrder.FirstOrDefault(found => found?.ID == item.ID)
             ?? throw new DoesNotExistException(item.ID);
-        if (order.isDeleted)
+        if (order.IsDeleted)
             throw new DoesNotExistException(item.ID);
         ds.ListOrder.Remove(order);
         ds.ListOrder.Add(item);
@@ -46,7 +46,7 @@ public class DalOrder : IOrder
     {
         Order found = ds.ListOrder.FirstOrDefault(item => item?.ID == id)
              ?? throw new DoesNotExistException(id); ;
-        if (found.isDeleted)
+        if (found.IsDeleted)
             //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DoesNotExistException(id);
 
@@ -59,7 +59,7 @@ public class DalOrder : IOrder
             OrderDate = found.OrderDate,
             DeliveryDate = found.DeliveryDate,
             ShipDate = found.ShipDate,
-            isDeleted = true
+            IsDeleted = true
         };
         Update(order);
     }

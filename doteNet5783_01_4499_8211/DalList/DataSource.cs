@@ -62,7 +62,7 @@ public class DataSource
                 Category = (Category)(0),//category=clothes
                 Price = randNum.Next(50, 100), //selects a random price in range of 50-100
                 InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
-                isDeleted = false, //the new product isn't deleted
+                IsDeleted = false, //the new product isn't deleted
                 Path=""
             });
         }
@@ -76,7 +76,7 @@ public class DataSource
                 Category = (Category)(1),//category=toys
                 Price = randNum.Next(30, 300),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 10),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
+                IsDeleted = false,//the new product isn't deleted
                 Path = ""
             });
         }
@@ -90,7 +90,7 @@ public class DataSource
                 Category = (Category)(2),//category=carts
                 Price = randNum.Next(200, 400),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 15),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
+                IsDeleted = false,//the new product isn't deleted
                 Path = ""
             });
         }
@@ -104,7 +104,7 @@ public class DataSource
                 Category = (Category)(3),//category=bottels
                 Price = randNum.Next(20, 60),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 40),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
+                IsDeleted = false,//the new product isn't deleted
                 Path = ""
             });
         }
@@ -118,7 +118,7 @@ public class DataSource
                 Category = (Category)(4),//category=diapers
                 Price = randNum.Next(50, 80),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
-                isDeleted = false,//the new product isn't deleted
+                IsDeleted = false,//the new product isn't deleted
                 Path = ""
             });
         }
@@ -152,7 +152,7 @@ public class DataSource
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן שליחה הגיוני
                 DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 3L)),
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן מסירה הגיוני
-                isDeleted = false,
+                IsDeleted = false,
             });
         }
         // מוסיף 20% מההזמנות עם תאריך הזמנה בלבד 
@@ -168,7 +168,7 @@ public class DataSource
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
                 DeliveryDate =null, 
                 ShipDate=null,
-                isDeleted = false,
+                IsDeleted = false,
             });
         }
 
@@ -186,7 +186,7 @@ public class DataSource
                 ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)),
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן שליחה הגיוני
                 DeliveryDate = null,
-                isDeleted = false,
+                IsDeleted = false,
             });
 
         }

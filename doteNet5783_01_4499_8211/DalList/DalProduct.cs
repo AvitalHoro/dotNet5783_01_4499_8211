@@ -14,7 +14,7 @@ public class DalProduct: IProduct
     {
         Product? newProduct = ds.ListProduct.FirstOrDefault(p => product.ID == p?.ID);
         if (newProduct != null)
-            if ((bool)newProduct?.isDeleted!)
+            if ((bool)newProduct?.IsDeleted!)
                 ds.ListOrder.RemoveAll(p => product.ID == p?.ID);
             else
                 throw new AlreadyExistsException(product.ID);
@@ -27,7 +27,7 @@ public class DalProduct: IProduct
     {
         Product product = ds.ListProduct.FirstOrDefault(p => p?.ID == id)
             ?? throw new DoesNotExistException(id);
-        if (product.isDeleted) throw new DoesNotExistException(id);//checks if the product is already in the store
+        if (product.IsDeleted) throw new DoesNotExistException(id);//checks if the product is already in the store
         return product;
     }
 
@@ -37,7 +37,7 @@ public class DalProduct: IProduct
     {
         Product newProduct = ds.ListProduct.FirstOrDefault(found => found?.ID == product.ID)
             ?? throw new DoesNotExistException(product.ID);
-        if (newProduct.isDeleted)
+        if (newProduct.IsDeleted)
             throw new DoesNotExistException(product.ID);
         ds.ListProduct.Remove(newProduct);
         ds.ListProduct.Add(product);
@@ -51,7 +51,7 @@ public class DalProduct: IProduct
         Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id) 
             ?? throw new DoesNotExistException(id);
 
-        if (found.isDeleted)
+        if (found.IsDeleted)
                     //בודק אם ההזמנה מחוקה כבר ברשימה, ואם כן זורק חריגה
             throw new DoesNotExistException(id);
    
@@ -62,7 +62,7 @@ public class DalProduct: IProduct
             Category = found.Category,
             InStock = found.InStock,
             Price = found.Price,
-            isDeleted = true,
+            IsDeleted = true,
             Path = found.Path,
         };
         Update(product); //מעדכן ברשימה את ההזמנה המחוקה

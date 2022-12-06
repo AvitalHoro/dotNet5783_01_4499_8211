@@ -15,7 +15,7 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem? it = ds.ListOrderItem.FirstOrDefault(i => item.ID == i?.ID);
         if (it != null) //checks if the order is already in the system
-            if ((bool)it?.isDeleted!)
+            if ((bool)it?.IsDeleted!)
                 ds.ListOrderItem.RemoveAll(i => item.ID == i?.ID);
         ds.ListOrderItem.Add(item);
         return item.ID;//צריך להחזיר פה את התז
@@ -25,7 +25,7 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem item = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
             ?? throw new DoesNotExistException(id);
-        if (item.isDeleted) //checks if the item is already in the store
+        if (item.IsDeleted) //checks if the item is already in the store
             throw new DoesNotExistException(id);
         return item;
     }
@@ -34,7 +34,7 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem temp = ds.ListOrderItem.FirstOrDefault(found => found?.ID == item.ID)
             ?? throw new DoesNotExistException(item.ID);
-        if (item.isDeleted)
+        if (item.IsDeleted)
             throw new DoesNotExistException(item.ID);
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
@@ -44,7 +44,7 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem found = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
             ?? throw new DoesNotExistException(id);
-        if (found.isDeleted)
+        if (found.IsDeleted)
             //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DoesNotExistException(id);
 
@@ -55,7 +55,7 @@ public class DalOrderItem : IOrderItem
             OrderID = found.OrderID,
             Price = found.Price,
             Amount = found.Amount,
-            isDeleted = true
+            IsDeleted = true
         };
         Update(item);
     }

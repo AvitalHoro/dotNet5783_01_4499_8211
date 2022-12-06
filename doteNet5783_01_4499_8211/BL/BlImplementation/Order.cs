@@ -36,29 +36,30 @@ internal class Order : IOrder
         orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
 
-    public BO.OrderForList? doOrderToOrderForList(DO.Order? DoOrder, BO.OrderForList? BoOrder )
+    public BO.OrderForList? doOrderToOrderForList(DO.Order? DoOrder, BO.OrderForList? BoOrder /*, ref double total, ref int amount*/)
     {
         BO.Tools.CopyPropTo(DoOrder,  BoOrder);
         var OrderItems = Dal.OrderItem.GetAll(DoOrder.GetValueOrDefault().ID);
         BoOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
         BoOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
-        if(DoOrder?.OrderDate!=null && DoOrder?.ShipDate != null && DoOrder?.DeliveryDate != null)
-            BoOrder.State= Status.sent;
-        else if(DoOrder?.OrderDate != null && DoOrder?.ShipDate != null)
-            BoOrder.State = Status.delivered;
-        else if (DoOrder?.OrderDate != null)
-            BoOrder.State = Status.approved;
         return BoOrder;
     }
 
-    public IEnumerable<BO.OrderForList> getOrderList()
+    public IEnumerable<BO.OrderForList?> getOrderList()
     {
+        //public IEnumerable<BO.ProductForList?> GetProductList()
+        //{
+        //    IEnumerable<DO.Product?> tmp = Dal.Product.GetAll();
+        //    BO.ProductForList? productBo = new BO.ProductForList();
+        //    var newList = from DO.Product? product in tmp select BO.Tools.CopyPropTo(product, ref productBo);
+        //    return newList;
+        //}
+
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
         BO.OrderForList boOrder = new BO.OrderForList();
         //double total = 0;
         //int amount = 0;
-        return from DO.Order item in tmp 
-               select doOrderToOrderForList(item, boOrder);
+        return from DO.Order item in tmp select doOrderToOrderForList(item, boOrder /*, ref total, ref amount*/);
         //return newList;
     }
 
@@ -101,7 +102,7 @@ internal class Order : IOrder
                     OrderDate = orderDo.GetValueOrDefault().OrderDate,
                     ShipDate = DateTime.Now,
                     DeliveryDate = null,
-                    isDeleted = false
+                    IsDeleted = false
                 });
                 BO.Order? orderBo = new BO.Order();
                 orderToBoOrder(orderDo, orderBo);
@@ -134,7 +135,7 @@ internal class Order : IOrder
                     OrderDate = orderDo.GetValueOrDefault().OrderDate,
                     ShipDate = orderDo.GetValueOrDefault().ShipDate,
                     DeliveryDate = DateTime.Now,
-                    isDeleted = false
+                    IsDeleted = false
                 });
                 BO.Order? orderBo = new BO.Order();
                 orderToBoOrder(orderDo, orderBo);
@@ -191,7 +192,7 @@ internal class Order : IOrder
             ProductID = IdProduct,
             Price = item.GetValueOrDefault().Price,
             Amount = newAmount,
-            isDeleted = false
+            IsDeleted = false
         });
         return Dal.OrderItem.getItem(IdOrder, IdProduct);
     }

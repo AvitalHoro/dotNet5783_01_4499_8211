@@ -23,7 +23,7 @@ internal class Cart : ICart
                     Price = product.Price,
                     TotalPrice = 0,
                     Amount = 0,
-                    isDeleted = false,
+                    IsDeleted = false,
                 };
             if (item.Amount >= product.InStock) // not enough in stock
                 throw new BO.OutOfStockException(idProduct);
@@ -35,6 +35,7 @@ internal class Cart : ICart
             cart.TotalPrice += item.TotalPrice;
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
+        catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
 
         return cart;
     }
@@ -42,19 +43,17 @@ internal class Cart : ICart
 
     public BO.Cart UpdateAmountProduct(BO.Cart cart, int idProduct, int amount)
     {
-        DO.Product? product = Dal.Product.GetById(idProduct);
         try
         {
-            if (product == null)
-                throw new BO.InvalidIDException(idProduct);
-            else if (product.GetValueOrDefault().InStock < 1)
+            DO.Product product = Dal.Product.GetById(idProduct);
+            if (product.InStock < amount)
                 throw new BO.OutOfStockException(idProduct);
-            BO.OrderItem? item = cart.orderItems.Find(oi => oi.ProductID == idProduct);//למה לא עובד פה גט ווליו אור דיפולט?
-            if (item == null)
-                throw new BO.ProductNotExistInCartException(idProduct);
-            else if (amount == 0)
+            BO.OrderItem item =
+                cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
+                ?? throw new BO.ProductNotExistInCartException(idProduct);
+            if (amount == 0)
             {
-                cart.orderItems.Remove(item);
+                cart.orderItems.Remove(item);//אם הכמות היא אפס מסיר את המוצר מהרשימה
                 cart.TotalPrice -= item.TotalPrice;
             }
             else
@@ -73,7 +72,7 @@ internal class Cart : ICart
         return cart;
     }
 
-    public OrderItem fu(OrderItem item)
+    public OrderItem fu(OrderItem item)//what this????????
     {
         DO.Product? product = Dal.Product.GetById(item.ProductID);
         if (item.Amount < 1)
@@ -96,42 +95,41 @@ internal class Cart : ICart
             cart.orderItems = (from OrderItem item in cart.orderItems select fu(item)).ToList();
             DO.Order order = new DO.Order
             {
-                //ID = 1234,//אוף, שוב!
                 CostumerAdress = cart.CostumerAdress,
                 CostumerEmail = cart.CostumerEmail,
                 CostumerName = cart.CostumerName,
                 OrderDate = DateTime.Now,
-                DeliveryDate = null,
-                ShipDate = null,
-                isDeleted = false
+                //DeliveryDate = null,
+                //ShipDate = null,
+                //isDeleted = false
             };
-            Dal.Order.Add(order);
-            foreach (OrderItem item in cart.orderItems)
+            int newOrderId = Dal.Order.Add(order);
+            foreach (OrderItem? item in cart.orderItems)
             //תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
             {
-                DO.Product? product = Dal.Product.GetById(item.ProductID);
-                DO.OrderItem orderItem = new DO.OrderItem
+                DO.Product product = Dal.Product.GetById(item.ProductID);
+                DO.OrderItem orderItem = new ()
                 {
                     ID = item.ID,
-                    OrderID = order.ID,
-                    ProductID = product.GetValueOrDefault().ID,
+                    OrderID = newOrderId,
+                    ProductID = product.ID,
                     Amount = item.Amount,
-                    Price = item.Price / item.Amount,//מחיר לפריט בודד?
-                    isDeleted = false,
+                    Price = (item.Price / item.Amount),//מחיר לפריט בודד?
+                    IsDeleted = false,
                 };
                 Dal.OrderItem.Add(orderItem);
-                DO.Product newProduct = new DO.Product
+                DO.Product newProduct = new ()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
                 {
-                    ID = product.GetValueOrDefault().ID,
-                    Name = product.GetValueOrDefault().Name,
-                    Price = product.GetValueOrDefault().Price,
-                    Category = product.GetValueOrDefault().Category,
-                    InStock = product.GetValueOrDefault().InStock - item.Amount,
-                    isDeleted = product.GetValueOrDefault().isDeleted,
+                    ID = product.ID,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Category = product.Category,
+                    InStock = (product.InStock - item.Amount),
+                    IsDeleted = product.IsDeleted,
                 };
-                Dal.Product.Update(newProduct);
+                Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
             }
-            return order.ID;
+            return newOrderId;
         }
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(); }
         catch (BO.NoCostumerEmailException ex) { throw new BO.NoCostumerEmailException(); }

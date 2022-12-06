@@ -10,6 +10,6 @@ public class OrderItem
     public double Price { set; get; }
     public double TotalPrice { set; get; }
     public int Amount { set; get; }
-    public bool isDeleted { set; get; }
+    public bool IsDeleted { set; get; }
     public override string ToString() { return this.ToStringProperty(); }
 }

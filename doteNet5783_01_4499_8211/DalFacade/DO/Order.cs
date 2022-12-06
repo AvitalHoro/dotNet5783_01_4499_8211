@@ -15,5 +15,5 @@ public struct Order
     public DateTime? OrderDate { set; get; }
     public DateTime? ShipDate { set; get; }
     public DateTime? DeliveryDate { set; get; }
-    public bool isDeleted { set; get; }
+    public bool IsDeleted { set; get; }
 }

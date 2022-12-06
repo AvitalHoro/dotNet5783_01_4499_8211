@@ -52,7 +52,7 @@ internal class Product : IProduct
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
             BO.Tools.CopyPropTo(product,  productItem);
-            productItem.isInStock = (product.GetValueOrDefault().InStock > 0);
+            productItem.IsInStock = (product.GetValueOrDefault().InStock > 0);
             return productItem;
         }
         catch (BO.DoesNotExistException ex)
