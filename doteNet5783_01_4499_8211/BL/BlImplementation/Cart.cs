@@ -110,7 +110,7 @@ internal class Cart : ICart
                 DO.Product product = Dal.Product.GetById(item.ProductID);
                 DO.OrderItem orderItem = new ()
                 {
-                    ID = item.ID,
+                    //ID = item.ID,
                     OrderID = newOrderId,
                     ProductID = product.ID,
                     Amount = item.Amount,

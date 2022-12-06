@@ -17,6 +17,7 @@ public class DalOrderItem : IOrderItem
         if (it != null) //checks if the order is already in the system
             if ((bool)it?.IsDeleted!)
                 ds.ListOrderItem.RemoveAll(i => item.ID == i?.ID);
+        item.ID = DataSource.Config.NextOrderItemNumber;
         ds.ListOrderItem.Add(item);
         return item.ID;//צריך להחזיר פה את התז
     }
