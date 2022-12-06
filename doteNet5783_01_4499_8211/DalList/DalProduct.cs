@@ -9,7 +9,7 @@ public class DalProduct: IProduct
 {
     readonly DataSource ds = DataSource.s_instance; //כדי שלא ניצור כל פעם עצם חדש של נתונים
 
-    public int Add(Product? product)
+    public int Add(Product product)
      //פונקציה להוספת מוצר חדש לרשימת המוצרים
     {
         Product? pro = ds.ListProduct.Find(p => product.GetValueOrDefault().ID == p.GetValueOrDefault().ID);
@@ -18,7 +18,7 @@ public class DalProduct: IProduct
         ds.ListProduct.Add(product);
         return product.GetValueOrDefault().ID;
     }
-    public Product? GetById(int id)
+    public Product GetById(int id)
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
         Product? product = ds.ListProduct.Find(pro => pro.GetValueOrDefault().ID == id);

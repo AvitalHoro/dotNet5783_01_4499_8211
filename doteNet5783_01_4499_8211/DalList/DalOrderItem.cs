@@ -10,14 +10,14 @@ public class DalOrderItem : IOrderItem
 {
     readonly DataSource ds = DataSource.s_instance;
 
-    public int Add(OrderItem? item)
+    public int Add(OrderItem item)
     //מוסיפה הזמנה חדשה לרשימה
     {
-        OrderItem? it = ds.ListOrderItem.Find(i => item.GetValueOrDefault().ID == i.GetValueOrDefault().ID);
-        if (it != null && !item.GetValueOrDefault().isDeleted) //checks if the order is already in the system
-            throw new AlreadyExistsException(item.GetValueOrDefault().ID);
+        OrderItem? it = ds.ListOrderItem.Find(i => item.ID == i.GetValueOrDefault().ID);
+        if (it != null && !item.isDeleted) //checks if the order is already in the system
+            throw new AlreadyExistsException(item.ID);
         ds.ListOrderItem.Add(item);
-        return item.GetValueOrDefault().ID;//צריך להחזיר פה את התז
+        return item.ID;//צריך להחזיר פה את התז
     }
     public OrderItem? GetById(int id)
     // מקבלת ת"ז ומחזירה את הפריט שז הת"ז שלו
