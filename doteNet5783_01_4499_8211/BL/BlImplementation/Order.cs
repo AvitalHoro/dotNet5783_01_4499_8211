@@ -1,7 +1,5 @@
 ﻿using BLApi;
-using BO;
 using Dal;
-using DO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -43,11 +41,11 @@ internal class Order : IOrder
         BoOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
         BoOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
         if (DoOrder.DeliveryDate != null)
-            BoOrder.State = Status.delivered;
+            BoOrder.State = BO.Status.delivered;
         else if (DoOrder.ShipDate != null)
-            BoOrder.State = Status.sent;
+            BoOrder.State = BO.Status.sent;
         else
-            BoOrder.State = Status.approved;
+            BoOrder.State = BO.Status.approved;
         return BoOrder;
     }
 
