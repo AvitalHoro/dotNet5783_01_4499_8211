@@ -42,7 +42,7 @@ public class DalOrderItem : IOrderItem
     //מוחקת הזמנה מהרשימה לפי הת"ז שהיא מקבלת
     {
         OrderItem found = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
-            ?? throw new DoesNotExistException(id); ;
+            ?? throw new DoesNotExistException(id);
         if (found.isDeleted)
             //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
             throw new DoesNotExistException(id);
@@ -71,9 +71,10 @@ public class DalOrderItem : IOrderItem
         return (from OrderItem? order in ds.ListOrderItem where order.GetValueOrDefault().OrderID == IdOrder select order).ToList();
     }
 
-    public OrderItem? getItem(int IdOrder, int IdProduct)
+    public OrderItem getItem(int IdOrder, int IdProduct)
     {
-        return ds.ListOrderItem.Find(item => (item.GetValueOrDefault().OrderID == IdOrder) && (item.GetValueOrDefault().ProductID == IdProduct));
+        return ds.ListOrderItem.FirstOrDefault(item => (item.GetValueOrDefault().OrderID == IdOrder) && (item.GetValueOrDefault().ProductID == IdProduct))
+            ?? throw new DoesNotExistException(IdOrder);
     }
 
     public IEnumerable<OrderItem?> GetAllProduct(int IdProduct)
