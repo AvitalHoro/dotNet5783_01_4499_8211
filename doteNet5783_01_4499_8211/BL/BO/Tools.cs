@@ -37,12 +37,12 @@ public static class Tools
             if (value is IEnumerable)
                 foreach (var item in (IEnumerable)value)
                 {
-                    var val = item.GetType();
-                    if(val.Name == "Tuple`2")
-                    {
-                      str+= ; 
-                    }
-                    else
+                    //var val = item.GetType();
+                    //if(val.Name == "Tuple`2")
+                    //{
+                    //  str+= ; 
+                    //}
+                    //else
                     str += item.ToStringProperty("   ");
                 }
  
