@@ -8,46 +8,34 @@ internal class Cart : ICart
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
-    public BO.Cart? AddProduct(BO.Cart? cart, int idProduct)
+    public BO.Cart AddProduct(BO.Cart cart, int idProduct)
     {
         try
         {
-            DO.Product? product = Dal.Product.GetById(idProduct);
-            BO.OrderItem? item = null;
-            if (cart.orderItems!=null)
-                item = cart.orderItems.Find(oi => oi.ProductID == idProduct);//למה לא עובד פה גט ווליו אור דיפולט?
-            if (item == null)
-            {
-                if (product.GetValueOrDefault().InStock < 1)
-                    throw new BO.OutOfStockException(idProduct);
-                cart.orderItems.Add(new BO.OrderItem
+            DO.Product product = Dal.Product.GetById(idProduct);
+            BO.OrderItem item =
+                cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
+                ?? new()
                 {
-                    ID = 1234,//מה לשים פה????
+                    ID = 0,
                     ProductID = idProduct,
-                    NameProduct = product.GetValueOrDefault().Name,
-                    Price = product.GetValueOrDefault().Price,
-                    TotalPrice = product.GetValueOrDefault().Price,
-                    Amount = 1,
+                    NameProduct = product.Name,
+                    Price = product.Price,
+                    TotalPrice = 0,
+                    Amount = 0,
                     isDeleted = false,
-                });
-                cart.TotalPrice += product.GetValueOrDefault().Price;
-            }
-            else
-            {
-                if (product.GetValueOrDefault().InStock < item.Amount + 1)
-                    throw new BO.OutOfStockException(idProduct);
-                cart.orderItems.Remove(item);
-                cart.TotalPrice -= item.TotalPrice;
-                item.Amount++;
-                item.TotalPrice += item.Price;
-                cart.orderItems.Add(item);
-                cart.TotalPrice += item.TotalPrice;
-            }
+                };
+            if (item.Amount >= product.InStock) // not enough in stock
+                throw new BO.OutOfStockException(idProduct);
 
+            if (item.Amount == 0) cart.orderItems?.Add(item); // it is a new item
+
+            item.Amount++;
+            item.TotalPrice += item.Price;
+            cart.TotalPrice += item.TotalPrice;
         }
-        catch (DO.DontExistException ex) { throw new BO.DontExistException(ex.ID); }
-        catch (BO.OutOfStockException ex) { Console.WriteLine(ex); }
-        catch (BO.InvalidIDException ex) { Console.WriteLine(ex); }
+        catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
+
         return cart;
     }
 
@@ -122,7 +110,7 @@ internal class Cart : ICart
             //תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
             {
                 DO.Product? product = Dal.Product.GetById(item.ProductID);
-                DO.OrderItem? orderItem = new DO.OrderItem
+                DO.OrderItem orderItem = new DO.OrderItem
                 {
                     ID = item.ID,
                     OrderID = order.ID,
@@ -132,7 +120,7 @@ internal class Cart : ICart
                     isDeleted = false,
                 };
                 Dal.OrderItem.Add(orderItem);
-                DO.Product? newProduct = new DO.Product
+                DO.Product newProduct = new DO.Product
                 {
                     ID = product.GetValueOrDefault().ID,
                     Name = product.GetValueOrDefault().Name,
@@ -148,7 +136,7 @@ internal class Cart : ICart
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(); }
         catch (BO.NoCostumerEmailException ex) { throw new BO.NoCostumerEmailException(); }
         catch (BO.NoCostumerAdressException ex) { throw new BO.NoCostumerAdressException(); }
-        catch (BO.DontExistException ex) { throw new DO.DontExistException(ex.ID); }
+        catch (BO.DoesNotExistException ex) { throw new DO.DoesNotExistException(ex.ID); }
         catch (BO.AlreadyExistsException ex) { throw new DO.AlreadyExistsException(ex.ID); }
         catch (BO.AmountException ex) { throw new BO.AmountException(); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }

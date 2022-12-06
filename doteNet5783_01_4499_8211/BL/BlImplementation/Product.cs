@@ -38,9 +38,9 @@ internal class Product : IProduct
             BO.Tools.CopyPropTo(product, ref boProduct);
             return boProduct;
         }
-        catch (BO.DontExistException ex)
+        catch (BO.DoesNotExistException ex)
         {
-            throw new DO.DontExistException(ex.ID, ex.Message, ex);
+            throw new DO.DoesNotExistException(ex.ID, ex.Message, ex);
         }
     }
 
@@ -54,9 +54,9 @@ internal class Product : IProduct
             productItem.isInStock = (product.GetValueOrDefault().InStock > 0);
             return productItem;
         }
-        catch (BO.DontExistException ex)
+        catch (BO.DoesNotExistException ex)
         {
-            throw new DO.DontExistException(ex.ID, ex.Message, ex);
+            throw new DO.DoesNotExistException(ex.ID, ex.Message, ex);
         }
     }
     public void AddProduct(BO.Product? newProduct)
@@ -96,7 +96,7 @@ internal class Product : IProduct
                 //האם עבור רשימה ריקה, הוא יחזיר באמת נל
                 throw new BO.ProductExistInOrderException(idProduct);
         }
-        catch (BO.DontExistException ex)
+        catch (BO.DoesNotExistException ex)
         {
             Console.WriteLine(ex);
         }
@@ -104,8 +104,8 @@ internal class Product : IProduct
         {
             Dal.Product.Delete(idProduct);
         }
-        catch (DO.DontExistException ex)
-        { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
+        catch (DO.DoesNotExistException ex)
+        { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
 
     public void UpdateProductDetails(BO.Product? product)
@@ -131,6 +131,6 @@ internal class Product : IProduct
         {
             Dal.Product.Update(productDo);
         }
-        catch (DO.DontExistException ex) { throw new BO.DontExistException(ex.ID, ex.Message, ex); }
+        catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
 }

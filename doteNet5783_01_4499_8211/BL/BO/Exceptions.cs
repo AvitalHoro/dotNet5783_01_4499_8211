@@ -9,17 +9,17 @@ namespace BO;
 
 
 [Serializable]
-public class DontExistException : Exception
+public class DoesNotExistException : Exception
 //חריגה שנזרקת כאשר מנסים לגשת לאיבר שלא נמצא בחנות
 {
     public int ID { get; private set; } //ת"ז של ישות, בכדי שנוכל לכתוב למשתמש לאיזו ת"ז אנו מתכוונים
-    public DontExistException(int id) : base() { ID = id; }
+    public DoesNotExistException(int id) : base() { ID = id; }
     //זריקה שנזרקת עם ת"ז של ישות ספציפית
-    public DontExistException(int id, string message) : base(message) { ID = id; }
+    public DoesNotExistException(int id, string message) : base(message) { ID = id; }
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
-    public DontExistException(int id, string message, Exception inner) : base(message, inner) { ID = id; }
+    public DoesNotExistException(int id, string message, Exception inner) : base(message, inner) { ID = id; }
     //
-    protected DontExistException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
+    protected DoesNotExistException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
     override public string ToString() => "DontExistException: The ID " + ID + " does not exist in the system.";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }

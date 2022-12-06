@@ -7,7 +7,7 @@ namespace Dal;
 public class DalProduct: IProduct
 //realizes all the methods of the products
 {
-    DataSource ds = DataSource.s_instance; //כדי שלא ניצור כל פעם עצם חדש של נתונים
+    readonly DataSource ds = DataSource.s_instance; //כדי שלא ניצור כל פעם עצם חדש של נתונים
 
     public int Add(Product? product)
      //פונקציה להוספת מוצר חדש לרשימת המוצרים
@@ -23,7 +23,7 @@ public class DalProduct: IProduct
     {
         Product? product = ds.ListProduct.Find(pro => pro.GetValueOrDefault().ID == id);
         if (product==null ||product.GetValueOrDefault().isDeleted) //checks if the product is already in the store
-            throw new DontExistException(id);
+            throw new DoesNotExistException(id);
         return product;
     }
     public void Update(Product? product)
@@ -31,7 +31,7 @@ public class DalProduct: IProduct
     {
         Product? temp = ds.ListProduct.Find(found => found.GetValueOrDefault().ID == product.GetValueOrDefault().ID);
         if (temp==null|| temp.GetValueOrDefault().isDeleted)
-            throw new DontExistException(product.GetValueOrDefault().ID);
+            throw new DoesNotExistException(product.GetValueOrDefault().ID);
        ds.ListProduct.Remove(temp);
         ds.ListProduct.Add(product);
     }
@@ -42,9 +42,9 @@ public class DalProduct: IProduct
         Product? found = ds.ListProduct.Find(item => item.GetValueOrDefault().ID == id);
         if (found == null|| found.GetValueOrDefault().isDeleted)
            //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
-         throw new DontExistException(id);
+         throw new DoesNotExistException(id);
    
-        Product product = new Product //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
+        Product product = new() //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
         {
             ID = id,
             Name = found.GetValueOrDefault().Name,

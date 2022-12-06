@@ -309,7 +309,7 @@ class Program
                 }
             }
 
-            catch(DontExistException ex)
+            catch(DoesNotExistException ex)
             {
                 Console.WriteLine(ex);
             }
