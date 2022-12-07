@@ -24,10 +24,10 @@ class Program
         {
             case "a":
                 Order tmpOrder = new Order();
-                Console.WriteLine("enter the new order ID");
+                //Console.WriteLine("enter the new order ID");
                 int id;
-                int.TryParse(Console.ReadLine(),out id);
-                tmpOrder.ID = id;
+                //int.TryParse(Console.ReadLine(),out id);
+                //tmpOrder.ID = id;
                 Console.WriteLine("enter the costumer name");
                 tmpOrder.CostumerName = Console.ReadLine();
                 Console.WriteLine("enter the costumer email");
@@ -144,7 +144,13 @@ class Program
                 break;
         }
     }
-   
+
+    bool isSixNumbers(int id)
+    {
+        return true;
+    }
+
+
     static void testProduct(DalProduct product)
     {
         Console.WriteLine(@"test product:
@@ -162,6 +168,11 @@ class Program
                 Console.WriteLine("enter the new product ID");
                 int id;
                 int.TryParse(Console.ReadLine(), out id);
+                while (!isSixNumbers(id))
+                {
+                    Console.WriteLine("Invalid ID. enter secondly the new product ID");
+                    int.TryParse(Console.ReadLine(), out id);
+                }
                 tmpProduct.ID = id;
                 Console.WriteLine("enter the new product name");
                 tmpProduct.Name = Console.ReadLine();
