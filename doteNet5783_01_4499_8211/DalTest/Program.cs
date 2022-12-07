@@ -145,9 +145,11 @@ class Program
         }
     }
 
-    bool isSixNumbers(int id)
+    static bool isSixNumbers(int id)
     {
-        return true;
+        if (id>100000&&id<1000000)
+            return true;
+        return false;
     }
 
 

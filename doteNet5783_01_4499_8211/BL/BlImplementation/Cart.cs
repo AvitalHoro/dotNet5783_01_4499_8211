@@ -74,11 +74,11 @@ internal class Cart : ICart
 
     public BO.OrderItem fu(BO.OrderItem item)//what this????????
     {
-        DO.Product? product = Dal.Product.GetById(item.ProductID);
+        DO.Product product = Dal.Product.GetById(item.ProductID);//צריך פה טרי וקצ'?
         if (item.Amount < 1)
             throw new BO.AmountException();
-        if (product.GetValueOrDefault().InStock < item.Amount)
-            throw new BO.OutOfStockException(product.GetValueOrDefault().ID);
+        if (product.InStock < item.Amount)
+            throw new BO.OutOfStockException(product.ID);
         return item;
     }
 
@@ -108,7 +108,7 @@ internal class Cart : ICart
             //תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
             {
                 DO.Product product = Dal.Product.GetById(item.ProductID);
-                DO.OrderItem orderItem = new ()
+                DO.OrderItem orderItem = new()
                 {
                     //ID = item.ID,
                     OrderID = newOrderId,
@@ -118,7 +118,7 @@ internal class Cart : ICart
                     IsDeleted = false,
                 };
                 Dal.OrderItem.Add(orderItem);
-                DO.Product newProduct = new ()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
+                DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
                 {
                     ID = product.ID,
                     Name = product.Name,

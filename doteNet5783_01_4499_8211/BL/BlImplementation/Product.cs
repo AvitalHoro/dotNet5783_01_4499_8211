@@ -25,7 +25,7 @@ internal class Product : IProduct
         return newList;
     }
 
-    public BO.Product? GetProductDetails(int idProduct)//מנהל
+    public BO.Product GetProductDetails(int idProduct)//מנהל
     {
         try
         {
@@ -46,14 +46,14 @@ internal class Product : IProduct
         }
     }
 
-    public BO.ProductItem? GetProductDetails(int idProduct, BO.Cart? cart)//לקוח
+    public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)//לקוח
     {
         try
         {
-            DO.Product? product = Dal.Product.GetById(idProduct);
+            DO.Product product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
             BO.Tools.CopyPropTo(product,  productItem);
-            productItem.IsInStock = (product.GetValueOrDefault().InStock > 0);
+            productItem.IsInStock = (product.InStock > 0);
             return productItem;
         }
         catch (BO.DoesNotExistException ex)
