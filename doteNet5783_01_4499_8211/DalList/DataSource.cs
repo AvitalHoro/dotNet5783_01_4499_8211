@@ -127,6 +127,7 @@ public class DataSource
     private void CreateOrder()
     //creates list of new orders
     {
+        DateTime date = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L));
         string[] costumerName = {"Reut cohen", "Avital Shalom", "Emuna Ben-Shimol","Rivka Adler","Sara Davidi", "Rachel Perel","Hadar Muchtar"
                                  ,"Yaakov Vinberg","Israel Levin","Matnya Chadad", "Dor Bar-Sheshet","Shmuel Emanuel","Moshe Ben-Yair","Shira Ben-Pazi"
                                  ,"Osnat Asher","Halel Paz", "Ava Kor","Ayala Lopez", "Shimon Harary","Harry Alexander","Shilo Horovitz"};
@@ -146,11 +147,11 @@ public class DataSource
                 CostumerName = costumerName[randNum.Next(costumerName.Length)], //מגריל שם של לקוח רנדומלי מהמערך של השמות
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)], //מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],  //מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
-                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)), 
+                OrderDate = date - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 50L, 10L * 1000L * 3600L * 24L * 100L)), 
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
-                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)),
+                ShipDate = date - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 30L , 10L * 1000L * 3600L * 24L * 50L)),
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן שליחה הגיוני
-                DeliveryDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 3L)),
+                DeliveryDate = date,
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן מסירה הגיוני
                 IsDeleted = false,
             });
@@ -164,7 +165,7 @@ public class DataSource
                 CostumerName = costumerName[randNum.Next(costumerName.Length)],//מגריל שם של לקוח רנדומלי מהמערך של השמות
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)], //מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],//מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
-                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)),
+                OrderDate = date - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 60L, 10L * 1000L * 3600L * 24L * 100L)),
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
                 DeliveryDate =null, 
                 ShipDate=null,
@@ -181,9 +182,9 @@ public class DataSource
                 CostumerName = costumerName[randNum.Next(costumerName.Length)],//מגריל שם של לקוח רנדומלי מהמערך של השמות
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],//מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],//מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
-                OrderDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 100L)),
+                OrderDate = date - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 60L , 10L * 1000L * 3600L * 24L * 100L)),
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן הזמנה הגיוני
-                ShipDate = DateTime.Now - new TimeSpan(randNum.NextInt64(10L * 1000L * 3600L * 24L * 20L)),
+                ShipDate = date,
                 //לוקח את התאריך של היום, מוריד ממנו זמן מסוים, וכך מתקבל זמן שליחה הגיוני
                 DeliveryDate = null,
                 IsDeleted = false,

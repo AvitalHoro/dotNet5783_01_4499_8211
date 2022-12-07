@@ -48,22 +48,6 @@ public static class Tools
         return target;
     }
 
-    //public static T CopyPropTo<T, S>(this S from, T to)
-    //{
-    //    foreach (PropertyInfo propTo in to.GetType().GetProperties())//loop on all the properties in the new object
-    //    {
-    //        PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);//check if there is property with the same name in the source object and get it
-    //        if (propFrom == null)
-    //            continue;
-    //        var value = propFrom.GetValue(from, null);//get the value of the prperty
-    //        if (value is ValueType || value is string)
-    //            propTo.SetValue(to, value);//insert the value to the suitable property
-    //    }
-    //    return to;
-    //}
-
-
-
      public static object CopyPropToStruct<S>(this S from, Type type)//get the typy we want to copy to 
         {
             object to = Activator.CreateInstance(type); // new object of the Type
