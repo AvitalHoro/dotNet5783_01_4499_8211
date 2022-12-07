@@ -84,7 +84,7 @@ public class NoNameException : Exception
     public NoNameException(int id, string message, Exception inner) : base(message, inner) { ID = id; }
     //
     protected NoNameException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
-    override public string ToString() => "NoNameException: The name of the product with the ID " + ID + " not exist";
+    override public string ToString() => "NoNameException: The name of the product with the ID " + ID + " doesn't exist";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
@@ -115,7 +115,7 @@ public class AlreadyExistsException : Exception
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
     public AlreadyExistsException(int id, string message, Exception inner) : base(message, inner) { ID = id; }
     protected AlreadyExistsException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
-    override public string ToString() => "AlreadyExistsException: The ID " + ID + " already exist in the system.";
+    override public string ToString() => "AlreadyExistsException: The ID " + ID + " already exists in the system.";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
@@ -130,7 +130,7 @@ public class ProductNotExistInCartException : Exception
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
     public ProductNotExistInCartException(int id, string message, Exception inner) : base(message, inner) { ID = id; }
     protected ProductNotExistInCartException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
-    override public string ToString() => "ProductNotExistInCartException: The product with the ID " + ID + " not exist in your cart.";
+    override public string ToString() => "ProductNotExistInCartException: The product with the ID " + ID + " does not exist in your cart.";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
@@ -158,7 +158,7 @@ public class NoCostumerAdressException : Exception
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
     public NoCostumerAdressException(int id, string message, Exception inner) : base(message, inner) { }
     protected NoCostumerAdressException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
-    override public string ToString() => "NoCostumerAdressException: We dont have your adress";
+    override public string ToString() => "NoCostumerAdressException: We don't have your adress";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
@@ -172,7 +172,7 @@ public class NoCostumerEmailException : Exception
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
     public NoCostumerEmailException(int id, string message, Exception inner) : base(message, inner) { }
     protected NoCostumerEmailException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
-    override public string ToString() => "NoCostumerEmailException: We dont have your email";
+    override public string ToString() => "NoCostumerEmailException: We don't have your email";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 

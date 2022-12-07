@@ -13,6 +13,7 @@ internal class Cart : ICart
         try
         {
             DO.Product product = Dal.Product.GetById(idProduct);//מוצא את המוצר אותו רצינו להכניס לעגלה. אם המזהה לא קיים הפונקציה תזרוק חריגה
+
             BO.OrderItem item =
                 cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? new()
@@ -32,7 +33,7 @@ internal class Cart : ICart
 
             item.Amount++;
             item.TotalPrice += item.Price;
-            cart.TotalPrice += item.TotalPrice;
+            cart.TotalPrice += item.Price;
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
