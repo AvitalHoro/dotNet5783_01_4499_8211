@@ -1,5 +1,4 @@
 ﻿using BLApi;
-using BO;
 using Dal;
 
 namespace BlImplementation;
@@ -72,7 +71,7 @@ internal class Cart : ICart
         return cart;
     }
 
-    public OrderItem fu(OrderItem item)//what this????????
+    public BO.OrderItem fu(BO.OrderItem item)//what this????????
     {
         DO.Product? product = Dal.Product.GetById(item.ProductID);
         if (item.Amount < 1)
@@ -92,7 +91,7 @@ internal class Cart : ICart
                 throw new BO.NoCostumerEmailException();
             if (cart.CostumerAdress == null)
                 throw new BO.NoCostumerAdressException();
-            cart.orderItems = (from OrderItem item in cart.orderItems select fu(item)).ToList();
+            cart.orderItems = (from BO.OrderItem item in cart.orderItems select fu(item)).ToList();
             DO.Order order = new DO.Order
             {
                 CostumerAdress = cart.CostumerAdress,
@@ -104,7 +103,7 @@ internal class Cart : ICart
                 //isDeleted = false
             };
             int newOrderId = Dal.Order.Add(order);
-            foreach (OrderItem? item in cart.orderItems)
+            foreach (BO.OrderItem? item in cart.orderItems)
             //תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
             {
                 DO.Product product = Dal.Product.GetById(item.ProductID);
