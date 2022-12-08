@@ -17,7 +17,7 @@ internal class Cart : ICart
                 cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? new()
                 {
-                    ID = 0,
+                    ID = cart.orderItems.Count+1,
                     ProductID = idProduct,
                     NameProduct = product.Name,
                     Price = product.Price,
@@ -86,13 +86,15 @@ internal class Cart : ICart
     {
         try
         {
+            if (cart.orderItems.Count == 0)
+                throw new BO.emptyCartException();
             if (cart.CostumerName == null)
                 throw new BO.NoCostumerNameException();
             if (cart.CostumerEmail == null || !(cart.CostumerEmail.Contains('@')))
                 throw new BO.NoCostumerEmailException();
             if (cart.CostumerAdress == null)
                 throw new BO.NoCostumerAdressException();
-            cart.orderItems = (from BO.OrderItem item in cart.orderItems select fu(item)).ToList();
+            cart.orderItems = (from BO.OrderItem item in cart.orderItems select fu(item)).ToList();//לבדוק שהtolist לא עושה פה צרות
             DO.Order order = new DO.Order
             {
                 CostumerAdress = cart.CostumerAdress,

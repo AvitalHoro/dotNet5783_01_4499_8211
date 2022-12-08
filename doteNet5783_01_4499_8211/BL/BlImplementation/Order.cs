@@ -29,7 +29,7 @@ internal class Order : IOrder
         BO.Tools.CopyPropTo(orderDo, orderBo);
         IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         BO.OrderItem orderItemBo = new BO.OrderItem();
-        var newList = (from DO.OrderItem item in list select updateItemListForOrder(item, orderItemBo, ref total)).ToList();
+        var newList = (from DO.OrderItem item in list select updateItemListForOrder(item, orderItemBo, ref total)).ToList();//אי אפשר השתמש פה בtolist!
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
         orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }

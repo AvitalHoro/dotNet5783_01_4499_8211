@@ -76,7 +76,7 @@ public class DalProduct: IProduct
 
     public IEnumerable<Product> GetAll(Func<Product?, bool>? filter = null)
     {
-        return (from Product? product in ds.ListProduct where filter(product) select (Product)product).ToList();
+        return (from Product? product in ds.ListProduct where filter(product) select (Product)product).ToList();//???
     }
 }
 

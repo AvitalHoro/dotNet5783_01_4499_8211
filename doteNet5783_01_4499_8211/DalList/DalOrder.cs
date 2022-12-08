@@ -70,11 +70,11 @@ public class DalOrder : IOrder
         return (from Order? order in ds.ListOrder 
                 where (order != null) 
                 select (Order)order)
-                .ToList();
+                .ToList();//????
     }
 
     public IEnumerable<Order> GetAll(Func<Order?, bool>? filter = null)
     {
-        return (from Order? order in ds.ListOrder where filter!(order) select (Order)order).ToList();
+        return (from Order? order in ds.ListOrder where filter!(order) select (Order)order).ToList();//???
     }
 }

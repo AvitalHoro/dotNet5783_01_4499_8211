@@ -189,3 +189,17 @@ public class AmountException : Exception
     override public string ToString() => "AmountException: Negative or incorrect amount";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
+
+[Serializable]
+public class emptyCartException : Exception
+//הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
+{
+    public emptyCartException() : base() { }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public emptyCartException(int id, string message) : base(message) { }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public emptyCartException(int id, string message, Exception inner) : base(message, inner) { }
+    protected emptyCartException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
+    override public string ToString() => "emptyCartException: Your cart is empty";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
