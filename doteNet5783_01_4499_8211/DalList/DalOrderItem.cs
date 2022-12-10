@@ -64,7 +64,7 @@ public class DalOrderItem : IOrderItem
     public IEnumerable<OrderItem> GetAll()
     // מחזירה את כל הרשימה, גם את האיברים שכביכול נמחקו
     {
-        return (from OrderItem? item in ds.ListOrderItem where item != null select (OrderItem)item).ToList();
+        return (from OrderItem? item in ds.ListOrderItem where item != null select (OrderItem)item).ToList();//???
     }
 
     public IEnumerable<OrderItem> GetAll(int IdOrder)
@@ -73,7 +73,7 @@ public class DalOrderItem : IOrderItem
         return (from OrderItem? item in ds.ListOrderItem 
                 where item?.OrderID == IdOrder 
                 select (OrderItem)item)
-                .ToList();
+                .ToList();//ופה?
     }
 
     public OrderItem getItem(int IdOrder, int IdProduct)
@@ -88,11 +88,11 @@ public class DalOrderItem : IOrderItem
         return (from OrderItem? item in ds.ListOrderItem 
                 where item?.ProductID == IdProduct 
                 select (OrderItem)item)
-                .ToList();
+                .ToList();//???
     }
 
     public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        return (from OrderItem? orderItem in ds.ListOrderItem where filter!(orderItem) select (OrderItem)orderItem).ToList();
+        return (from OrderItem? orderItem in ds.ListOrderItem where filter!(orderItem) select (OrderItem)orderItem).ToList();//???
     }
 }
