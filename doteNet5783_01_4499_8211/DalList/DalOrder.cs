@@ -75,6 +75,9 @@ public class DalOrder : IOrder
 
     public IEnumerable<Order> GetAll(Func<Order?, bool>? filter = null)
     {
-        return (from Order? order in ds.ListOrder where filter!(order) select (Order)order).ToList();//???
+        return (from Order? order in ds.ListOrder 
+                where filter!(order) 
+                select (Order)order)
+                .ToList();
     }
 }

@@ -93,6 +93,9 @@ public class DalOrderItem : IOrderItem
 
     public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool>? filter = null)
     {
-        return (from OrderItem? orderItem in ds.ListOrderItem where filter!(orderItem) select (OrderItem)orderItem).ToList();//???
+        return (from OrderItem? orderItem in ds.ListOrderItem 
+                where filter!(orderItem) 
+                select (OrderItem)orderItem)
+                .ToList();
     }
 }

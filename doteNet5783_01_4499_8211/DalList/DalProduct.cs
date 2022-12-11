@@ -71,12 +71,18 @@ public class DalProduct: IProduct
      public IEnumerable<Product> GetAll()
         //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
      {
-        return (from Product? product in ds.ListProduct where product != null select (Product)product).ToList();
+        return (from Product? product in ds.ListProduct 
+                where product != null 
+                select (Product)product)
+                .ToList();
      }
 
     public IEnumerable<Product> GetAll(Func<Product?, bool>? filter = null)
     {
-        return (from Product? product in ds.ListProduct where filter(product) select (Product)product).ToList();//???
+        return (from Product? product in ds.ListProduct 
+                where filter(product) 
+                select (Product)product)
+                .ToList();
     }
 }
 

@@ -83,31 +83,31 @@ internal class Cart : ICart
         return item;
     }
 
-    //public BO.OrderItem? fu(BO.OrderItem? item, int newOrderId)
-    //{
-    //    DO.Product product = Dal.Product.GetById(item!.ProductID);
-    //    DO.OrderItem orderItem = new()
-    //    {
-    //        //ID = item.ID,
-    //        OrderID = newOrderId,
-    //        ProductID = product.ID,
-    //        Amount = item.Amount,
-    //        Price = (item.Price / item.Amount),//מחיר לפריט בודד?
-    //        IsDeleted = false,
-    //    };
-    //    Dal.OrderItem.Add(orderItem);
-    //    DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
-    //    {
-    //        ID = product.ID,
-    //        Name = product.Name,
-    //        Price = product.Price,
-    //        Category = product.Category,
-    //        InStock = (product.InStock - item.Amount),
-    //        IsDeleted = product.IsDeleted,
-    //    };
-    //    Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
-    //    return item;
-    //}
+    public BO.OrderItem? fu(BO.OrderItem? item, int newOrderId)
+    {
+        DO.Product product = Dal.Product.GetById(item!.ProductID);
+        DO.OrderItem orderItem = new()
+        {
+            //ID = item.ID,
+            OrderID = newOrderId,
+            ProductID = product.ID,
+            Amount = item.Amount,
+            Price = (item.Price / item.Amount),//מחיר לפריט בודד?
+            IsDeleted = false,
+        };
+        Dal.OrderItem.Add(orderItem);
+        DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
+        {
+            ID = product.ID,
+            Name = product.Name,
+            Price = product.Price,
+            Category = product.Category,
+            InStock = (product.InStock - item.Amount),
+            IsDeleted = product.IsDeleted,
+        };
+        Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
+        return item;
+    }
 
     public int MakeOrder(BO.Cart cart)
     {
@@ -121,50 +121,54 @@ internal class Cart : ICart
                 throw new BO.NoCostumerEmailException();
             if (cart.CostumerAdress == null)
                 throw new BO.NoCostumerAdressException();
+
             cart.orderItems = (from BO.OrderItem item in cart.orderItems
                                select ValidationChecks(item))
                                .ToList();
+
             DO.Order order = new DO.Order
             {
                 CostumerAdress = cart.CostumerAdress,
                 CostumerEmail = cart.CostumerEmail,
                 CostumerName = cart.CostumerName,
                 OrderDate = DateTime.Now,
-                //DeliveryDate = null,
-                //ShipDate = null,
-                //isDeleted = false
+                DeliveryDate = null,
+                ShipDate = null,
             };
 
-
-            //var newList= from BO.OrderItem? item in cart.orderItems
-            //select fu(item, newOrderId);
-
             int newOrderId = Dal.Order.Add(order);
-            foreach (BO.OrderItem? item in cart.orderItems)
-            //תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
-            {
-                DO.Product product = Dal.Product.GetById(item.ProductID);
-                DO.OrderItem orderItem = new()
-                {
-                    //ID = item.ID,
-                    OrderID = newOrderId,
-                    ProductID = product.ID,
-                    Amount = item.Amount,
-                    Price = (item.Price / item.Amount),//מחיר לפריט בודד?
-                    IsDeleted = false,
-                };
-                Dal.OrderItem.Add(orderItem);
-                DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
-                {
-                    ID = product.ID,
-                    Name = product.Name,
-                    Price = product.Price,
-                    Category = product.Category,
-                    InStock = (product.InStock - item.Amount),
-                    IsDeleted = product.IsDeleted,
-                };
-                Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
-            }
+
+            ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
+            var newList = from BO.OrderItem? item in cart.orderItems
+                         let i = fu(item, newOrderId)
+                         select i;
+
+            
+            //foreach (BO.OrderItem? item in cart.orderItems)
+            ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
+            //{
+            //    DO.Product product = Dal.Product.GetById(item.ProductID);
+            //    DO.OrderItem orderItem = new()
+            //    {
+            //        //ID = item.ID,
+            //        OrderID = newOrderId,
+            //        ProductID = product.ID,
+            //        Amount = item.Amount,
+            //        Price = (item.Price / item.Amount),//מחיר לפריט בודד?
+            //        IsDeleted = false,
+            //    };
+            //    Dal.OrderItem.Add(orderItem);
+            //    DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
+            //    {
+            //        ID = product.ID,
+            //        Name = product.Name,
+            //        Price = product.Price,
+            //        Category = product.Category,
+            //        InStock = (product.InStock - item.Amount),
+            //        IsDeleted = product.IsDeleted,
+            //    };
+             //   Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
+            //}
             return newOrderId;
         }
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(); }

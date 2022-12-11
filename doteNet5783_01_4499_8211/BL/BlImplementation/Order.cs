@@ -10,52 +10,56 @@ namespace BlImplementation;
 internal class Order : IOrder
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
-    public delegate BO.OrderItem? func(DO.OrderItem? DoOrder, BO.OrderItem? BoOrder);
+    public delegate BO.OrderItem? func(DO.OrderItem? doOrder, BO.OrderItem? boOrder);
 
-    public BO.OrderItem updateItemListForOrder(DO.OrderItem DoOrder, BO.OrderItem BoOrder, ref double total)
+    public BO.OrderItem updateItemListForOrder(DO.OrderItem doOrder, ref double total)
     {
-        BO.Tools.CopyPropTo(DoOrder, BoOrder);
-        try { BoOrder.NameProduct = (Dal.Product.GetById(BoOrder.ProductID)).Name; }
+        BO.OrderItem boOrder = new BO.OrderItem();
+        BO.Tools.CopyPropTo(doOrder, boOrder);
+        try { boOrder.NameProduct = (Dal.Product.GetById(boOrder.ProductID)).Name; }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
-        BoOrder.TotalPrice = DoOrder.Price * DoOrder.Amount;
-        total += BoOrder.TotalPrice;
-        return BoOrder;
+        boOrder.TotalPrice = doOrder.Price * doOrder.Amount;
+        total += boOrder.TotalPrice;
+        return boOrder;
     }
 
-    public void orderToBoOrder(DO.Order? orderDo, BO.Order? orderBo)
+    public void orderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
     //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
     {
         double total = 0;
         BO.Tools.CopyPropTo(orderDo, orderBo);
         IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
-        BO.OrderItem orderItemBo = new BO.OrderItem();
-        var newList = (from DO.OrderItem item in list select updateItemListForOrder(item, orderItemBo, ref total)).ToList();//אי אפשר השתמש פה בtolist!
+        var newList = (from DO.OrderItem item in list
+                       let orderItem = updateItemListForOrder(item, ref total)
+                       select orderItem)
+                       .ToList();
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
         orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
 
-    public BO.OrderForList doOrderToOrderForList(DO.Order DoOrder, BO.OrderForList? BoOrder /*, ref double total, ref int amount*/)
+    public BO.OrderForList doOrderToOrderForList(DO.Order doOrder)
     {
-        BO.Tools.CopyPropTo(DoOrder, BoOrder);
-        var OrderItems = Dal.OrderItem.GetAll(DoOrder.ID);
-        BoOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
-        BoOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
-        if (DoOrder.DeliveryDate != null)
-            BoOrder.State = BO.Status.delivered;
-        else if (DoOrder.ShipDate != null)
-            BoOrder.State = BO.Status.sent;
+        BO.OrderForList boOrder = new BO.OrderForList();
+        BO.Tools.CopyPropTo(doOrder, boOrder);
+        var OrderItems = Dal.OrderItem.GetAll(doOrder.ID);
+        boOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
+        boOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
+        if (doOrder.DeliveryDate != null)
+            boOrder.State = BO.Status.delivered;
+        else if (doOrder.ShipDate != null)
+            boOrder.State = BO.Status.sent;
         else
-            BoOrder.State = BO.Status.approved;
-        return BoOrder;
+            boOrder.State = BO.Status.approved;
+        return boOrder;
     }
 
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
-        BO.OrderForList boOrder = new BO.OrderForList();
-        //double total = 0;
-        //int amount = 0;
-        return from DO.Order item in tmp select doOrderToOrderForList(item, boOrder /*, ref total, ref amount*/);
+        return (from DO.Order item in tmp 
+               let orderForList= doOrderToOrderForList(item)
+               select orderForList)
+               .ToList();
     }
 
     public BO.Order getDetailsOrder(int IdOrder)
@@ -71,7 +75,7 @@ internal class Order : IOrder
         DO.Order? orderDo = Dal.Order.GetById(IdOrder); //מבקשים משכבת הנתונים את ההזמנה הרצויה
         //עושים המרה מהזמנה מסוג שכבת הנתונים להזמנה מסוג שכבת הלוגיקה
         BO.Order? orderBo = new BO.Order();
-        orderToBoOrder(orderDo, orderBo);
+        orderToboOrder(orderDo, orderBo);
         return orderBo;
     }
 
@@ -100,7 +104,7 @@ internal class Order : IOrder
                     IsDeleted = false
                 });
                 BO.Order orderBo = new();
-                orderToBoOrder(orderDo, orderBo);
+                orderToboOrder(orderDo, orderBo);
                 orderBo.ShipDate = DateTime.Now;
                 return orderBo;
             }
@@ -133,7 +137,7 @@ internal class Order : IOrder
                     IsDeleted = false
                 });
                 BO.Order? orderBo = new BO.Order();
-                orderToBoOrder(orderDo, orderBo);
+                orderToboOrder(orderDo, orderBo);
                 orderBo.DeliveryDate = DateTime.Now;
                 return orderBo;
             }
