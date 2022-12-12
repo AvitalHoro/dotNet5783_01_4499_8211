@@ -18,7 +18,7 @@ internal class Cart : ICart
                 cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? new()
                 {
-                    ID = cart.orderItems.Count+1,
+                    ID = cart.orderItems!.Count+1,
                     ProductID = idProduct,
                     NameProduct = product.Name,
                     Price = product.Price,
@@ -139,36 +139,11 @@ internal class Cart : ICart
             int newOrderId = Dal.Order.Add(order);
 
             ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
-            var newList = from BO.OrderItem? item in cart.orderItems
-                         let i = fu(item, newOrderId)
-                         select i;
+            var newList =(from BO.OrderItem? item in cart.orderItems
+                        let i = fu(item, newOrderId)
+                       select i).ToList();
 
-            
-            //foreach (BO.OrderItem? item in cart.orderItems)
-            ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
-            //{
-            //    DO.Product product = Dal.Product.GetById(item.ProductID);
-            //    DO.OrderItem orderItem = new()
-            //    {
-            //        //ID = item.ID,
-            //        OrderID = newOrderId,
-            //        ProductID = product.ID,
-            //        Amount = item.Amount,
-            //        Price = (item.Price / item.Amount),//מחיר לפריט בודד?
-            //        IsDeleted = false,
-            //    };
-            //    Dal.OrderItem.Add(orderItem);
-            //    DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
-            //    {
-            //        ID = product.ID,
-            //        Name = product.Name,
-            //        Price = product.Price,
-            //        Category = product.Category,
-            //        InStock = (product.InStock - item.Amount),
-            //        IsDeleted = product.IsDeleted,
-            //    };
-             //   Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
-            //}
+            //cart.TotalPrice=0;
             return newOrderId;
         }
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(); }

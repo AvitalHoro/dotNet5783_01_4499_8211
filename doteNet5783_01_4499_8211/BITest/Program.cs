@@ -21,7 +21,7 @@ class Program
                 d - UPDATE SHIP DATE ORDER
                 e - UPDATE DELIVERY DATE ORDER
                 f - UPDATE ORDER");
-        string option = Console.ReadLine();
+        string option = Console.ReadLine()!;
         switch (option)
         {
             case "a":
@@ -35,7 +35,7 @@ class Program
                 Console.WriteLine(bOrder.Order.getDetailsOrder(id));
                 break;
             case "c":
-                foreach (BO.OrderForList item in bOrder.Order.getOrderList())
+                foreach (BO.OrderForList? item in bOrder.Order.getOrderList())
                 {
                     Console.WriteLine(item);
                 }
@@ -92,7 +92,7 @@ class Program
                 c - APPROVE ORDER
                 d - BACK TO THE MAIN MENU
                 ");
-            option = Console.ReadLine();
+            option = Console.ReadLine()!;
             switch (option)
             {
                 case "a":
@@ -112,6 +112,7 @@ class Program
                     id = bCart.Cart.MakeOrder(myCart);
                     Console.WriteLine("Your order has been confirmed.");
                     Console.WriteLine("Your order id is: " + id);
+                    option = "d";
                     break;
                 case "d":
                     break;
@@ -133,11 +134,11 @@ class Program
                 d - Remove product
                 e - Update product details
                 f - Get catalog");
-        string option = Console.ReadLine();
+        string option = Console.ReadLine()!;
         switch (option)
         {
             case "a":
-                foreach (BO.ProductForList item in bProduct.Product.GetProductList())
+                foreach (BO.ProductForList? item in bProduct.Product.GetProductList())
                 {
                     Console.WriteLine(item);
                 }
@@ -266,7 +267,7 @@ class Program
                 1-test Order
                 2-test Cart
                 3-test Product");
-            string option = Console.ReadLine();
+            string option = Console.ReadLine()!;
             bool b = int.TryParse(option, out num);
             try
             {

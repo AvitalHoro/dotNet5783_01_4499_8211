@@ -65,10 +65,10 @@ internal class Product : IProduct
     {
         try
         {
-            if (newProduct.ID < 0)
+            if (newProduct?.ID < 0)
                 throw new BO.InvalidIDException(newProduct.ID);
-            if (newProduct.Name == null)
-                throw new BO.NoNameException(newProduct.ID);
+            if (newProduct?.Name == null)
+                throw new BO.NoNameException(newProduct!.ID);
             if (newProduct.Price < 0)
                 throw new BO.InvalidPriceException(newProduct.ID);
             if (newProduct.InStock <= 0)
@@ -79,7 +79,6 @@ internal class Product : IProduct
         catch (BO.InvalidPriceException ex) { throw new BO.InvalidPriceException(ex.ID); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
 
-        DO.Product product = new DO.Product();
         try
         {
             Dal.Product.Add((DO.Product)BO.Tools.CopyPropToStruct(newProduct, typeof(DO.Product)));
@@ -113,10 +112,10 @@ internal class Product : IProduct
     {
         try
         {
-            if (product.ID < 0)
+            if (product?.ID < 0)
                 throw new BO.InvalidIDException(product.ID);
-            if (product.Name == null)
-                throw new BO.NoNameException(product.ID);
+            if (product?.Name == null)
+                throw new BO.NoNameException(product!.ID);
             if (product.Price < 0)
                 throw new BO.InvalidPriceException(product.ID);
             if (product.InStock <= 0)

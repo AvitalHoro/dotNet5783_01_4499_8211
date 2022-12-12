@@ -10,7 +10,7 @@ public static class Tools
     public static string ToStringProperty<T>(this T t, string suffix = "")
     {
         string str = "";
-        foreach (PropertyInfo prop in t.GetType().GetProperties())
+        foreach (PropertyInfo prop in t!.GetType().GetProperties())
         {
             var value = prop.GetValue(t, null);
             if (value is IEnumerable && value is not string)
@@ -50,9 +50,9 @@ public static class Tools
 
      public static object CopyPropToStruct<S>(this S from, Type type)//get the typy we want to copy to 
         {
-            object to = Activator.CreateInstance(type); // new object of the Type
+            object? to = Activator.CreateInstance(type); // new object of the Type
             from.CopyPropTo(to);//copy all value of properties with the same name to the new object
-            return to;
+            return to!;
         }
 }
 

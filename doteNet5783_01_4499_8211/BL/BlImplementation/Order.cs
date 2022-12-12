@@ -33,7 +33,7 @@ internal class Order : IOrder
                        let orderItem = updateItemListForOrder(item, ref total)
                        select orderItem)
                        .ToList();
-        orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
+        orderBo!.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
         orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
 
@@ -65,7 +65,6 @@ internal class Order : IOrder
     public BO.Order getDetailsOrder(int IdOrder)
     //מקבלת מזהה של הזמנה ומחזירה את ההזמנה שזה המזהה שלה
     {
-        double total = 0;
         try //אם הת"ז שלילית, זורקים חריגה
         {
             if (IdOrder < 0)
