@@ -4,6 +4,8 @@ namespace BLApi;
 public interface IProduct
 {
     public IEnumerable<BO.ProductForList?> GetProductList(); //מנהל
+
+    public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(BO.Category category);
     public IEnumerable<BO.Product?> GetCatalog(); //לקוח
     public BO.Product GetProductDetails(int idProduct);//מנהל
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart);//לקוח

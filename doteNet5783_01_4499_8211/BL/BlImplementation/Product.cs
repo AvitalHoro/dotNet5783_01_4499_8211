@@ -1,4 +1,5 @@
 ﻿using BLApi;
+using BO;
 using System.Security.Cryptography;
 
 namespace BlImplementation;
@@ -10,9 +11,18 @@ internal class Product : IProduct
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
         IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
-        BO.ProductForList? productBo = new BO.ProductForList();
         return (from DO.Product? product in tmp 
-                select BO.Tools.CopyPropTo(product, productBo)); 
+                select BO.Tools.CopyPropTo(product, new BO.ProductForList()))
+                .ToList(); 
+    }
+    public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(Category category)
+    {
+        IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
+        return (from DO.Product? product in tmp
+                let p = BO.Tools.CopyPropTo(product, new BO.ProductForList()) 
+                where p.Category == category 
+                select p)
+                .ToList();
     }
 
     public IEnumerable<BO.Product?> GetCatalog()
