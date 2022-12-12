@@ -53,4 +53,5 @@ public partial class AddProduct : Window
         e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
         return;
     }
+
 }
