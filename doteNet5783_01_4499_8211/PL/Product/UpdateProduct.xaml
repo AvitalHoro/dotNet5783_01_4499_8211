@@ -1,0 +1,22 @@
+﻿<Window x:Class="PL.Product.UpdateProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Product"
+        mc:Ignorable="d"
+        Title="UpdateProduct" Height="330" Width="300">
+    <Grid>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="49,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.417,1.615" Height="38" Width="50" FontSize="15"/>
+        <Label x:Name="Category" Content="Category:" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <ComboBox HorizontalAlignment="Left" Margin="134,83,0,0" VerticalAlignment="Top" Width="120" ></ComboBox>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="49,113,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <Label Content="Price:" HorizontalAlignment="Left" Margin="49,148,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Margin="136,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="In Stock:" HorizontalAlignment="Left" Margin="49,183,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Margin="136,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewKeyDown="ValidationID" MaxLength="6" HorizontalAlignment="Left" Margin="134,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Update" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="-0.295,1.534" Foreground="#FF06124A" Click="Button_Click"/>
+    </Grid>
+</Window>
