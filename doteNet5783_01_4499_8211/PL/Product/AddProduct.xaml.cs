@@ -93,9 +93,11 @@ public partial class AddProduct : Window
     }
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        bl.Product.AddProduct(new ()
+        bl.Product.AddProduct(new()
         {
-            Name=
-        })
+            Name = AddName.Text,
+            ID = AddID.Text,
+            Category = 
+        });
     }
 }
