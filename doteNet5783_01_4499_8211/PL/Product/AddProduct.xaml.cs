@@ -97,7 +97,8 @@ public partial class AddProduct : Window
         {
             Name = AddName.Text,
             ID = AddID.Text,
-            Category = 
-        });
+            Category = (BO.Category)SelectCategory.SelectedItem,
+
+        }) ;
     }
 }
