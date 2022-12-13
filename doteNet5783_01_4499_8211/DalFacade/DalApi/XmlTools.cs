@@ -81,7 +81,7 @@ namespace DalApi;
                 List<T> list;
                 XmlSerializer x = new XmlSerializer(typeof(List<T>));
                 FileStream file = new FileStream(suffixPath + filePath, FileMode.Open);
-                list = (List<T>)x.Deserialize(file);
+                list = (List<T>)x.Deserialize(file)!;
                 file.Close();
                 return list;
             }

@@ -6,7 +6,7 @@ namespace BlImplementation;
 
 internal class Cart : ICart
 {
-    private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
+    private readonly DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     public BO.Cart AddProduct(BO.Cart cart, int idProduct)
     {
@@ -83,7 +83,7 @@ internal class Cart : ICart
         return item;
     }
 
-    public BO.OrderItem? fu(BO.OrderItem? item, int newOrderId)
+    public BO.OrderItem? EnterOrderItemsToList(BO.OrderItem? item, int newOrderId)
     {
         DO.Product product = Dal.Product.GetById(item!.ProductID);
         DO.OrderItem orderItem = new()
@@ -113,8 +113,8 @@ internal class Cart : ICart
     {
         try
         {
-            if (cart.orderItems.Count == 0)
-                throw new BO.emptyCartException();
+            if (cart.orderItems?.Count == 0)
+                throw new BO.EmptyCartException();
             if (cart.CostumerName == null)
                 throw new BO.NoCostumerNameException();
             if (cart.CostumerEmail == null || !(cart.CostumerEmail.Contains('@')))
@@ -122,11 +122,11 @@ internal class Cart : ICart
             if (cart.CostumerAdress == null)
                 throw new BO.NoCostumerAdressException();
 
-            cart.orderItems = (from BO.OrderItem item in cart.orderItems
+            cart.orderItems = (from BO.OrderItem item in cart.orderItems!
                                select ValidationChecks(item))
                                .ToList();
 
-            DO.Order order = new DO.Order
+            DO.Order order = new ()
             {
                 CostumerAdress = cart.CostumerAdress,
                 CostumerEmail = cart.CostumerEmail,
@@ -140,18 +140,18 @@ internal class Cart : ICart
 
             ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
             var newList =(from BO.OrderItem? item in cart.orderItems
-                        let i = fu(item, newOrderId)
+                        let i = EnterOrderItemsToList(item, newOrderId)
                        select i).ToList();
 
             //cart.TotalPrice=0;
             return newOrderId;
         }
-        catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(); }
-        catch (BO.NoCostumerEmailException ex) { throw new BO.NoCostumerEmailException(); }
-        catch (BO.NoCostumerAdressException ex) { throw new BO.NoCostumerAdressException(); }
+        catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(ex.Message); }
+        catch (BO.NoCostumerEmailException ex) { throw new BO.NoCostumerEmailException(ex.Message); }
+        catch (BO.NoCostumerAdressException ex) { throw new BO.NoCostumerAdressException(ex.Message); }
         catch (BO.DoesNotExistException ex) { throw new DO.DoesNotExistException(ex.ID); }
         catch (BO.AlreadyExistsException ex) { throw new DO.AlreadyExistsException(ex.ID); }
-        catch (BO.AmountException ex) { throw new BO.AmountException(); }
+        catch (BO.AmountException ex) { throw new BO.AmountException(ex.Message); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
     }
 }

@@ -22,12 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cart\" />
+    <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
+    <Resource Include="Gray Simple Sale Fashion Instagram Post.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
-    <Resource Include="Gray Simple Sale Fashion Instagram Post.png" />
+    <Folder Include="Cart\" />
   </ItemGroup>
 
 </Project>

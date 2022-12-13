@@ -73,6 +73,39 @@ public class OutOfStockException : Exception
 }
 
 [Serializable]
+public class OrderAlreadyShippedExecption : Exception
+//חריגה שנזרקת כאשר מנסים לגשת לאיבר שלא נמצא בחנות
+{
+    public int ID { get; private set; } //ת"ז של ישות, בכדי שנוכל לכתוב למשתמש לאיזו ת"ז אנו מתכוונים
+    public OrderAlreadyShippedExecption(int id) : base() { ID = id; }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public OrderAlreadyShippedExecption(int id, string message) : base(message) { ID = id; }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public OrderAlreadyShippedExecption(int id, string message, Exception inner) : base(message, inner) { ID = id; }
+    //
+    protected OrderAlreadyShippedExecption(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
+    override public string ToString() => "OrderAlreadyShippedExecption: The order with the ID " + ID + " already shipped";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
+
+[Serializable]
+public class OrderAlreadyDeliveredExecption : Exception
+//חריגה שנזרקת כאשר מנסים לגשת לאיבר שלא נמצא בחנות
+{
+    public int ID { get; private set; } //ת"ז של ישות, בכדי שנוכל לכתוב למשתמש לאיזו ת"ז אנו מתכוונים
+    public OrderAlreadyDeliveredExecption(int id) : base() { ID = id; }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public OrderAlreadyDeliveredExecption(int id, string message) : base(message) { ID = id; }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public OrderAlreadyDeliveredExecption(int id, string message, Exception inner) : base(message, inner) { ID = id; }
+    //
+    protected OrderAlreadyDeliveredExecption(int id, SerializationInfo info, StreamingContext context) : base(info, context) { ID = id; }
+    override public string ToString() => "OrderAlreadyDeliveredExecption: The order with the ID " + ID + " already delivered";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
+
+
+[Serializable]
 public class NoNameException : Exception
 //חריגה שנזרקת כאשר מנסים לגשת לאיבר שלא נמצא בחנות
 {
@@ -140,10 +173,10 @@ public class NoCostumerNameException : Exception
 {
     public NoCostumerNameException() : base() {}
     //זריקה שנזרקת עם ת"ז של ישות ספציפית
-    public NoCostumerNameException(int id, string message) : base(message) {}
+    public NoCostumerNameException(string message) : base(message) {}
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
-    public NoCostumerNameException(int id, string message, Exception inner) : base(message, inner) {}
-    protected NoCostumerNameException(int id, SerializationInfo info, StreamingContext context) : base(info, context) {}
+    public NoCostumerNameException(string message, Exception inner) : base(message, inner) {}
+    protected NoCostumerNameException(SerializationInfo info, StreamingContext context) : base(info, context) {}
     override public string ToString() => "NoCostumerNameException: We dont have your name";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
@@ -154,10 +187,10 @@ public class NoCostumerAdressException : Exception
 {
     public NoCostumerAdressException() : base() { }
     //זריקה שנזרקת עם ת"ז של ישות ספציפית
-    public NoCostumerAdressException(int id, string message) : base(message) { }
+    public NoCostumerAdressException(string message) : base(message) { }
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
-    public NoCostumerAdressException(int id, string message, Exception inner) : base(message, inner) { }
-    protected NoCostumerAdressException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
+    public NoCostumerAdressException(string message, Exception inner) : base(message, inner) { }
+    protected NoCostumerAdressException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     override public string ToString() => "NoCostumerAdressException: We don't have your adress";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
@@ -168,10 +201,10 @@ public class NoCostumerEmailException : Exception
 {
     public NoCostumerEmailException() : base() { }
     //זריקה שנזרקת עם ת"ז של ישות ספציפית
-    public NoCostumerEmailException(int id, string message) : base(message) { }
+    public NoCostumerEmailException(string message) : base(message) { }
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
-    public NoCostumerEmailException(int id, string message, Exception inner) : base(message, inner) { }
-    protected NoCostumerEmailException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
+    public NoCostumerEmailException(string message, Exception inner) : base(message, inner) { }
+    protected NoCostumerEmailException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     override public string ToString() => "NoCostumerEmailException: We don't have your email";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
@@ -182,24 +215,24 @@ public class AmountException : Exception
 {
     public AmountException() : base() { }
     //זריקה שנזרקת עם ת"ז של ישות ספציפית
-    public AmountException(int id, string message) : base(message) { }
+    public AmountException(string message) : base(message) { }
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
-    public AmountException(int id, string message, Exception inner) : base(message, inner) {}
-    protected AmountException(int id, SerializationInfo info, StreamingContext context) : base(info, context) {}
+    public AmountException(string message, Exception inner) : base(message, inner) {}
+    protected AmountException(SerializationInfo info, StreamingContext context) : base(info, context) {}
     override public string ToString() => "AmountException: Negative or incorrect amount";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
 [Serializable]
-public class emptyCartException : Exception
+public class EmptyCartException : Exception
 //הערה זו נזרקת כאשר מנסים להוסיף איבר שכבר נמצא במערך
 {
-    public emptyCartException() : base() { }
+    public EmptyCartException() : base() { }
     //זריקה שנזרקת עם ת"ז של ישות ספציפית
-    public emptyCartException(int id, string message) : base(message) { }
+    public EmptyCartException(string message) : base(message) { }
     //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
-    public emptyCartException(int id, string message, Exception inner) : base(message, inner) { }
-    protected emptyCartException(int id, SerializationInfo info, StreamingContext context) : base(info, context) { }
-    override public string ToString() => "emptyCartException: Your cart is empty";
+    public EmptyCartException(string message, Exception inner) : base(message, inner) { }
+    protected EmptyCartException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    override public string ToString() => "EmptyCartException: Your cart is empty";
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }

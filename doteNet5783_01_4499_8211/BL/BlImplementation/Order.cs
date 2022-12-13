@@ -23,6 +23,7 @@ internal class Order : IOrder
         return boOrder;
     }
 
+
     public void orderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
     //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
     {
@@ -36,6 +37,7 @@ internal class Order : IOrder
         orderBo!.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
         orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
+
 
     public BO.OrderForList doOrderToOrderForList(DO.Order doOrder)
     {
@@ -53,6 +55,7 @@ internal class Order : IOrder
         return boOrder;
     }
 
+
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
@@ -61,6 +64,7 @@ internal class Order : IOrder
                select orderForList)
                .ToList();
     }
+
 
     public BO.Order getDetailsOrder(int IdOrder)
     //מקבלת מזהה של הזמנה ומחזירה את ההזמנה שזה המזהה שלה
@@ -77,6 +81,7 @@ internal class Order : IOrder
         orderToboOrder(orderDo, orderBo);
         return orderBo;
     }
+
 
     public BO.Order UpdateShipDate(int IdOrder)
     {
@@ -107,10 +112,15 @@ internal class Order : IOrder
                 orderBo.ShipDate = DateTime.Now;
                 return orderBo;
             }
+            else
+            {
+                throw new BO.OrderAlreadyShippedExecption(IdOrder);
+            }
         }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
-        return null;
     }
+
+
     public BO.Order UpdateDeliveryDate(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
@@ -140,10 +150,15 @@ internal class Order : IOrder
                 orderBo.DeliveryDate = DateTime.Now;
                 return orderBo;
             }
+            else
+            {
+                throw new BO.OrderAlreadyDeliveredExecption(IdOrder);
+            }
         }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
-        return null;
     }
+
+
     public BO.OrderTracking Tracking(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
@@ -175,6 +190,8 @@ internal class Order : IOrder
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
     }
+
+
     public DO.OrderItem UpdateOrder(int IdOrder, int IdProduct, int newAmount)
     //בונוס, בשביל המנהל
     {
@@ -192,4 +209,5 @@ internal class Order : IOrder
         });
         return Dal.OrderItem.getItem(IdOrder, IdProduct);
     }
+
 }
