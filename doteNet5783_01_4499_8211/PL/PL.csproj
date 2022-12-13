@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
-    <None Remove="Gray Simple Sale Fashion Instagram Post.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +22,6 @@
 
   <ItemGroup>
     <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
-    <Resource Include="Gray Simple Sale Fashion Instagram Post.png" />
   </ItemGroup>
 
   <ItemGroup>
