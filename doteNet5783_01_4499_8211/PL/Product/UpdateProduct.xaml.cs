@@ -38,6 +38,8 @@ public partial class UpdateProduct : Window
         //UpdateInStock.Text = product.InStock.ToString();
     }
 
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
 
-
+    }
 }
