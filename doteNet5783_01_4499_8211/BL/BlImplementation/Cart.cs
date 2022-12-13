@@ -8,17 +8,17 @@ internal class Cart : ICart
 {
     private readonly DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
-    public BO.Cart AddProduct(BO.Cart cart, int idProduct)
+    public BO.Cart AddProduct(BO.Cart cart, int idProduct)//להוסיף מוצר לעגלה ע"י המזהה שלו
     {
         try
         {
             DO.Product product = Dal.Product.GetById(idProduct);//מוצא את המוצר אותו רצינו להכניס לעגלה. אם המזהה לא קיים הפונקציה תזרוק חריגה
 
-            BO.OrderItem item =
+            BO.OrderItem item =//מכין עצם מסוג פריט בהזמנה עם המוצר המבוקש
                 cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? new()
                 {
-                    ID = cart.orderItems!.Count+1,
+                    ID = (cart.orderItems!.Count+1),//מכניס מזהה מוצר זמני שמסמל את המספר של הפריט ברשימת הפריטים בהזמנה
                     ProductID = idProduct,
                     NameProduct = product.Name,
                     Price = product.Price,
@@ -31,9 +31,9 @@ internal class Cart : ICart
 
             if (item.Amount == 0) cart.orderItems?.Add(item); // it is a new item
 
-            item.Amount++;
-            item.TotalPrice += item.Price;
-            cart.TotalPrice += item.Price;
+            item.Amount++;//מעדכן כמות
+            item.TotalPrice += item.Price;//מעדכן מחיר בפריט 
+            cart.TotalPrice += item.Price;//מעדכן מחיר בעגלה
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
@@ -42,30 +42,32 @@ internal class Cart : ICart
     }
 
 
-    public BO.Cart UpdateAmountProduct(BO.Cart cart, int idProduct, int amount)
+    public BO.Cart UpdateAmountProduct(BO.Cart cart, int idProduct, int amount)//מעדכן את הכמות של המוצר בעגלה (מוסיף, מוריד או מאפס
     {
         try
         {
-            DO.Product product = Dal.Product.GetById(idProduct);
-            if (product.InStock < amount)
+            DO.Product product = Dal.Product.GetById(idProduct);//מוצא את המוצר המבוקש לפי המזהה שהתקבל
+            if (product.InStock < amount)//בודק, אם הכמות של המוצר במלאי קטנה מהכמות המבוקשת, זורק חריגה
                 throw new BO.OutOfStockException(idProduct);
-            BO.OrderItem item =
+            BO.OrderItem item =//מעביר נתונים עכשווים של המוצר המבוקש הקיים בעגלה, ואם המוצר לא קיים בעגלה, זורק חריגה
                 cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? throw new BO.ProductNotExistInCartException(idProduct);
             if (amount == 0)
             {
-                cart.orderItems.Remove(item);//אם הכמות היא אפס מסיר את המוצר מהרשימה
-                cart.TotalPrice -= item.TotalPrice;
+                cart.orderItems.Remove(item);//אם הכמות המבוקשת היא אפס מסיר את המוצר מהרשימה
+                cart.TotalPrice -= item.TotalPrice;//ומעדכן את המחיר של העגלה
+            }
+            else if (amount > 0)
+            {
+                cart.orderItems.Remove(item);//מסיר את המוצר מהרשימה
+                cart.TotalPrice -= item.TotalPrice;//מוריד את מחירו ממחיר העגלה
+                item.Amount = amount;//מעדכן את הכמות של המוצר
+                item.TotalPrice += item.Price * amount;//מעדכן את המחיר הסופי של המוצר
+                cart.orderItems.Add(item);//מחזיר את המוצר לעגלה
+                cart.TotalPrice += item.TotalPrice;//מעדכן את מחיר העגלה
             }
             else
-            {
-                cart.orderItems.Remove(item);
-                cart.TotalPrice -= item.TotalPrice;
-                item.Amount = amount;
-                item.TotalPrice += item.Price * amount;
-                cart.orderItems.Add(item);
-                cart.TotalPrice += item.TotalPrice;
-            }
+                throw new BO.AmountException();//אם הכמות שנשלחה לפונקציה שלילית, זורק חריגה
 
         }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
@@ -73,17 +75,17 @@ internal class Cart : ICart
         return cart;
     }
 
-    public BO.OrderItem ValidationChecks(BO.OrderItem item)
+    public BO.OrderItem ValidationChecks(BO.OrderItem item)//בודק את תקינות הפריטים בעגלה
     {
         DO.Product product = Dal.Product.GetById(item.ProductID);
-        if (item.Amount < 1)
+        if (item.Amount < 1)//תקינות הכמות בעגלה
             throw new BO.AmountException();
-        if (product.InStock < item.Amount)
+        if (product.InStock < item.Amount)//תקינות הכמות בהתאם למלאי
             throw new BO.OutOfStockException(product.ID);
         return item;
     }
 
-    public BO.OrderItem? EnterOrderItemsToList(BO.OrderItem? item, int newOrderId)
+    public BO.OrderItem? EnterOrderItemsToList(BO.OrderItem? item, int newOrderId)//לכל פריט בסל - מעדכן את רשימת הפריטים בשכבת הנתונים, ומעדכן את הכמות במוצר
     {
         DO.Product product = Dal.Product.GetById(item!.ProductID);
         DO.OrderItem orderItem = new()
@@ -92,10 +94,10 @@ internal class Cart : ICart
             OrderID = newOrderId,
             ProductID = product.ID,
             Amount = item.Amount,
-            Price = (item.Price / item.Amount),//מחיר לפריט בודד?
+            Price = (item.Price / item.Amount),//מחיר לפריט בודד
             IsDeleted = false,
         };
-        Dal.OrderItem.Add(orderItem);
+        Dal.OrderItem.Add(orderItem);//מוסיף לשכבת הנתונים את כל פריטי ההזמנה של ההזמנה החדשה
         DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.
         {
             ID = product.ID,
@@ -109,20 +111,21 @@ internal class Cart : ICart
         return item;
     }
 
-    public int MakeOrder(BO.Cart cart)
+    public int MakeOrder(BO.Cart cart)//ביצוע הזמנה-העברת הסל למצב הזמנה
     {
         try
         {
-            if (cart.orderItems?.Count == 0)
+            //בודק תקינות של הנתונים בסל
+            if (cart.orderItems?.Count == 0)//אם אין מוצרים בסל לא ניתן לאשר את ההזמנה
                 throw new BO.EmptyCartException();
-            if (cart.CostumerName == null)
+            if (cart.CostumerName == null)//אם לא הוכנס שם ללקוח זורק חריגה
                 throw new BO.NoCostumerNameException();
-            if (cart.CostumerEmail == null || !(cart.CostumerEmail.Contains('@')))
+            if (cart.CostumerEmail == null || !(cart.CostumerEmail.Contains('@')))//אם לא הוכנס מייל/כתובת לא תקינה
                 throw new BO.NoCostumerEmailException();
-            if (cart.CostumerAdress == null)
+            if (cart.CostumerAdress == null)//אם לא הוכנסה כתובת
                 throw new BO.NoCostumerAdressException();
 
-            cart.orderItems = (from BO.OrderItem item in cart.orderItems!
+            cart.orderItems = (from BO.OrderItem item in cart.orderItems!//עובר על הפריטים ומחזיר רק את התקינים
                                select ValidationChecks(item))
                                .ToList();
 
@@ -136,7 +139,7 @@ internal class Cart : ICart
                 ShipDate = null,
             };
 
-            int newOrderId = Dal.Order.Add(order);
+            int newOrderId = Dal.Order.Add(order);//מוסיף את ההזמנה לרשימת ההזמנות בשכבת הנתונים
 
             ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
             var newList =(from BO.OrderItem? item in cart.orderItems

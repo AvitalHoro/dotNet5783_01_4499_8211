@@ -19,8 +19,7 @@ class Program
                 c - DISPLAY ORDER LIST
                 d - UPDATE ORDER
                 e - DELETE ORDER");
-        string option = Console.ReadLine()!;
-        switch (option)
+        switch (Console.ReadLine())
         {
             case "a":
                 Order tmpOrder = new Order();
@@ -81,8 +80,7 @@ class Program
                 c - DISPLAY ORDER ITEM LIST
                 d - UPDATE ORDER ITEM
                 e - DELETE ORDER ITEM");
-        string option = Console.ReadLine()!;
-        switch (option)
+        switch (Console.ReadLine())
         {
             case "a":
                 OrderItem tmpItem = new OrderItem();
@@ -162,8 +160,7 @@ class Program
                 c - DISPLAY PRODUCT LIST
                 d - UPDATE PRODUCT
                 e - DELETE PRODUCT");
-        string option = Console.ReadLine()!;
-        switch (option)
+        switch (Console.ReadLine())
         {
             case "a":
                 Product tmpProduct = new Product();
@@ -177,7 +174,7 @@ class Program
                 }
                 tmpProduct.ID = id;
                 Console.WriteLine("enter the new product name");
-                tmpProduct.Name = Console.ReadLine()!;
+                tmpProduct.Name = Console.ReadLine()??"";
                 Console.WriteLine(@"enter the new product catgory: 
                                         Clothes-0, 
                                         Toys-1, 
@@ -282,7 +279,7 @@ class Program
 
     static void Main(string[] args)
     {
-        IDal dal = DalFactory.GetDal()!;
+        IDal dal = DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal"); ;
         //DalList dl = Instance
         //DalList list = new DalList();
         DalProduct product = new DalProduct();
@@ -297,8 +294,7 @@ class Program
                 1-test Order
                 2-test OrderItem
                 3-test Product");
-            string option = Console.ReadLine()!;
-            bool b = int.TryParse(option, out num);
+            bool b = int.TryParse(Console.ReadLine(), out num);
             if (!b)
             {
                 Console.WriteLine("ERROR");

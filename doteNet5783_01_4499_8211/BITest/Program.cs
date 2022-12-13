@@ -21,8 +21,7 @@ class Program
                 d - UPDATE SHIP DATE ORDER
                 e - UPDATE DELIVERY DATE ORDER
                 f - UPDATE ORDER");
-        string option = Console.ReadLine()!;
-        switch (option)
+        switch (Console.ReadLine())
         {
             case "a":
                 Console.WriteLine("enter the order ID");
@@ -92,7 +91,7 @@ class Program
                 c - APPROVE ORDER
                 d - BACK TO THE MAIN MENU
                 ");
-            option = Console.ReadLine()!;
+            option = Console.ReadLine()??"d";
             switch (option)
             {
                 case "a":
@@ -134,8 +133,7 @@ class Program
                 d - Remove product
                 e - Update product details
                 f - Get catalog");
-        string option = Console.ReadLine()!;
-        switch (option)
+        switch (Console.ReadLine())
         {
             case "a":
                 foreach (BO.ProductForList? item in bProduct.Product.GetProductList())
@@ -267,7 +265,7 @@ class Program
                 1-test Order
                 2-test Cart
                 3-test Product");
-            string option = Console.ReadLine()!;
+            string option = Console.ReadLine()??"0";
             bool b = int.TryParse(option, out num);
             try
             {
