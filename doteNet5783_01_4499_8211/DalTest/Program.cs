@@ -19,7 +19,7 @@ class Program
                 c - DISPLAY ORDER LIST
                 d - UPDATE ORDER
                 e - DELETE ORDER");
-        string option = Console.ReadLine();
+        string option = Console.ReadLine()!;
         switch (option)
         {
             case "a":
@@ -29,11 +29,11 @@ class Program
                 //int.TryParse(Console.ReadLine(),out id);
                 //tmpOrder.ID = id;
                 Console.WriteLine("enter the costumer name");
-                tmpOrder.CostumerName = Console.ReadLine();
+                tmpOrder.CostumerName = Console.ReadLine()!;
                 Console.WriteLine("enter the costumer email");
-                tmpOrder.CostumerEmail = Console.ReadLine();
+                tmpOrder.CostumerEmail = Console.ReadLine()!;
                 Console.WriteLine("enter the costumer adress");
-                tmpOrder.CostumerAdress = Console.ReadLine();
+                tmpOrder.CostumerAdress = Console.ReadLine()!;
                 tmpOrder.OrderDate=DateTime.Now;
                 order.Add(tmpOrder);
                 break;
@@ -56,11 +56,11 @@ class Program
                 int.TryParse(Console.ReadLine(), out id);
                 tmpOrder2.ID = id;
                 Console.WriteLine("enter the costumer name");
-                tmpOrder2.CostumerName = Console.ReadLine();
+                tmpOrder2.CostumerName = Console.ReadLine()!;
                 Console.WriteLine("enter the costumer email");
-                tmpOrder2.CostumerEmail = Console.ReadLine();
+                tmpOrder2.CostumerEmail = Console.ReadLine()!;
                 Console.WriteLine("enter the costumer adress");
-                tmpOrder2.CostumerAdress = Console.ReadLine();
+                tmpOrder2.CostumerAdress = Console.ReadLine()!;
                 order.Update(tmpOrder2);
                 break;
             case "e":
@@ -81,7 +81,7 @@ class Program
                 c - DISPLAY ORDER ITEM LIST
                 d - UPDATE ORDER ITEM
                 e - DELETE ORDER ITEM");
-        string option = Console.ReadLine();
+        string option = Console.ReadLine()!;
         switch (option)
         {
             case "a":
@@ -162,7 +162,7 @@ class Program
                 c - DISPLAY PRODUCT LIST
                 d - UPDATE PRODUCT
                 e - DELETE PRODUCT");
-        string option = Console.ReadLine();
+        string option = Console.ReadLine()!;
         switch (option)
         {
             case "a":
@@ -177,7 +177,7 @@ class Program
                 }
                 tmpProduct.ID = id;
                 Console.WriteLine("enter the new product name");
-                tmpProduct.Name = Console.ReadLine();
+                tmpProduct.Name = Console.ReadLine()!;
                 Console.WriteLine(@"enter the new product catgory: 
                                         Clothes-0, 
                                         Toys-1, 
@@ -235,7 +235,7 @@ class Program
                 int.TryParse(Console.ReadLine(), out id);
                 tmpProduct2.ID = id;
                 Console.WriteLine("enter the new product name");
-                tmpProduct2.Name = Console.ReadLine();
+                tmpProduct2.Name = Console.ReadLine()!;
                 Console.WriteLine(@"enter the new product catgory: 
                                         Clothes-0, 
                                         Toys-1, 
@@ -282,7 +282,7 @@ class Program
 
     static void Main(string[] args)
     {
-        IDal dal = DalFactory.GetDal();
+        IDal dal = DalFactory.GetDal()!;
         //DalList dl = Instance
         //DalList list = new DalList();
         DalProduct product = new DalProduct();
@@ -297,7 +297,7 @@ class Program
                 1-test Order
                 2-test OrderItem
                 3-test Product");
-            string option = Console.ReadLine();
+            string option = Console.ReadLine()!;
             bool b = int.TryParse(option, out num);
             if (!b)
             {

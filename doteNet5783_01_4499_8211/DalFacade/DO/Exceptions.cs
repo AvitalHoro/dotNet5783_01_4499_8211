@@ -36,14 +36,14 @@ public class AlreadyExistsException : Exception
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
+[Serializable]
 public class LoadingException : Exception
 {
     string filePath;
-    public LoadingException() : base() { }
-    public LoadingException(string message) : base(message) { }
-    public LoadingException(string message, Exception inner) : base(message, inner) { }
+    public LoadingException() : base() { filePath = ""; }
+    public LoadingException(string message) : base(message) { filePath = ""; }
+    public LoadingException(string message, Exception inner) : base(message, inner) { filePath = ""; }
 
     public LoadingException(string path, string messege, Exception inner) => filePath = path;
-    protected LoadingException(SerializationInfo info, StreamingContext context) : base(info, context) { }
-
+    protected LoadingException(SerializationInfo info, StreamingContext context) : base(info, context) { filePath = ""; }
 }

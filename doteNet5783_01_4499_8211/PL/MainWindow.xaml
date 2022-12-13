@@ -12,6 +12,11 @@
         <Image HorizontalAlignment="Left" Height="100" Margin="4,94,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
         <Button HorizontalAlignment="Left" Height="68" Margin="563,8,0,0" VerticalAlignment="Top" Width="57" Background="{x:Null}" BorderBrush="White" Click="Button_Click"/>
         <Button Name="SelectCart" HorizontalAlignment="Left" Height="68" Margin="490,8,0,0" VerticalAlignment="Top" Width="57" Background="{x:Null}" BorderBrush="White" Click="SelectCart_Click"/>
+        <Button HorizontalAlignment="Left" Height="68" Margin="563,8,0,0" VerticalAlignment="Top" Width="57" BorderBrush="White" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
         <Button HorizontalAlignment="Left" Height="60" Margin="29,-28,0,0" VerticalAlignment="Top" Width="53" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1"/>
 
     </Grid>

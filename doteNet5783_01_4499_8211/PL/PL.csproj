@@ -26,4 +26,8 @@
     <Resource Include="Gray Simple Sale Fashion Instagram Post.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Cart\" />
+  </ItemGroup>
+
 </Project>
