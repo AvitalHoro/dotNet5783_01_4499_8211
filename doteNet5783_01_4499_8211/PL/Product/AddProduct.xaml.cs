@@ -44,7 +44,6 @@ public partial class AddProduct : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-
         bl.Product.AddProduct(new()
         {
             ID = int.Parse(AddID.Text),

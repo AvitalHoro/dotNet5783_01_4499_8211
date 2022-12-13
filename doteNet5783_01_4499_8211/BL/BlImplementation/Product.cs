@@ -135,11 +135,9 @@ internal class Product : IProduct
         catch (BO.NoNameException ex) { throw new BO.NoNameException(ex.ID); }
         catch (BO.InvalidPriceException ex) { throw new BO.InvalidPriceException(ex.ID); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
-        DO.Product productDo = new DO.Product();
-        BO.Tools.CopyPropTo(product,  productDo);
         try
         {
-            Dal.Product.Update(productDo);
+            Dal.Product.Update((DO.Product)BO.Tools.CopyPropToStruct(product, typeof(DO.Product)));
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
