@@ -2,6 +2,7 @@
 using BLApi;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -64,28 +66,19 @@ public partial class AddProduct : Window
     private void AddPrice_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
 
     private void AddInStock_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
-}
 
-        //allow control system keys
-        if (Char.IsControl(c)) return;
-
-        //allow digits (without Shift or Alt)
-        if (Char.IsDigit(c))
-            if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
-                return; //let this key be written inside the textbox
-
-        //forbid letters and signs (#,$, %, ...)
-        e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
-        return;
-    }
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void AddButton_Click(object sender, RoutedEventArgs e)
     {
+
         bl.Product.AddProduct(new()
         {
+            ID = int.Parse(AddID.Text),
             Name = AddName.Text,
-            ID = AddID.Text,
             Category = (BO.Category)SelectCategory.SelectedItem,
-
+            Price = int.Parse(AddPrice.Text),
+            InStock = int.Parse(AddInStock.Text),
+            IsDeleted = false,
         }) ;
     }
 }
+
