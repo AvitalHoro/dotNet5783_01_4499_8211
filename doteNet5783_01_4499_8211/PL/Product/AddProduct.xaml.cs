@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BLApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,8 @@ namespace PL.Product;
 /// </summary>
 public partial class AddProduct : Window
 {
+    private IBl bl = BlFactory.GetBl();
+
     public AddProduct()
     {
         InitializeComponent();
@@ -60,4 +64,15 @@ public partial class AddProduct : Window
     private void AddPrice_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
 
 
+        //forbid letters and signs (#,$, %, ...)
+        e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
+        return;
+    }
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        bl.Product.AddProduct(new ()
+        {
+            Name=
+        })
+    }
 }
