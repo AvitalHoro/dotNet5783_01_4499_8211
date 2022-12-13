@@ -53,6 +53,7 @@ public partial class AddProduct : Window
             InStock = int.Parse(AddInStock.Text),
             IsDeleted = false,
         }) ;
+        Close();
     }
 }
 
