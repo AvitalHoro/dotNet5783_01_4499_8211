@@ -28,8 +28,8 @@ internal class Product : IProduct
     public IEnumerable<BO.Product?> GetCatalog()
     {
         IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
-        BO.Product productBo = new BO.Product();
-        var newList = from DO.Product? product in tmp 
+        BO.Product productBo = new ();
+        var newList = from DO.Product? product in tmp
                       where product?.IsDeleted == false
                       select BO.Tools.CopyPropTo(product,  productBo);
         return newList;
