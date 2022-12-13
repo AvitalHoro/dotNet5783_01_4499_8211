@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cart\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
     <Resource Include="Gray Simple Sale Fashion Instagram Post.png" />
   </ItemGroup>

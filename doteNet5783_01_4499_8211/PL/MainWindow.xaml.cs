@@ -30,4 +30,6 @@ public partial class MainWindow : Window
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
+
+    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.CartWindow().Show();
 }

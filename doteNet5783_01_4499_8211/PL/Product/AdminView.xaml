@@ -8,7 +8,6 @@
         Title="AdminView" Height="450" Width="800">
     <Grid>
         <Button x:Name="ListProduct" Content="לקטלוג המוצרים" HorizontalAlignment="Center" Height="27" Margin="0,199,0,0" VerticalAlignment="Top" Width="178" FontFamily="Guttman Yad-Brush" BorderBrush="#FF741FBD" Foreground="#FF900985" FontSize="16" Click="ListProduct_Click"/>
-
-
+        <Button x:Name="ListOrders" Content="לרשימת ההזמנות" HorizontalAlignment="Center" Height="27" Margin="0,150,0,0" VerticalAlignment="Top" Width="178" FontFamily="Guttman Yad-Brush" BorderBrush="#FF741FBD" Foreground="#FF900985" FontSize="16" Click="ListOrders_Click"/>
     </Grid>
 </Window>

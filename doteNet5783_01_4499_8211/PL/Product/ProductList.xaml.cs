@@ -38,7 +38,7 @@ public partial class ProductList : Window
             ProductListview.ItemsSource = bl.Product.GetProductListOfSpecificCategory((BO.Category)AttributeSelector.SelectedItem);
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e) => new AddProduct().Show();
+    private void Button_Click(object sender, RoutedEventArgs e) => new UpdateProduct().Show();
 
    private void GoUpdateProduct(object sender, RoutedEventArgs e)=> new UpdateProduct((BO.ProductForList)ProductListview.SelectedItem).Show();
 }

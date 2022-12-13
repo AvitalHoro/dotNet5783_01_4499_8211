@@ -1,6 +1,4 @@
-﻿using BlApi;
-using BLApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,17 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BlApi;
+using BLApi;
 
-namespace PL.Order;
+namespace PL.Cart;
 /// <summary>
-/// Interaction logic for OrderList.xaml
+/// Interaction logic for CartWindow.xaml
 /// </summary>
-public partial class OrderList : Window
+public partial class CartWindow : Window
 {
-    private IBl bl = BlFactory.GetBl();
-    public OrderList()
+    private IBl bl= BlFactory.GetBl();
+    private BO.Cart cart = new();
+    public CartWindow()
     {
         InitializeComponent();
-        ProductListview.ItemsSource = bl.Order.getOrderList();
+        ProductListview.ItemsSource = cart.orderItems;
     }
 }
