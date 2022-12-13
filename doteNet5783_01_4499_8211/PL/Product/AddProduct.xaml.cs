@@ -36,24 +36,11 @@ public partial class AddProduct : Window
 
     private void AddInStockValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-        //allow control system keys
-        if (Char.IsControl(c)) return;
+    private void ValidationID(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-        //allow digits (without Shift or Alt)
-        if (Char.IsDigit(c))
-            if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
-                return; //let this key be written inside the textbox
+    private void AddPrice_TextChanged(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-        //forbid letters and signs (#,$, %, ...)
-        e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
-        return;
-    }
-
-    private void ValidationID(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
-
-    private void AddPrice_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
-
-    private void AddInStock_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
+    private void AddInStock_TextChanged(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
@@ -67,6 +54,7 @@ public partial class AddProduct : Window
             InStock = int.Parse(AddInStock.Text),
             IsDeleted = false,
         }) ;
+        Close();
     }
 }
 
