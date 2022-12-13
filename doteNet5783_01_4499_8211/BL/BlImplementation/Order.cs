@@ -10,35 +10,33 @@ namespace BlImplementation;
 internal class Order : IOrder
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
-    public delegate BO.OrderItem? func(DO.OrderItem? doOrder, BO.OrderItem? boOrder);
 
-    public BO.OrderItem updateItemListForOrder(DO.OrderItem doOrder, ref double total)
+     //פונקציה שמקבלת פריט הזמנה מסוג שכבת הנתונים וממירה אותו לפריט הזמנה מסוג שכבת הלוגיקה
+    public BO.OrderItem updateItemListForOrder(DO.OrderItem doOrder)
     {
         BO.OrderItem boOrder = new BO.OrderItem();
         BO.Tools.CopyPropTo(doOrder, boOrder);
         try { boOrder.NameProduct = (Dal.Product.GetById(boOrder.ProductID)).Name; }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
         boOrder.TotalPrice = doOrder.Price * doOrder.Amount;
-        total += boOrder.TotalPrice;
         return boOrder;
     }
 
-
-    public void orderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
     //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
+    public void orderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
     {
         double total = 0;
         BO.Tools.CopyPropTo(orderDo, orderBo);
         IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         var newList = (from DO.OrderItem item in list
-                       let orderItem = updateItemListForOrder(item, ref total)
+                       let orderItem = updateItemListForOrder(item)
                        select orderItem)
                        .ToList();
-        orderBo!.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
-        orderBo.TotalPrice = total; //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
+        orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
+        orderBo.TotalPrice = newList.Sum(item => item.TotalPrice); //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
 
-
+    //ממירה הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
     public BO.OrderForList doOrderToOrderForList(DO.Order doOrder)
     {
         BO.OrderForList boOrder = new BO.OrderForList();
@@ -55,19 +53,19 @@ internal class Order : IOrder
         return boOrder;
     }
 
-
+    //מחזירה רשימה של כל ההזמנות
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
-        return (from DO.Order item in tmp 
-               let orderForList= doOrderToOrderForList(item)
+        return (from DO.Order item in tmp
+                    //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
+                let orderForList = doOrderToOrderForList(item) 
                select orderForList)
                .ToList();
     }
 
-
-    public BO.Order getDetailsOrder(int IdOrder)
     //מקבלת מזהה של הזמנה ומחזירה את ההזמנה שזה המזהה שלה
+    public BO.Order getDetailsOrder(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
         {
@@ -82,7 +80,7 @@ internal class Order : IOrder
         return orderBo;
     }
 
-
+    //מעדכנת את התאריך שליחה של הזמנה ומחזיר את ההזמנה המעוכנת
     public BO.Order UpdateShipDate(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
@@ -94,9 +92,9 @@ internal class Order : IOrder
         try
         {
             DO.Order orderDo = Dal.Order.GetById(IdOrder);
-            if (orderDo.ShipDate == null)
+            if (orderDo.ShipDate == null) //אם ההזמנה לא נשלחה עדיין
             {
-                Dal.Order.Update(new DO.Order
+                Dal.Order.Update(new DO.Order //מעדכן בשכבת הנתונים שההזמנה נשלחה כרגע
                 {
                     ID = IdOrder,
                     CostumerName = orderDo.CostumerName,
@@ -120,7 +118,7 @@ internal class Order : IOrder
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
 
-
+    //מעדכנת את התאריך מסירה של הזמנה ומחזירה את ההזמנה המעוכנת
     public BO.Order UpdateDeliveryDate(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
@@ -132,9 +130,9 @@ internal class Order : IOrder
         try
         {
             DO.Order orderDo = Dal.Order.GetById(IdOrder);
-            if (orderDo.DeliveryDate == null && orderDo.ShipDate != null)
+            if (orderDo.DeliveryDate == null && orderDo.ShipDate != null) //בודק שההזמנה אכן כבר נשלחה ועדיין לא נמסרה
             {
-                Dal.Order.Update(new DO.Order
+                Dal.Order.Update(new DO.Order //מעדכן בשכבת הנתונים שההזמנה נמסרה כרגע
                 {
                     ID = IdOrder,
                     CostumerName = orderDo.CostumerName,
@@ -158,7 +156,7 @@ internal class Order : IOrder
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
 
-
+    //הפונקציה מחזירה מעקב הזמנה, שבה יש רשימה של צמדים- תאריכים ומה קרה באותו תאריך להזמנה
     public BO.OrderTracking Tracking(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
@@ -171,16 +169,17 @@ internal class Order : IOrder
         {
             DO.Order orderDo = Dal.Order.GetById(IdOrder);
             BO.OrderTracking orderTracking = new BO.OrderTracking();
-            List<Tuple<DateTime?, string>> listTuples = new List<Tuple<DateTime?, string>> { };
+            //יוצר רשימה ריקה של צמדים
+            List<Tuple<DateTime?, string>> listTuples = new List<Tuple<DateTime?, string>> { }; 
             orderTracking.ID = orderDo.ID;
             orderTracking.State = BO.Status.approved;
             listTuples.Add(Tuple.Create(orderDo.OrderDate, "The order was approved"));
-            if (orderDo.ShipDate != null)
+            if (orderDo.ShipDate != null) //אם כבר יש תאריך שליחה, מוסיף לרשימת הצמדים
             {
                 orderTracking.State = BO.Status.sent;
                 listTuples.Add(Tuple.Create(orderDo.ShipDate, "The order was sent"));
             }
-            if (orderDo.DeliveryDate != null)
+            if (orderDo.DeliveryDate != null) //אם כבר יש תאריך מסירה, מוסיף לרשימת הצמדים
             {
                 orderTracking.State = BO.Status.delivered;
                 listTuples.Add(Tuple.Create(orderDo.DeliveryDate, "The order was delivered"));
@@ -191,14 +190,13 @@ internal class Order : IOrder
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
     }
 
-
+    //מעדכן כמות בהזמנה קיימת, פונקציה שזמינה רק למנהל
     public DO.OrderItem UpdateOrder(int IdOrder, int IdProduct, int newAmount)
-    //בונוס, בשביל המנהל
     {
         if (newAmount < 0)
             throw new BO.AmountException();
         DO.OrderItem item = Dal.OrderItem.getItem(IdOrder, IdProduct);
-        Dal.OrderItem.Update(new DO.OrderItem
+        Dal.OrderItem.Update(new DO.OrderItem  //מעדכן את המוצר בשכבת הנתונים
         {
             ID = item.ID,
             OrderID = IdOrder,
@@ -207,7 +205,7 @@ internal class Order : IOrder
             Amount = newAmount,
             IsDeleted = false
         });
-        return Dal.OrderItem.getItem(IdOrder, IdProduct);
+        return Dal.OrderItem.getItem(IdOrder, IdProduct); 
     }
 
 }

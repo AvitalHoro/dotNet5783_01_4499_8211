@@ -1,5 +1,6 @@
 ﻿using BLApi;
 using BO;
+using DO;
 using System.Security.Cryptography;
 
 namespace BlImplementation;
@@ -8,16 +9,17 @@ internal class Product : IProduct
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
+    //הפונקציה מחזירה רשימה של כל המוצרים בשביל המנהל
     public IEnumerable<BO.ProductForList?> GetProductList()
     {
         IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
+        //ממיר את כל המוצרים למוצרים מסוג שכבת הלוגיקה
         return (from DO.Product? product in tmp 
                 select BO.Tools.CopyPropTo(product, new BO.ProductForList()))
                 .ToList(); 
     }
 
-
-    public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(Category category)
+    public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(BO.Category category)
     {
         IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
         return (from DO.Product? product in tmp
@@ -27,19 +29,18 @@ internal class Product : IProduct
                 .ToList();
     }
 
-
+    //מחזיר רשימה של כל המוצרים בשביל הלקוח
     public IEnumerable<BO.Product?> GetCatalog()
     {
-        IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
-        BO.Product productBo = new ();
+        IEnumerable<DO.Product> tmp = Dal.Product.GetAll(product=>product?.IsDeleted == false);
+        //הלקוח לא צריך לראות מוצרים מחוקים
         var newList = from DO.Product? product in tmp
-                      where product?.IsDeleted == false
-                      select BO.Tools.CopyPropTo(product,  productBo);
+                      select BO.Tools.CopyPropTo(product, new BO.Product());
         return newList;
     }
 
-
-    public BO.Product GetProductDetails(int idProduct)//מנהל
+    //מחזיר למנהל פרטים של מוצר ספציפי לפי המזהה שלו
+    public BO.Product GetProductDetails(int idProduct)
     {
         try
         {
@@ -51,7 +52,7 @@ internal class Product : IProduct
         {
             DO.Product? product = Dal.Product.GetById(idProduct);
             BO.Product boProduct = new BO.Product();
-            BO.Tools.CopyPropTo(product,  boProduct);
+            BO.Tools.CopyPropTo(product, boProduct);
             return boProduct;
         }
         catch (BO.DoesNotExistException ex)
@@ -60,8 +61,8 @@ internal class Product : IProduct
         }
     }
 
-
-    public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)//לקוח
+    //מחזיר ללקוח פרטים של מוצר ספציפי לפי המזהה שלו
+    public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)
     {
         try
         {
@@ -77,7 +78,7 @@ internal class Product : IProduct
         }
     }
 
-
+    //מוסיף מוצר חדש לחנות
     public void AddProduct(BO.Product? newProduct)
     {
         try
@@ -103,7 +104,7 @@ internal class Product : IProduct
         catch (DO.AlreadyExistsException ex) { throw new BO.AlreadyExistsException(ex.ID, ex.Message, ex); }
     }
 
-
+    //מוחק מוצר מהחנות
     public void RemoveProduct(int idProduct)
     {
         try
@@ -125,11 +126,12 @@ internal class Product : IProduct
         { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
 
-
+    //מקבל מוצר ולפי המזהה שלו מעדכן את המוצר בחנות
     public void UpdateProductDetails(BO.Product? product)
     {
         try
         {
+            //בדיקות תקינות לערכי מוצר
             if (product?.ID < 0)
                 throw new BO.InvalidIDException(product.ID);
             if (product?.Name == null)
