@@ -11,7 +11,7 @@
         <Label x:Name="Category" Content="Category:" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top" FontSize="15"/>
         <ComboBox Name="SelectCategory" HorizontalAlignment="Left" Margin="134,83,0,0" VerticalAlignment="Top" Width="120" ></ComboBox>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="49,113,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox Name="AddName" HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
         <Label Content="Price:" HorizontalAlignment="Left" Margin="49,148,0,0" VerticalAlignment="Top" FontSize="15"/>
         <TextBox Name="AddPrice" HorizontalAlignment="Left" Margin="136,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="AddPrice_TextChanged"/>
         <Label Content="In Stock:" HorizontalAlignment="Left" Margin="49,183,0,0" VerticalAlignment="Top" FontSize="15"/>
