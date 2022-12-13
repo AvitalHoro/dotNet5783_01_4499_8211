@@ -28,8 +28,5 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-
-
     private void ListProduct_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
-
 }

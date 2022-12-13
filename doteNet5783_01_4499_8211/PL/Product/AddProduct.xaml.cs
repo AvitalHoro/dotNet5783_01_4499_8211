@@ -21,6 +21,7 @@ public partial class AddProduct : Window
     public AddProduct()
     {
         InitializeComponent();
+        SelectCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
     }
 
     private void ValidationID (object sender, KeyEventArgs e)
@@ -54,4 +55,5 @@ public partial class AddProduct : Window
         return;
     }
 
+ 
 }

@@ -9,7 +9,7 @@
     <Grid>
         <Label Content="ID:" HorizontalAlignment="Left" Margin="49,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.417,1.615" Height="38" Width="50" FontSize="15"/>
         <Label x:Name="Category" Content="Category:" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <ComboBox HorizontalAlignment="Left" Margin="134,83,0,0" VerticalAlignment="Top" Width="120" ></ComboBox>
+        <ComboBox Name="SelectCategory" HorizontalAlignment="Left" Margin="134,83,0,0" VerticalAlignment="Top" Width="120" ></ComboBox>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="49,113,0,0" VerticalAlignment="Top" FontSize="15"/>
         <TextBox HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
         <Label Content="Price:" HorizontalAlignment="Left" Margin="49,148,0,0" VerticalAlignment="Top" FontSize="15"/>
