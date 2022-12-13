@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BLApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,8 @@ namespace PL.Product;
 /// </summary>
 public partial class AddProduct : Window
 {
+    private IBl bl = BlFactory.GetBl();
+
     public AddProduct()
     {
         InitializeComponent();
@@ -55,5 +59,11 @@ public partial class AddProduct : Window
         return;
     }
 
- 
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        bl.Product.AddProduct(new ()
+        {
+            Name=
+        })
+    }
 }

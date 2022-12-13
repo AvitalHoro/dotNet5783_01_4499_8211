@@ -16,8 +16,8 @@
         <TextBox HorizontalAlignment="Left" Margin="136,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="In Stock:" HorizontalAlignment="Left" Margin="49,183,0,0" VerticalAlignment="Top" FontSize="15"/>
         <TextBox HorizontalAlignment="Left" Margin="136,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox PreviewKeyDown="ValidationID" MaxLength="6" HorizontalAlignment="Left" Margin="134,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Add" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="-0.295,1.534" Foreground="#FF06124A"/>
+        <TextBox Name="ID" PreviewKeyDown="ValidationID" MaxLength="6" HorizontalAlignment="Left" Margin="134,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Add" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="-0.295,1.534" Foreground="#FF06124A" Click="Button_Click"/>
 
     </Grid>
 </Window>
