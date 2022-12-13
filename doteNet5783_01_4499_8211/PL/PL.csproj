@@ -13,11 +13,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
+    <None Remove="Gray Simple Sale Fashion Instagram Post.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Cart\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
+    <Resource Include="Gray Simple Sale Fashion Instagram Post.png" />
   </ItemGroup>
 
 </Project>

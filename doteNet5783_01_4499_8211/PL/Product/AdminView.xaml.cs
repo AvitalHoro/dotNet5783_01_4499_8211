@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BlApi;
-using BLApi;
-using BO;
-using PL.Product;
 
-namespace PL;
+namespace PL.Product;
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+/// Interaction logic for AdminView.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class AdminView : Window
 {
-    private IBl bl= BlFactory.GetBl();  
-    public MainWindow()
+    public AdminView()
     {
         InitializeComponent();
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
+    private void ListProduct_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
+
 }

@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="650">
     <Grid>
-        <Button Name="ListProduct" Content="לקטלוג המוצרים" HorizontalAlignment="Center" Height="27" Margin="0,199,0,0" VerticalAlignment="Top" Width="178" FontFamily="Guttman Yad-Brush" BorderBrush="#FF741FBD" Foreground="#FF900985" FontSize="16" Click="ListProduct_Click"/>
+
+        <Image x:Name="background" HorizontalAlignment="Center" Height="1196" VerticalAlignment="Top" Width="628" Source="/Gray Simple Sale Fashion Instagram Post (1).png" Margin="0,1,0,0"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="4,94,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        <Button HorizontalAlignment="Left" Height="68" Margin="563,8,0,0" VerticalAlignment="Top" Width="57" Background="{x:Null}" BorderBrush="White" Click="Button_Click"/>
+        <Button HorizontalAlignment="Left" Height="60" Margin="29,-28,0,0" VerticalAlignment="Top" Width="53" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1"/>
 
     </Grid>
 </Window>
