@@ -59,20 +59,10 @@ public partial class AddProduct : Window
         return;
     }
 
-    private void ValidationID (object sender, KeyEventArgs e)=> EnterNumbersOnly(sender, e);
+    private void ValidationID(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
 
     private void AddPrice_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
 
-
-        //forbid letters and signs (#,$, %, ...)
-        e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
-        return;
-    }
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-        bl.Product.AddProduct(new ()
-        {
-            Name=
-        })
-    }
+    private void AddInStock_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
 }
+
