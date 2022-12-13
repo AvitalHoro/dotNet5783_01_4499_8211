@@ -21,7 +21,7 @@ VerticalAlignment="Stretch" Width="auto">
             <ComboBox Name="AttributeSelector" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged"/>
             <Label Name="CategorySelector" Content="Category" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="22" FontStyle="Italic" FontWeight="Bold" FontFamily="Segoe Print" Foreground="#FFBB1986" Margin="34,0,0,0"/>
         </Grid>
-        <ListView x:Name="ProductListview" Grid.Row="1" >
+        <ListView x:Name="ProductListview" Grid.Row="1" MouseDoubleClick="GoUpdateProduct" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

@@ -11,13 +11,13 @@
         <Label x:Name="Category" Content="Category:" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top" FontSize="15"/>
         <ComboBox Name="SelectCategory" HorizontalAlignment="Left" Margin="134,83,0,0" VerticalAlignment="Top" Width="120" ></ComboBox>
         <Label Content="Name:" HorizontalAlignment="Left" Margin="49,113,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox Name="AddName" HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox Name="AddName" HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Price:" HorizontalAlignment="Left" Margin="49,148,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox Name="AddPrice" HorizontalAlignment="Left" Margin="136,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="AddPrice_TextChanged"/>
+        <TextBox Name="AddPrice" PreviewKeyDown="AddPriceValidation" HorizontalAlignment="Left" Margin="136,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="In Stock:" HorizontalAlignment="Left" Margin="49,183,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox Name="AddInStock" HorizontalAlignment="Left" Margin="136,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="AddInStock_TextChanged"/>
-        <TextBox Name="AddID" PreviewKeyDown="ValidationID" MaxLength="6" HorizontalAlignment="Left" Margin="134,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Name="AddButton" Content="Add" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="-0.295,1.534" Foreground="#FF06124A" Click="AddButton_Click"/>
+        <TextBox Name="AddInStock" PreviewKeyDown="AddInStockValidation" HorizontalAlignment="Left" Margin="136,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="AddID" PreviewKeyDown="AddIdValidation" MaxLength="6" HorizontalAlignment="Left" Margin="134,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Add" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="-0.295,1.534" Foreground="#FF06124A"/>
 
     </Grid>
 </Window>
