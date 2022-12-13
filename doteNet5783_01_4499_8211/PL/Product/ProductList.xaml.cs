@@ -27,6 +27,7 @@ public partial class ProductList : Window
         InitializeComponent();
         ProductListview.ItemsSource = bl.Product.GetProductList();
         AttributeSelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+        AttributeSelector.SelectedItem = BO.Category.All;
     }
 
     private void AttributeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
