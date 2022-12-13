@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace PL.Product;
 /// <summary>
@@ -38,4 +39,5 @@ public partial class ProductList : Window
 
     private void Button_Click(object sender, RoutedEventArgs e) => new AddProduct().Show();
 
+   private void GoUpdateProduct(object sender, RoutedEventArgs e)=> new UpdateProduct((BO.ProductForList)ProductListview.SelectedItem).Show();
 }

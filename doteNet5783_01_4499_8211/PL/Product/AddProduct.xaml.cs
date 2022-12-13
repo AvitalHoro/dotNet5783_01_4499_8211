@@ -28,41 +28,11 @@ public partial class AddProduct : Window
         SelectCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
     }
 
-    private void EnterNumbersOnly(object sender, KeyEventArgs e)
-    {
-        TextBox text = sender as TextBox;
-        if (text == null) return;
-        if (e == null) return;
+    private void AddIdValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-        //allow get out of the text box
-        if (e.Key == Key.Enter || e.Key == Key.Return || e.Key == Key.Tab)
-            return;
+    private void AddPriceValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-        //allow list of system keys (add other key here if you want to allow)
-        if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
-            e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home
-         || e.Key == Key.End || e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right)
-            return;
+    private void AddInStockValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-        char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
-
-        //allow control system keys
-        if (Char.IsControl(c)) return;
-
-        //allow digits (without Shift or Alt)
-        if (Char.IsDigit(c))
-            if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
-                return; //let this key be written inside the textbox
-
-        //forbid letters and signs (#,$, %, ...)
-        e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
-        return;
-    }
-
-    private void ValidationID(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
-
-    private void AddPrice_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
-
-    private void AddInStock_TextChanged(object sender, KeyEventArgs e) => EnterNumbersOnly(sender, e);
 }
 
