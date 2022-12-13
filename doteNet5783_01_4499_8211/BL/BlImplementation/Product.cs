@@ -15,6 +15,8 @@ internal class Product : IProduct
                 select BO.Tools.CopyPropTo(product, new BO.ProductForList()))
                 .ToList(); 
     }
+
+
     public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(Category category)
     {
         IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
@@ -25,6 +27,7 @@ internal class Product : IProduct
                 .ToList();
     }
 
+
     public IEnumerable<BO.Product?> GetCatalog()
     {
         IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
@@ -34,6 +37,7 @@ internal class Product : IProduct
                       select BO.Tools.CopyPropTo(product,  productBo);
         return newList;
     }
+
 
     public BO.Product GetProductDetails(int idProduct)//מנהל
     {
@@ -56,6 +60,7 @@ internal class Product : IProduct
         }
     }
 
+
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)//לקוח
     {
         try
@@ -71,6 +76,8 @@ internal class Product : IProduct
             throw new DO.DoesNotExistException(ex.ID, ex.Message, ex);
         }
     }
+
+
     public void AddProduct(BO.Product? newProduct)
     {
         try
@@ -117,6 +124,7 @@ internal class Product : IProduct
         catch (DO.DoesNotExistException ex)
         { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
+
 
     public void UpdateProductDetails(BO.Product? product)
     {
