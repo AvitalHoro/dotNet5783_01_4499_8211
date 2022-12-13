@@ -40,6 +40,16 @@ public partial class UpdateProduct : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-
+        bl.Product.UpdateProductDetails(new()
+        {
+            ID = int.Parse(UpdateID.Text),
+            Name = UpdateName.Text,
+            Category = (BO.Category)UpdateCategory.SelectedItem,
+            Price = int.Parse(UpdatePrice.Text),
+            InStock = int.Parse(UpdateInStock.Text),
+            IsDeleted = false,
+        });
+        Close();
     }
+
 }

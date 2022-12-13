@@ -18,10 +18,10 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="AttributeSelector" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged"/>
-            <Label Name="CategorySelector" Content="Category" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="22" FontStyle="Italic" FontWeight="Bold" FontFamily="Segoe Print" Foreground="#FFBB1986" Margin="34,0,0,0"/>
+            <ComboBox Name="AttributeSelector"  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged" FontSize="22"/>
+            <Label Name="CategorySelector" Content="      Category:" Grid.Column="0" FontSize="30" FontStyle="Italic" FontWeight="Bold" FontFamily="Sitka Text Semibold" Foreground="#FFBB1986" Margin="0,0,0,0"/>
         </Grid>
-        <ListView x:Name="ProductListview" Grid.Row="1" MouseDoubleClick="GoUpdateProduct" >
+        <ListView x:Name="ProductListview" Grid.Row="1" MouseDoubleClick="GoUpdateProduct" d:ItemsSource="{d:SampleData ItemCount=5}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

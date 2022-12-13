@@ -31,9 +31,9 @@ public partial class ProductList : Window
 
     private void AttributeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if((BO.Category)AttributeSelector.SelectedItem == BO.Category.All)
+        if ((BO.Category)AttributeSelector.SelectedItem == BO.Category.All)
             ProductListview.ItemsSource = bl.Product.GetProductList();
-       else
+        else
             ProductListview.ItemsSource = bl.Product.GetProductListOfSpecificCategory((BO.Category)AttributeSelector.SelectedItem);
     }
 
