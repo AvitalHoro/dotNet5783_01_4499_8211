@@ -10,24 +10,45 @@ internal class Product : IProduct
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     //הפונקציה מחזירה רשימה של כל המוצרים בשביל המנהל
-    public IEnumerable<BO.ProductForList?> GetProductList()
+    //public IEnumerable<BO.ProductForList?> GetProductList()
+    //{
+    //    IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
+    //    //ממיר את כל המוצרים למוצרים מסוג שכבת הלוגיקה
+    //    return (from DO.Product? product in tmp 
+    //            select BO.Tools.CopyPropTo(product, new BO.ProductForList()))
+    //            .ToList(); 
+    //}
+
+    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue= null)
     {
-        IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
-        //ממיר את כל המוצרים למוצרים מסוג שכבת הלוגיקה
-        return (from DO.Product? product in tmp 
-                select BO.Tools.CopyPropTo(product, new BO.ProductForList()))
-                .ToList(); 
+        IEnumerable<DO.Product> doProductList=
+        enumFilter switch
+        {
+            BO.Filters.filterByCategory =>
+            Dal!.Product.GetAll(dp => dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All)),
+
+            BO.Filters.filterByName =>
+             Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
+
+             BO.Filters.None =>
+             Dal!.Product.GetAll(),
+             _ => Dal!.Product.GetAll(),
+        };
+
+        return (from DO.Product doProduct in doProductList
+               select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
+               .ToList();
     }
 
-    public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(BO.Category category)
-    {
-        IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
-        return (from DO.Product? product in tmp
-                let p = BO.Tools.CopyPropTo(product, new BO.ProductForList()) 
-                where p.Category == category 
-                select p)
-                .ToList();
-    }
+    //public IEnumerable<BO.ProductForList?> GetProductListOfSpecificCategory(BO.Category category)
+    //{
+    //    IEnumerable<DO.Product> tmp = Dal.Product.GetAll();
+    //    return (from DO.Product? product in tmp
+    //            let p = BO.Tools.CopyPropTo(product, new BO.ProductForList()) 
+    //            where p.Category == category 
+    //            select p)
+    //            .ToList();
+    //}
 
     //מחזיר רשימה של כל המוצרים בשביל הלקוח
     public IEnumerable<BO.Product?> GetCatalog()

@@ -1,4 +1,5 @@
 ﻿namespace DalApi;
+using DO;
 using System.Xml.Linq;
 
 static class DalConfig
@@ -16,13 +17,6 @@ static class DalConfig
             ?? throw new DalConfigException("<dal-packages> element is missing");
         s_dalPackages = packages.ToDictionary(p => "" + p.Name, p => p.Value);
     }
-}
-
-[Serializable]
-public class DalConfigException : Exception
-{
-    public DalConfigException(string msg) : base(msg) { }
-    public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
 }
 
 

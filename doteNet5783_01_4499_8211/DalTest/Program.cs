@@ -280,8 +280,6 @@ class Program
     static void Main(string[] args)
     {
         IDal dal = DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal"); ;
-        //DalList dl = Instance
-        //DalList list = new DalList();
         DalProduct product = new DalProduct();
         DalOrder order = new DalOrder();
         DalOrderItem item = new DalOrderItem();

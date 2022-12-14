@@ -47,3 +47,11 @@ public class LoadingException : Exception
     public LoadingException(string path, string messege, Exception inner) => filePath = path;
     protected LoadingException(SerializationInfo info, StreamingContext context) : base(info, context) { filePath = ""; }
 }
+
+[Serializable]
+public class DalConfigException : Exception
+{
+    public DalConfigException(string msg) : base(msg) { }
+    public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
+}
+

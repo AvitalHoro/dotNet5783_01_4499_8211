@@ -26,28 +26,21 @@ public partial class MainWindow : Window
     private IBl bl= BlFactory.GetBl();
     private BO.Cart cart = new();
 
-    public MainWindow()
+    public MainWindow() //החלון הראשי של החנות
     {
         InitializeComponent();
         cart.orderItems = new();
         SelectCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-        SelectCategory.Text = "קטגוריות";
+        //מכניס לתיבת בחירה את כל הקטגוריות האפשריות לבחירה
+        SelectCategory.Text= "קטגוריות";
     }
 
+    //מעביר למסך מנהל
     private void Button_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
 
-    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.CartWindow().Show();
+    //בלחיצה כפולה על התיבת טקסט היא מתרוקנת
+    private void SearchClear(object sender, MouseButtonEventArgs e)=> SearchWrite.Clear();
 
-    private void SearchClear(object sender, MouseButtonEventArgs e)
-    {
-        SearchWrite.Clear();
-    }
-
-
-    //private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    //{
-    //    if ((BO.Category)SelectCategory.SelectedItem == BO.Category.All)
-    //}
+    //מעביר לחלון עגלה
     private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.customerDetails(cart).Show();
-
 }

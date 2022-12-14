@@ -19,27 +19,37 @@ namespace PL.Product;
 /// <summary>
 /// Interaction logic for UpdateProduct.xaml
 /// </summary>
+/// 
+//חלון להוספה או עדכון של מוצר חדש, נשלח מחלון המנהל
 public partial class UpdateProduct : Window
 {
     private IBl bl = BlFactory.GetBl();
-    public UpdateProduct()
+    public UpdateProduct() // בנאי לחלון הוספה
     {
         InitializeComponent();
         UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+        //מכניס לתיבת בחירה את כל הקטגוריות האפשריות לבחירה
         UpdateOrAdd.Content = "Add";
+        //אם הגענו לבנאי הריק, סימן שבאנו לחלון של הוספה
         UpdateID.IsEnabled = true;
+        //נותנים אפשרות להכניס את המזהה של המוצר
     }
 
+    //התיבת טקסט של הכנסת מזהה מוצר שולחת לפונקציה שמאפשרת להכניס רק ספרות לתיבת טקסט
     private void AddIdValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
+    //התיבת טקסט של הכנסת מחיר שולחת לפונקציה שמאפשרת להכניס רק ספרות לתיבת טקסט
     private void AddPriceValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
+    //התיבת טקסט של הכנסת כמות במלאי שולחת לפונקציה שמאפשרת להכניס רק ספרות לתיבת טקסט
     private void AddInStockValidation(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
 
-    public UpdateProduct(BO.ProductForList product)
+    
+    public UpdateProduct(BO.ProductForList product)//בנאי לחלון עידכון 
     {
+        //מקבל את המוצר אותו אני רוצה לעדכן וכותב את הערך של השדות שלו בתיבות
         InitializeComponent();
-        UpdateID.IsEnabled = false;
+        UpdateID.IsEnabled = false; //אין אפשרות לשנות את המזהה של המוצר
         UpdateOrAdd.Content = "Update";
         UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
         UpdateID.Text = product.ID.ToString();
@@ -49,9 +59,18 @@ public partial class UpdateProduct : Window
         //UpdateInStock.Text = product.InStock.ToString();
     }
 
+    //פונקציה שמופעלת ברגע שלוחצים עם העכבר על כפתור ההוספה
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        if ((string)UpdateOrAdd.Content == "Add")
+        //אם לא סיימו להכניס ערכים לכל השדות נפתחת תיבת מסר עם אזהרה
+        if (UpdateID.Text.Length == 0  || UpdateCategory.SelectedItem == null || UpdateName.Text.Length == 0
+            || UpdatePrice.Text.Length == 0 || UpdateInStock.Text.Length == 0)
+        {
+            MessageBox.Show("Please check all fields are complete","Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        } 
+
+        if ((string)UpdateOrAdd.Content == "Add") //אם אנחנו במקרה של הוספה
             bl.Product.AddProduct(new()
             {
                 ID = int.Parse(UpdateID.Text),
@@ -62,7 +81,7 @@ public partial class UpdateProduct : Window
                 IsDeleted = false,
             });
         else
-            bl.Product.UpdateProductDetails(new()
+            bl.Product.UpdateProductDetails(new() //אם אנחנו במקרה של עידכון
             {
                 ID = int.Parse(UpdateID.Text),
                 Name = UpdateName.Text,

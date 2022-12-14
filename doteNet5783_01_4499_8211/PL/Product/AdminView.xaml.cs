@@ -19,12 +19,14 @@ namespace PL.Product;
 /// </summary>
 public partial class AdminView : Window
 {
-    public AdminView()
+    public AdminView() //חלון המנהל
     {
         InitializeComponent();
     }
 
+    //לחיצה על הכפתור פותחתת הרשימה של כל המוצרים בחנות
     private void ListProduct_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
 
+    //לחיצה על הכפתור פותחתת הרשימה של כל ההזמנות בחנות
     private void ListOrders_Click(object sender, RoutedEventArgs e) => new OrderList().Show();
 }
