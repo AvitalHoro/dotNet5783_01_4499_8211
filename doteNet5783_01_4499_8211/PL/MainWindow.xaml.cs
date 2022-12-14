@@ -23,10 +23,13 @@ namespace PL;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private IBl bl= BlFactory.GetBl();  
+    private IBl bl= BlFactory.GetBl();
+    private BO.Cart cart = new();
+
     public MainWindow()
     {
         InitializeComponent();
+        cart.orderItems = new();
         SelectCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
         SelectCategory.Text = "קטגוריות";
     }
@@ -45,4 +48,6 @@ public partial class MainWindow : Window
     //{
     //    if ((BO.Category)SelectCategory.SelectedItem == BO.Category.All)
     //}
+    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.customerDetails(cart).Show();
+
 }

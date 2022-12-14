@@ -11,11 +11,9 @@
         <Image x:Name="background" HorizontalAlignment="Center" Height="1196" VerticalAlignment="Top" Width="628" Source="/Gray Simple Sale Fashion Instagram Post (1).png" Margin="0,1,0,0"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="4,94,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
         <Button HorizontalAlignment="Left" Height="68" Margin="563,8,0,0" VerticalAlignment="Top" Width="57" Background="{x:Null}" BorderBrush="White" Click="Button_Click"/>
-        <Button Name="SelectCart" HorizontalAlignment="Left" Height="68" Margin="490,8,0,0" VerticalAlignment="Top" Width="57" Background="{x:Null}" BorderBrush="White" Click="SelectCart_Click"/>
-        <Button HorizontalAlignment="Left" Height="68" Margin="563,8,0,0" VerticalAlignment="Top" Width="57" BorderBrush="White" Click="Button_Click">
-            <Button.Background>
-                <ImageBrush/>
-            </Button.Background>
+        <Button Name="SelectCart" HorizontalAlignment="Left" Height="68" Margin="490,8,0,0" VerticalAlignment="Top" Width="57" Background="Transparent" BorderBrush="White" Click="SelectCart_Click"/>
+        <Button Name="SelectAdmin" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Height="68" Margin="563,8,0,0" VerticalAlignment="Top" Width="57" Click="Button_Click">
+
         </Button>
         <Button HorizontalAlignment="Left" Height="60" Margin="29,-28,0,0" VerticalAlignment="Top" Width="53" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1"/>
         <TextBox x:Name="SearchWrite" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" Text="      ...חפשו באתר ותתכוננו להתאהב" VerticalAlignment="Top" Width="278" FontSize="17" FontFamily="Guttman Mantova" MouseDoubleClick="SearchClear"/>
