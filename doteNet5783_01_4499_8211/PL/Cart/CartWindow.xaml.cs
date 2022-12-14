@@ -28,6 +28,7 @@ public partial class CartWindow : Window
     {
         myCart = cart;
         InitializeComponent();
+        Hello.Text = "hello " + cart.CostumerName;
         if (myCart.orderItems!.Count == 0)
         {
             CryBaby.Visibility = Visibility.Visible;
@@ -61,6 +62,7 @@ public partial class CartWindow : Window
         }
         OrderItemView.ItemsSource = myCart.orderItems;
         TotalPriceShow.Text = myCart.TotalPrice.ToString();
+        Approve.IsEnabled = true;
     }
 
     private void AmountValidition(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
@@ -70,27 +72,29 @@ public partial class CartWindow : Window
         LabelAMount.Visibility = Visibility.Visible;
         Amount.Visibility = Visibility.Visible;
         ApproveAmount.Visibility = Visibility.Visible;
-        //bl.Cart.UpdateAmountProduct(myCart,)
-        //ProductList.Visibility = Visibility.Hidden;
-        //if (myCart.orderItems!.Count != 0)
-        //{
-        //    CryBaby.Visibility = Visibility.Hidden;
-        //    Approve.IsEnabled = true;
-        //}
-        //ProductListview.ItemsSource = myCart.orderItems;
-        //ProductListview.Visibility = Visibility.Visible;
     }
 
     private void ApproveAmount_Click(object sender, RoutedEventArgs e)
     {
         BO.OrderItem item = (BO.OrderItem)OrderItemView.SelectedItem;
         bl.Cart.UpdateAmountProduct(myCart, item.ProductID, int.Parse(Amount.Text));
+        if (myCart.orderItems!.Count == 0)
+        {
+            CryBaby.Visibility = Visibility.Visible;
+            Approve.IsEnabled = false;
+        }
         OrderItemView.ItemsSource = myCart.orderItems;
         Amount.Text = string.Empty;
         LabelAMount.Visibility = Visibility.Hidden;
         Amount.Visibility = Visibility.Hidden;
         ApproveAmount.Visibility = Visibility.Hidden;
         TotalPriceShow.Text = myCart.TotalPrice.ToString();
+    }
 
+    private void Approve_Click(object sender, RoutedEventArgs e)
+    {
+        bl.Cart.MakeOrder(myCart);
+        MessageBox.Show("הזמנתך אושרה");
+        Close();
     }
 }
