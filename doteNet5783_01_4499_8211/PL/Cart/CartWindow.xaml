@@ -7,13 +7,31 @@
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="לאישור הזמנה" HorizontalAlignment="Left" Margin="42,350,0,0" VerticalAlignment="Top" Foreground="#FFE42C2C" FontSize="30"/>
-        <ListView x:Name="ProductListview" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="274,0,0,0" >
+        <ListView x:Name="OrderItemView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="274,0,0,0" MouseDoubleClick="UpdateAmount">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="Approve" Content="לאישור הזמנה" HorizontalAlignment="Left" Margin="42,345,0,0" VerticalAlignment="Top" Foreground="#FFE42C2C" FontSize="27" FontFamily="BN Anna" FontWeight="Bold" Height="48" Width="187"/>
+        <Image x:Name="CryBaby" HorizontalAlignment="Left" Height="375" Margin="371,0,0,0" VerticalAlignment="Center" Width="292" Source="/Cart/crybaby.png">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/Cart/crybaby.png" TileMode="None"/>
+            </Image.OpacityMask>
+        </Image>
+        <Button Name="AddProduct" Content="הוסף מוצר" HorizontalAlignment="Left" Height="53" Margin="42,274,0,0" VerticalAlignment="Top" Width="187" FontSize="30" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="#FF710E0E" Click="AddProduct_Click" FontFamily="BN Anna"/>
+        <ListView Name="ProductList" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="AddProductToCart" Margin="274,0,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Name="Amount" PreviewKeyDown="AmountValidition" HorizontalAlignment="Left" Height="42" Margin="106,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
+        <Label Name="LabelAMount" Content="עדכן כמות מוצר" HorizontalAlignment="Left" Height="28" Margin="90,42,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="ApproveAmount" Content="אישור" HorizontalAlignment="Left" Height="33" Margin="98,126,0,0" VerticalAlignment="Top" Width="79" Click="ApproveAmount_Click"/>
+        <TextBlock x:Name="TotalPriceShow" HorizontalAlignment="Left" Height="31" Margin="96,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" FontSize="24" Background="#FFE4E4E4" TextAlignment="Center"/>
+        <Label Content="סהכ לתשלום" HorizontalAlignment="Left" Height="30" Margin="75,187,0,0" VerticalAlignment="Top" Width="121" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

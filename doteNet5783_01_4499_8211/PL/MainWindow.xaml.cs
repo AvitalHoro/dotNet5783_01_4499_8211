@@ -23,13 +23,17 @@ namespace PL;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private IBl bl= BlFactory.GetBl();  
+    private IBl bl= BlFactory.GetBl();
+    private BO.Cart cart = new();
+
     public MainWindow()
     {
         InitializeComponent();
+        cart.orderItems = new();
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
 
-    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.CartWindow().Show();
+    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.CartWindow(cart).Show();
+
 }
