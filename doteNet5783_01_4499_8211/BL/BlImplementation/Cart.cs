@@ -132,6 +132,9 @@ internal class Cart : ICart
             DO.Order order = new ()
             {
                 CostumerAdress = cart.CostumerAdress,
+
+
+
                 CostumerEmail = cart.CostumerEmail,
                 CostumerName = cart.CostumerName,
                 OrderDate = DateTime.Now,

@@ -18,6 +18,9 @@
             </Button.Background>
         </Button>
         <Button HorizontalAlignment="Left" Height="60" Margin="29,-28,0,0" VerticalAlignment="Top" Width="53" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1"/>
+        <TextBox x:Name="SearchWrite" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" Text="      ...חפשו באתר ותתכוננו להתאהב" VerticalAlignment="Top" Width="278" FontSize="17" FontFamily="Guttman Mantova" MouseDoubleClick="SearchClear"/>
+        <ComboBox Name="SelectCategory" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Width="120" FontSize="20">
+        </ComboBox>
 
     </Grid>
 </Window>

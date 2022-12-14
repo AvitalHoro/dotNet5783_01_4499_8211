@@ -27,9 +27,22 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        SelectCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+        SelectCategory.Text = "קטגוריות";
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
 
     private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.CartWindow().Show();
+
+    private void SearchClear(object sender, MouseButtonEventArgs e)
+    {
+        SearchWrite.Clear();
+    }
+
+
+    //private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+    //    if ((BO.Category)SelectCategory.SelectedItem == BO.Category.All)
+    //}
 }
