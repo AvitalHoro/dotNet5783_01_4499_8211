@@ -68,28 +68,56 @@ public partial class UpdateProduct : Window
         {
             MessageBox.Show("Please check all fields are complete","Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             return;
-        } 
-
-        if ((string)UpdateOrAdd.Content == "Add") //אם אנחנו במקרה של הוספה
-            bl.Product.AddProduct(new()
-            {
-                ID = int.Parse(UpdateID.Text),
-                Name = UpdateName.Text,
-                Category = (BO.Category)UpdateCategory.SelectedItem,
-                Price = int.Parse(UpdatePrice.Text),
-                InStock = int.Parse(UpdateInStock.Text),
-                IsDeleted = false,
-            });
-        else
-            bl.Product.UpdateProductDetails(new() //אם אנחנו במקרה של עידכון
-            {
-                ID = int.Parse(UpdateID.Text),
-                Name = UpdateName.Text,
-                Category = (BO.Category)UpdateCategory.SelectedItem,
-                Price = int.Parse(UpdatePrice.Text),
-                InStock = int.Parse(UpdateInStock.Text),
-                IsDeleted = false,
-            });
+        }
+        try
+        {
+            if ((string)UpdateOrAdd.Content == "Add") //אם אנחנו במקרה של הוספה
+                bl.Product.AddProduct(new()
+                {
+                    ID = int.Parse(UpdateID.Text),
+                    Name = UpdateName.Text,
+                    Category = (BO.Category)UpdateCategory.SelectedItem,
+                    Price = int.Parse(UpdatePrice.Text),
+                    InStock = int.Parse(UpdateInStock.Text),
+                    IsDeleted = false,
+                });
+            else
+                bl.Product.UpdateProductDetails(new() //אם אנחנו במקרה של עידכון
+                {
+                    ID = int.Parse(UpdateID.Text),
+                    Name = UpdateName.Text,
+                    Category = (BO.Category)UpdateCategory.SelectedItem,
+                    Price = int.Parse(UpdatePrice.Text),
+                    InStock = int.Parse(UpdateInStock.Text),
+                    IsDeleted = false,
+                });
+        }
+        catch (BO.InvalidIDException ex)
+        {
+            MessageBox.Show("אופס, מספר המוצר שלך בעייתי בשבילנו", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
+        catch (BO.NoNameException ex)
+        {
+            MessageBox.Show("אם לא החלטת עדיין על שם לבייבי שלך, כדאי לך לחשוב על זה", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
+        catch (BO.InvalidPriceException ex)
+        {
+            MessageBox.Show("(;משהו מוזר לנו במחיר של המוצר, אולי זה בגלל שהוא יקר מדי", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
+        catch (BO.OutOfStockException ex)
+        {
+            MessageBox.Show("!המוצרים שלנו הם כמו שוקולד: נגמרים בלי ששמים לב" +
+                "המוצר הזה אזל במלאי", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
+        catch (BO.AlreadyExistsException ex)
+        {
+            MessageBox.Show("?אנחנו חושבים שהמוצר כבר קיים במערכת, אולי מדובר בתאומים זהים", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
         Close();
     }
 
