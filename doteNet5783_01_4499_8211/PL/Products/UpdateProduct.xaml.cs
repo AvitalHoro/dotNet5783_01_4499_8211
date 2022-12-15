@@ -92,7 +92,7 @@ public partial class UpdateProduct : Window
                     IsDeleted = false,
                 });
         }
-        catch (BO.InvalidIDException ex)
+        catch (BO.InvalidIDException ex)//תפיסת החריגות האפשריות
         {
             MessageBox.Show("אופס, מספר המוצר שלך בעייתי בשבילנו", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             return;
