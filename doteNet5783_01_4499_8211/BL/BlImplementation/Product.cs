@@ -12,7 +12,7 @@ internal class Product : IProduct
     #region GetProductList
     public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue = null)
     {
-        IEnumerable<DO.Product> doProductList =
+        IEnumerable<DO.Product?> doProductList =
         enumFilter switch
         {
             BO.Filters.filterByCategory =>
@@ -36,7 +36,7 @@ internal class Product : IProduct
     //מחזיר רשימה של כל המוצרים בשביל הלקוח
     public IEnumerable<BO.Product?> GetCatalog()
     {
-        IEnumerable<DO.Product> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
+        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
         //הלקוח לא צריך לראות מוצרים מחוקים
         var newList = from DO.Product? product in tmp
                       select BO.Tools.CopyPropTo(product, new BO.Product());

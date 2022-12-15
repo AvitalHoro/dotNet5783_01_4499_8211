@@ -11,7 +11,9 @@ internal class Order : IOrder
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
-     //פונקציה שמקבלת פריט הזמנה מסוג שכבת הנתונים וממירה אותו לפריט הזמנה מסוג שכבת הלוגיקה
+    #region updateItemListForOrder
+    /// <exception cref="BO.DoesNotExistException"></exception>
+    //פונקציה שמקבלת פריט הזמנה מסוג שכבת הנתונים וממירה אותו לפריט הזמנה מסוג שכבת הלוגיקה
     public BO.OrderItem updateItemListForOrder(DO.OrderItem doOrder)
     {
         BO.OrderItem boOrder = new BO.OrderItem();
@@ -21,13 +23,15 @@ internal class Order : IOrder
         boOrder.TotalPrice = doOrder.Price * doOrder.Amount;
         return boOrder;
     }
+    #endregion
 
+    #region orderToboOrder
     //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
     public void orderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
     {
         double total = 0;
         BO.Tools.CopyPropTo(orderDo, orderBo);
-        IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
+        IEnumerable<DO.OrderItem?> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         var newList = (from DO.OrderItem item in list
                        let orderItem = updateItemListForOrder(item)
                        select orderItem)
@@ -35,15 +39,18 @@ internal class Order : IOrder
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
         orderBo.TotalPrice = newList.Sum(item => item.TotalPrice); //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
     }
+    #endregion
 
+    #region doOrderToOrderForList
     //ממירה הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
     public BO.OrderForList doOrderToOrderForList(DO.Order doOrder)
     {
         BO.OrderForList boOrder = new BO.OrderForList();
         BO.Tools.CopyPropTo(doOrder, boOrder);
-        var OrderItems = Dal.OrderItem.GetAll(item=> doOrder.ID == item?.OrderID );
-        boOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
-        boOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
+        var OrderItems = Dal.OrderItem.GetAll(item=> doOrder.ID == item?.OrderID ); //מביא משכבת הנתונים את כל הפריטים של ההזמנה
+        boOrder.ItemsAmount = OrderItems.Sum(item => item?.Amount)??0; //מעדכן את כמות המוצרים בהזמנה
+        boOrder.TotalPrice = OrderItems.Sum(item => item?.Price * item?.Amount)??0; //מעדכן את המחיר הכולל של הזמנה
+        //מעדכן את סטטוס ההזמנה
         if (doOrder.DeliveryDate != null)
             boOrder.State = BO.Status.delivered;
         else if (doOrder.ShipDate != null)
@@ -52,18 +59,22 @@ internal class Order : IOrder
             boOrder.State = BO.Status.approved;
         return boOrder;
     }
+    #endregion
 
+    #region getOrderList
     //מחזירה רשימה של כל ההזמנות
     public IEnumerable<BO.OrderForList?> getOrderList()
     {
-        IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
+        IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
         return (from DO.Order item in tmp
                     //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
                 let orderForList = doOrderToOrderForList(item) 
                select orderForList)
                .ToList();
     }
+    #endregion
 
+    #region getDetailsOrder
     //מקבלת מזהה של הזמנה ומחזירה את ההזמנה שזה המזהה שלה
     public BO.Order getDetailsOrder(int IdOrder)
     {
@@ -79,7 +90,12 @@ internal class Order : IOrder
         orderToboOrder(orderDo, orderBo);
         return orderBo;
     }
+    #endregion
 
+    #region UpdateShipDate
+    /// <exception cref="BO.InvalidIDException"></exception>
+    /// <exception cref="BO.OrderAlreadyShippedExecption"></exception>
+    /// <exception cref="BO.DoesNotExistException"></exception>
     //מעדכנת את התאריך שליחה של הזמנה ומחזיר את ההזמנה המעוכנת
     public BO.Order UpdateShipDate(int IdOrder)
     {
@@ -117,7 +133,12 @@ internal class Order : IOrder
         }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
+    #endregion
 
+    #region UpdateDeliveryDate
+    /// <exception cref="BO.InvalidIDException"></exception>
+    /// <exception cref="BO.OrderAlreadyDeliveredExecption"></exception>
+    /// <exception cref="BO.DoesNotExistException"></exception>
     //מעדכנת את התאריך מסירה של הזמנה ומחזירה את ההזמנה המעוכנת
     public BO.Order UpdateDeliveryDate(int IdOrder)
     {
@@ -155,7 +176,10 @@ internal class Order : IOrder
         }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
+    #endregion
 
+    #region Tracking
+    /// <exception cref="BO.DoesNotExistException"></exception>
     //הפונקציה מחזירה מעקב הזמנה, שבה יש רשימה של צמדים- תאריכים ומה קרה באותו תאריך להזמנה
     public BO.OrderTracking Tracking(int IdOrder)
     {
@@ -189,7 +213,10 @@ internal class Order : IOrder
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
     }
+    #endregion
 
+    #region UpdateOrder
+    /// <exception cref="BO.AmountException"></exception>
     //מעדכן כמות בהזמנה קיימת, פונקציה שזמינה רק למנהל
     public DO.OrderItem UpdateOrder(int IdOrder, int IdProduct, int newAmount)
     {
@@ -207,5 +234,5 @@ internal class Order : IOrder
         });
         return Dal.OrderItem.getItem(IdOrder, IdProduct); 
     }
-
+    #endregion
 }

@@ -8,6 +8,9 @@ internal class Cart : ICart
 {
     private readonly DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
+    #region AddProduct
+    /// <exception cref="BO.DoesNotExistException"></exception>
+    /// <exception cref="BO.OutOfStockException"></exception>
     public BO.Cart AddProduct(BO.Cart cart, int idProduct)//להוסיף מוצר לעגלה ע"י המזהה שלו
     {
         try
@@ -40,8 +43,13 @@ internal class Cart : ICart
 
         return cart;
     }
+    #endregion
 
-
+    #region UpdateAmountProduct
+    /// <exception cref="BO.ProductNotExistInCartException"></exception>
+    /// <exception cref="BO.AmountException"></exception>
+    /// <exception cref="BO.OutOfStockException"></exception>
+    /// <exception cref="BO.InvalidIDException"></exception>
     public BO.Cart UpdateAmountProduct(BO.Cart cart, int idProduct, int amount)//מעדכן את הכמות של המוצר בעגלה (מוסיף, מוריד או מאפס
     {
         try
@@ -74,7 +82,11 @@ internal class Cart : ICart
         catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
         return cart;
     }
+    #endregion
 
+    #region ValidationChecks 
+    /// <exception cref="BO.AmountException"></exception>
+    /// <exception cref="BO.OutOfStockException"></exception>
     public BO.OrderItem ValidationChecks(BO.OrderItem item)//בודק את תקינות הפריטים בעגלה
     {
         DO.Product product = Dal.Product.GetById(item.ProductID);
@@ -84,7 +96,9 @@ internal class Cart : ICart
             throw new BO.OutOfStockException(product.ID);
         return item;
     }
+    #endregion
 
+    #region EnterOrderItemsToList
     public BO.OrderItem? EnterOrderItemsToList(BO.OrderItem? item, int newOrderId)//לכל פריט בסל - מעדכן את רשימת הפריטים בשכבת הנתונים, ומעדכן את הכמות במוצר
     {
         DO.Product product = Dal.Product.GetById(item!.ProductID);
@@ -110,7 +124,17 @@ internal class Cart : ICart
         Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
         return item;
     }
+    #endregion
 
+    #region MakeOrder
+    /// <exception cref="BO.EmptyCartException"></exception>
+    /// <exception cref="BO.NoCostumerNameException"></exception>
+    /// <exception cref="BO.NoCostumerEmailException"></exception>
+    /// <exception cref="BO.NoCostumerAdressException"></exception>
+    /// <exception cref="DO.DoesNotExistException"></exception>
+    /// <exception cref="DO.AlreadyExistsException"></exception>
+    /// <exception cref="BO.AmountException"></exception>
+    /// <exception cref="BO.OutOfStockException"></exception>
     public int MakeOrder(BO.Cart cart)//ביצוע הזמנה-העברת הסל למצב הזמנה
     {
         try
@@ -160,4 +184,5 @@ internal class Cart : ICart
         catch (BO.AmountException ex) { throw new BO.AmountException(ex.Message); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
     }
+    #endregion
 }
