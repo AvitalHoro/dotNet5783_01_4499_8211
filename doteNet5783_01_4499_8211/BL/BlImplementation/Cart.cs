@@ -62,7 +62,7 @@ internal class Cart : ICart
                 cart.orderItems.Remove(item);//מסיר את המוצר מהרשימה
                 cart.TotalPrice -= item.TotalPrice;//מוריד את מחירו ממחיר העגלה
                 item.Amount = amount;//מעדכן את הכמות של המוצר
-                item.TotalPrice += item.Price * amount;//מעדכן את המחיר הסופי של המוצר
+                item.TotalPrice = item.Price * amount;//מעדכן את המחיר הסופי של המוצר
                 cart.orderItems.Add(item);//מחזיר את המוצר לעגלה
                 cart.TotalPrice += item.TotalPrice;//מעדכן את מחיר העגלה
             }
