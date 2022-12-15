@@ -27,7 +27,7 @@ internal class Order : IOrder
     {
         double total = 0;
         BO.Tools.CopyPropTo(orderDo, orderBo);
-        IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(orderDo.GetValueOrDefault().ID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
+        IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         var newList = (from DO.OrderItem item in list
                        let orderItem = updateItemListForOrder(item)
                        select orderItem)
@@ -41,7 +41,7 @@ internal class Order : IOrder
     {
         BO.OrderForList boOrder = new BO.OrderForList();
         BO.Tools.CopyPropTo(doOrder, boOrder);
-        var OrderItems = Dal.OrderItem.GetAll(doOrder.ID);
+        var OrderItems = Dal.OrderItem.GetAll(item=> doOrder.ID == item?.OrderID );
         boOrder.ItemsAmount = OrderItems.Sum(item => item.Amount);
         boOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount);
         if (doOrder.DeliveryDate != null)

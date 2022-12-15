@@ -9,9 +9,10 @@ internal class Product : IProduct
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
-    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue= null)
+    #region GetProductList
+    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue = null)
     {
-        IEnumerable<DO.Product> doProductList=
+        IEnumerable<DO.Product> doProductList =
         enumFilter switch
         {
             BO.Filters.filterByCategory =>
@@ -20,26 +21,32 @@ internal class Product : IProduct
             BO.Filters.filterByName =>
              Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
 
-             BO.Filters.None =>
-             Dal!.Product.GetAll(),
-             _ => Dal!.Product.GetAll(),
+            BO.Filters.None =>
+            Dal!.Product.GetAll(),
+            _ => Dal!.Product.GetAll(),
         };
 
         return (from DO.Product doProduct in doProductList
-               select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
+                select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
                .ToList();
     }
+    #endregion
 
+    #region GetCatalog
     //מחזיר רשימה של כל המוצרים בשביל הלקוח
     public IEnumerable<BO.Product?> GetCatalog()
     {
-        IEnumerable<DO.Product> tmp = Dal.Product.GetAll(product=>product?.IsDeleted == false);
+        IEnumerable<DO.Product> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
         //הלקוח לא צריך לראות מוצרים מחוקים
         var newList = from DO.Product? product in tmp
                       select BO.Tools.CopyPropTo(product, new BO.Product());
         return newList;
     }
+    #endregion
 
+    #region GetProductDetails
+    /// <exception cref="BO.InvalidIDException"></exception>
+    /// <exception cref="DO.DoesNotExistException"></exception>
     //מחזיר למנהל פרטים של מוצר ספציפי לפי המזהה שלו
     public BO.Product GetProductDetails(int idProduct)
     {
@@ -61,7 +68,10 @@ internal class Product : IProduct
             throw new DO.DoesNotExistException(ex.ID, ex.Message, ex);
         }
     }
+    #endregion
 
+    #region GetProductDetails
+    /// <exception cref="DO.DoesNotExistException"></exception>
     //מחזיר ללקוח פרטים של מוצר ספציפי לפי המזהה שלו
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)
     {
@@ -69,7 +79,7 @@ internal class Product : IProduct
         {
             DO.Product product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
-            BO.Tools.CopyPropTo(product,  productItem);
+            BO.Tools.CopyPropTo(product, productItem);
             productItem.IsInStock = (product.InStock > 0);
             return productItem;
         }
@@ -78,7 +88,14 @@ internal class Product : IProduct
             throw new DO.DoesNotExistException(ex.ID, ex.Message, ex);
         }
     }
+    #endregion 
 
+    #region AddProduct
+    /// <exception cref="BO.InvalidIDException"></exception>
+    /// <exception cref="BO.NoNameException"></exception>
+    /// <exception cref="BO.InvalidPriceException"></exception>
+    /// <exception cref="BO.OutOfStockException"></exception>
+    /// <exception cref="BO.AlreadyExistsException"></exception>
     //מוסיף מוצר חדש לחנות
     public void AddProduct(BO.Product? newProduct)
     {
@@ -104,13 +121,17 @@ internal class Product : IProduct
         }
         catch (DO.AlreadyExistsException ex) { throw new BO.AlreadyExistsException(ex.ID, ex.Message, ex); }
     }
+    #endregion
 
+    #region RemoveProduct
+    /// <exception cref="BO.ProductExistInOrderException"></exception>
+    /// <exception cref="BO.DoesNotExistException"></exception>
     //מוחק מוצר מהחנות
     public void RemoveProduct(int idProduct)
     {
         try
         {
-            if (Dal.OrderItem.GetAllProduct(idProduct) == null)
+            if (Dal.OrderItem.GetAll(item=> item?.ProductID == idProduct) == null)
                 //אם ההזמנה כבר נשלחה , האם עדיין זה בעייתי למחוק את המוצר?
                 //האם עבור רשימה ריקה, הוא יחזיר באמת נל
                 throw new BO.ProductExistInOrderException(idProduct);
@@ -126,7 +147,14 @@ internal class Product : IProduct
         catch (DO.DoesNotExistException ex)
         { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
+    #endregion
 
+    #region UpdateProductDetails
+    /// <exception cref="BO.InvalidIDException"></exception>
+    /// <exception cref="BO.NoNameException"></exception>
+    /// <exception cref="BO.InvalidPriceException"></exception>
+    /// <exception cref="BO.OutOfStockException"></exception>
+    /// <exception cref="BO.DoesNotExistException"></exception>
     //מקבל מוצר ולפי המזהה שלו מעדכן את המוצר בחנות
     public void UpdateProductDetails(BO.Product? product)
     {
@@ -152,4 +180,6 @@ internal class Product : IProduct
         }
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
+    #endregion
 }
+

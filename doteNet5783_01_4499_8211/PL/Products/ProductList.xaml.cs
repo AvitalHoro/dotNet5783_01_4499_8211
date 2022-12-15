@@ -46,7 +46,7 @@ public partial class ProductList : Window
     }
 
     //כשלוחצים על כפתור של הוספת מוצר, נפתח חלון של הוספת מוצר
-    private void Button_Click(object sender, RoutedEventArgs e) => new UpdateProduct().Show();
+    private void Button_Click(object sender, RoutedEventArgs e)=> new UpdateProduct().Show();
 
     //אם מתבצעת לחיצה כפולה על מוצר מהרשימה, נפתח חלון של עידכון של אותו מוצר
     private void GoUpdateProduct(object sender, RoutedEventArgs e)=> new UpdateProduct((BO.ProductForList)ProductListview.SelectedItem).Show();

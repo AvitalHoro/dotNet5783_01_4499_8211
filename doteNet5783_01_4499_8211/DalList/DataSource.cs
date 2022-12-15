@@ -8,8 +8,6 @@ public class DataSource
     {
         s_Initialize();
     }
-    //internal static DataSource s_instance { get; }
-    //  static DataSource() => s_Initialize();
 
     private void s_Initialize()
     //activates all the methods that initializes the lists of the products, orders and order items
@@ -26,6 +24,7 @@ public class DataSource
     internal  List<Order?> ListOrder { get; } = new List<Order?>{ };
     internal  List<OrderItem?> ListOrderItem { get; } = new List<OrderItem?>{ };
 
+    #region Config
     internal static class Config
      //מנהל את כל המספרים הרצים בשביל האיתחול של הרשימות
     {
@@ -41,7 +40,9 @@ public class DataSource
         private static int s_nextOrderItemNumber = s_startOrderItemNumber;
         internal static int NextOrderItemNumber { get => ++s_nextOrderItemNumber; }
     }
+    #endregion
 
+    #region CreateProduct
     private void CreateProduct()
     //creates list of new products
     {
@@ -123,7 +124,9 @@ public class DataSource
             });
         }
     }
+    #endregion
 
+    #region CreateOrder
     private void CreateOrder()
     //creates list of new orders
     {
@@ -192,7 +195,9 @@ public class DataSource
 
         }
     }
+    #endregion
 
+    #region CreateOrderItem
     private void CreateOrderItem()
      // מאתחל את הרשימה של המוצרים שהוזמנו עם מוצרים חדשים
     {
@@ -215,6 +220,6 @@ public class DataSource
             }
         }
     }
-
+    #endregion
 }
 

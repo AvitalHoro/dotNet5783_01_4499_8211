@@ -9,6 +9,8 @@ public class DalOrder : IOrder
 {
     readonly DataSource ds = DataSource.s_instance;
 
+    #region Add
+    /// <exception cref="AlreadyExistsException"></exception>
     public int Add(Order item)
     //מוסיפה הזמנה חדשה לרשימת ההזמנות
     {
@@ -23,7 +25,10 @@ public class DalOrder : IOrder
         ds.ListOrder.Add(item); //מוסיף את ההזמנה
         return item.ID;//צריך להחזיר פה את התז של המוצר
     }
+    #endregion
 
+    #region GetById
+    /// <exception cref="DoesNotExistException"></exception>
     public Order GetById(int id)
     {
         Order order = ds.ListOrder.FirstOrDefault(item => item?.ID == id)
@@ -31,6 +36,9 @@ public class DalOrder : IOrder
         if (order.IsDeleted) throw new DoesNotExistException(id);
         return order;//מחזיר את ההזמנה
     }
+    #endregion
+
+    #region Update
     public void Update(Order item)
     //מעדכן הזמנה קיימת, מזהה את ההזמנה עפ"י הת"ז
     {
@@ -41,6 +49,10 @@ public class DalOrder : IOrder
         ds.ListOrder.Remove(order);
         ds.ListOrder.Add(item);
     }
+    #endregion
+
+    #region Delete
+    /// <exception cref="DoesNotExistException"></exception>
     public void Delete(int id)
     //מוחקת את ההזמנה שהת"ז שלה היא זאת שקיבלנו
     {
@@ -63,21 +75,17 @@ public class DalOrder : IOrder
         };
         Update(order);
     }
+    #endregion
 
-    public IEnumerable<Order> GetAll()
-    //מחזירה את כל הרשימה של ההזמנות בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
-    {
-        return (from Order? order in ds.ListOrder 
-                where (order != null) 
-                select (Order)order)
-                .ToList();//????
-    }
-
+    #region GetAll
     public IEnumerable<Order> GetAll(Func<Order?, bool>? filter = null)
     {
+        if (filter == null)
+            return (IEnumerable<Order>)ds.ListOrder;
         return (from Order? order in ds.ListOrder 
-                where filter!(order) 
+                where filter(order)
                 select (Order)order)
                 .ToList();
     }
+    #endregion
 }
