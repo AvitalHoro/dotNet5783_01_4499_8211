@@ -10,6 +10,7 @@ public class DalOrderItem : IOrderItem
 {
     readonly DataSource ds = DataSource.s_instance;
 
+    #region Add
     public int Add(OrderItem item)
     //מוסיפה הזמנה חדשה לרשימה
     {
@@ -21,6 +22,10 @@ public class DalOrderItem : IOrderItem
         ds.ListOrderItem.Add(item);
         return item.ID;//צריך להחזיר פה את התז
     }
+    #endregion
+
+    #region GetById
+    /// <exception cref="DoesNotExistException"></exception>
     public OrderItem GetById(int id)
     // מקבלת ת"ז ומחזירה את הפריט שז הת"ז שלו
     {
@@ -30,6 +35,10 @@ public class DalOrderItem : IOrderItem
             throw new DoesNotExistException(id);
         return item;
     }
+    #endregion
+
+    #region Update
+    /// <exception cref="DoesNotExistException"></exception>
     public void Update(OrderItem item)
     //מעדכנת הזמנה קיימת
     {
@@ -40,6 +49,10 @@ public class DalOrderItem : IOrderItem
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
     }
+    #endregion
+
+    #region Delete
+    /// <exception cref="DoesNotExistException"></exception>
     public void Delete(int id)
     //מוחקת הזמנה מהרשימה לפי הת"ז שהיא מקבלת
     {
@@ -60,42 +73,26 @@ public class DalOrderItem : IOrderItem
         };
         Update(item);
     }
+    #endregion
 
-    public IEnumerable<OrderItem> GetAll()
-    // מחזירה את כל הרשימה, גם את האיברים שכביכול נמחקו
-    {
-        return (from OrderItem? item in ds.ListOrderItem where item != null select (OrderItem)item).ToList();//???
-    }
-
-    public IEnumerable<OrderItem> GetAll(int IdOrder)
-    //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
-    {
-        return (from OrderItem? item in ds.ListOrderItem 
-                where item?.OrderID == IdOrder 
-                select (OrderItem)item)
-                .ToList();//ופה?
-    }
-
-    public OrderItem getItem(int IdOrder, int IdProduct)
-    {
-        return ds.ListOrderItem.FirstOrDefault(item => (item?.OrderID == IdOrder) && (item?.ProductID == IdProduct))
-            ?? throw new DoesNotExistException(IdOrder);
-    }
-
-    public IEnumerable<OrderItem> GetAllProduct(int IdProduct)
-    //מקבלת מזהה מוצר ולכל פריט שהוזמן בודקת האם הוא זהה למוצר שהתקבל ואם כן, מחזירה אותו
-    {
-        return (from OrderItem? item in ds.ListOrderItem 
-                where item?.ProductID == IdProduct 
-                select (OrderItem)item)
-                .ToList();//???
-    }
-
+    #region GetAll
     public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool>? filter = null)
     {
+        if (filter == null)
+            return (IEnumerable<OrderItem>)ds.ListOrder;
         return (from OrderItem? orderItem in ds.ListOrderItem 
                 where filter!(orderItem) 
                 select (OrderItem)orderItem)
                 .ToList();
     }
+    #endregion
+
+    #region getItem
+    /// <exception cref="DoesNotExistException"></exception>
+    public OrderItem getItem(int IdOrder, int IdProduct)
+    {
+        return ds.ListOrderItem.FirstOrDefault(item => (item?.OrderID == IdOrder) && (item?.ProductID == IdProduct))
+            ?? throw new DoesNotExistException(IdOrder);
+    }
+    #endregion
 }

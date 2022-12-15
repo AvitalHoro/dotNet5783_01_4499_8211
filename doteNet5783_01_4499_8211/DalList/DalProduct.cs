@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 
 namespace Dal;
@@ -9,6 +10,8 @@ public class DalProduct: IProduct
 {
     readonly DataSource ds = DataSource.s_instance; //כדי שלא ניצור כל פעם עצם חדש של נתונים
 
+    #region Add
+    /// <exception cref="AlreadyExistsException"></exception>
     public int Add(Product product)
      //פונקציה להוספת מוצר חדש לרשימת המוצרים
     {
@@ -21,7 +24,10 @@ public class DalProduct: IProduct
         ds.ListProduct.Add(product);
         return product.ID;
     }
+    #endregion
 
+    #region GetById
+    /// <exception cref="DoesNotExistException"></exception>
     public Product GetById(int id)
      //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
     {
@@ -30,8 +36,10 @@ public class DalProduct: IProduct
         if (product.IsDeleted) throw new DoesNotExistException(id);//checks if the product is already in the store
         return product;
     }
+    #endregion
 
-
+    #region Update
+    /// <exception cref="DoesNotExistException"></exception>
     public void Update(Product product)
         //הפונקציה מעדכנת מוצר מסוים ברשימת הפרודוקטים, ומוצאת את הקודם ע"י הת"ז שנשארת אותו הדבר
     {
@@ -42,8 +50,10 @@ public class DalProduct: IProduct
         ds.ListProduct.Remove(newProduct);
         ds.ListProduct.Add(product);
     }
+    #endregion
 
-
+    #region Delete
+    /// <exception cref="DoesNotExistException"></exception>
     public void Delete(int id)
     //מוחק מוצר מהרשימה
    //הפונקציה לא באמת מוחקת את ההזמנה אלא רק מעדכנת בפרטים שלה שהיא מחוקה
@@ -67,22 +77,18 @@ public class DalProduct: IProduct
         };
         Update(product); //מעדכן ברשימה את ההזמנה המחוקה
     }
+    #endregion
 
-     public IEnumerable<Product> GetAll()
-        //מחזירה את כל הרשימה של המוצרים בהעתקה עמוקה, אי אפשר לשנות דרכה את הרשימה
-     {
-        return (from Product? product in ds.ListProduct 
-                where product != null 
-                select (Product)product)
-                .ToList();
-     }
-
+    #region GetAll
     public IEnumerable<Product> GetAll(Func<Product?, bool>? filter = null)
     {
+        if (filter == null)
+            return (IEnumerable<Product>)ds.ListProduct;
         return (from Product? product in ds.ListProduct 
-                where filter(product) 
+                where filter!(product)
                 select (Product)product)
                 .ToList();
     }
+#endregion
 }
 

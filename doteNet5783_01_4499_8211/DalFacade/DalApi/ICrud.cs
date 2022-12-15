@@ -9,6 +9,5 @@ namespace DalApi
         void Delete(int id);
 
         IEnumerable<T> GetAll(Func<T?, bool>? filter = null);
-        IEnumerable<T> GetAll();
     }
 }
