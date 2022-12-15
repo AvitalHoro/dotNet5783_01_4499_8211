@@ -1,5 +1,4 @@
-﻿
-using DalApi;
+﻿using DalApi;
 using DO;
 using System.Data;
 
@@ -76,13 +75,13 @@ public class DalOrderItem : IOrderItem
     #endregion
 
     #region GetAll
-    public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool>? filter = null)
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
         if (filter == null)
-            return (IEnumerable<OrderItem>)ds.ListOrder;
+            return ds.ListOrderItem;
         return (from OrderItem? orderItem in ds.ListOrderItem 
                 where filter!(orderItem) 
-                select (OrderItem)orderItem)
+                select orderItem)
                 .ToList();
     }
     #endregion
