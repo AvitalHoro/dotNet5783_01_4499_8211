@@ -4,19 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Product"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="UpdateProduct" Height="330" Width="300">
+        Title="UpdateProduct" Height="370" Width="300">
     <Grid>
-        <Label Content="ID:" HorizontalAlignment="Left" Margin="49,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.417,1.615" Height="38" Width="50" FontSize="15"/>
-        <Label x:Name="Category" Content="Category:" HorizontalAlignment="Left" Margin="49,78,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <ComboBox Name="UpdateCategory" HorizontalAlignment="Left" Margin="134,83,0,0" VerticalAlignment="Top" Width="120" />
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="49,113,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox Name="UpdateName" HorizontalAlignment="Left" Margin="136,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="17" />
-        <Label Content="Price:" HorizontalAlignment="Left" Margin="49,148,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox Name="UpdatePrice" PreviewKeyDown="AddPriceValidation" HorizontalAlignment="Left" Margin="136,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="17"/>
-        <Label Content="In Stock:" HorizontalAlignment="Left" Margin="49,183,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <TextBox  Name="UpdateInStock" PreviewKeyDown="AddInStockValidation" HorizontalAlignment="Left" Margin="136,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="17"/>
-        <TextBox Name="UpdateID" PreviewKeyDown="AddIdValidation" MaxLength="6" HorizontalAlignment="Left" Margin="134,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="17"/>
-        <Button Name="UpdateOrAdd" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" FontSize="15" RenderTransformOrigin="-0.295,1.534" Foreground="#FF06124A" Click="Button_Click"/>
+        <TextBox x:Name="UpdateID"
+                    Width="150" Height="30"
+                    FontSize="10"
+                    materialDesign:HintAssist.Hint="(ID)" 
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Top"
+                    MaxLength="6"
+                    Text="{Binding ID}"
+                    Margin="59,65,91,0"/>
+        <ComboBox Name="UpdateCategory"
+                  FontSize="10"
+                  materialDesign:HintAssist.Hint="(Category)"
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                  HorizontalAlignment="Left"
+                  Margin="59,113,0,0"
+                  VerticalAlignment="Top" 
+                  Width="150" />
+        <TextBox Name="UpdateName"
+                 FontSize="10"
+                  materialDesign:HintAssist.Hint="(Name)" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 HorizontalAlignment="Left" 
+                 Margin="59,0,0,0"
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Center" 
+                 Text="{Binding Name}"
+                 Width="150" Height="30" />
+        <TextBox Name="UpdatePrice"
+                 FontSize="10"
+                  materialDesign:HintAssist.Hint="(Price)" 
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 PreviewKeyDown="AddPriceValidation" 
+                 HorizontalAlignment="Left" 
+                 Margin="59,211,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                  Text="{Binding Price}"
+                 Width="150" Height="30"/>
+        <TextBox Name="UpdateInStock"
+                 FontSize="10"
+                  materialDesign:HintAssist.Hint="(In Stock)" 
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 PreviewKeyDown="AddPriceValidation" 
+                 HorizontalAlignment="Left" 
+                 Margin="59,259,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Text="{Binding InStock}"
+                 Width="150" Height="30"/>
+        <Button Name="UpdateOrAdd" 
+                HorizontalAlignment="Left"
+                Margin="118,300,0,0"
+                VerticalAlignment="Top"
+                FontSize="15"
+                RenderTransformOrigin="-0.295,1.534"
+                Foreground="#FF06124A"
+                Click="UpdateOrAdd_Click"/>
     </Grid>
 </Window>

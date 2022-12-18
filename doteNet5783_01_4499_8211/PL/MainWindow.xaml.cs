@@ -30,17 +30,20 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         cart.orderItems = new();
-        SelectCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-        //מכניס לתיבת בחירה את כל הקטגוריות האפשריות לבחירה
-        SelectCategory.Text= "קטגוריות";
+        ListCategories.Visibility = Visibility.Collapsed;
     }
 
     //מעביר למסך מנהל
-    private void Button_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
+    private void SelectAdmin_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
 
     //בלחיצה כפולה על התיבת טקסט היא מתרוקנת
     private void SearchClear(object sender, MouseButtonEventArgs e)=> SearchWrite.Clear();
 
     //מעביר לחלון עגלה
     private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.customerDetails(cart).Show();
+
+    private void SelectCategory_Click(object sender, RoutedEventArgs e)
+    {
+        ListCategories.Visibility = Visibility.Visible;
+    }
 }

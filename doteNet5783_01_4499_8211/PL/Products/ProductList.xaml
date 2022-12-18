@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Product"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="ProductList" Height="640" Width="800">
     <Grid Name="MainGrid">
@@ -21,12 +22,23 @@ VerticalAlignment="Stretch" Width="auto">
             <ComboBox Name="AttributeSelector"  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="AttributeSelector_SelectionChanged" FontSize="22"/>
             <Label Name="CategorySelector" Content="      Category:" Grid.Column="0" FontSize="30" FontStyle="Italic" FontWeight="Bold" FontFamily="Sitka Text Semibold" Foreground="#FFBB1986" Margin="0,0,0,0"/>
         </Grid>
-        <ListView x:Name="ProductListview" Grid.Row="1" MouseDoubleClick="GoUpdateProduct" d:ItemsSource="{d:SampleData ItemCount=5}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <ListView x:Name="ProductListview"  Grid.Row="1" MouseDoubleClick="GoUpdateProduct" d:ItemsSource="{d:SampleData ItemCount=5}" >
+            <ListView.ItemTemplate> 
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="{Binding Path}" Width="100"  Height="100"></Image>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
+                        <Button x:Name="AddToListButton"
+                                Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
+                                Height="43" Width="42">
+                            <materialDesign:PackIcon Kind="Plus" 
+                                         Foreground="Black"
+                                         Height="15" Width="15"/>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
         <Button Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click"/>
     </Grid>

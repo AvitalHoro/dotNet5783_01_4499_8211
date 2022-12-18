@@ -50,4 +50,9 @@ public partial class ProductList : Window
 
     //אם מתבצעת לחיצה כפולה על מוצר מהרשימה, נפתח חלון של עידכון של אותו מוצר
     private void GoUpdateProduct(object sender, RoutedEventArgs e)=> new UpdateProduct((BO.ProductForList)ProductListview.SelectedItem).Show();
+
+    private void Label_TextInput(object sender, TextCompositionEventArgs e)
+    {
+
+    }
 }

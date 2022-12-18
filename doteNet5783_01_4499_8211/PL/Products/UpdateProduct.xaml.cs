@@ -60,7 +60,7 @@ public partial class UpdateProduct : Window
     }
 
     //פונקציה שמופעלת ברגע שלוחצים עם העכבר על כפתור ההוספה
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void UpdateOrAdd_Click(object sender, RoutedEventArgs e)
     {
         //אם לא סיימו להכניס ערכים לכל השדות נפתחת תיבת מסר עם אזהרה
         if (UpdateID.Text.Length == 0  || UpdateCategory.SelectedItem == null || UpdateName.Text.Length == 0
