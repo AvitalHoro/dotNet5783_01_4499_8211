@@ -42,7 +42,8 @@ public partial class ProductList : Window
             //אם נבחרה האפשרות של כל המוצרים אז צריך להראות את כל המוצרים ברשימה
             ProductListview.ItemsSource = bl.Product.GetProductList();
         else
-            ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, (BO.Category)AttributeSelector.SelectedItem);
+            ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory,
+                (BO.Category)AttributeSelector.SelectedItem);
     }
 
     //כשלוחצים על כפתור של הוספת מוצר, נפתח חלון של הוספת מוצר

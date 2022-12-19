@@ -48,23 +48,24 @@
         </Button>
         <TextBox x:Name="SearchWrite" 
                  TextWrapping="Wrap" 
-                 Text="      ...חפשו באתר ותתכוננו להתאהב" 
+                 Height="30"
                  Width="278" 
                  FontSize="17"
                  FontFamily="Guttman Mantova"
-                 MouseDoubleClick="SearchClear" Height="31" Margin="242,25,280,17"/>
-        <Button HorizontalAlignment="Left"
-                Margin="242,24,0,0" 
+                 Background="Transparent"/>
+        <Button Name="SearchButton"
+            HorizontalAlignment="Left"
+                Margin="226,23,0,0" 
                 Style="{StaticResource MaterialDesignFloatingActionDarkButton}" 
                 Background="Transparent"
                 BorderBrush="Transparent"
                 VerticalAlignment="Top"
                 Width="30"
-                Height="30">
+                Height="30" RenderTransformOrigin="-0.186,0.559">
             <materialDesign:PackIcon Kind="Search" Foreground="Black" VerticalAlignment="Center"/>
         </Button>
         <Button Name="SelectCategory"
-                Content="קטגוריות" 
+                Content="המוצרים שלנו" 
                 HorizontalAlignment="Left" 
                 Background="Transparent"
                 Margin="571,23,0,0"

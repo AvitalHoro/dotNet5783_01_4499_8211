@@ -34,13 +34,10 @@ public partial class MainWindow : Window
     }
 
     //מעביר למסך מנהל
-    private void SelectAdmin_Click(object sender, RoutedEventArgs e) => new AdminView().Show();
-
-    //בלחיצה כפולה על התיבת טקסט היא מתרוקנת
-    private void SearchClear(object sender, MouseButtonEventArgs e)=> SearchWrite.Clear();
+    private void SelectAdmin_Click(object sender, RoutedEventArgs e) => new AdminView().ShowDialog();
 
     //מעביר לחלון עגלה
-    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.customerDetails(cart).Show();
+    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.customerDetails(cart).ShowDialog();
 
     private void SelectCategory_Click(object sender, RoutedEventArgs e)
     {
