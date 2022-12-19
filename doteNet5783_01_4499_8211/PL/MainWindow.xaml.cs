@@ -23,7 +23,7 @@ namespace PL;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private IBl bl= BlFactory.GetBl();
+    private IBl bl = BlFactory.GetBl();
     private BO.Cart cart = new();
 
     public MainWindow() //החלון הראשי של החנות
@@ -37,7 +37,13 @@ public partial class MainWindow : Window
     private void SelectAdmin_Click(object sender, RoutedEventArgs e) => new AdminView().ShowDialog();
 
     //מעביר לחלון עגלה
-    private void SelectCart_Click(object sender, RoutedEventArgs e) => new Cart.customerDetails(cart).ShowDialog();
+    private void SelectCart_Click(object sender, RoutedEventArgs e)
+    {
+        if (cart.CostumerName == null)
+            new Cart.customerDetails(cart).Show();
+        else
+            new Cart.CartWindow(cart).Show();
+    }
 
     private void SelectCategory_Click(object sender, RoutedEventArgs e)
     {

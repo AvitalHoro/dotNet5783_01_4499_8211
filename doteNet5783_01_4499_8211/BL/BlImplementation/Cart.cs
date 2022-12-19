@@ -173,7 +173,8 @@ internal class Cart : ICart
                         let i = EnterOrderItemsToList(item, newOrderId)
                        select i).ToList();
 
-            //cart.TotalPrice=0;
+            cart.TotalPrice=0;
+            cart.orderItems = new();
             return newOrderId;
         }
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(ex.Message); }
