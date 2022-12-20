@@ -13,18 +13,19 @@
         <Button Name="ToTheProductsList"
                 Content="לרשימת המוצרים" 
                 HorizontalAlignment="Left" 
-                Margin="543,98,0,0" 
+                Margin="558,275,0,0" 
                 VerticalAlignment="Top"
                 Height="50"
                 Width="200" Click="ToTheProductsList_Click"/>
-        
+
         <Button Name="ToTheOrdersList"
                 Content="לרשימת ההזמנות"
                 HorizontalAlignment="Left"
-                Margin="543,175,0,0"
+                Margin="558,353,0,0"
                 VerticalAlignment="Top"
                 Height="50"
                 Width="200" Click="ToTheOrdersList_Click"/>
+        <Frame Name="listChange" HorizontalAlignment="Left" Height="450" VerticalAlignment="Center" Width="512"/>
 
     </Grid>
 </Page>

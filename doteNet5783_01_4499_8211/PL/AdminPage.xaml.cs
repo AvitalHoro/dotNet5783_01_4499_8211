@@ -24,7 +24,8 @@ public partial class AdminPage : Page
     public AdminPage(IBl BL)
     {
         InitializeComponent();
-        bl= BL; 
+        bl= BL;
+        listChange.Content=
     }
 
     private void ToTheProductsList_Click(object sender, RoutedEventArgs e)

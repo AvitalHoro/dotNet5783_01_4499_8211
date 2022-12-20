@@ -101,6 +101,8 @@
                 </Button>
             </ListViewItem>
         </ListView>
-        <Frame x:Name="Up" HorizontalAlignment="Center" Height="79" VerticalAlignment="Center" Width="890"/>
+        <Frame x:Name="Up" HorizontalAlignment="Center" Height="79" VerticalAlignment="Center" Width="890"
+               NavigationUIVisibility="Hidden" Margin="0,0,0,0" Grid.Row="0"/>
+
     </Grid>
 </Window>
