@@ -1,12 +1,13 @@
-﻿<Window x:Class="PL.PictureAdminWindow"
+﻿<Page x:Class="PL.PictureAdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="PictureAdminWindow" Height="450" Width="800">
+        Title="PictureAdminWindow" Height="400" Width="512">
     <Grid>
-        
+        <Image HorizontalAlignment="Center" Height="428" VerticalAlignment="Top" Width="510" Source="/ברוך הבא מנהל.png" Margin="0,2,0,0"/>
+
     </Grid>
-</Window>
+</Page>

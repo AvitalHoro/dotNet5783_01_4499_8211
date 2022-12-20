@@ -25,16 +25,16 @@ public partial class AdminPage : Page
     {
         InitializeComponent();
         bl= BL;
-        //listChange.Content=
+        listChange.Content=new PictureAdminWindow();
     }
 
     private void ToTheProductsList_Click(object sender, RoutedEventArgs e)
     {
-
+        listChange.Content = new Order.OrdersListForAdmin(bl);
     }
 
     private void ToTheOrdersList_Click(object sender, RoutedEventArgs e)
     {
-
+        listChange.Content = new Product.ProductListForAdmin(bl);
     }
 }

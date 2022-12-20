@@ -26,7 +26,7 @@
                 Height="50"
                 Width="200" Click="ToTheOrdersList_Click" 
                 />
-        <Frame Name="listChange" HorizontalAlignment="Left" Height="450" VerticalAlignment="Center" Width="512"/>
+        <Frame Name="listChange" Content="{Binding Path=ToTheOrdersList_Click, Source=ToTheOrdersList}"  HorizontalAlignment="Left" Height="450" VerticalAlignment="Center" Width="512"/>
 
     </Grid>
 </Page>

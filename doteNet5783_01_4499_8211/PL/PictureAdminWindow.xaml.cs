@@ -12,11 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace PL;
 /// <summary>
 /// Interaction logic for PictureAdminWindow.xaml
 /// </summary>
-public partial class PictureAdminWindow : Window
+public partial class PictureAdminWindow : Page
 {
     public PictureAdminWindow()
     {
