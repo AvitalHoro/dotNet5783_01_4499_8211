@@ -13,6 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="3.png" />
+    <None Remove="4.png" />
+    <None Remove="5.png" />
+    <None Remove="6.png" />
+    <None Remove="7.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %288%29.png" />
     <None Remove="Product\crybaby.png" />
@@ -27,6 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="3.png" />
+    <Resource Include="4.png" />
+    <Resource Include="5.png" />
+    <Resource Include="6.png" />
+    <Resource Include="7.png" />
     <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
     <Resource Include="Gray Simple Sale Fashion Instagram Post (8).png" />
     <Resource Include="Product\crybaby.png" />

@@ -42,7 +42,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="C:\Users\reutz\OneDrive\שולחן העבודה\project\doteNet5783_01_4499_8211\PL\Gray Simple Sale Fashion Instagram Post (1).png"
+                        Source="/7.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -55,7 +55,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="C:\Users\reutz\OneDrive\שולחן העבודה\project\doteNet5783_01_4499_8211\PL\Gray Simple Sale Fashion Instagram Post (1).png"
+                        Source="/6.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -68,7 +68,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="C:\Users\reutz\OneDrive\שולחן העבודה\project\doteNet5783_01_4499_8211\PL\Gray Simple Sale Fashion Instagram Post (1).png"
+                        Source="/5.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -81,7 +81,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="C:\Users\reutz\OneDrive\שולחן העבודה\project\doteNet5783_01_4499_8211\PL\Gray Simple Sale Fashion Instagram Post (1).png"
+                        Source="/4.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -94,7 +94,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="C:\Users\reutz\OneDrive\שולחן העבודה\project\doteNet5783_01_4499_8211\PL\Gray Simple Sale Fashion Instagram Post (1).png"
+                        Source="/3.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
