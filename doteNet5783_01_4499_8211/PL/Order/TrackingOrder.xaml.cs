@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLApi;
+using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +14,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.Order;
-/// <summary>
-/// Interaction logic for OrderDisplay.xaml
-/// </summary>
-public partial class OrderDisplay : Window
+namespace PL.Order
 {
-    public OrderDisplay()
+    /// <summary>
+    /// Interaction logic for TrackingOrder.xaml
+    /// </summary>
+    public partial class TrackingOrder : Window
     {
-        InitializeComponent();
+        IBl bl;
+        public TrackingOrder(IBl BL, OrderForList order)
+        {
+            InitializeComponent();
+            bl = BL;
+        }
     }
 }

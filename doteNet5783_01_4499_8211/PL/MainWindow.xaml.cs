@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using BlApi;
 using BLApi;
 using BO;
-using PL.Product;
 
 namespace PL;
 /// <summary>
@@ -29,24 +28,14 @@ public partial class MainWindow : Window
     public MainWindow() //החלון הראשי של החנות
     {
         InitializeComponent();
+        framePage.Content = new MainPagePicture();
         cart.orderItems = new();
         ListCategories.Visibility = Visibility.Collapsed;
     }
 
-    //מעביר למסך מנהל
-    private void SelectAdmin_Click(object sender, RoutedEventArgs e) => new AdminView().ShowDialog();
-
-    //מעביר לחלון עגלה
-    private void SelectCart_Click(object sender, RoutedEventArgs e)
+    private void SelectAdmin_Click(object sender, RoutedEventArgs e)
     {
-        if (cart.CostumerName == null)
-            new Cart.customerDetails(cart).Show();
-        else
-            new Cart.CartWindow(cart).Show();
+        framePage.Content = new AdminPage(bl);
     }
 
-    private void SelectCategory_Click(object sender, RoutedEventArgs e)
-    {
-        ListCategories.Visibility = Visibility.Visible;
-    }
 }

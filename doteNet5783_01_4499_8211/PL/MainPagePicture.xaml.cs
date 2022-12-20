@@ -1,6 +1,4 @@
-﻿using BlApi;
-using BLApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,18 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL.Order;
+namespace PL;
 /// <summary>
-/// Interaction logic for OrderList.xaml
+/// Interaction logic for MainPagePicture.xaml
 /// </summary>
-public partial class OrderList : Window
+public partial class MainPagePicture : Page
 {
-    private IBl bl = BlFactory.GetBl();
-    public OrderList()
+    public MainPagePicture()
     {
         InitializeComponent();
-        ProductListview.ItemsSource = bl.Order.getOrderList();
     }
 }
