@@ -39,6 +39,8 @@ public partial class MainWindow : Window
         framePage.Content = new AdminPage(bl);
     }
 
-
-
+    private void OpenCategories_Click(object sender, RoutedEventArgs e)
+    {
+        ListCategories.Visibility = Visibility.Visible;
+    }
 }

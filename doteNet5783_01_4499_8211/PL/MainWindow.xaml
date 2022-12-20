@@ -129,7 +129,12 @@
                 </Button.Background>
             </Button>
             <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
-            <Button x:Name="categories" BorderBrush="{x:Null}" Margin="549,-3,105,-2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
+            <Button x:Name="categories"
+                    BorderBrush="{x:Null}" 
+                    Margin="549,-3,105,-2"
+                    RenderTransformOrigin="0.5,0.5"
+                    Grid.ColumnSpan="2" 
+                    Click="OpenCategories_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -157,6 +162,6 @@
                HorizontalAlignment="Center" 
                Height="79" 
                VerticalAlignment="Center"
-               Width="890"/>
+               Width="890" />
     </Grid>
 </Window>

@@ -17,20 +17,20 @@
                 </Grid.ColumnDefinitions>
                 <Button BorderBrush="{x:Null}" Margin="10,8,556,10">
                     <Button.Background>
-                        <ImageBrush ImageSource="iconAdmin.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Images/iconAdmin.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
                 <Button BorderBrush="{x:Null}" Margin="67,4,496,8">
                     <Button.Background>
-                        <ImageBrush ImageSource="/iconCart.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Images/iconCart.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
                 <Button BorderBrush="{x:Null}" Margin="128,8,442,8">
                     <Button.Background>
-                        <ImageBrush ImageSource="/iconOrder.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Images/iconOrder.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
-                <Image Source="/עיצוב ללא שם (14).png" Stretch="Fill" Margin="226,12,52,12"/>
+                <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
                 <Button x:Name="categories" BorderBrush="{x:Null}" Margin="582,-3,72,-2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
                     <Button.RenderTransform>
                         <TransformGroup>
@@ -41,17 +41,17 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                     <Button.Background>
-                        <ImageBrush ImageSource="iconCategory.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Images/iconCategory.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
                 <Button x:Name="logo" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Margin="68,0,-1,0" Grid.Column="1" >
                     <Button.Background>
-                        <ImageBrush ImageSource="logo.png" Stretch="Uniform"/>
+                        <ImageBrush ImageSource="/Images/logo.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
                 <Button HorizontalAlignment="Left" Height="24" Margin="238,0,0,0" VerticalAlignment="Center" Width="22" BorderBrush="{x:Null}" IsCancel="True">
                     <Button.Background>
-                        <ImageBrush ImageSource="/צעצועים ומשחקים (6).png"/>
+                        <ImageBrush ImageSource="/Images/SearchIcon.png"/>
                     </Button.Background>
                 </Button>
             </Grid>
