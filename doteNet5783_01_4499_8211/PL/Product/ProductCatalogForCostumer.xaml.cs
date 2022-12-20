@@ -27,7 +27,8 @@ public partial class ProductCatalogForCostumer : Page
     {
         InitializeComponent();
         bl = BL;
-        
+        ProductListview.ItemsSource = bl.Product.GetCatalog();
     }
+
 
 }

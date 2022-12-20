@@ -11,10 +11,6 @@
       Title="ProductCatalogForCostumer">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="6*"></RowDefinition>
-        </Grid.RowDefinitions>
         <ListView x:Name="ProductListview">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
