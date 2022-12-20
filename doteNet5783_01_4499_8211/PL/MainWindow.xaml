@@ -18,60 +18,10 @@
                HorizontalAlignment="Center" 
                VerticalAlignment="Top"
                Width="890" Height="550"
-               NavigationUIVisibility="Hidden" Margin="0,73,0,0" Grid.RowSpan="3"/>
-
-        <Button Name="SelectCart"
-                Width="56" 
-                Background="Transparent"
-                BorderBrush="Transparent"
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Height="68"
-                Margin="92,0,0,0">
-            <materialDesign:PackIcon Kind="Cart" 
-                                         Foreground="Black"
-                                         Height="30" Width="28" VerticalAlignment="Center"/>
-        </Button>
-        <Button Name="SelectAdmin"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                HorizontalAlignment="Left"
-                Height="68"
-                Margin="30,0,0,0"
-                VerticalAlignment="Center"
-                Width="57" Click="SelectAdmin_Click">
-            <materialDesign:PackIcon Kind="User" 
-                                         Foreground="Black"
-                                         Height="30" Width="30"/>
-        </Button>
-        <TextBox x:Name="SearchWrite" 
-                 TextWrapping="Wrap" 
-                 Height="30"
-                 Width="278" 
-                 FontSize="17"
-                 FontFamily="Guttman Mantova"
-                 Background="Transparent"/>
-        <Button Name="SearchButton"
-            HorizontalAlignment="Left"
-                Margin="226,23,0,0" 
-                Style="{StaticResource MaterialDesignFloatingActionDarkButton}" 
-                Background="Transparent"
-                BorderBrush="Transparent"
-                VerticalAlignment="Top"
-                Width="30"
-                Height="30" RenderTransformOrigin="-0.186,0.559">
-            <materialDesign:PackIcon Kind="Search" Foreground="Black" VerticalAlignment="Center"/>
-        </Button>
-        <Button Name="SelectCategory"
-                Content="המוצרים שלנו" 
-                HorizontalAlignment="Left" 
-                Background="Transparent"
-                Margin="571,23,0,0"
-                VerticalAlignment="Top" 
-                FontSize="20"/>
+               NavigationUIVisibility="Hidden" Margin="0,0,0,0" Grid.RowSpan="2" Grid.Row="1"/>
         <ListView Name="ListCategories" 
                   Grid.Row="1"
-                  HorizontalAlignment="Center">
+                  HorizontalAlignment="Center" >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Margin="5" MaxHeight="150"/>
@@ -151,5 +101,6 @@
                 </Button>
             </ListViewItem>
         </ListView>
+        <Frame x:Name="Up" HorizontalAlignment="Center" Height="79" VerticalAlignment="Center" Width="890"/>
     </Grid>
 </Window>

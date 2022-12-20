@@ -22,6 +22,7 @@
   <ItemGroup>
     <None Remove="Cart\crybaby.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
+    <None Remove="Gray Simple Sale Fashion Instagram Post %288%29.png" />
     <None Remove="Product\crybaby.png" />
   </ItemGroup>
 
@@ -36,6 +37,7 @@
   <ItemGroup>
     <Resource Include="Cart\crybaby.png" />
     <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
+    <Resource Include="Gray Simple Sale Fashion Instagram Post (8).png" />
     <Resource Include="Product\crybaby.png" />
   </ItemGroup>
 
