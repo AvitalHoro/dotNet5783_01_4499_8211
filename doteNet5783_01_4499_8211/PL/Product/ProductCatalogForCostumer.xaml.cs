@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLApi;
+using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +15,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL.Product
+namespace PL.Product;
+
+/// <summary>
+/// Interaction logic for ProductCatalogForCostumer.xaml
+/// </summary>
+public partial class ProductCatalogForCostumer : Page
 {
-    /// <summary>
-    /// Interaction logic for ProductCatalogForCostumer.xaml
-    /// </summary>
-    public partial class ProductCatalogForCostumer : Page
+    IBl bl;
+    public ProductCatalogForCostumer(IBl BL, BO.Category category)
     {
-        public ProductCatalogForCostumer()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        bl = BL;
+        
     }
+
 }
