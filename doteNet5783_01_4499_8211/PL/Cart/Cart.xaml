@@ -25,6 +25,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
         <TextBlock Name="PaymentLabel"
             HorizontalAlignment="Left" 
             Margin="163,192,0,0" 
@@ -54,8 +55,8 @@
                 Margin="41,310,0,0" 
                 VerticalAlignment="Top"
                 Width="154" Height="54"
-                FontSize="20"/>
-        <TextBlock 
+                FontSize="20" Click="GoBackToCatalog_Click"/>
+        <TextBlock Name="OrderSummery"
                    HorizontalAlignment="Left"
                    Visibility="{Binding }"
                    Margin="193,60,0,0" 
@@ -86,5 +87,12 @@
             Margin="250,0,0,0" 
             VerticalAlignment="Center" 
             Width="314" Source="/Cart/crybaby.png" Grid.ColumnSpan="2"/>
+        <Button Name="GoToCatalog"
+                Content="בואו נתחיל"
+                HorizontalAlignment="Left"
+                Margin="323,372,0,0" 
+                VerticalAlignment="Top"
+                Width="154" Height="54"
+                FontSize="20" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
