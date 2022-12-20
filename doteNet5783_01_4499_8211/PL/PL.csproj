@@ -23,6 +23,15 @@
     <None Remove="Cart\crybaby.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %288%29.png" />
+    <None Remove="Images\crybaby.png" />
+    <None Remove="Images\Gray Simple Sale Fashion Instagram Post %288%29.png" />
+    <None Remove="Images\iconAdmin.png" />
+    <None Remove="Images\iconCart.png" />
+    <None Remove="Images\iconCategory.png" />
+    <None Remove="Images\iconOrder.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\SearchBox.png" />
+    <None Remove="Images\SearchIcon.png" />
     <None Remove="Product\crybaby.png" />
   </ItemGroup>
 
@@ -36,8 +45,15 @@
 
   <ItemGroup>
     <Resource Include="Cart\crybaby.png" />
-    <Resource Include="Gray Simple Sale Fashion Instagram Post (1).png" />
-    <Resource Include="Gray Simple Sale Fashion Instagram Post (8).png" />
+    <Resource Include="Images\crybaby.png" />
+    <Resource Include="Images\Gray Simple Sale Fashion Instagram Post (8).png" />
+    <Resource Include="Images\iconAdmin.png" />
+    <Resource Include="Images\iconCart.png" />
+    <Resource Include="Images\iconCategory.png" />
+    <Resource Include="Images\iconOrder.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\SearchBox.png" />
+    <Resource Include="Images\SearchIcon.png" />
     <Resource Include="Product\crybaby.png" />
   </ItemGroup>
 
