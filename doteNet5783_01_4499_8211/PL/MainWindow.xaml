@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:PL"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="890">
+        Title="MainWindow" Height="650" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="64"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
@@ -19,6 +19,7 @@
                VerticalAlignment="Top"
                Width="890" Height="550"
                NavigationUIVisibility="Hidden" Margin="0,0,0,0" Grid.RowSpan="2" Grid.Row="1"/>
+            
         <ListView Name="ListCategories" 
                   Grid.Row="1"
                   HorizontalAlignment="Center" >
@@ -101,8 +102,61 @@
                 </Button>
             </ListViewItem>
         </ListView>
-        <Frame x:Name="Up" HorizontalAlignment="Center" Height="79" VerticalAlignment="Center" Width="890"
-               NavigationUIVisibility="Hidden" Margin="0,0,0,0" Grid.Row="0"/>
-
+        <Grid x:Name="pas" 
+              HorizontalAlignment="Left" 
+              Height="64" 
+              VerticalAlignment="Center" 
+              Width="800" 
+              Background="#FFEA4851" 
+              Grid.ColumnSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="614*"/>
+                <ColumnDefinition Width="187*"/>
+            </Grid.ColumnDefinitions>
+            <Button BorderBrush="{x:Null}" Margin="10,8,556,10">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/iconAdmin.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button BorderBrush="{x:Null}" Margin="67,4,496,8">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/iconCart.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button BorderBrush="{x:Null}" Margin="128,8,442,8">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/iconOrder.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
+            <Button x:Name="categories" BorderBrush="{x:Null}" Margin="549,-3,105,-2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.335"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/iconCategory.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="logo" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Margin="68,0,-1,0" Grid.Column="1" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/logo.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment="Left" Height="24" Margin="238,0,0,0" VerticalAlignment="Center" Width="22" BorderBrush="{x:Null}" IsCancel="True">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/SearchIcon.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Frame x:Name="Up" 
+               HorizontalAlignment="Center" 
+               Height="79" 
+               VerticalAlignment="Center"
+               Width="890"/>
     </Grid>
 </Window>

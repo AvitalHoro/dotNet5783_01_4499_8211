@@ -17,7 +17,6 @@
         </Grid.ColumnDefinitions>
         <ListView x:Name="OrderItemView" 
                   d:ItemsSource="{d:SampleData ItemCount=5}" 
-                  MouseDoubleClick="UpdateAmount"
                   Grid.Column="1">
             <ListView.View>
                 <GridView>
