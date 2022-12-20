@@ -24,7 +24,8 @@
                 Margin="558,353,0,0"
                 VerticalAlignment="Top"
                 Height="50"
-                Width="200" Click="ToTheOrdersList_Click"/>
+                Width="200" Click="ToTheOrdersList_Click" 
+                />
         <Frame Name="listChange" HorizontalAlignment="Left" Height="450" VerticalAlignment="Center" Width="512"/>
 
     </Grid>

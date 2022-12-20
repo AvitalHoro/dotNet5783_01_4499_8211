@@ -1,5 +1,4 @@
-﻿using BLApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,30 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PL;
 /// <summary>
-/// Interaction logic for AdminPage.xaml
+/// Interaction logic for PictureAdminWindow.xaml
 /// </summary>
-public partial class AdminPage : Page
+public partial class PictureAdminWindow : Window
 {
-    IBl bl;
-    public AdminPage(IBl BL)
+    public PictureAdminWindow()
     {
         InitializeComponent();
-        bl= BL;
-        //listChange.Content=
-    }
-
-    private void ToTheProductsList_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
-
-    private void ToTheOrdersList_Click(object sender, RoutedEventArgs e)
-    {
-
     }
 }
