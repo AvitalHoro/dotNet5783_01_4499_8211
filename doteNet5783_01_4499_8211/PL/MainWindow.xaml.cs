@@ -39,4 +39,6 @@ public partial class MainWindow : Window
         framePage.Content = new AdminPage(bl);
     }
 
+
+
 }
