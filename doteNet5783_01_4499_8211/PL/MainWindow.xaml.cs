@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using BlApi;
 using BLApi;
 using BO;
+using MaterialDesignThemes.Wpf;
+using PL.Cart;
 
 namespace PL;
 /// <summary>
@@ -57,6 +59,26 @@ public partial class MainWindow : Window
     private void hideCategory(object sender, RoutedEventArgs e)
     {
         ListCategories.Visibility = Visibility.Hidden;
+    }
+
+    public void showCart()
+    {
+        framePage.Content = new Cart.Cart(bl,cart);
+    }
+
+    private void showCartDetails(object sender, RoutedEventArgs e)
+    {
+        if (cart.CostumerName == null)
+            new CostumerDetailsForCart(cart, bl).Show();
+        else
+            showCart();
+    }
+
+    public MainWindow(BO.Cart cart, IBl bl)
+    {
+        this.cart = cart;
+        this.bl = bl;
+        framePage.Content = new Cart.Cart(bl, cart);
     }
 
 }

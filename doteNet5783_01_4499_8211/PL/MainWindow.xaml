@@ -95,6 +95,7 @@
             </ListViewItem>
         </ListView>
         <Grid x:Name="pas" 
+              Margin="0,0,0,0"
               HorizontalAlignment="Center" 
               Height="64" 
               VerticalAlignment="Center" 
@@ -109,7 +110,7 @@
                     <ImageBrush ImageSource="/Images/iconAdmin.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button BorderBrush="{x:Null}" Margin="67,4,496,8">
+            <Button BorderBrush="{x:Null}" Margin="67,4,496,8" Click="showCartDetails">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconCart.png" Stretch="Uniform"/>
                 </Button.Background>
@@ -123,7 +124,7 @@
             <Button x:Name="categories"
                     MouseEnter="showCategory"
                     BorderBrush="{x:Null}" 
-                    Margin="549,-3,105,-2"
+                    Margin="599,16,105,16"
                     RenderTransformOrigin="0.5,0.5"
                     Grid.ColumnSpan="2" 
                     Click="OpenCategories_Click">

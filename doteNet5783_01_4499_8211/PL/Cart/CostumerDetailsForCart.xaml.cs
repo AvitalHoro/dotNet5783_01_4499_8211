@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using BLApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,13 @@ namespace PL.Cart;
 /// </summary>
 public partial class CostumerDetailsForCart : Window
 {
+    IBl bl;
     BO.Cart cart;
-    public CostumerDetailsForCart(BO.Cart cart)
+    public CostumerDetailsForCart(BO.Cart cart, IBl BL)
     {
         InitializeComponent();
         this.cart = cart;
+        this.bl = BL;
     }
 
     private void approve_Click(object sender, RoutedEventArgs e)
@@ -32,6 +35,7 @@ public partial class CostumerDetailsForCart : Window
         cart.CostumerName = AddName.Text;
         cart.CostumerEmail = AddEmail.Text;
         cart.CostumerAdress = AddAddress.Text;
-        new CartWindow(cart).Show();
+        //MainWindow.framePage.Content = new Cart(bl, cart);
+        new MainWindow(cart, bl).showCart();
     }
 }
