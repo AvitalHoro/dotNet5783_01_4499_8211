@@ -22,7 +22,7 @@
         <ListView Name="ListCategories"
                   HorizontalAlignment="Left"
                   MouseEnter="showCategory"
-                    MouseLeave="hideCategory" Margin="45,55,0,81" Grid.RowSpan="2">
+                    MouseLeave="hideCategory" Margin="45,62,0,74" Grid.RowSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Margin="5" MaxHeight="150"/>
@@ -158,10 +158,5 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Frame x:Name="Up" 
-               HorizontalAlignment="Center" 
-               Height="79" 
-               VerticalAlignment="Top"
-               Width="890" Margin="0,244,0,0" Grid.RowSpan="2" Grid.Row="1" />
     </Grid>
 </Window>
