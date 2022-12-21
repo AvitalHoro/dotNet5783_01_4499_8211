@@ -38,6 +38,7 @@
     <None Remove="Images\SearchBox.png" />
     <None Remove="Images\SearchIcon.png" />
     <None Remove="Product\crybaby.png" />
+    <None Remove="ברוך הבא מנהל.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +61,7 @@
     <Resource Include="Images\SearchBox.png" />
     <Resource Include="Images\SearchIcon.png" />
     <Resource Include="Product\crybaby.png" />
+    <Resource Include="ברוך הבא מנהל.png" />
   </ItemGroup>
 
 </Project>

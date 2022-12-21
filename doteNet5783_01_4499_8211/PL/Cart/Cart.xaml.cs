@@ -54,4 +54,8 @@ public partial class Cart : Page
     {
 
     }
+    private void UpdateAmount(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

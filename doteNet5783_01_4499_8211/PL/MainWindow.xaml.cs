@@ -41,6 +41,22 @@ public partial class MainWindow : Window
 
     private void OpenCategories_Click(object sender, RoutedEventArgs e)
     {
+            ListCategories.Visibility = Visibility.Visible;
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        framePage.Content = new AdminPage(bl);
+    }
+
+    private void showCategory(object sender, RoutedEventArgs e)
+    {
         ListCategories.Visibility = Visibility.Visible;
     }
+
+    private void hideCategory(object sender, RoutedEventArgs e)
+    {
+        ListCategories.Visibility = Visibility.Hidden;
+    }
+
 }

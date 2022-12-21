@@ -15,14 +15,14 @@
         </Grid.RowDefinitions>
 
         <Frame x:Name="framePage"
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Top"
-               Width="800" Height="570"
-               NavigationUIVisibility="Hidden" Margin="0,0,0,0" Grid.RowSpan="2" Grid.Row="1"/>
-            
-        <ListView Name="ListCategories" 
-                  Grid.Row="1"
-                  HorizontalAlignment="Center" >
+               HorizontalAlignment="Center"
+               Width="800"
+               NavigationUIVisibility="Hidden" Grid.RowSpan="3" Margin="0,46,0,-42"/>
+
+        <ListView Name="ListCategories"
+                  HorizontalAlignment="Left"
+                  MouseEnter="showCategory"
+                    MouseLeave="hideCategory" Margin="45,55,0,81" Grid.RowSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Margin="5" MaxHeight="150"/>
@@ -95,17 +95,16 @@
             </ListViewItem>
         </ListView>
         <Grid x:Name="pas" 
-              HorizontalAlignment="Left" 
+              HorizontalAlignment="Center" 
               Height="64" 
               VerticalAlignment="Center" 
               Width="800" 
-              Background="#FFEA4851" 
-              Grid.ColumnSpan="2" >
+              Background="#FFEA4851" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="614*"/>
                 <ColumnDefinition Width="187*"/>
             </Grid.ColumnDefinitions>
-            <Button BorderBrush="{x:Null}" Margin="10,8,556,10">
+            <Button BorderBrush="{x:Null}" Margin="10,8,556,10" Click="Button_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconAdmin.png" Stretch="Uniform"/>
                 </Button.Background>
@@ -122,6 +121,7 @@
             </Button>
             <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
             <Button x:Name="categories"
+                    MouseEnter="showCategory"
                     BorderBrush="{x:Null}" 
                     Margin="549,-3,105,-2"
                     RenderTransformOrigin="0.5,0.5"
@@ -152,8 +152,8 @@
         </Grid>
         <Frame x:Name="Up" 
                HorizontalAlignment="Center" 
-               Height="80" 
-               VerticalAlignment="Center"
-               Width="890" />
+               Height="79" 
+               VerticalAlignment="Top"
+               Width="890" Margin="0,244,0,0" Grid.RowSpan="2" Grid.Row="1" />
     </Grid>
 </Window>
