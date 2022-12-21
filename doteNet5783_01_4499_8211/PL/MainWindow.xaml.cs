@@ -33,7 +33,7 @@ public partial class MainWindow : Window
         framePage.Content = new MainPagePicture();
         cart.orderItems = new();
         ListCategories.Visibility = Visibility.Collapsed;
-       // Up.Content = new PasWindow();
+       
     }
 
     private void SelectAdmin_Click(object sender, RoutedEventArgs e)
@@ -46,11 +46,6 @@ public partial class MainWindow : Window
             ListCategories.Visibility = Visibility.Visible;
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-        framePage.Content = new AdminPage(bl);
-    }
-
     private void showCategory(object sender, RoutedEventArgs e)
     {
         ListCategories.Visibility = Visibility.Visible;
@@ -61,24 +56,10 @@ public partial class MainWindow : Window
         ListCategories.Visibility = Visibility.Hidden;
     }
 
-    public void showCart()
-    {
-        framePage.Content = new Cart.Cart(bl,cart);
-    }
-
     private void showCartDetails(object sender, RoutedEventArgs e)
     {
         if (cart.CostumerName == null)
             new CostumerDetailsForCart(cart, bl).Show();
-        else
-            showCart();
+        framePage.Content = new Cart.Cart(bl, cart);
     }
-
-    //public MainWindow(BO.Cart cart, IBl bl)
-    //{
-    //    this.cart = cart;
-    //    this.bl = bl;
-    //    framePage.Content = new Cart.Cart(bl, cart);
-    //}
-
 }

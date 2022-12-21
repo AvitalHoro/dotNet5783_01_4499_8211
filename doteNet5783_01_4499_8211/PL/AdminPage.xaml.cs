@@ -1,4 +1,6 @@
 ﻿using BLApi;
+using PL.Order;
+using PL.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,16 +27,44 @@ public partial class AdminPage : Page
     {
         InitializeComponent();
         bl= BL;
-        listChange.Content=new PictureAdminWindow();
+        SelectCategory.Items.Add("הכל");
+        SelectCategory.Items.Add("עגלות וטיולונים");
+        SelectCategory.Items.Add("צעצועים ומשחקים");
+        SelectCategory.Items.Add("ביגוד והנעלה");
+        SelectCategory.Items.Add("היגיינה והחתלה");
+        SelectCategory.Items.Add("בקבוקים ומוצצים");
+        SelectCategoryForOrder.Items.Add("הכל");
+        SelectCategoryForOrder.Items.Add("הזמנות שאושרו");
+        SelectCategoryForOrder.Items.Add("הזמנות שנשלחו");
+        SelectCategoryForOrder.Items.Add("הזמנות שנמסרו");
+        ProductsListAdmin.ItemsSource=bl.Product.GetProductList();  
+        OrdersListAdmin.ItemsSource=bl.Order.getOrderList();    
     }
 
-    private void ToTheProductsList_Click(object sender, RoutedEventArgs e)
+    private void ProductsListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
+        => new AddOrUpdateProduct(bl, (BO.ProductForList)((DataGrid)sender).SelectedItem).ShowDialog();
+
+    private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        listChange.Content = new Order.OrdersListForAdmin(bl);
+        //אנחנו רוצות לסנן את המוצרים ברשימה לפי מה שהמנהל בחר
     }
 
-    private void ToTheOrdersList_Click(object sender, RoutedEventArgs e)
+    private void AddProduct_Click(object sender, RoutedEventArgs e)
+        => new AddOrUpdateProduct(bl).ShowDialog();
+
+  
+
+    private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
+        => new TrackingOrder(bl, (BO.OrderForList)((DataGrid)sender).SelectedItem).ShowDialog();
+
+    private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        listChange.Content = new Product.ProductListForAdmin(bl);
+    //אנחנו רוצות לסנן את המוצרים ברשימה לפי מה שהמנהל בחר
     }
+
+    private void OrderssListAdmin_MouseDoubleClick(Object sender, MouseEventArgs e)
+    {
+
+    }
+
 }

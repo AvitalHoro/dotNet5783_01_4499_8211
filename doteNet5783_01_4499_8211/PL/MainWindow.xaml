@@ -17,7 +17,10 @@
         <Frame x:Name="framePage"
                HorizontalAlignment="Center"
                Width="800"
-               NavigationUIVisibility="Hidden" Grid.RowSpan="3" Margin="0,46,0,-42"/>
+               Height="570"
+               NavigationUIVisibility="Hidden" 
+               Grid.RowSpan="3"
+               Margin="0,46,0,-42"/>
 
         <ListView Name="ListCategories"
                   HorizontalAlignment="Left"
@@ -35,7 +38,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/7.png"
+                        Source="/Images/7.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -48,7 +51,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/6.png"
+                        Source="/Images/6.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -61,7 +64,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/5.png"
+                        Source="/Images/5.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -74,7 +77,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/4.png"
+                        Source="/Images/4.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -87,7 +90,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/3.png"
+                        Source="/Images/3.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -105,22 +108,28 @@
                 <ColumnDefinition Width="614*"/>
                 <ColumnDefinition Width="187*"/>
             </Grid.ColumnDefinitions>
-            <Button BorderBrush="{x:Null}" Margin="10,8,556,10" Click="Button_Click">
+            <Button Name="SelectAdmin"  BorderBrush="{x:Null}" Margin="10,8,556,10"  Click="SelectAdmin_Click" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconAdmin.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button BorderBrush="{x:Null}" Margin="67,4,496,8" Click="showCartDetails">
+            <Button Name="OpenCart" BorderBrush="{x:Null}" Margin="67,4,496,8" Click="showCartDetails">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconCart.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button BorderBrush="{x:Null}" Margin="128,8,442,8">
+            <Button Name="OpenTrackingOrder" BorderBrush="{x:Null}" Margin="128,8,442,8">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconOrder.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
             <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
+            <TextBox Name="EnterStringToSearch"
+                HorizontalAlignment="Left"
+                Margin="265,21,0,0" 
+                TextWrapping="Wrap"
+                VerticalAlignment="Top" 
+                Width="276"/>
             <Button x:Name="categories"
                     MouseEnter="showCategory"
                     BorderBrush="{x:Null}" 
@@ -145,7 +154,7 @@
                     <ImageBrush ImageSource="/Images/logo.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" Height="24" Margin="238,0,0,0" VerticalAlignment="Center" Width="22" BorderBrush="{x:Null}" IsCancel="True">
+            <Button Name="SearchButton" HorizontalAlignment="Left" Height="24" Margin="238,0,0,0" VerticalAlignment="Center" Width="22" BorderBrush="{x:Null}" IsCancel="True">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/SearchIcon.png"/>
                 </Button.Background>
