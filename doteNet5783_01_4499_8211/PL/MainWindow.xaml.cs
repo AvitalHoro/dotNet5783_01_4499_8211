@@ -74,11 +74,11 @@ public partial class MainWindow : Window
             showCart();
     }
 
-    public MainWindow(BO.Cart cart, IBl bl)
-    {
-        this.cart = cart;
-        this.bl = bl;
-        framePage.Content = new Cart.Cart(bl, cart);
-    }
+    //public MainWindow(BO.Cart cart, IBl bl)
+    //{
+    //    this.cart = cart;
+    //    this.bl = bl;
+    //    framePage.Content = new Cart.Cart(bl, cart);
+    //}
 
 }

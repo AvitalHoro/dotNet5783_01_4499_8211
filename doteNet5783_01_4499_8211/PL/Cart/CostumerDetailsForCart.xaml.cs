@@ -35,7 +35,8 @@ public partial class CostumerDetailsForCart : Window
         cart.CostumerName = AddName.Text;
         cart.CostumerEmail = AddEmail.Text;
         cart.CostumerAdress = AddAddress.Text;
+
         //MainWindow.framePage.Content = new Cart(bl, cart);
-        new MainWindow(cart, bl).showCart();
+        //new MainWindow(cart, bl).showCart();
     }
 }

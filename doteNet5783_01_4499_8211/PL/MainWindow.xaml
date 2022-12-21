@@ -127,7 +127,7 @@
                     Margin="599,16,105,16"
                     RenderTransformOrigin="0.5,0.5"
                     Grid.ColumnSpan="2" 
-                    Click="OpenCategories_Click">
+                    Click="OpenCategories_Click" IsEnabled="{Binding Content, ElementName=framePage, UpdateSourceTrigger=PropertyChanged}">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
