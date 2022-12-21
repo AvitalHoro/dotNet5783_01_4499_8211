@@ -148,7 +148,7 @@
                 Margin="265,21,0,0" 
                 TextWrapping="Wrap"
                 VerticalAlignment="Top" 
-                Width="276"/>
+                Width="276" TextAlignment="Right"/>
             <Button x:Name="categories"
                     MouseEnter="showCategory"
                     BorderBrush="{x:Null}" 
