@@ -23,14 +23,11 @@ namespace PL.Order
     public partial class OrdersListForAdmin : Page
     {
         IBl bl;
-        BO.Order order;
-        public OrdersListForAdmin(IBl BL, BO.Order order)
+        public OrdersListForAdmin(IBl BL)
         {
             InitializeComponent();
-            this.order = order;
             bl = BL;
 
-            if (bl.Order.Tracking(order.ID).State==BO.Status.approved)
 
             SelectCategory.Items.Add("הכל");
             SelectCategory.Items.Add("הזמנות שאושרו");
