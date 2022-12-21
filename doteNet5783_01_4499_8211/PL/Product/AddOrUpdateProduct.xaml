@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AddOrUpdateProduct" Height="500" Width="300">
-    <Grid>
+    <Grid x:Name="productAddOrUp">
         <TextBox x:Name="UpdateID"
                    PreviewKeyDown=" EntersOnlyNumbers"
                     Width="150" Height="30"
@@ -27,6 +27,7 @@
                   Margin="0,180,0,0"
                   VerticalAlignment="Top" 
                   Width="150" 
+                  SelectedItem="{Binding Category}"
                   SelectionChanged="UpdateCategory_SelectionChanged"/>
         <TextBox Name="UpdateName"
                  FontSize="10"

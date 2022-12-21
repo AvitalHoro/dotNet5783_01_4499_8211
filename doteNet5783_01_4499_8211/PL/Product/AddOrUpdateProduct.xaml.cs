@@ -26,23 +26,28 @@ namespace PL.Product
             InitializeComponent();
             bl = BL;
             UpdateID.IsEnabled = false; //אין אפשרות לשנות את המזהה של המוצר
-            UpdateOrAdd.Content = "Update";
-            UpdateID.Text = product.ID.ToString();
-            UpdateCategory.SelectedItem = product.Category;
-            UpdateName.Text = product.Name;
-            UpdatePrice.Text = product.Price.ToString();
-            UpdateOrAdd.IsEnabled= false;   
+            UpdateOrAdd.Content = "עדכן";
+            UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+
+            //UpdateID.Text = product.ID.ToString();
+            //UpdateCategory.SelectedItem = product.Category;
+            //UpdateName.Text = product.Name;
+            //UpdatePrice.Text = product.Price.ToString();
+            //UpdateOrAdd.IsEnabled= false;
+            productAddOrUp.DataContext = product;
         }
 
         public AddOrUpdateProduct(IBl BL)
         {
             InitializeComponent();
             bl = BL;
-            UpdateOrAdd.Content = "Add";
+
+            UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            UpdateOrAdd.Content = "הוסף";
             //אם הגענו לבנאי הריק, סימן שבאנו לחלון של הוספה
             UpdateID.IsEnabled = true;
             //נותנים אפשרות להכניס את המזהה של המוצר
-            UpdateOrAdd.IsEnabled = false;
+            //UpdateOrAdd.IsEnabled = false;
         }
 
         

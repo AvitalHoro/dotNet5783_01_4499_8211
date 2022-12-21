@@ -27,7 +27,7 @@ namespace PL.Order
         {
             InitializeComponent();
             bl = BL;
-
+            OrdersListAdmin.DataContext = bl.Order.getOrderList();
 
             SelectCategory.Items.Add("הכל");
             SelectCategory.Items.Add("הזמנות שאושרו");
