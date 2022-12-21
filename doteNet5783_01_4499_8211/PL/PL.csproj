@@ -37,6 +37,10 @@
     <None Remove="Images\logo.png" />
     <None Remove="Images\SearchBox.png" />
     <None Remove="Images\SearchIcon.png" />
+    <None Remove="Order\approved.png" />
+    <None Remove="Order\deliver.png" />
+    <None Remove="Order\home.png" />
+    <None Remove="Order\track1.png" />
     <None Remove="Product\crybaby.png" />
     <None Remove="ברוך הבא מנהל.png" />
   </ItemGroup>
@@ -65,6 +69,10 @@
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\SearchBox.png" />
     <Resource Include="Images\SearchIcon.png" />
+    <Resource Include="Order\approved.png" />
+    <Resource Include="Order\deliver.png" />
+    <Resource Include="Order\home.png" />
+    <Resource Include="Order\track1.png" />
     <Resource Include="Product\crybaby.png" />
     <Resource Include="ברוך הבא מנהל.png" />
   </ItemGroup>
