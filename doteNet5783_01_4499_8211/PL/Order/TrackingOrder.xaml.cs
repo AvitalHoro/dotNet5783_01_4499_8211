@@ -22,10 +22,9 @@ namespace PL.Order
     public partial class TrackingOrder : Window
     {
         IBl bl;
-        BO.Order order;
+        BO.OrderForList order;
 
-
-                public TrackingOrder(IBl BL, OrderForList order)
+        public TrackingOrder(IBl BL, BO.OrderForList order)
         {
             InitializeComponent();
             this.order = order;
@@ -35,11 +34,7 @@ namespace PL.Order
             if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
             {
                 approved.Visibility = Visibility.Visible;
-
             }
-
-
         }
-
     }
 }
