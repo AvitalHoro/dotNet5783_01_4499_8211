@@ -75,15 +75,15 @@ class Program
         myCart.CostumerEmail = Console.ReadLine();
         Console.WriteLine("enter your adress:");
         myCart.CostumerAdress = Console.ReadLine();
-        myCart.orderItems = new List<BO.OrderItem?> { };
+        myCart.OrderItems = new List<BO.OrderItem?> { };
         ///אתחול הסל
         int id = 0;
         string option = "";
         int numOfProduct = 0;
         while (option != "d")
         {
-            if(myCart.orderItems!=null)
-                numOfProduct = myCart.orderItems.Count();
+            if(myCart.OrderItems!=null)
+                numOfProduct = myCart.OrderItems.Count();
             Console.WriteLine("Your basket has " + numOfProduct + " products");
             Console.WriteLine(@"Choose one of the following:
                 a - ADD PRODUCT TO THE CART
