@@ -35,7 +35,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/7.png"
+                        Source="/Images/7.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -48,7 +48,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/6.png"
+                        Source="/Images/6.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -61,7 +61,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/5.png"
+                        Source="/Images/5.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -74,7 +74,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/4.png"
+                        Source="/Images/4.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
@@ -87,7 +87,7 @@
                         Padding="0">
                     <StackPanel>
                         <Image
-                        Source="/3.png"
+                        Source="/Images/3.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>
