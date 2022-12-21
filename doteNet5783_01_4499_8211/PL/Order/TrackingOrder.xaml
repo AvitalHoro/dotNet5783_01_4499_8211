@@ -19,17 +19,11 @@
         <TextBlock x:Name="costumerEmailTextBox"  HorizontalAlignment="Left" Height="NaN" Margin="519,181,0,0" Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
         <Label Content=":שם בעל ההזמנה" HorizontalAlignment="Left" Margin="667,134,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="costumerNameTextBox"  HorizontalAlignment="Left" Height="NaN" Margin="519,134,0,0" Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="0" Content=":תאריך מסירה" HorizontalAlignment="Left" Margin="682,171,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <DatePicker x:Name="deliveryDateDatePicker"  HorizontalAlignment="Left" Margin="605,171,0,0" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Grid.Row="1"/>
         <Label Grid.Column="0" Content=":מספר הזמנה" HorizontalAlignment="Left" Margin="686,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="-13.254,-1.292"/>
         <TextBlock x:Name="iDTextBox" HorizontalAlignment="Left" Height="NaN" Margin="519,88,0,0"  Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="0" Content=":תאריך יצירת הזמנה" HorizontalAlignment="Left" Margin="652,82,0,0"  VerticalAlignment="Top" Grid.Row="1"/>
-        <DatePicker x:Name="orderDateDatePicker"  HorizontalAlignment="Left" Margin="605,126,0,0"  SelectedDate="{Binding OrderDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" RenderTransformOrigin="0.45,4.889" Grid.Row="1"/>
-        <Label Grid.Column="0" Content=":תאריך שליחה" HorizontalAlignment="Left" Margin="681,126,0,0"  VerticalAlignment="Top" Grid.Row="1"/>
-        <DatePicker x:Name="shipDateDatePicker" HorizontalAlignment="Left" Margin="605,81,0,0"  SelectedDate="{Binding ShipDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Grid.Row="1"/>
         <Label Grid.Column="0" Content=":מצב הזמנה" HorizontalAlignment="Left" Margin="695,37,0,0"  VerticalAlignment="Top" Grid.Row="1"/>
         <TextBlock x:Name="stateTextBox"  HorizontalAlignment="Left" Height="NaN" Margin="372,45,0,0" Text="{Binding State, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
-        <Label Grid.Column="0" Content=":מחיר סה&quot;כ" HorizontalAlignment="Left" Margin="696,216,0,0"  VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Grid.Column="0" Content=":מחיר סה&quot;כ" HorizontalAlignment="Left" Margin="696,76,0,0"  VerticalAlignment="Top" Grid.Row="1"/>
         <TextBlock x:Name="totalPriceTextBox"  HorizontalAlignment="Left" Height="NaN" Margin="519,216,0,0"  Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
         <TextBlock Text=":פרטי הזמנה" HorizontalAlignment="Left" FontSize="22" Margin="644,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" FontWeight="Bold"/>
         <Button Content="עדכון" HorizontalAlignment="Left" Margin="659,261,0,0" VerticalAlignment="Top" Grid.Row="1"/>

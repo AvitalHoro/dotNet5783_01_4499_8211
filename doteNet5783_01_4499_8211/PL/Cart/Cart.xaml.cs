@@ -36,11 +36,12 @@ public partial class Cart : Page
         {
             CryBaby.Visibility = Visibility.Hidden;
             GoToCatalog.Visibility = Visibility.Hidden;
+            PaymentLabel.Visibility = Visibility.Visible;
+            LabelAmount.Visibility = Visibility.Visible;
+            AmountInCart.Visibility = Visibility.Visible;
         }
         OrderItemView.ItemsSource = myCart.orderItems;
-        PaymentLabel.Visibility = Visibility.Visible;
-        LabelAmount.Visibility = Visibility.Visible;
-        AmountInCart.Visibility = Visibility.Visible;
+
         TotalPriceShow.Text = myCart.TotalPrice.ToString();
     }
 

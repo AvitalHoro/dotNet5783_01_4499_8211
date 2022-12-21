@@ -34,6 +34,13 @@ namespace PL.Order
             if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
             {
                 approved.Visibility = Visibility.Visible;
+                shipped.Visibility = Visibility.Visible;
+            }
+            if (bl.Order.Tracking(order.ID).State == BO.Status.delivered)
+            {
+                approved.Visibility = Visibility.Visible;
+                shipped.Visibility = Visibility.Visible;
+                delevired.Visibility = Visibility.Visible;
             }
         }
     }

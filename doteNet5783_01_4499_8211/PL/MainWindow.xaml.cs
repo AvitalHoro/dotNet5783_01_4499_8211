@@ -58,8 +58,7 @@ public partial class MainWindow : Window
 
     private void showCartDetails(object sender, RoutedEventArgs e)
     {
-        if (cart.CostumerName == null)
-            new CostumerDetailsForCart(cart, bl).Show();
         framePage.Content = new Cart.Cart(bl, cart);
     }
+
 }

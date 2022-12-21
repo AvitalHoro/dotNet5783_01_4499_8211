@@ -10,7 +10,7 @@
 
     <Grid>
         <Image
-            Source="Images\Gray Simple Sale Fashion Instagram Post (8).png"
+            Source="/mainPicture.png"
             VerticalAlignment="Top" Height="599"/>
     </Grid>
 </Page>
