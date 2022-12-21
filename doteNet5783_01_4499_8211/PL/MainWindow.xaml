@@ -23,19 +23,20 @@
                Margin="0,46,0,-42"/>
 
         <ListView Name="ListCategories"
-                  HorizontalAlignment="Left"
+                  HorizontalAlignment="Center"
                   MouseEnter="showCategory"
-                    MouseLeave="hideCategory" Margin="45,62,0,74" Grid.RowSpan="2">
+                    MouseLeave="hideCategory" Margin="0,0,0,113" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Margin="5" MaxHeight="150"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListViewItem>
-                <Button
+                <Button Name="All"
                         Width="110"
                         Height="105"
-                        Padding="0">
+                        Padding="0"
+                        MouseDoubleClick="ListCategories_MouseDoubleClick">
                     <StackPanel>
                         <Image
                         Source="/Images/7.png"
@@ -45,10 +46,25 @@
                 </Button>
             </ListViewItem>
             <ListViewItem>
-                <Button
+                <Button Name="Bottles"
                         Width="110"
                         Height="105"
-                        Padding="0">
+                        Padding="0"
+                         MouseDoubleClick="ListCategories_MouseDoubleClick">
+                    <StackPanel>
+                        <Image
+                        Source="/Images/7.png"
+                        Width="105"
+                        Height="105"/>
+                    </StackPanel>
+                </Button>
+            </ListViewItem>
+            <ListViewItem>
+                <Button Name="Diapers"
+                        Width="110"
+                        Height="105"
+                        Padding="0"
+                         MouseDoubleClick="ListCategories_MouseDoubleClick">
                     <StackPanel>
                         <Image
                         Source="/Images/6.png"
@@ -58,10 +74,11 @@
                 </Button>
             </ListViewItem>
             <ListViewItem>
-                <Button
+                <Button Name="Clothes"
                         Width="110"
                         Height="105"
-                        Padding="0">
+                        Padding="0"
+                         MouseDoubleClick="ListCategories_MouseDoubleClick">
                     <StackPanel>
                         <Image
                         Source="/Images/5.png"
@@ -71,10 +88,11 @@
                 </Button>
             </ListViewItem>
             <ListViewItem>
-                <Button
+                <Button Name="Carts"
                         Width="110"
                         Height="105"
-                        Padding="0">
+                        Padding="0"
+                         MouseDoubleClick="ListCategories_MouseDoubleClick">
                     <StackPanel>
                         <Image
                         Source="/Images/4.png"
@@ -84,10 +102,11 @@
                 </Button>
             </ListViewItem>
             <ListViewItem>
-                <Button
+                <Button Name="Toys"
                         Width="110"
                         Height="105"
-                        Padding="0">
+                        Padding="0"
+                         MouseDoubleClick="ListCategories_MouseDoubleClick">
                     <StackPanel>
                         <Image
                         Source="/Images/3.png"

@@ -17,6 +17,7 @@ using BLApi;
 using BO;
 using MaterialDesignThemes.Wpf;
 using PL.Cart;
+using PL.Product;
 
 namespace PL;
 /// <summary>
@@ -61,5 +62,10 @@ public partial class MainWindow : Window
         if (cart.CostumerName == null)
             new CostumerDetailsForCart(cart, bl).Show();
         framePage.Content = new Cart.Cart(bl, cart);
+    }
+
+    private void ListCategories_MouseDoubleClick(object sender, MouseEventArgs e)   
+    {
+        framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name);
     }
 }
