@@ -25,6 +25,10 @@
     <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %288%29.png" />
     <None Remove="Images\3.png" />
+    <None Remove="Images\4.png" />
+    <None Remove="Images\5.png" />
+    <None Remove="Images\6.png" />
+    <None Remove="Images\7.png" />
     <None Remove="Images\crybaby.png" />
     <None Remove="Images\Gray Simple Sale Fashion Instagram Post %288%29.png" />
     <None Remove="Images\iconAdmin.png" />
@@ -49,6 +53,10 @@
   <ItemGroup>
     <Resource Include="Cart\crybaby.png" />
     <Resource Include="Images\3.png" />
+    <Resource Include="Images\4.png" />
+    <Resource Include="Images\5.png" />
+    <Resource Include="Images\6.png" />
+    <Resource Include="Images\7.png" />
     <Resource Include="Images\crybaby.png" />
     <Resource Include="Images\Gray Simple Sale Fashion Instagram Post (8).png" />
     <Resource Include="Images\iconAdmin.png" />
