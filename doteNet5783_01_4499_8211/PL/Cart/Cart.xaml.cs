@@ -31,12 +31,6 @@ public partial class Cart : Page
         if (myCart.orderItems!.Count == 0)
         {
             CryBaby.Visibility = Visibility.Visible;
-            ApproveOrder.IsEnabled = false;
-            PaymentLabel.Visibility = Visibility.Hidden;    
-            LabelAmount.Visibility = Visibility.Hidden;
-            AmountInCart.Visibility = Visibility.Hidden;
-            TotalPriceShow.Visibility = Visibility.Hidden;
-            OrderSummery.Visibility = Visibility.Hidden;
         }
         else
         {

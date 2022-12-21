@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
+      d:DesignHeight="570" d:DesignWidth="800"
       Title="MainPagePicture">
 
     <Grid>
         <Image
             Source="Images\Gray Simple Sale Fashion Instagram Post (8).png"
-            VerticalAlignment="Top" Height="590" Margin="-85,0,-27,0"/>
+            VerticalAlignment="Top" Height="701" Margin="0,47,0,0"/>
     </Grid>
 </Page>
