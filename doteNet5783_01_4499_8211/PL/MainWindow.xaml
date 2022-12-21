@@ -19,9 +19,10 @@
                Width="800"
                NavigationUIVisibility="Hidden" Grid.RowSpan="3" Margin="0,46,0,-42"/>
 
-        <ListView Name="ListCategories" 
-                  Grid.Row="1"
-                  HorizontalAlignment="Center" >
+        <ListView Name="ListCategories"
+                  HorizontalAlignment="Left"
+                  MouseEnter="showCategory"
+                    MouseLeave="hideCategory" Margin="45,55,0,81" Grid.RowSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Margin="5" MaxHeight="150"/>
@@ -102,12 +103,11 @@
             </ListViewItem>
         </ListView>
         <Grid x:Name="pas" 
-              HorizontalAlignment="Left" 
+              HorizontalAlignment="Center" 
               Height="64" 
               VerticalAlignment="Center" 
               Width="800" 
-              Background="#FFEA4851" 
-              Grid.ColumnSpan="2" >
+              Background="#FFEA4851" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="614*"/>
                 <ColumnDefinition Width="187*"/>
@@ -130,7 +130,6 @@
             <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
             <Button x:Name="categories"
                     MouseEnter="showCategory"
-                    MouseLeave="hideCategory"
                     BorderBrush="{x:Null}" 
                     Margin="549,-3,105,-2"
                     RenderTransformOrigin="0.5,0.5"
