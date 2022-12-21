@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <None Remove="3.png" />
+    <None Remove="all.png" />
     <None Remove="Cart\crybaby.png" />
     <None Remove="Cart\sadBaby.png" />
     <None Remove="Cart\start.png" />
@@ -45,6 +46,7 @@
     <None Remove="Order\deliver.png" />
     <None Remove="Order\home.png" />
     <None Remove="Order\track1.png" />
+    <None Remove="Product\addP.png" />
     <None Remove="Product\crybaby.png" />
     <None Remove="ברוך הבא מנהל.png" />
   </ItemGroup>
@@ -58,6 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="all.png" />
     <Resource Include="Cart\crybaby.png" />
     <Resource Include="Cart\sadBaby.png" />
     <Resource Include="Cart\start.png" />
@@ -80,6 +83,7 @@
     <Resource Include="Order\deliver.png" />
     <Resource Include="Order\home.png" />
     <Resource Include="Order\track1.png" />
+    <Resource Include="Product\addP.png" />
     <Resource Include="Product\crybaby.png" />
     <Resource Include="ברוך הבא מנהל.png" />
   </ItemGroup>

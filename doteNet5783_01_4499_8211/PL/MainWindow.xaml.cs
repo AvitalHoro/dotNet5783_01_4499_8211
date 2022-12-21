@@ -62,7 +62,7 @@ public partial class MainWindow : Window
         framePage.Content = new Cart.Cart(bl, cart);
     }
 
-    private void ListCategories_MouseDoubleClick(object sender, MouseEventArgs e)   
+    private void ListCategories_Click(object sender, RoutedEventArgs e)   
     {
         framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name);
     }
