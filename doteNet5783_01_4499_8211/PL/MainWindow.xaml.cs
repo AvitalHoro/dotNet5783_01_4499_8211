@@ -66,4 +66,14 @@ public partial class MainWindow : Window
     {
         framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name);
     }
+
+    private void showHomePage(object sender, RoutedEventArgs e)
+    {
+        framePage.Content = new MainPagePicture();
+    }
+
+    private void search(object sender, RoutedEventArgs e)
+    {
+        framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text);
+    }
 }

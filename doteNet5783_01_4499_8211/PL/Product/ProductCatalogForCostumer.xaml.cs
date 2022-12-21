@@ -48,6 +48,9 @@ public partial class ProductCatalogForCostumer : Page
             case "All":
                 ProductListview.ItemsSource = bl.Product.GetProductList();
                 break;
+            default:
+                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByName, ButtonName);
+                break;
         }
     }
 

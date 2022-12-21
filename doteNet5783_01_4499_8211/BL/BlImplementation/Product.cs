@@ -19,7 +19,9 @@ internal class Product : IProduct
             Dal!.Product.GetAll(dp => dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All)),
 
             BO.Filters.filterByName =>
-             Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
+             Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true),
+            //             Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
+
 
             BO.Filters.None =>
             Dal!.Product.GetAll(),
