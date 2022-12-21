@@ -15,14 +15,34 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="OrderItemView" 
-                  d:ItemsSource="{d:SampleData ItemCount=5}" 
-                  Grid.Column="1">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <ListView x:Name="OrderItemView" >
+          <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
+                              RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+                              ItemWidth="{Binding (ListView.View).ItemWidth, 
+                              RelativeSource={RelativeSource AncestorType=ListView}}"
+                              MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
+                              ItemHeight="{Binding (ListView.View).ItemHeight, 
+                              RelativeSource={RelativeSource AncestorType=ListView}}" />
+            </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Path}" Width="100"  Height="100"></Image>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
+                        <Button x:Name="AddToCartButton"
+                                Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
+                                Height="43" Width="42">
+                            <materialDesign:PackIcon Kind="TrashCanEmpty" 
+                                         Foreground="Black"
+                                         Height="15" Width="15"/>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
         <TextBlock Name="PaymentLabel"
@@ -31,6 +51,7 @@
             TextWrapping="Wrap" 
             Text="סך הכל לתשלום" 
             VerticalAlignment="Top"
+            Visibility="Hidden"
             Height="37" Width="162"
             FontSize="22" FontWeight="Bold"/>
         <TextBlock Name="TotalPriceShow"
@@ -39,9 +60,11 @@
             TextWrapping="Wrap" 
             Text="{Binding TotalPrice}" 
             VerticalAlignment="Top" 
+            Visibility="Hidden"
             Width="120" RenderTransformOrigin="0.933,0.352" Height="37"/>
         <Button x:Name="ApproveOrder"
                 Content="למעבר לקופה"
+                 Visibility="Hidden"
                 HorizontalAlignment="Left"
                 Margin="223,310,0,0" 
                 VerticalAlignment="Top" 
@@ -50,6 +73,7 @@
                 FontSize="20"/>
         <Button Name="GoBackToCatalog"
                 Content="להמשך קניה"
+                 Visibility="Hidden"
                 HorizontalAlignment="Left"
                 Margin="41,310,0,0" 
                 VerticalAlignment="Top"
@@ -57,13 +81,14 @@
                 FontSize="20" Click="GoBackToCatalog_Click"/>
         <TextBlock Name="OrderSummery"
                    HorizontalAlignment="Left"
-                   Visibility="{Binding }"
+                    Visibility="Hidden"
                    Margin="193,60,0,0" 
                    TextWrapping="Wrap"
                    Text=":סיכום הזמנה" 
                    VerticalAlignment="Top"
                    FontSize="22" FontWeight="Bold"/>
         <TextBlock Name="LabelAmount"
+             Visibility="Hidden"
             HorizontalAlignment="Left" 
             Margin="172,109,0,0" 
             TextWrapping="Wrap" 
@@ -75,7 +100,7 @@
             HorizontalAlignment="Left" 
             Margin="313,109,0,0" 
             TextWrapping="Wrap" 
-             Visibility="{Binding }"
+              Visibility="Hidden"
             Text="0" 
             VerticalAlignment="Top" 
             FontSize="22"
