@@ -64,7 +64,7 @@ public class DataSource
                 Price = randNum.Next(50, 100), //selects a random price in range of 50-100
                 InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
                 IsDeleted = false, //the new product isn't deleted
-                Path= "C:\\Users\\reutz\\OneDrive\\שולחן העבודה\\project\\doteNet5783_01_4499_8211\\PL\\crybaby.png"
+                Path = "/Images/5.png"
             });
         }
         for (int i = 0; i < toys.Length; i++)
@@ -78,7 +78,7 @@ public class DataSource
                 Price = randNum.Next(30, 300),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 10),//selects a random amount in stock in range of 0-30
                 IsDeleted = false,//the new product isn't deleted
-                Path = "\"C:\\\\Users\\\\reutz\\\\OneDrive\\\\שולחן העבודה\\\\project\\\\doteNet5783_01_4499_8211\\\\PL\\\\crybaby.png\""
+                Path = "/Images/3.png"
             });
         }
         for (int i = 0; i < carts.Length; i++)
@@ -92,7 +92,7 @@ public class DataSource
                 Price = randNum.Next(200, 400),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 15),//selects a random amount in stock in range of 0-30
                 IsDeleted = false,//the new product isn't deleted
-                Path = "\"C:\\\\Users\\\\reutz\\\\OneDrive\\\\שולחן העבודה\\\\project\\\\doteNet5783_01_4499_8211\\\\PL\\\\crybaby.png\""
+                Path = "/Images/4.png"
             });
         }
         for (int i = 0; i < bottles.Length; i++)
@@ -106,7 +106,7 @@ public class DataSource
                 Price = randNum.Next(20, 60),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 40),//selects a random amount in stock in range of 0-30
                 IsDeleted = false,//the new product isn't deleted
-                Path = "\"C:\\\\Users\\\\reutz\\\\OneDrive\\\\שולחן העבודה\\\\project\\\\doteNet5783_01_4499_8211\\\\PL\\\\crybaby.png\""
+                Path = "/Images/7.png"
             });
         }
         for (int i = 0; i < diapers.Length; i++)
@@ -120,7 +120,7 @@ public class DataSource
                 Price = randNum.Next(50, 80),//selects a random price in range of 50-100
                 InStock = randNum.Next(0, 30),//selects a random amount in stock in range of 0-30
                 IsDeleted = false,//the new product isn't deleted
-                Path = "\"C:\\\\Users\\\\reutz\\\\OneDrive\\\\שולחן העבודה\\\\project\\\\doteNet5783_01_4499_8211\\\\PL\\\\crybaby.png\""
+                Path = "/Images/6.png"
             });
         }
     }
