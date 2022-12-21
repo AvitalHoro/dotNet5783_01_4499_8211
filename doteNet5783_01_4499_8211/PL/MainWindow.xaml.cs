@@ -74,6 +74,7 @@ public partial class MainWindow : Window
 
     private void search(object sender, RoutedEventArgs e)
     {
-        framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text);
+        if(EnterStringToSearch.Text!=null)
+            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text);
     }
 }

@@ -24,6 +24,7 @@
 
         <ListView Name="ListCategories"
                   HorizontalAlignment="Center"
+                  MouseMove="showCategory"
                     MouseLeave="hideCategory" Margin="0,0,0,102" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -115,46 +116,35 @@
                 </Button>
             </ListViewItem>
         </ListView>
-        <Grid x:Name="pas" 
-              Margin="0,0,0,0"
-              HorizontalAlignment="Center" 
-              Height="64" 
-              VerticalAlignment="Center" 
-              Width="800" 
-              Background="#FFEA4851" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="614*"/>
-                <ColumnDefinition Width="187*"/>
-            </Grid.ColumnDefinitions>
-            <Button Name="SelectAdmin"  BorderBrush="{x:Null}" Margin="10,8,556,10"  Click="SelectAdmin_Click" >
+
+        <StackPanel Margin="0,0,-1,0" Orientation="Horizontal" Background="#FFEA4851">
+
+            <Button x:Name="SelectAdmin"  BorderBrush="{x:Null}"  Click="SelectAdmin_Click" Height="42" Width="52" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconAdmin.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button Name="OpenCart" BorderBrush="{x:Null}" Margin="67,4,496,8" Click="showCartDetails">
+
+            <Button x:Name="OpenCart" BorderBrush="{x:Null}" Click="showCartDetails" Height="46" Width="46">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconCart.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button Name="OpenTrackingOrder" BorderBrush="{x:Null}" Margin="128,8,442,8">
+            <Button x:Name="OpenTrackingOrder" BorderBrush="{x:Null}" Height="44" Width="55">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconOrder.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Image Source="/Images/SearchBox.png" Stretch="Fill" Margin="226,12,52,12"/>
-            <TextBox Name="EnterStringToSearch"
-                HorizontalAlignment="Left"
-                Margin="265,21,0,0" 
-                TextWrapping="Wrap"
-                VerticalAlignment="Top" 
-                Width="276" TextAlignment="Right"/>
+            <Image Source="/Images/SearchBox.png" Stretch="Fill" Height="54" Width="387"/>
             <Button x:Name="categories"
-                    MouseEnter="showCategory"
-                    BorderBrush="{x:Null}" 
-                    Margin="599,16,105,16"
-                    RenderTransformOrigin="0.5,0.5"
-                    Grid.ColumnSpan="2" 
-                    Click="OpenCategories_Click" IsEnabled="{Binding Content, ElementName=framePage, UpdateSourceTrigger=PropertyChanged}">
+                MouseEnter="showCategory"
+                    MouseLeave="hideCategory"
+                BorderBrush="{x:Null}"
+                RenderTransformOrigin="0.5,0.5" 
+                Click="OpenCategories_Click" IsEnabled="{Binding Content, ElementName=framePage, UpdateSourceTrigger=PropertyChanged}" Height="74" Width="126">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Images/iconCategory.png" Stretch="Uniform"/>
+                </Button.Background>
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -163,20 +153,23 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/iconCategory.png" Stretch="Uniform"/>
-                </Button.Background>
             </Button>
-            <Button x:Name="logo" Click="showHomePage" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Margin="68,0,-1,0" Grid.Column="1" >
+            <Button x:Name="logo" Click="showHomePage" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Height="67" Width="122" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/logo.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button Name="SearchButton" Click="search" HorizontalAlignment="Left" Height="24" Margin="238,0,0,0" VerticalAlignment="Center" Width="22" BorderBrush="{x:Null}" IsCancel="True">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Images/SearchIcon.png"/>
-                </Button.Background>
-            </Button>
-        </Grid>
+        </StackPanel>
+        <TextBox Name="EnterStringToSearch"
+                HorizontalAlignment="Left"
+                Margin="212,20,0,0" 
+                TextWrapping="Wrap"
+                VerticalAlignment="Top" 
+                Width="299" TextAlignment="Right" FontSize="16" BorderBrush="#89FFFFFF"/>
+        <Button x:Name="SearchButton" Click="search" BorderBrush="{x:Null}" IsCancel="True" Height="29" Width="29" Margin="169,18,602,17">
+            <Button.Background>
+                <ImageBrush ImageSource="/Images/SearchIcon.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

@@ -63,7 +63,7 @@ namespace PL.Product
             }
             try
             {
-                if ((string)UpdateOrAdd.Content == "Add") //אם אנחנו במקרה של הוספה
+                if ((string)UpdateOrAdd.Content == "הוסף") //אם אנחנו במקרה של הוספה
                     bl.Product.AddProduct(new()
                     {
                         ID = int.Parse(UpdateID.Text),
