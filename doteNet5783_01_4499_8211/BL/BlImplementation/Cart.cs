@@ -18,10 +18,10 @@ internal class Cart : ICart
             DO.Product product = Dal.Product.GetById(idProduct);//מוצא את המוצר אותו רצינו להכניס לעגלה. אם המזהה לא קיים הפונקציה תזרוק חריגה
 
             BO.OrderItem item =//מכין עצם מסוג פריט בהזמנה עם המוצר המבוקש
-                cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
+                cart.OrderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? new()
                 {
-                    ID = (cart.orderItems!.Count+1),//מכניס מזהה מוצר זמני שמסמל את המספר של הפריט ברשימת הפריטים בהזמנה
+                    ID = (cart.OrderItems!.Count+1),//מכניס מזהה מוצר זמני שמסמל את המספר של הפריט ברשימת הפריטים בהזמנה
                     ProductID = idProduct,
                     NameProduct = product.Name,
                     Price = product.Price,
@@ -32,7 +32,7 @@ internal class Cart : ICart
             if (item.Amount >= product.InStock) // not enough in stock
                 throw new BO.OutOfStockException(idProduct);
 
-            if (item.Amount == 0) cart.orderItems?.Add(item); // it is a new item
+            if (item.Amount == 0) cart.OrderItems?.Add(item); // it is a new item
 
             item.Amount++;//מעדכן כמות
             item.TotalPrice += item.Price;//מעדכן מחיר בפריט 
@@ -58,20 +58,20 @@ internal class Cart : ICart
             if (product.InStock < amount)//בודק, אם הכמות של המוצר במלאי קטנה מהכמות המבוקשת, זורק חריגה
                 throw new BO.OutOfStockException(idProduct);
             BO.OrderItem item =//מעביר נתונים עכשווים של המוצר המבוקש הקיים בעגלה, ואם המוצר לא קיים בעגלה, זורק חריגה
-                cart.orderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
+                cart.OrderItems?.FirstOrDefault(oi => oi?.ProductID == idProduct)
                 ?? throw new BO.ProductNotExistInCartException(idProduct);
             if (amount == 0)
             {
-                cart.orderItems.Remove(item);//אם הכמות המבוקשת היא אפס מסיר את המוצר מהרשימה
+                cart.OrderItems.Remove(item);//אם הכמות המבוקשת היא אפס מסיר את המוצר מהרשימה
                 cart.TotalPrice -= item.TotalPrice;//ומעדכן את המחיר של העגלה
             }
             else if (amount > 0)
             {
-                cart.orderItems.Remove(item);//מסיר את המוצר מהרשימה
+                cart.OrderItems.Remove(item);//מסיר את המוצר מהרשימה
                 cart.TotalPrice -= item.TotalPrice;//מוריד את מחירו ממחיר העגלה
                 item.Amount = amount;//מעדכן את הכמות של המוצר
                 item.TotalPrice = item.Price * amount;//מעדכן את המחיר הסופי של המוצר
-                cart.orderItems.Add(item);//מחזיר את המוצר לעגלה
+                cart.OrderItems.Add(item);//מחזיר את המוצר לעגלה
                 cart.TotalPrice += item.TotalPrice;//מעדכן את מחיר העגלה
             }
             else
@@ -140,7 +140,7 @@ internal class Cart : ICart
         try
         {
             //בודק תקינות של הנתונים בסל
-            if (cart.orderItems?.Count == 0)//אם אין מוצרים בסל לא ניתן לאשר את ההזמנה
+            if (cart.OrderItems?.Count == 0)//אם אין מוצרים בסל לא ניתן לאשר את ההזמנה
                 throw new BO.EmptyCartException();
             if (cart.CostumerName == null)//אם לא הוכנס שם ללקוח זורק חריגה
                 throw new BO.NoCostumerNameException();
@@ -149,7 +149,7 @@ internal class Cart : ICart
             if (cart.CostumerAdress == null)//אם לא הוכנסה כתובת
                 throw new BO.NoCostumerAdressException();
 
-            cart.orderItems = (from BO.OrderItem item in cart.orderItems!//עובר על הפריטים ומחזיר רק את התקינים
+            cart.OrderItems = (from BO.OrderItem item in cart.OrderItems!//עובר על הפריטים ומחזיר רק את התקינים
                                select ValidationChecks(item))
                                .ToList();
 
@@ -169,12 +169,12 @@ internal class Cart : ICart
             int newOrderId = Dal.Order.Add(order);//מוסיף את ההזמנה לרשימת ההזמנות בשכבת הנתונים
 
             ////תבנה אובייקטים של פריט בהזמנה (ישות נתונים) על פי הנתונים מהסל ומספר ההזמה הנ"ל ותבצע ניסיונות בקשת הוספת פריט הזמנה
-            var newList =(from BO.OrderItem? item in cart.orderItems
+            var newList =(from BO.OrderItem? item in cart.OrderItems
                         let i = EnterOrderItemsToList(item, newOrderId)
                        select i).ToList();
 
             cart.TotalPrice=0;
-            cart.orderItems = new();
+            cart.OrderItems = new();
             return newOrderId;
         }
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(ex.Message); }

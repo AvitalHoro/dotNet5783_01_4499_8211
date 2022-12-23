@@ -2,6 +2,7 @@
 using BO;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +25,12 @@ namespace PL.Product;
 public partial class ProductCatalogForCostumer : Page
 {
     IBl bl;
-    public ProductCatalogForCostumer(IBl BL, string ButtonName)
+    BO.Cart cart;
+    public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart)
     {
         InitializeComponent();
         bl = BL;
+        this.cart = cart;
         switch (ButtonName)
         {
             case "Toys":
@@ -46,6 +49,7 @@ public partial class ProductCatalogForCostumer : Page
                 ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles);
                 break;
             case "All":
+            case "GoBackToCatalog":
                 ProductListview.ItemsSource = bl.Product.GetProductList();
                 break;
             default:
@@ -54,9 +58,14 @@ public partial class ProductCatalogForCostumer : Page
         }
     }
 
-    //כשלוחצים על כפתור של הוספת מוצר, נפתח חלון של הוספת מוצר
-    private void Button_Click(object sender, RoutedEventArgs e) => new AddOrUpdateProduct(bl).Show();
+    ////כשלוחצים על כפתור של הוספת מוצר, נפתח חלון של הוספת מוצר
+    //private void Button_Click(object sender, RoutedEventArgs e) => new AddOrUpdateProduct(bl).Show();
 
-    //אם מתבצעת לחיצה כפולה על מוצר מהרשימה, נפתח חלון של עידכון של אותו מוצר
-    private void GoUpdateProduct(object sender, RoutedEventArgs e) => new AddOrUpdateProduct(bl).Show();
+    ////אם מתבצעת לחיצה כפולה על מוצר מהרשימה, נפתח חלון של עידכון של אותו מוצר
+    //private void GoUpdateProduct(object sender, RoutedEventArgs e) => new AddOrUpdateProduct(bl).Show();
+
+    private void addProductToCart(object sender, RoutedEventArgs e)
+    {
+        bl.Cart.AddProduct(cart, 100001);//פה צריך להיות הid. איך מגיעים אליו??
+    }
 }

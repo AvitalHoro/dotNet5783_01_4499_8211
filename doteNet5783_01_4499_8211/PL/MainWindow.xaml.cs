@@ -33,7 +33,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         framePage.Content = new MainPagePicture();
-        cart.orderItems = new();
+        cart.OrderItems = new();
         ListCategories.Visibility = Visibility.Collapsed;
        
     }
@@ -60,12 +60,12 @@ public partial class MainWindow : Window
 
     private void showCartDetails(object sender, RoutedEventArgs e)
     {
-        framePage.Content = new Cart.Cart(bl, cart);
+        framePage.Content = new Cart.Cart(bl, cart, this);
     }
 
-    private void ListCategories_Click(object sender, RoutedEventArgs e)   
+    public void ListCategories_Click(object sender, RoutedEventArgs e)   
     {
-        framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name);
+        framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name, cart);
     }
 
     private void showHomePage(object sender, RoutedEventArgs e)
@@ -75,6 +75,7 @@ public partial class MainWindow : Window
 
     private void search(object sender, RoutedEventArgs e)
     {
-        framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text);
+        if(EnterStringToSearch.Text!=null)
+            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart);
     }
 }

@@ -29,10 +29,12 @@
                         <Image Source="{Binding Path}" Width="100"  Height="100"></Image>
                         <TextBlock Text="{Binding Name}"></TextBlock>
                         <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
-                        <Button x:Name="AddToCartButton"
+                        <Button
+                                Click="addProductToCart"
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
                                 Height="43" Width="42">
-                            <materialDesign:PackIcon Kind="Plus" 
+                                 
+                            <materialDesign:PackIcon Name="pack" Tag="{Binding ID}" Kind="Plus" 
                                          Foreground="Black"
                                          Height="15" Width="15"/>
                         </Button>

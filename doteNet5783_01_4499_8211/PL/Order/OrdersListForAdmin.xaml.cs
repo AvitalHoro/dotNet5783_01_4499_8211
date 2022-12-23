@@ -35,8 +35,11 @@ namespace PL.Order
             SelectCategory.Items.Add("הזמנות שנמסרו");
         }
 
-        private void ProductsListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
-                => new TrackingOrder(bl, (BO.OrderForList)((DataGrid)sender).SelectedItem).ShowDialog();
+        private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Backframe.Content = new TrackingOrder(bl, (BO.OrderForList)((DataGrid)sender).SelectedItem);
+        }
+                //=> new TrackingOrder(bl, (BO.OrderForList)((DataGrid)sender).SelectedItem).ShowDialog();
 
         private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

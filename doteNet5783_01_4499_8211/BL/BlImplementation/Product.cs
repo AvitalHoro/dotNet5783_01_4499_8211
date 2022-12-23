@@ -1,7 +1,9 @@
 ﻿using BLApi;
 using BO;
+using System;
 using DO;
 using System.Security.Cryptography;
+using System.Runtime.Intrinsics.Arm;
 
 namespace BlImplementation;
 
@@ -17,9 +19,10 @@ internal class Product : IProduct
         {
             BO.Filters.filterByCategory =>
             Dal!.Product.GetAll(dp => dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All)),
-
             BO.Filters.filterByName =>
-             Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true),
+             Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true),
+            //             Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
+
 
             BO.Filters.None =>
             Dal!.Product.GetAll(),
