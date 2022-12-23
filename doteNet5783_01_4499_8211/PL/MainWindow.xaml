@@ -162,10 +162,10 @@
         </StackPanel>
         <TextBox Name="EnterStringToSearch"
                 HorizontalAlignment="Left"
-                Margin="212,20,0,0" 
+                Margin="241,20,0,0" 
                 TextWrapping="Wrap"
                 VerticalAlignment="Top" 
-                Width="299" TextAlignment="Right" FontSize="16" BorderBrush="#89FFFFFF"/>
+                Width="270" TextAlignment="Right" FontSize="16" BorderBrush="#89FFFFFF"/>
         <Button x:Name="SearchButton" Click="search" BorderBrush="{x:Null}" IsCancel="True" Height="29" Width="29" Margin="169,18,602,17">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/SearchIcon.png"/>

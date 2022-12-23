@@ -2,6 +2,8 @@
 using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO.Packaging;
 using System.Linq;
 using System.Text;
@@ -26,46 +28,67 @@ public partial class ProductCatalogForCostumer : Page
 {
     IBl bl;
     BO.Cart cart;
+    public event PropertyChangedEventHandler PropertyChanged;
+    private ObservableCollection<ProductForList> listProduct;
+    public ObservableCollection<ProductForList> ListProduct
+    {
+        get { return listProduct; }
+        set
+        {
+            listProduct = value;
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("CList"));
+            }
+        }
+    }
+
     public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart)
     {
         InitializeComponent();
         bl = BL;
         this.cart = cart;
+        ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList());
+
         switch (ButtonName)
         {
             case "Toys":
-                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys);
+                ListProduct = new ObservableCollection<ProductForList>
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys));
                 break;
             case "Carts":
-                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts);
+                ListProduct = new ObservableCollection<ProductForList>
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts));
                 break;
             case "Clothes":
-                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes);
+                ListProduct = new ObservableCollection<ProductForList>
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes));
                 break;
             case "Diapers":
-                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers);
+                ListProduct = new ObservableCollection<ProductForList>
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers));
                 break;
             case "Bottles":
-                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles);
+                ListProduct = new ObservableCollection<ProductForList>
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles));
                 break;
             case "All":
             case "GoBackToCatalog":
-                ProductListview.ItemsSource = bl.Product.GetProductList();
+                ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList());
                 break;
             default:
-                ProductListview.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByName, ButtonName);
+                ListProduct = new ObservableCollection<ProductForList>
+                    (bl.Product.GetProductList(BO.Filters.filterByName, ButtonName));
                 break;
         }
+
+        DataContext = ListProduct;
     }
-
-    ////כשלוחצים על כפתור של הוספת מוצר, נפתח חלון של הוספת מוצר
-    //private void Button_Click(object sender, RoutedEventArgs e) => new AddOrUpdateProduct(bl).Show();
-
-    ////אם מתבצעת לחיצה כפולה על מוצר מהרשימה, נפתח חלון של עידכון של אותו מוצר
-    //private void GoUpdateProduct(object sender, RoutedEventArgs e) => new AddOrUpdateProduct(bl).Show();
 
     private void addProductToCart(object sender, RoutedEventArgs e)
     {
-        bl.Cart.AddProduct(cart, 100001);//פה צריך להיות הid. איך מגיעים אליו??
+        var b = (Button)sender;
+        cart= bl.Cart.AddProduct(cart, ((ProductForList)b.DataContext).ID);
     }
 }
+        

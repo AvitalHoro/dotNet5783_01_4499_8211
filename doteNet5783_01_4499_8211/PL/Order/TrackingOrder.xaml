@@ -28,9 +28,30 @@
         <Image x:Name="approved" Visibility="Hidden" HorizontalAlignment="Left" Height="97" Margin="32,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
         <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right"><Span FlowDirection="RightToLeft"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="123,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="160" Text="{Binding ID}"/>
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Margin="360,199,0,0"
+            TextWrapping="Wrap" 
+            Text="{Binding DeliveryDate}" 
+            VerticalAlignment="Top"
+            Height="21" Width="97"/>
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Margin="22,199,0,0"
+            TextWrapping="Wrap" 
+            Text="{Binding OrderDate}" 
+            VerticalAlignment="Top"
+            Height="21" Width="97"/>
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Margin="195,199,0,0"
+            TextWrapping="Wrap" 
+            Text="{Binding ShipDate}" 
+            VerticalAlignment="Top"
+            Height="21" Width="97"/>
 
-        
-        
+
+
 
     </Grid>
 </Window>

@@ -5,13 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL.Product"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:BO="clr-namespace:BO;assembly=BL"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductCatalogForCostumer">
+    <Page.DataContext>
+        <BO:ProductForList/>
+    </Page.DataContext>
 
     <Grid>
-        <ListView x:Name="ProductListview">
+        <ListView x:Name="ProductListview"
+                  ItemsSource="{Binding}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
@@ -29,8 +34,8 @@
                         <Image Source="{Binding Path}" Width="100"  Height="100"></Image>
                         <TextBlock Text="{Binding Name}"></TextBlock>
                         <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
-                        <Button
-                                Click="addProductToCart"
+                        <Button 
+                            Click="addProductToCart"
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
                                 Height="43" Width="42">
                                  
