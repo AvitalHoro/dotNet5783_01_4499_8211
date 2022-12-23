@@ -20,8 +20,6 @@ internal class Product : IProduct
 
             BO.Filters.filterByName =>
              Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true),
-            //             Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
-
 
             BO.Filters.None =>
             Dal!.Product.GetAll(),

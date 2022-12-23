@@ -48,7 +48,6 @@
     <None Remove="Order\track1.png" />
     <None Remove="Product\addP.png" />
     <None Remove="Product\crybaby.png" />
-    <None Remove="ברוך הבא מנהל.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -85,7 +84,6 @@
     <Resource Include="Order\track1.png" />
     <Resource Include="Product\addP.png" />
     <Resource Include="Product\crybaby.png" />
-    <Resource Include="ברוך הבא מנהל.png" />
   </ItemGroup>
 
 </Project>

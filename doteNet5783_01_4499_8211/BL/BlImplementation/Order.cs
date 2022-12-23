@@ -63,13 +63,14 @@ internal class Order : IOrder
 
     #region getOrderList
     //מחזירה רשימה של כל ההזמנות
-    public IEnumerable<BO.OrderForList?> getOrderList()
+    public IEnumerable<BO.OrderForList?> getOrderList(Func<BO.Order?, bool>? filter = null)
     {
         IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
         return (from DO.Order item in tmp
+                 //where filter(orderForList)
                     //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
-                let orderForList = doOrderToOrderForList(item) 
-               select orderForList)
+                let orderForList = doOrderToOrderForList(item)
+                select orderForList)
                .ToList();
     }
     #endregion

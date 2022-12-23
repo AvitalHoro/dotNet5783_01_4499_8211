@@ -9,42 +9,26 @@
       mc:Ignorable="d" 
       Title="AdminPage" Height="570" Width="800">
     <Grid>
-        <!--<Button Name="ToTheProductsList"
-                Content="לרשימת המוצרים" 
-                HorizontalAlignment="Left" 
-                Margin="595,10,0,0" 
-                VerticalAlignment="Top"
-                Height="37"
-                Width="139" Click="ToTheProductsList_Click"/>
-
-        <Button Name="ToTheOrdersList"
-                Content="לרשימת ההזמנות"
-                HorizontalAlignment="Left"
-                Margin="436,10,0,0"
-                VerticalAlignment="Top"
-                Height="37"
-                Width="139" Click="ToTheOrdersList_Click" 
-                />-->
-        <!--<Frame Name="listChange" 
-               Content="{Binding Path=ToTheOrdersList_Click, Source=ToTheOrdersList}"  
-               HorizontalAlignment="Center" 
-               Height="446"
-               VerticalAlignment="Center" 
-               Width="800"/>-->
         <TabControl>
             <TabItem Header="רשימת הזמנות">
-                <Grid Background="White">
-                    <Grid>
+                <Grid Background="White" Margin="-4,0,4,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="149*"/>
+                        <ColumnDefinition Width="645*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="100"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="117*"/>
-                            <ColumnDefinition Width="281*"/>
+                            <ColumnDefinition Width="17*"/>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="29*"/>
+                            <ColumnDefinition Width="251*"/>
                             <ColumnDefinition Width="397*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="163,0,0,0">
+                        <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="163,0,0,0">
                             <TextBlock Height="30"
                        Text="הזמנות" FontSize="30" 
                        FontFamily="Candara" 
@@ -52,8 +36,8 @@
                        />
                         </StackPanel>
 
-                        <DataGrid x:Name="OrdersListAdmin"
-                  ItemsSource="{Binding}" Grid.ColumnSpan="2"
+                  <DataGrid x:Name="OrdersListAdmin"
+                  Grid.ColumnSpan="2"
                   Cursor="Arrow" Margin="0,0,49,20"
                   CanUserAddRows="False"
                   materialDesign:DataGridAssist.CellPadding="10"
@@ -67,7 +51,7 @@
                   IsReadOnly="True"
                   SelectionUnit="FullRow"
                   SelectionMode="Single" 
-                  MouseDoubleClick="OrderssListAdmin_MouseDoubleClick" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
+                  MouseDoubleClick="OrderssListAdmin_MouseDoubleClick" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header= "מחיר כולל" Binding="{Binding Path=Path}"
                                     MinWidth="10"/>
@@ -86,10 +70,10 @@
                   materialDesign:HintAssist.Hint="(סינון)"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   HorizontalAlignment="Left" 
-                  Margin="54,22,0,0" 
+                  Margin="37,22,0,0" 
                   VerticalAlignment="Top"
                   Width="217" 
-                  SelectionChanged="SelectCategoryForOrder_SelectionChanged" Grid.ColumnSpan="2"/>
+                  SelectionChanged="SelectCategoryForOrder_SelectionChanged" Grid.ColumnSpan="3" Grid.Column="1"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -127,8 +111,7 @@
                             </Grid>
                         </Button>
 
-                        <DataGrid x:Name="ProductsListAdmin"
-                  ItemsSource="{Binding}"
+                  <DataGrid x:Name="ProductsListAdmin"
                   Grid.Row="1" Grid.ColumnSpan="2"
                   Cursor="Arrow" Margin="0,0,51,20"
                   CanUserAddRows="False"
@@ -147,8 +130,6 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="האם נמחק" Binding="{Binding Path= IsDeleted}"
                                     MinWidth="10"/>
-                                <DataGridTextColumn Header="כמה במלאי" Binding="{Binding Path=InStock}"
-                                    MinWidth="10"/>
                                 <DataGridTextColumn Header="מחיר"  Binding="{Binding Path=Price}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header="קטגוריה" Binding="{Binding Path=Category}"
@@ -160,7 +141,7 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <ComboBox Name="SelectCategory"
+                  <ComboBox Name="SelectCategory"
                   materialDesign:HintAssist.Hint="(סינון לפי קטגוריות)"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   HorizontalAlignment="Left" 

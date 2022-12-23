@@ -46,7 +46,27 @@ public partial class AdminPage : Page
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        //אנחנו רוצות לסנן את המוצרים ברשימה לפי מה שהמנהל בחר
+        switch(SelectCategoryForOrder.SelectedItem)
+        {
+            case "הכל":
+                ProductsListAdmin.ItemsSource = bl.Product.GetProductList();
+                break;
+            case "עגלות וטיולונים":
+                ProductsListAdmin.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts);
+                break;
+            case "צעצועים ומשחקים":
+                ProductsListAdmin.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys);
+                break;
+            case "ביגוד והנעלה":
+                ProductsListAdmin.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes);
+                break;
+            case "היגיינה והחתלה":
+                ProductsListAdmin.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers);
+                break;
+            case "בקבוקים ומוצצים":
+                ProductsListAdmin.ItemsSource = bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles);
+                break;
+        }
     }
 
     private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -59,7 +79,21 @@ public partial class AdminPage : Page
 
     private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-    //אנחנו רוצות לסנן את המוצרים ברשימה לפי מה שהמנהל בחר
+        switch(SelectCategoryForOrder.SelectedItem)
+        {
+            case "הכל":
+                OrdersListAdmin.ItemsSource = bl.Order.getOrderList();
+                break;
+            case "הזמנות שאושרו":
+                OrdersListAdmin.ItemsSource = bl.Order.getOrderList(order => order?.ShipDate == null && order?.DeliveryDate == null);
+                break;
+            case "הזמנות שנשלחו":
+                OrdersListAdmin.ItemsSource = bl.Order.getOrderList(order => order?.ShipDate != null && order?.DeliveryDate == null);
+                break;
+            case "הזמנות שנמסרו":
+                OrdersListAdmin.ItemsSource = bl.Order.getOrderList(order => order?.ShipDate != null && order?.DeliveryDate != null);
+                break;
+        }
     }
 
     private void OrderssListAdmin_MouseDoubleClick(Object sender, MouseEventArgs e)

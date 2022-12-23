@@ -16,6 +16,7 @@ using BlApi;
 using BLApi;
 using BO;
 using MaterialDesignThemes.Wpf;
+using PL.Admin;
 using PL.Cart;
 using PL.Product;
 
@@ -39,7 +40,7 @@ public partial class MainWindow : Window
 
     private void SelectAdmin_Click(object sender, RoutedEventArgs e)
     {
-        framePage.Content = new AdminPage(bl);
+        framePage.Content = new PasswordForAdmin(bl, framePage);
     }
 
     private void OpenCategories_Click(object sender, RoutedEventArgs e)
