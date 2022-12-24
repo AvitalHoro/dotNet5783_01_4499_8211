@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,14 @@ using System.Windows.Input;
 namespace PL;
 public static class Tools
 {
+    public static ObservableCollection<T> IEnumerableToObservable<T>(ObservableCollection<T> ListToCreate ,IEnumerable<T> ExsitingList) 
+    {
+        ListToCreate.Clear();
+        foreach (var item in ExsitingList)
+            ListToCreate.Add(item);
+        return ListToCreate;
+    }
+
     public static void EnterNumbersOnly(object sender, KeyEventArgs e)
     {
         TextBox text = sender as TextBox;

@@ -1,6 +1,8 @@
 ﻿using BLApi;
+using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,15 +25,18 @@ public partial class Cart : Page
 {
     IBl bl;
     private BO.Cart myCart;
+    ObservableCollection<OrderItem> orderItemList = new();
+
     MainWindow mainWindow;
     public Cart(IBl BL, BO.Cart cart, MainWindow _mainWindow)
     {
-        mainWindow = _mainWindow;
         InitializeComponent();
+        mainWindow = _mainWindow;
         bl = BL;    
         myCart= cart;
         AmountInCart.Text = myCart.OrderItems.Count.ToString();
-        OrderItemView.DataContext = myCart.OrderItems;
+        orderItemList = Tools.IEnumerableToObservable(orderItemList, cart.OrderItems);
+        OrderItemView.DataContext = orderItemList;
         CartGrid.DataContext = myCart;
         if (myCart.OrderItems!.Count == 0)
         {
@@ -54,9 +59,5 @@ public partial class Cart : Page
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)
     {
         mainWindow.ListCategories_Click(sender, e);
-    }
-    private void UpdateAmount(object sender, RoutedEventArgs e)
-    {
-
     }
 }

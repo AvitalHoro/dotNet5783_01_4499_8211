@@ -22,13 +22,14 @@ namespace PL.Order
     public partial class TrackingOrder : Window
     {
         IBl bl;
-        BO.OrderForList order;
+        BO.Order order = new();
 
-        public TrackingOrder(IBl BL, BO.OrderForList order)
+        public TrackingOrder(IBl BL, BO.OrderForList selectedOrder)
         {
             InitializeComponent();
-            this.order = order;
             bl = BL;
+            order = bl.Order.getDetailsOrder(selectedOrder.ID);
+            DataContext = order;
             if (bl.Order.Tracking(order.ID).State == BO.Status.approved)
                 approved.Visibility = Visibility.Visible;
             if (bl.Order.Tracking(order.ID).State == BO.Status.sent)

@@ -73,9 +73,17 @@ public partial class MainWindow : Window
         framePage.Content = new MainPagePicture();
     }
 
-    private void search(object sender, RoutedEventArgs e)
+    private void search(object sender, RoutedEventArgs e) => search();
+
+    private void search()
     {
-        if(EnterStringToSearch.Text!=null)
+        if (EnterStringToSearch.Text != null)
             framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart);
+    }
+
+    private void EnterPressed_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter) 
+            search();
     }
 }

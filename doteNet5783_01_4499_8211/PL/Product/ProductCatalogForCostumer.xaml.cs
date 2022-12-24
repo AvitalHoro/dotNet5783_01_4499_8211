@@ -81,7 +81,6 @@ public partial class ProductCatalogForCostumer : Page
                     (bl.Product.GetProductList(BO.Filters.filterByName, ButtonName));
                 break;
         }
-
         DataContext = ListProduct;
     }
 

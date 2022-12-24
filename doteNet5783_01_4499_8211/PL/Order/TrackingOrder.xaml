@@ -5,20 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Order"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PL.Order.TrackingOrder"
-        mc:Ignorable="d"
+        xmlns:BO="clr-namespace:BO;assembly=BL"
+    mc:Ignorable="d"
         Title="TrackingOrder" Height="570" Width="800">
+    <Window.DataContext>
+        <BO:Order/>
+    </Window.DataContext>
+
+
     <Grid x:Name="grid1">
         <Grid.RowDefinitions>
             <RowDefinition Height="239*"/>
             <RowDefinition Height="315*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Content=":כתובת מגורים" FontSize="16" HorizontalAlignment="Left" Margin="674,165,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="costumerAdressTextBox" FontSize="16" HorizontalAlignment="Left" Height="NaN" Margin="549,173,0,0" Text="{Binding CostumerAdress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.Column="0" Content=":כתובת אימייל" FontSize="16" HorizontalAlignment="Left" Margin="677,122,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="costumerEmailTextBox"  HorizontalAlignment="Left" FontSize="16" Height="NaN" Margin="549,135,0,0" Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
-        <Label Content=":שם" HorizontalAlignment="Left" FontSize="16" Margin="747,86,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="costumerNameTextBox"  HorizontalAlignment="Left" FontSize="16" Height="NaN" Margin="549,94,0,0" Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Width="120"/>
+        <Label Grid.Column="0" 
+               Content=":כתובת מגורים" 
+               FontSize="16" 
+               HorizontalAlignment="Left" 
+               Margin="674,165,0,0" 
+               VerticalAlignment="Top"/>
+        <TextBlock x:Name="costumerAdressTextBox" 
+                   FontSize="16"
+                   HorizontalAlignment="Left"
+                   Height="NaN" 
+                   Margin="497,169,0,0" 
+                   Text="{Binding CostumerAdress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                   VerticalAlignment="Top" 
+                   Width="172"/>
+
+        <Label Grid.Column="0"
+               Content=":כתובת אימייל" 
+               FontSize="16" 
+               HorizontalAlignment="Left" 
+               Margin="677,122,0,0" 
+               VerticalAlignment="Top"/>
+        <TextBlock x:Name="costumerEmailTextBox" 
+                   HorizontalAlignment="Left"
+                   FontSize="16"
+                   Height="NaN" 
+                   Margin="497,127,0,0" 
+                   Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                   VerticalAlignment="Top" Width="172"/>
+        <Label Content=":שם" 
+               HorizontalAlignment="Left"
+               FontSize="16"
+               Margin="747,86,0,0" 
+               VerticalAlignment="Top"/>
+        <TextBlock x:Name="costumerNameTextBox"  
+                   HorizontalAlignment="Left"
+                   FontSize="16" 
+                   Height="NaN" 
+                   Margin="497,94,0,0"
+                   Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                   VerticalAlignment="Top" 
+                   Width="172"/>
 
 
         <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="644,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח:"/></TextBlock>
@@ -30,28 +71,24 @@
         <TextBlock HorizontalAlignment="Left" Margin="123,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="160" Text="{Binding ID}"/>
         <TextBlock 
             HorizontalAlignment="Left"
-            Margin="360,199,0,0"
+            Margin="375,199,0,0"
             TextWrapping="Wrap" 
-            Text="{Binding DeliveryDate}" 
+            Text="{Binding Path= DeliveryDate}" 
             VerticalAlignment="Top"
             Height="21" Width="97"/>
         <TextBlock 
             HorizontalAlignment="Left"
-            Margin="22,199,0,0"
+            Margin="45,197,0,0"
             TextWrapping="Wrap" 
             Text="{Binding OrderDate}" 
             VerticalAlignment="Top"
             Height="21" Width="97"/>
         <TextBlock 
             HorizontalAlignment="Left"
-            Margin="195,199,0,0"
+            Margin="212,199,0,0"
             TextWrapping="Wrap" 
             Text="{Binding ShipDate}" 
             VerticalAlignment="Top"
             Height="21" Width="97"/>
-
-
-
-
     </Grid>
 </Window>
