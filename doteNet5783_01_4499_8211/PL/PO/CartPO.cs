@@ -2,11 +2,12 @@
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace PO;
 
-class CartPO : INotifyPropertyChanged
+public class CartPO : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -73,8 +74,8 @@ class CartPO : INotifyPropertyChanged
         }
     }
 
-    private List<OrderItem?>? orderItems;
-    public List<OrderItem?>? OrderItems
+    private ObservableCollection<OrderItem?>? orderItems;
+    public ObservableCollection<OrderItem?>? OrderItems
     {
         get
         { return orderItems; }

@@ -28,6 +28,7 @@ internal class Cart : ICart
                     TotalPrice = 0,
                     Amount = 0,
                     IsDeleted = false,
+                    Path= product.Path,
                 };
             if (item.Amount >= product.InStock) // not enough in stock
                 throw new BO.OutOfStockException(idProduct);

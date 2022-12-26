@@ -5,113 +5,127 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL.Cart"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:converter="clr-namespace:Converters"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d" 
       d:DesignHeight="570" d:DesignWidth="800"
       Title="Cart">
+    <Page.Resources>
+        <!--<converter:IntToVisibiltyConverter x:Key="IntToVisibiltyConverter"/>-->
+    </Page.Resources>
 
     <Grid x:Name="CartGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="375"></ColumnDefinition>
+            <ColumnDefinition Width="425"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ListView x:Name="OrderItemView" 
                   ItemsSource="{Binding}"
                   Margin="0,10,0,-10" 
                   Grid.Column="1" >
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
-                              RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
-                              ItemWidth="{Binding (ListView.View).ItemWidth, 
-                              RelativeSource={RelativeSource AncestorType=ListView}}"
-                              MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
-                              ItemHeight="{Binding (ListView.View).ItemHeight, 
-                              RelativeSource={RelativeSource AncestorType=ListView}}" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Path}" Width="100"  Height="100"></Image>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                        <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
+                    <Grid Width="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Path}" 
+                               Height="100" Grid.Column="2"></Image>
+                        <StackPanel Grid.Column="1" >
+                            <TextBlock Text="{Binding NameProduct}"></TextBlock>
+                            <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
+                        </StackPanel>
                         <Button x:Name="AddToCartButton"
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
-                                Height="43" Width="42">
-                            <materialDesign:PackIcon Kind="TrashCanEmpty" 
+                                Height="43" Width="42"
+                                Grid.Column="0">
+                            <materialDesign:PackIcon Kind="Trash" 
                                          Foreground="Black"
                                          Height="15" Width="15"/>
                         </Button>
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock Name="PaymentLabel"
+        <Grid x:Name="LeftGrid">
+            <TextBlock Name="PaymentLabel"
             HorizontalAlignment="Left" 
-            Margin="84,147,0,0" 
+            Margin="58,141,0,0" 
             TextWrapping="Wrap" 
             Text="סך הכל לתשלום" 
             VerticalAlignment="Top"
-            
             Height="37" Width="162"
-            FontSize="22" FontWeight="Bold"/>
-        <TextBlock Name="TotalPriceShow"
-            HorizontalAlignment="Left" 
-            Margin="219,143,0,0" 
-            TextWrapping="Wrap" 
-            Text="{Binding TotalPrice}" 
-            VerticalAlignment="Top" 
-            Width="120" RenderTransformOrigin="0.933,0.352" Height="37" FontSize="22" TextAlignment="Right"/>
-        <Button x:Name="ApproveOrder"
+            FontSize="22" 
+            FontWeight="Bold"/>
+
+            <TextBlock Name="TotalPriceShow"
+                   HorizontalAlignment="Left" 
+                   Margin="220,141,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="{Binding Path= TotalPrice}" 
+                   VerticalAlignment="Top" 
+                   Width="120" 
+                   RenderTransformOrigin="0.933,0.352"
+                   Height="37" 
+                   FontSize="22" 
+                   TextAlignment="Right"/>
+
+            <Button x:Name="ApproveOrder"
                 Content="למעבר לקופה"
                 HorizontalAlignment="Left"
-                Margin="223,310,0,0" 
-                VerticalAlignment="Top" 
+                Margin="20,311,0,0" 
+                VerticalAlignment="Top"
                 RenderTransformOrigin="0.473,-0.704" 
                 Width="155" Height="54"
                 FontSize="20"/>
-        <Button Name="GoBackToCatalog"
+
+            <Button Name="GoBackToCatalog"
                 Content="להמשך קניה"
                 HorizontalAlignment="Left"
-                Margin="41,310,0,0" 
+                Margin="192,311,0,0" 
                 VerticalAlignment="Top"
-                Width="154" Height="54"
+                Width="148" Height="54"
                 FontSize="20" 
-                Click="GoBackToCatalog_Click"/>
-        <TextBlock Name="OrderSummery"
+                Click="GoBackToCatalog_Click" RenderTransformOrigin="0.47,1.731"/>
+
+            <TextBlock Name="OrderSummery"
                    HorizontalAlignment="Left"
-                   Margin="206,70,0,0" 
+                   Margin="208,41,0,0" 
                    TextWrapping="Wrap"
                    Text=":סיכום הזמנה" 
                    VerticalAlignment="Top"
                    FontSize="22" FontWeight="Bold"/>
-        <TextBlock Name="LabelAmount"
+
+            <TextBlock Name="LabelAmount"
             HorizontalAlignment="Left" 
-            Margin="84,109,0,0" 
+            Margin="76,96,0,0" 
             TextWrapping="Wrap" 
             Text="מוצרים בעגלה" 
             FontSize="22"
             VerticalAlignment="Top"
             Width="198"/>
-        <TextBlock  Name="AmountInCart"
+
+            <TextBlock  Name="AmountInCart"
             HorizontalAlignment="Left" 
-            Margin="272,109,0,0" 
+            Margin="241,96,0,0" 
             TextWrapping="Wrap" 
-             
+            Text="{Binding Path= OrderItems.Count}"
             VerticalAlignment="Top" 
             FontSize="22"
             Width="66" TextAlignment="Right"/>
+        </Grid>
+
         <Image Name="CryBaby"
-               Visibility="Hidden"
             HorizontalAlignment="Left" 
             Height="376" 
-            Margin="192,34,0,0" 
+            Margin="188,50,0,0" 
             VerticalAlignment="Top" 
             Width="386" Source="/Cart/sadBaby.png" Grid.ColumnSpan="2"/>
+
         <Button Name="All"
-                Visibility="Hidden"
                 HorizontalAlignment="Left"
                 Margin="215,410,0,0" Click="GoBackToCatalog_Click"
                 VerticalAlignment="Top"
@@ -121,5 +135,6 @@
                 <ImageBrush ImageSource="/Cart/start.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
+
     </Grid>
 </Page>

@@ -11,5 +11,6 @@ public class OrderItem
     public double TotalPrice { set; get; }
     public int Amount { set; get; }
     public bool IsDeleted { set; get; }
+    public string? Path { set; get; }
     public override string ToString() { return this.ToStringProperty(); }
 }
