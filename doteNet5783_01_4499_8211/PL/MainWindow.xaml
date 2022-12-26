@@ -130,7 +130,7 @@
                     <ImageBrush ImageSource="/Images/iconCart.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="OpenTrackingOrder" BorderBrush="{x:Null}" Height="44" Width="55">
+            <Button x:Name="OpenTrackingOrder" BorderBrush="{x:Null}" Height="44" Width="55" Click="OpenTrackingOrder_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/iconOrder.png" Stretch="Uniform"/>
                 </Button.Background>
@@ -162,15 +162,21 @@
         </StackPanel>
         <TextBox Name="EnterStringToSearch"
                 HorizontalAlignment="Left"
-                Margin="241,20,0,0" 
+                Margin="203,0,0,0" 
                 TextWrapping="Wrap"
-                VerticalAlignment="Top" 
-                Width="270" 
+                VerticalAlignment="Center" 
+                Width="314" 
                  TextAlignment="Right"
                  FontSize="16"
                  BorderBrush="#89FFFFFF"
                   KeyDown="EnterPressed_KeyDown"/>
-        <Button x:Name="SearchButton" Click="search" BorderBrush="{x:Null}" IsCancel="True" Height="29" Width="29" Margin="169,18,602,17">
+        <Button x:Name="SearchButton" 
+                Click="search" 
+                BorderBrush="{x:Null}" 
+                IsCancel="True"
+                Height="29" 
+                Width="29" 
+                Margin="162,18,609,17">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/SearchIcon.png"/>
             </Button.Background>

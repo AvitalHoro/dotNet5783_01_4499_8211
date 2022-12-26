@@ -28,8 +28,9 @@ public partial class AdminPage : Page
     IBl bl;
     ObservableCollection<ProductForList> listProducts = new();
     ObservableCollection<OrderForList> listOrders = new();
+    Frame frame;
 
-    public AdminPage(IBl BL)
+    public AdminPage(IBl BL, Frame frame)
     {
         InitializeComponent();
         bl = BL;
@@ -47,6 +48,7 @@ public partial class AdminPage : Page
         SelectCategoryForOrder.Items.Add("הזמנות שאושרו");
         SelectCategoryForOrder.Items.Add("הזמנות שנשלחו");
         SelectCategoryForOrder.Items.Add("הזמנות שנמסרו");
+        this.frame = frame; 
     }
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -115,7 +117,8 @@ public partial class AdminPage : Page
 
     private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
     {
-        new TrackingOrder(bl, (BO.OrderForList)((DataGrid)sender).SelectedItem).ShowDialog();
+        BO.OrderForList order= (BO.OrderForList)((DataGrid)sender).SelectedItem;
+        frame.Content = new PL.Order.OrderTracking(bl, bl.Order.getDetailsOrder(order.ID), frame);
         Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
     }
 }

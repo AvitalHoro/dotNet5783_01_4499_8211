@@ -14,23 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL.Admin;
+namespace PL.Order;
+
 /// <summary>
-/// Interaction logic for PasswordForAdmin.xaml
+/// Interaction logic for EnterIdOfOrder.xaml
 /// </summary>
-public partial class PasswordForAdmin : Page
-{ 
+public partial class EnterIdOfOrder : Page
+{
     IBl bl;
     Frame frame;
 
-    public PasswordForAdmin(IBl BL, Frame frameHome)
+    public EnterIdOfOrder(IBl BL, Frame frameHome)
     {
         InitializeComponent();
-        bl=BL;
+        bl = BL;
         frame = frameHome;
     }
-
-    private void ManagerlogInWithPassword_Click(object sender, RoutedEventArgs e)
+    private void Aprrove_Click(object sender, RoutedEventArgs e)
     {
         EnterPassword();
     }
@@ -42,11 +42,11 @@ public partial class PasswordForAdmin : Page
 
     private void EnterPassword()
     {
-        if (PasswordBox.Password == "1234")
+        int idOrder = int.Parse(OrderIdBox.Text);
+        if (OrderIdBox.Text != "")
         {
-            PasswordBox.Password = "";
-            frame.Content = new AdminPage(bl, frame);
+            BO.Order orderBo = bl.Order.getDetailsOrder(idOrder);
+            frame.Content = new PL.Order.OrderTracking(bl , orderBo, frame);
         }
     }
 }
-

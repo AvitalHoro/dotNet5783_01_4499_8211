@@ -18,6 +18,7 @@ using BO;
 using MaterialDesignThemes.Wpf;
 using PL.Admin;
 using PL.Cart;
+using PL.Order;
 using PL.Product;
 
 namespace PL;
@@ -35,7 +36,6 @@ public partial class MainWindow : Window
         framePage.Content = new MainPagePicture();
         cart.OrderItems = new();
         ListCategories.Visibility = Visibility.Collapsed;
-       
     }
 
     private void SelectAdmin_Click(object sender, RoutedEventArgs e)
@@ -85,5 +85,10 @@ public partial class MainWindow : Window
     {
         if (e.Key == Key.Enter) 
             search();
+    }
+
+    private void OpenTrackingOrder_Click(object sender, RoutedEventArgs e)
+    {
+        framePage.Content = new EnterIdOfOrder(bl, framePage);
     }
 }

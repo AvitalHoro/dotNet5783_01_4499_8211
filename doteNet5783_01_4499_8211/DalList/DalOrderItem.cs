@@ -90,7 +90,8 @@ public class DalOrderItem : IOrderItem
     /// <exception cref="DoesNotExistException"></exception>
     public OrderItem getItem(int IdOrder, int IdProduct)
     {
-        return ds.ListOrderItem.FirstOrDefault(item => (item?.OrderID == IdOrder) && (item?.ProductID == IdProduct))
+        return ds.ListOrderItem.FirstOrDefault(item => (item?.OrderID == IdOrder) && 
+                                               (item?.ProductID == IdProduct))
             ?? throw new DoesNotExistException(IdOrder);
     }
     #endregion

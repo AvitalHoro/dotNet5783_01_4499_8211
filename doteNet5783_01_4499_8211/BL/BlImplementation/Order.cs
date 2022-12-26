@@ -18,7 +18,12 @@ internal class Order : IOrder
     {
         BO.OrderItem boOrder = new BO.OrderItem();
         BO.Tools.CopyPropTo(doOrder, boOrder);
-        try { boOrder.NameProduct = (Dal.Product.GetById(boOrder.ProductID)).Name; }
+        try 
+        { 
+            DO.Product product =(Dal.Product.GetById(boOrder.ProductID));
+            boOrder.NameProduct = product.Name;
+            boOrder.Path= product.Path; 
+        }
         catch (BO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
         boOrder.TotalPrice = doOrder.Price * doOrder.Amount;
         return boOrder;
