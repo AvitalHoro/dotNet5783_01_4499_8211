@@ -36,7 +36,7 @@ internal class Order : IOrder
     {
         double total = 0;
         BO.Tools.CopyPropTo(orderDo, orderBo);
-        IEnumerable<DO.OrderItem?> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
+        IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         var newList = (from DO.OrderItem item in list
                        let orderItem = updateItemListForOrder(item)
                        select orderItem)
@@ -53,8 +53,8 @@ internal class Order : IOrder
         BO.OrderForList boOrder = new BO.OrderForList();
         BO.Tools.CopyPropTo(doOrder, boOrder);
         var OrderItems = Dal.OrderItem.GetAll(item=> doOrder.ID == item?.OrderID ); //מביא משכבת הנתונים את כל הפריטים של ההזמנה
-        boOrder.ItemsAmount = OrderItems.Sum(item => item?.Amount)??0; //מעדכן את כמות המוצרים בהזמנה
-        boOrder.TotalPrice = OrderItems.Sum(item => item?.Price * item?.Amount)??0; //מעדכן את המחיר הכולל של הזמנה
+        boOrder.ItemsAmount = OrderItems.Sum(item => item.Amount); //מעדכן את כמות המוצרים בהזמנה
+        boOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount); //מעדכן את המחיר הכולל של הזמנה
         //מעדכן את סטטוס ההזמנה
         if (doOrder.DeliveryDate != null)
             boOrder.State = BO.Status.delivered;
@@ -70,7 +70,7 @@ internal class Order : IOrder
     //מחזירה רשימה של כל ההזמנות
     public IEnumerable<BO.OrderForList?> getOrderList(Func<BO.Order?, bool>? filter = null)
     {
-        IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
+        IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
         return (from DO.Order item in tmp
                  //where filter(orderForList)
                     //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה

@@ -83,24 +83,7 @@ public partial class AdminPage : Page
 
     private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        switch (SelectCategoryForOrder.SelectedItem)
-        {
-            case "הכל":
-                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
-                break;
-            case "הזמנות שאושרו":
-                Tools.IEnumerableToObservable(listOrders,
-                    bl.Order.getOrderList(order => order?.ShipDate == null && order?.DeliveryDate == null));
-                break;
-            case "הזמנות שנשלחו":
-                Tools.IEnumerableToObservable(listOrders,
-                    bl.Order.getOrderList(order => order?.ShipDate != null && order?.DeliveryDate == null));
-                break;
-            case "הזמנות שנמסרו":
-                Tools.IEnumerableToObservable(listOrders,
-                    bl.Order.getOrderList(order => order?.ShipDate != null && order?.DeliveryDate != null));
-                break;
-        }
+       
     }
 
     private void AddProduct_Click(object sender, RoutedEventArgs e)

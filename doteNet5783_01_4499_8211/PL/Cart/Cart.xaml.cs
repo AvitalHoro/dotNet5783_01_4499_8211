@@ -50,7 +50,6 @@ public partial class Cart : Page
             CryBaby.Visibility = Visibility.Hidden;
             All.Visibility = Visibility.Hidden;
         }
-
     }
 
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)

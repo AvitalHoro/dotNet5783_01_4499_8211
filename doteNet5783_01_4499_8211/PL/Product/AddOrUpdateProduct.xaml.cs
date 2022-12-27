@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PL.Product
 {
@@ -41,7 +42,6 @@ namespace PL.Product
         {
             InitializeComponent();
             bl = BL;
-
             UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             UpdateOrAdd.Content = "הוסף";
             //אם הגענו לבנאי הריק, סימן שבאנו לחלון של הוספה
@@ -49,9 +49,15 @@ namespace PL.Product
             //נותנים אפשרות להכניס את המזהה של המוצר
             //UpdateOrAdd.IsEnabled = false;
         }
-
-        
-
+        private void changeImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog f = new Microsoft.Win32.OpenFileDialog();
+            f.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            if (f.ShowDialog() == true)
+            {
+                ProductImage.Source = new BitmapImage(new Uri(f.FileName));
+            }
+        }
         private void UpdateOrAdd_Click(object sender, RoutedEventArgs e)
         {
             //אם לא סיימו להכניס ערכים לכל השדות נפתחת תיבת מסר עם אזהרה

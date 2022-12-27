@@ -80,11 +80,13 @@ public class DalProduct: IProduct
     #endregion
 
     #region GetAll
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
+    public IEnumerable<Product> GetAll(Func<Product?, bool>? filter = null)
     {
         if (filter == null)
-            return ds.ListProduct;
-        return (from Product? product in ds.ListProduct 
+            return(from Product product in ds.ListProduct
+                    select product)
+                   .ToList();
+        return (from Product product in ds.ListProduct 
                 where filter!(product)
                 select product)
                 .ToList();

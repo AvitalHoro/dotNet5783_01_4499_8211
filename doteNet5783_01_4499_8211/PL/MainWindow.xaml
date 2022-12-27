@@ -8,6 +8,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="519*"/>
+            <ColumnDefinition Width="281*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="64"/>
             <RowDefinition Height="3*"/>
@@ -15,17 +19,17 @@
         </Grid.RowDefinitions>
 
         <Frame x:Name="framePage"
-               HorizontalAlignment="Center"
+               HorizontalAlignment="Left"
                Width="800"
                Height="570"
                NavigationUIVisibility="Hidden" 
-               Grid.RowSpan="3"
-               Margin="0,46,0,-42"/>
+               Grid.RowSpan="2"
+               Margin="0,12,0,-12" Grid.ColumnSpan="2" Grid.Row="1"/>
 
         <ListView Name="ListCategories"
-                  HorizontalAlignment="Center"
+                  HorizontalAlignment="Left"
                   MouseMove="showCategory"
-                    MouseLeave="hideCategory" Margin="0,0,0,102" Grid.Row="1">
+                  MouseLeave="hideCategory" Margin="17,0,0,102" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Vertical" Margin="5" MaxHeight="150"/>
@@ -117,7 +121,7 @@
             </ListViewItem>
         </ListView>
 
-        <StackPanel Margin="0,0,-1,0" Orientation="Horizontal" Background="#FFEA4851">
+        <StackPanel Margin="0,0,-1,0" Orientation="Horizontal" Background="#FFEA4851" Grid.ColumnSpan="2">
 
             <Button x:Name="SelectAdmin"  BorderBrush="{x:Null}"  Click="SelectAdmin_Click" Height="42" Width="52" >
                 <Button.Background>
@@ -138,7 +142,7 @@
             <Image Source="/Images/SearchBox.png" Stretch="Fill" Height="54" Width="387"/>
             <Button x:Name="categories"
                 MouseEnter="showCategory"
-                    MouseLeave="hideCategory"
+                MouseLeave="hideCategory"
                 BorderBrush="{x:Null}"
                 RenderTransformOrigin="0.5,0.5" 
                 Click="OpenCategories_Click" IsEnabled="{Binding Content, ElementName=framePage, UpdateSourceTrigger=PropertyChanged}" Height="74" Width="126">
@@ -176,7 +180,7 @@
                 IsCancel="True"
                 Height="29" 
                 Width="29" 
-                Margin="162,18,609,17">
+                Margin="162,18,328,17">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/SearchIcon.png"/>
             </Button.Background>

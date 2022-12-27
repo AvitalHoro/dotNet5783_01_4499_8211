@@ -78,11 +78,13 @@ public class DalOrder : IOrder
     #endregion
 
     #region GetAll
-    public IEnumerable<Order?> GetAll(Func<Order?, bool>? filter = null)
+    public IEnumerable<Order> GetAll(Func<Order?, bool>? filter = null)
     {
         if (filter == null)
-            return ds.ListOrder;
-        return (from Order? order in ds.ListOrder 
+            return (from Order order in ds.ListOrder
+                    select order)
+                   .ToList();
+        return (from Order order in ds.ListOrder 
                 where filter(order)
                 select order)
                 .ToList();
