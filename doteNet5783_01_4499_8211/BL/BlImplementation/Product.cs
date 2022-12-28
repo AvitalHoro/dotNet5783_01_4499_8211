@@ -12,7 +12,7 @@ internal class Product : IProduct
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     #region GetProductList
-    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue = null)
+    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue = null, bool isInStock= false)
     {
         IEnumerable<DO.Product> doProductList =
         enumFilter switch
