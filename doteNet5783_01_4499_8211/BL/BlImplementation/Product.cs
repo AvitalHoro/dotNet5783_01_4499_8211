@@ -19,10 +19,12 @@ internal class Product : IProduct
         {
             BO.Filters.filterByCategory =>
             Dal!.Product.GetAll(dp => dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All)),
-            BO.Filters.filterByName =>
-             Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true),
-            //             Dal!.Product.GetAll(dp => dp?.Name == (string?)(filterValue)),
 
+            BO.Filters.filterByName =>
+            Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true),
+
+            BO.Filters.deleted=>
+            Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
 
             BO.Filters.None =>
             Dal!.Product.GetAll(),

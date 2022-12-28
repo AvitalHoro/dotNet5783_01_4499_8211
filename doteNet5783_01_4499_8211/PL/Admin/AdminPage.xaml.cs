@@ -83,7 +83,14 @@ public partial class AdminPage : Page
 
     private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-       
+        IEnumerable<IGrouping<BO.Status, OrderForList>> groupsList=
+        (from BO.OrderForList order in bl.Order.getOrderList()
+        group order by order.State into orderInfo
+        select orderInfo)
+        .ToList();
+
+        groupsList = groupsList.OrderBy(g => g.Key);
+
     }
 
     private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -103,5 +110,18 @@ public partial class AdminPage : Page
         BO.OrderForList order= (BO.OrderForList)((DataGrid)sender).SelectedItem;
         frame.Content = new PL.Order.OrderTracking(bl, bl.Order.getDetailsOrder(order.ID), frame);
         Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+    }
+
+    private void DeleteProduct_Click(object sender, RoutedEventArgs e)
+    {
+        var b = (Button)sender;
+        bl.Product.RemoveProduct(((ProductForList)b.DataContext).ID);
+        Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        Tools.IEnumerableToObservable(listProducts,
+                   bl.Product.GetProductList(BO.Filters.deleted));
     }
 }

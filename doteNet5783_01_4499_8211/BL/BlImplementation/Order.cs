@@ -68,11 +68,10 @@ internal class Order : IOrder
 
     #region getOrderList
     //מחזירה רשימה של כל ההזמנות
-    public IEnumerable<BO.OrderForList?> getOrderList(Func<BO.Order?, bool>? filter = null)
+    public IEnumerable<BO.OrderForList?> getOrderList()
     {
         IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
         return (from DO.Order item in tmp
-                 //where filter(orderForList)
                     //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
                 let orderForList = doOrderToOrderForList(item)
                 select orderForList)

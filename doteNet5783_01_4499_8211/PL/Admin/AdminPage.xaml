@@ -37,7 +37,7 @@
                        />
                         </StackPanel>
 
-                  <DataGrid x:Name="OrdersListAdmin"
+                        <DataGrid x:Name="OrdersListAdmin"
                   Grid.ColumnSpan="2"
                   ItemsSource="{Binding}"
                   Cursor="Arrow" Margin="0,0,49,20"
@@ -94,16 +94,15 @@
                             <TextBlock Height="30"
                        Text="מוצרים בחנות" FontSize="30" 
                        FontFamily="Candara" 
-                       FontWeight="Bold" Foreground="Black" Width="213"
-                       />
+                       FontWeight="Bold" Foreground="Black" Width="213"/>
                         </StackPanel>
 
                         <Button Name="AddProduct"
-            Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
-                BorderBrush="#007E8C7F" Width="56" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Margin="39,0,0,0" Click="AddProduct_Click">
+                                Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
+                                BorderBrush="#007E8C7F" Width="56" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Center" 
+                                Margin="39,0,0,0" Click="AddProduct_Click">
                             <Button.Background>
                                 <SolidColorBrush Color="#FFB1BFAD" />
                             </Button.Background>
@@ -113,7 +112,7 @@
                             </Grid>
                         </Button>
 
-                  <DataGrid x:Name="ProductsListAdmin"
+                        <DataGrid x:Name="ProductsListAdmin"
                   Grid.Row="1" Grid.ColumnSpan="2"
                   Cursor="Arrow" 
                   Margin="0,0,51,20"
@@ -137,8 +136,9 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                    Height="30" Width="30"
-                                    HorizontalAlignment="Center">
+                                                    Height="30" Width="30"
+                                                    HorizontalAlignment="Center"
+                                                    Click="DeleteProduct_Click">
                                                 <materialDesign:PackIcon Kind="Trash"/>
                                             </Button>
                                         </DataTemplate>
@@ -157,14 +157,19 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                  <ComboBox Name="SelectCategory"
+                        <ComboBox Name="SelectCategory"
                   materialDesign:HintAssist.Hint="(סינון לפי קטגוריות)"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   HorizontalAlignment="Left" 
-                  Margin="145,34,0,0" 
-                  VerticalAlignment="Top"
-                  Width="217" 
-                  SelectionChanged="SelectCategory_SelectionChanged"/>
+                  Margin="259,0,0,0" 
+                  VerticalAlignment="Center"
+                  Width="202" 
+                  SelectionChanged="SelectCategory_SelectionChanged" Grid.ColumnSpan="2"/>
+                        <Button Content="מוצרים בארכיון" 
+                                HorizontalAlignment="Left"
+                                
+                                Margin="114,36,0,0" 
+                                VerticalAlignment="Top" Width="124" Click="Button_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
