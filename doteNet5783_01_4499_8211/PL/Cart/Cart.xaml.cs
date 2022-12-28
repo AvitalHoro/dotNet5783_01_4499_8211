@@ -1,5 +1,6 @@
 ﻿using BLApi;
 using BO;
+using MaterialDesignThemes.Wpf;
 using PO;
 using System;
 using System.Collections.Generic;
@@ -25,20 +26,18 @@ namespace PL.Cart;
 public partial class Cart : Page
 {
     IBl bl;
-    private BO.Cart myCart;
-    ObservableCollection<OrderItem?>? orderItemList = new();
+    private CartPO myCart = new();
     MainWindow mainWindow;
-    public Cart(IBl BL, BO.Cart cart, MainWindow _mainWindow)
+    public Cart(IBl BL, BO.Cart cartBo , MainWindow _mainWindow)
     {
         InitializeComponent();
         mainWindow = _mainWindow;
-        bl = BL;    
-        myCart= cart;
-        orderItemList = Tools.IEnumerableToObservable(orderItemList, cart.OrderItems);
+        bl = BL;
+        BoCartToPoCart(cartBo);
         LeftGrid.DataContext = myCart;
-        OrderItemView.DataContext = orderItemList;
+        OrderItemView.DataContext = myCart.OrderItems;
         CartGrid.DataContext = myCart;
-        if (orderItemList.Count() == 0)
+        if (myCart.OrderItems.Count() == 0)
         {
             CryBaby.Visibility = Visibility.Visible;
             All.Visibility = Visibility.Visible;
@@ -52,8 +51,22 @@ public partial class Cart : Page
         }
     }
 
+    private void BoCartToPoCart(BO.Cart cartBo)
+    {
+        myCart.OrderItems = new();
+        Tools.CopyPropTo(cartBo, myCart);
+        Tools.IEnumerableToObservable(myCart.OrderItems, cartBo.OrderItems);
+    }
+
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)
     {
         mainWindow.ListCategories_Click(sender, e);
+    }
+
+    private void UpdateAmount_Click(object sender, RoutedEventArgs e)
+    {
+        var b = (Button)sender;
+        OrderItem item = (OrderItem)b.DataContext;
+       // bl.Cart.UpdateAmountProduct(myCart, item.ProductID, 0);
     }
 }

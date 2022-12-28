@@ -40,11 +40,12 @@
                         </StackPanel>
                         <local:NumericUpDownControl  Grid.Column="1"
                                           x:Name="UpdateAmount"   
-                                          Value="{Binding Amount}"
+                                          Value="{Binding Amount, Mode=TwoWay}"
                                           FontSize="20"/>
                         <Button x:Name="RemoveFromCartButton"
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
                                 Height="43" Width="42"
+                                Click="UpdateAmount_Click"
                                 Grid.Column="0">
                             <materialDesign:PackIcon Kind="Trash" 
                                          Foreground="Black"
@@ -54,7 +55,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
         <Grid x:Name="LeftGrid">
             <TextBlock Name="PaymentLabel"
             HorizontalAlignment="Left" 

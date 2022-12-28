@@ -37,7 +37,7 @@
                        />
                         </StackPanel>
 
-                        <DataGrid x:Name="OrdersListAdmin"
+                 <DataGrid x:Name="OrdersListAdmin"
                   Grid.ColumnSpan="2"
                   ItemsSource="{Binding}"
                   Cursor="Arrow" Margin="0,0,49,20"
@@ -65,10 +65,9 @@
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header= "מספר הזמנה" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>
-
                             </DataGrid.Columns>
                         </DataGrid>
-                        <ComboBox Name="SelectCategoryForOrder"
+                  <ComboBox Name="SelectCategoryForOrder"
                   materialDesign:HintAssist.Hint="(סינון)"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   HorizontalAlignment="Left" 
@@ -112,7 +111,7 @@
                             </Grid>
                         </Button>
 
-                        <DataGrid x:Name="ProductsListAdmin"
+                  <DataGrid x:Name="ProductsListAdmin"
                   Grid.Row="1" Grid.ColumnSpan="2"
                   Cursor="Arrow" 
                   Margin="0,0,51,20"

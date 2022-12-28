@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -49,4 +50,28 @@ public static class Tools
         e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
         return;
     }
+
+    //פונקצית הרחבה שמעתיקה שדות עם שם דומה מעצם מקור לעצם אחר  
+    public static Target CopyPropTo<Source, Target>(this Source source, Target target)
+    {
+
+        if (source is not null && target is not null) //אם שני העצמים לא ריקים
+        {
+            Dictionary<string, PropertyInfo> propertiesInfoTarget = target.GetType().GetProperties()
+                .ToDictionary(p => p.Name, p => p); //יוצר מילון של צמדים עם שם של שדה והערך בו
+
+            IEnumerable<PropertyInfo> propertiesInfoSource = source.GetType().GetProperties();
+
+            foreach (var propertyInfo in propertiesInfoSource)
+            {
+                if (propertiesInfoTarget.ContainsKey(propertyInfo.Name)
+                    && (propertyInfo.PropertyType == typeof(string) || !(propertyInfo.PropertyType.IsClass)))
+                {
+                    propertiesInfoTarget[propertyInfo.Name].SetValue(target, propertyInfo.GetValue(source));
+                }
+            }
+        }
+        return target;
+    }
+
 }

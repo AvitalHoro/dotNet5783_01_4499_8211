@@ -53,7 +53,7 @@ public partial class AdminPage : Page
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        switch (SelectCategoryForOrder.SelectedItem)
+        switch (SelectCategory.SelectedItem)
         {
             case "הכל":
                 Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
