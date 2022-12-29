@@ -39,7 +39,7 @@
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
                                 Height="43" Width="42">
                                  
-                            <materialDesign:PackIcon Name="pack" Tag="{Binding ID}" Kind="Plus" 
+                            <materialDesign:PackIcon Name="pack" Tag="{Binding ID}" Kind="CartAdd" 
                                          Foreground="Black"
                                          Height="15" Width="15"/>
                         </Button>

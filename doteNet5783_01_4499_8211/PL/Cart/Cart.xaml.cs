@@ -27,16 +27,17 @@ public partial class Cart : Page
 {
     IBl bl;
     private CartPO myCart = new();
+    private int ItemsAmount = 0;
     MainWindow mainWindow;
     public Cart(IBl BL, BO.Cart cartBo , MainWindow _mainWindow)
     {
         InitializeComponent();
         mainWindow = _mainWindow;
         bl = BL;
-        BoCartToPoCart(cartBo);
-        LeftGrid.DataContext = myCart;
-        OrderItemView.DataContext = myCart.OrderItems;
-        CartGrid.DataContext = myCart;
+        Tools.BoCartToPoCart(myCart, cartBo);
+        DataContext= myCart;
+        ItemsAmount = myCart.OrderItems.Count();
+        LeftGrid.DataContext = ItemsAmount;
         if (myCart.OrderItems.Count() == 0)
         {
             CryBaby.Visibility = Visibility.Visible;
@@ -51,13 +52,6 @@ public partial class Cart : Page
         }
     }
 
-    private void BoCartToPoCart(BO.Cart cartBo)
-    {
-        myCart.OrderItems = new();
-        Tools.CopyPropTo(cartBo, myCart);
-        Tools.IEnumerableToObservable(myCart.OrderItems, cartBo.OrderItems);
-    }
-
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)
     {
         mainWindow.ListCategories_Click(sender, e);
@@ -65,8 +59,11 @@ public partial class Cart : Page
 
     private void UpdateAmount_Click(object sender, RoutedEventArgs e)
     {
+        BO.Cart cartBo= new BO.Cart();  
+        Tools.PoCartToBoCart(myCart, cartBo);
         var b = (Button)sender;
         OrderItem item = (OrderItem)b.DataContext;
-       // bl.Cart.UpdateAmountProduct(myCart, item.ProductID, 0);
+        bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, 0);
+        Tools.BoCartToPoCart(myCart, cartBo);
     }
 }

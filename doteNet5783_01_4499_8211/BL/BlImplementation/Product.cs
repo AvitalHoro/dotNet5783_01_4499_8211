@@ -13,28 +13,55 @@ internal class Product : IProduct
 
     #region GetProductList
     public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, 
-        Object? filterValue = null, bool isInStock= false, bool isDeleted = false)
+        Object? filterValue = null, bool isInStock= false)
     {
-        IEnumerable<DO.Product> doProductList =
-        enumFilter switch
+        if (isInStock)
         {
-            BO.Filters.filterByCategory =>
-            Dal!.Product.GetAll(dp => (dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All) && dp?.IsDeleted == false)),
+            IEnumerable<DO.Product> doProductList =
+            enumFilter switch
+            {
+                BO.Filters.filterByCategory =>
+                Dal!.Product.GetAll(dp => (dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All) && dp?.IsDeleted == false && dp?.InStock > 0 )),
 
-            BO.Filters.filterByName =>
-            Dal!.Product.GetAll(dp => (dp?.Name.Contains((string?)(filterValue))==true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true) && dp?.IsDeleted == false),
+                BO.Filters.filterByName =>
+                Dal!.Product.GetAll(dp => ((dp?.Name.Contains((string?)(filterValue)) == true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true) && dp?.IsDeleted == false && dp?.InStock > 0)),
 
-            BO.Filters.deleted =>
-            Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
+                BO.Filters.deleted =>
+                Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
 
-            BO.Filters.None =>
-            Dal!.Product.GetAll(),
-            _ => Dal!.Product.GetAll(),
-        };
+                BO.Filters.None =>
+                Dal!.Product.GetAll(dp=> dp?.IsDeleted == false && dp?.InStock > 0),
+                _ => Dal!.Product.GetAll(dp => dp?.IsDeleted == false && dp?.InStock > 0),
+            };
 
-        return (from DO.Product doProduct in doProductList
-                select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
-               .ToList();
+            return (from DO.Product doProduct in doProductList
+                    select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
+                   .ToList();
+        }
+
+        else
+        {
+            IEnumerable<DO.Product> doProductList =
+         enumFilter switch
+         {
+             BO.Filters.filterByCategory =>
+             Dal!.Product.GetAll(dp => (dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All) && dp?.IsDeleted == false)),
+
+             BO.Filters.filterByName =>
+             Dal!.Product.GetAll(dp => (dp?.Name.Contains((string?)(filterValue)) == true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true) && dp?.IsDeleted == false),
+
+             BO.Filters.deleted =>
+             Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
+
+             BO.Filters.None =>
+             Dal!.Product.GetAll(),
+             _ => Dal!.Product.GetAll(),
+         };
+
+            return (from DO.Product doProduct in doProductList
+                    select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
+                   .ToList();
+        }
     }
     #endregion
 

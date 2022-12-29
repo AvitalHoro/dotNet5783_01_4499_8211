@@ -48,37 +48,37 @@ public partial class ProductCatalogForCostumer : Page
         InitializeComponent();
         bl = BL;
         this.cart = cart;
-        ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList());
+        ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock: true));
 
         switch (ButtonName)
         {
             case "Toys":
                 ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys));
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys, true));
                 break;
             case "Carts":
                 ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts));
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts, true));
                 break;
             case "Clothes":
                 ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes));
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes, true));
                 break;
             case "Diapers":
                 ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers));
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers, true));
                 break;
             case "Bottles":
                 ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles));
+                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles, true));
                 break;
             case "All":
             case "GoBackToCatalog":
-                ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList());
+                ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock:true));
                 break;
             default:
                 ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByName, ButtonName));
+                    (bl.Product.GetProductList(BO.Filters.filterByName, ButtonName, true));
                 break;
         }
         DataContext = ListProduct;

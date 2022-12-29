@@ -22,6 +22,7 @@ namespace PL.Product
     public partial class AddOrUpdateProduct : Window
     {
         IBl bl;
+        string path;
         public AddOrUpdateProduct(IBl BL, BO.ProductForList product)
         {
             InitializeComponent();
@@ -56,6 +57,7 @@ namespace PL.Product
             if (f.ShowDialog() == true)
             {
                 ProductImage.Source = new BitmapImage(new Uri(f.FileName));
+                path = (ProductImage.Source).ToString();
             }
         }
         private void UpdateOrAdd_Click(object sender, RoutedEventArgs e)
@@ -78,6 +80,7 @@ namespace PL.Product
                         Price = int.Parse(UpdatePrice.Text),
                         InStock = int.Parse(UpdateInStock.Text),
                         IsDeleted = false,
+                        Path= path,
                     });
                 else
                     bl.Product.UpdateProductDetails(new() //אם אנחנו במקרה של עידכון
