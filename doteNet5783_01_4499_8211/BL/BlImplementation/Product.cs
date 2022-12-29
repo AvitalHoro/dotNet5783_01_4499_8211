@@ -12,18 +12,19 @@ internal class Product : IProduct
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
     #region GetProductList
-    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue = null, bool isInStock= false)
+    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, 
+        Object? filterValue = null, bool isInStock= false, bool isDeleted = false)
     {
         IEnumerable<DO.Product> doProductList =
         enumFilter switch
         {
             BO.Filters.filterByCategory =>
-            Dal!.Product.GetAll(dp => dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All)),
+            Dal!.Product.GetAll(dp => (dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All) && dp?.IsDeleted == false)),
 
             BO.Filters.filterByName =>
-            Dal!.Product.GetAll(dp => dp?.Name.Contains((string?)(filterValue))==true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true),
+            Dal!.Product.GetAll(dp => (dp?.Name.Contains((string?)(filterValue))==true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true) && dp?.IsDeleted == false),
 
-            BO.Filters.deleted=>
+            BO.Filters.deleted =>
             Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
 
             BO.Filters.None =>

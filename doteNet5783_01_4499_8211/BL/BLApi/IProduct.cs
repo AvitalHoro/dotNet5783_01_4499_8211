@@ -3,7 +3,8 @@ namespace BLApi;
 
 public interface IProduct
 {
-    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, Object? filterValue = null, bool isInStock= false);
+    public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None,
+        Object? filterValue = null, bool isInStock= false , bool isDeleted= false);
     public IEnumerable<BO.Product?> GetCatalog(); //לקוח
     public BO.Product GetProductDetails(int idProduct);//מנהל
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart);//לקוח
