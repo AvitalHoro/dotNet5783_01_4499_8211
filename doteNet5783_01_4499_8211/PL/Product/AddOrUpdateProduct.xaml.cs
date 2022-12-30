@@ -37,6 +37,7 @@ namespace PL.Product
             //UpdatePrice.Text = product.Price.ToString();
             //UpdateOrAdd.IsEnabled= false;
             productAddOrUp.DataContext = product;
+            Title.Text = "עדכון מוצר";
         }
 
         public AddOrUpdateProduct(IBl BL)
@@ -49,6 +50,7 @@ namespace PL.Product
             UpdateID.IsEnabled = true;
             //נותנים אפשרות להכניס את המזהה של המוצר
             //UpdateOrAdd.IsEnabled = false;
+            Title.Text = "הוספת מוצר";
         }
         private void changeImageButton_Click(object sender, RoutedEventArgs e)
         {
