@@ -37,19 +37,8 @@ public partial class Cart : Page
         bl = BL;
         Tools.BoCartToPoCart(myCart, cartBo);
         DataContext= myCart;
-        ItemsAmount = myCart.OrderItems.Count(); 
-        if (myCart.OrderItems.Count() == 0)
-        {
-            CryBaby.Visibility = Visibility.Visible;
-            All.Visibility = Visibility.Visible;
-            LeftGrid.Visibility = Visibility.Hidden;
-        }
-        else
-        {
-            LeftGrid.Visibility = Visibility.Visible;
-            CryBaby.Visibility = Visibility.Hidden;
-            All.Visibility = Visibility.Hidden;
-        }
+        ItemsAmount = myCart.OrderItems.Count();
+        IsCartEmpty();
     }
 
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)
@@ -65,6 +54,23 @@ public partial class Cart : Page
         OrderItem item = (OrderItem)b.DataContext;
         bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, 0);
         Tools.BoCartToPoCart(myCart, cartBo);
+        IsCartEmpty();
+    }
+
+    private void IsCartEmpty()
+    {
+        if(myCart.OrderItems.Count() == 0)
+        {
+            CryBaby.Visibility = Visibility.Visible;
+            All.Visibility = Visibility.Visible;
+            LeftGrid.Visibility = Visibility.Hidden;
+        }
+        else
+        {
+            LeftGrid.Visibility = Visibility.Visible;
+            CryBaby.Visibility = Visibility.Hidden;
+            All.Visibility = Visibility.Hidden;
+        }
     }
 
     //public event PropertyChangedEventHandler PropertyChanged;
