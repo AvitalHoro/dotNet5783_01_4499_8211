@@ -41,7 +41,7 @@
                                  
                             <materialDesign:PackIcon Name="pack" Tag="{Binding ID}" Kind="CartAdd" 
                                          Foreground="Black"
-                                         Height="15" Width="15"/>
+                                         Height="25" Width="25"/>
                         </Button>
                     </StackPanel>
                 </DataTemplate>

@@ -24,10 +24,8 @@ internal class Product : IProduct
                 Dal!.Product.GetAll(dp => (dp?.Category == (filterValue != null ? (DO.Category)filterValue : DO.Category.All) && dp?.IsDeleted == false && dp?.InStock > 0 )),
 
                 BO.Filters.filterByName =>
-                Dal!.Product.GetAll(dp => ((dp?.Name.Contains((string?)(filterValue)) == true || (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true) && dp?.IsDeleted == false && dp?.InStock > 0)),
-
-                BO.Filters.deleted =>
-                Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
+                Dal!.Product.GetAll(dp => ((dp?.Name.Contains((string?)(filterValue)) == true || 
+                (dp?.Name.ToLower()).Contains(((string)(filterValue)).ToLower()) == true) && dp?.IsDeleted == false && dp?.InStock > 0)),
 
                 BO.Filters.None =>
                 Dal!.Product.GetAll(dp=> dp?.IsDeleted == false && dp?.InStock > 0),
@@ -54,8 +52,8 @@ internal class Product : IProduct
              Dal!.Product.GetAll(dp => dp?.IsDeleted == true),
 
              BO.Filters.None =>
-             Dal!.Product.GetAll(),
-             _ => Dal!.Product.GetAll(),
+             Dal!.Product.GetAll(dp=> dp?.IsDeleted == false),
+             _ => Dal!.Product.GetAll(dp=> dp?.IsDeleted == false),
          };
 
             return (from DO.Product doProduct in doProductList

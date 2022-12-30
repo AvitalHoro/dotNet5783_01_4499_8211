@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BLApi;
+using BO;
+using PO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +22,8 @@ namespace PL.Cart;
 /// </summary>
 public partial class NumericUpDownControl : UserControl
 {
+    private OrderItem item;
+    IBl bl;
     public float? Value
     {
         get { return (float?)GetValue(ValueProperty); }
@@ -60,10 +65,12 @@ public partial class NumericUpDownControl : UserControl
     public static readonly DependencyProperty MaxValueProperty =
         DependencyProperty.Register("MaxValue", typeof(int), typeof(NumericUpDownControl), new PropertyMetadata(100));
 
-    public NumericUpDownControl()
+    public NumericUpDownControl(IBl BL, OrderItem orderItem)
     {
         InitializeComponent();
-        MaxValue = 100;
+        item = orderItem;
+        bl = BL;
+        MaxValue = bl.Product.GetProductDetails(item.ProductID).InStock;
     }
 
     private void cmdUp_Click(object sender, RoutedEventArgs e)

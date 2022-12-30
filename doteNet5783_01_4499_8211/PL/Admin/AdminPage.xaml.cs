@@ -48,11 +48,13 @@ public partial class AdminPage : Page
         SelectCategoryForOrder.Items.Add("הזמנות שאושרו");
         SelectCategoryForOrder.Items.Add("הזמנות שנשלחו");
         SelectCategoryForOrder.Items.Add("הזמנות שנמסרו");
-        this.frame = frame; 
+        this.frame = frame;
+        DeleteProduct.Visibility = Visibility.Visible;
     }
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        DeleteProduct.Visibility = Visibility.Visible;
         switch (SelectCategory.SelectedItem)
         {
             case "הכל":
@@ -83,14 +85,21 @@ public partial class AdminPage : Page
 
     private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        IEnumerable<IGrouping<BO.Status, OrderForList>> groupsList=
-        (from BO.OrderForList order in bl.Order.getOrderList()
-        group order by order.State into orderInfo
-        select orderInfo)
-        .ToList();
-
-        groupsList = groupsList.OrderBy(g => g.Key);
-
+       switch(SelectCategoryForOrder.SelectedItem)
+        {
+            case ("הזמנות שאושרו"):
+                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList(Status.approved));
+                break;
+            case ("הזמנות שנשלחו"):
+                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList(Status.sent));
+                break;
+            case ("הזמנות שנמסרו"):
+                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList(Status.delivered));
+                break;
+                 case ("הכל"):
+                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+                break;  
+        }
     }
 
     private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -115,13 +124,18 @@ public partial class AdminPage : Page
     private void DeleteProduct_Click(object sender, RoutedEventArgs e)
     {
         var b = (Button)sender;
-        bl.Product.RemoveProduct(((ProductForList)b.DataContext).ID);
-        Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+        int id = ((ProductForList)b.DataContext).ID;
+       // BO.ProductForList product = new();
+       // Tools.CopyPropTo(bl.Product.GetProductDetails(id), product);
+        bl.Product.RemoveProduct(id);
+       // listProducts.Remove(product);
+       Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void Archives_Click(object sender, RoutedEventArgs e)
     {
         Tools.IEnumerableToObservable(listProducts,
                    bl.Product.GetProductList(BO.Filters.deleted));
+        DeleteProduct.Visibility= Visibility.Collapsed;
     }
 }

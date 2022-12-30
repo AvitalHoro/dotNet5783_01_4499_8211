@@ -5,6 +5,7 @@ using PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,8 +37,7 @@ public partial class Cart : Page
         bl = BL;
         Tools.BoCartToPoCart(myCart, cartBo);
         DataContext= myCart;
-        ItemsAmount = myCart.OrderItems.Count();
-        LeftGrid.DataContext = ItemsAmount;
+        ItemsAmount = myCart.OrderItems.Count(); 
         if (myCart.OrderItems.Count() == 0)
         {
             CryBaby.Visibility = Visibility.Visible;
@@ -66,4 +66,73 @@ public partial class Cart : Page
         bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, 0);
         Tools.BoCartToPoCart(myCart, cartBo);
     }
+
+    //public event PropertyChangedEventHandler PropertyChanged;
+
+    //private float? value;
+    //public float? Value
+    //{
+    //    get { return value; }
+    //    set
+    //    {
+    //        this.value = value;
+    //        if (PropertyChanged != null)
+    //        {
+    //            PropertyChanged(this, new PropertyChangedEventArgs("CList"));
+    //        }
+    //    }
+    //}
+
+    //private float? maxValue;
+    //public float? MaxValue
+    //{
+    //    get { return value; }
+    //    set
+    //    {
+    //        maxValue = value;
+    //        if (PropertyChanged != null)
+    //        {
+    //            PropertyChanged(this, new PropertyChangedEventArgs("CList"));
+    //        }
+    //    }
+    //}
+
+    //private void txtNum_TextChanged(object sender, TextChangedEventArgs e)
+    //{
+    //    var textNumber = (TextBox)sender;
+    //    MaxValue = bl.Product.GetProductDetails(((OrderItem)textNumber.DataContext).ProductID).InStock;
+    //    if (textNumber == null || textNumber.Text == "" || textNumber.Text == "-")
+    //    {
+    //        Value = null;
+    //        return;
+    //    }
+
+    //    float val;
+    //    if (!float.TryParse(textNumber.Text, out val))
+    //        textNumber.Text = Value.ToString();
+    //    else
+    //    {
+    //        if(val> MaxValue)
+    //            Value= (float?)MaxValue;
+    //        else if (value < 1)
+    //            Value = 1;
+    //        else Value = val;
+    //    }    
+    //}
+
+    //private void cmdUp_Click(object sender, RoutedEventArgs e)
+    //{
+    //    var b = (Button)sender;
+    //    MaxValue = bl.Product.GetProductDetails(((OrderItem)b.DataContext).ProductID).InStock;
+    //    if (Value< MaxValue)
+    //        Value++;
+    //}
+
+    //private void cmdDown_Click(object sender, RoutedEventArgs e)
+    //{
+    //    var b = (Button)sender;
+    //    MaxValue = bl.Product.GetProductDetails(((OrderItem)b.DataContext).ProductID).InStock;
+    //    if (Value > 1)
+    //        Value--;
+    //}
 }
