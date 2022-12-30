@@ -87,7 +87,16 @@ public partial class ProductCatalogForCostumer : Page
     private void addProductToCart(object sender, RoutedEventArgs e)
     {
         var b = (Button)sender;
-        cart= bl.Cart.AddProduct(cart, ((ProductForList)b.DataContext).ID);
+        int id = ((ProductForList)b.DataContext).ID;
+        cart = bl.Cart.AddProduct(cart, id);
+        BO.Product product = bl.Product.GetProductDetails(id);
+        //if (product.InStock == 0)
+        //{
+        //    //BO.ProductForList pro = new();
+        //    //Tools.CopyPropTo(product, pro);
+        //    //ListProduct.Remove(pro);
+        //     ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock:true));
+        //}
     }
 }
         
