@@ -108,7 +108,7 @@ public partial class AdminPage : Page
     private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
     {
         BO.OrderForList order= (BO.OrderForList)((DataGrid)sender).SelectedItem;
-        frame.Content = new PL.Order.OrderTracking(bl, bl.Order.getDetailsOrder(order.ID), frame);
+        frame.Content = new PL.Order.OrderTracking(bl, bl.Order.getDetailsOrder(order.ID), frame, true);
         Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
     }
 

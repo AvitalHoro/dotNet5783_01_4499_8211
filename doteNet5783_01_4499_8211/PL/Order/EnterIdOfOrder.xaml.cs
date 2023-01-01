@@ -46,7 +46,7 @@ public partial class EnterIdOfOrder : Page
         if (OrderIdBox.Text != "")
         {
             BO.Order orderBo = bl.Order.getDetailsOrder(idOrder);
-            frame.Content = new PL.Order.OrderTracking(bl , orderBo, frame);
+            frame.Content = new PL.Order.OrderTracking(bl , orderBo, frame, false);
         }
     }
 }

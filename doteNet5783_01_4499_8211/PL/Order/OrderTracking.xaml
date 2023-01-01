@@ -73,25 +73,19 @@
         <TextBlock HorizontalAlignment="Left" Margin="208,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="75" Text="{Binding ID}"/>
         <TextBlock 
             HorizontalAlignment="Left"
-            Margin="338,199,0,0"
-            TextWrapping="Wrap" 
-            Text="{Binding Path= DeliveryDate}" 
-            VerticalAlignment="Top"
-            Height="21" Width="176"/>
-        <TextBlock 
-            HorizontalAlignment="Left"
             Margin="10,197,0,0"
             TextWrapping="Wrap" 
             Text="{Binding OrderDate}" 
             VerticalAlignment="Top"
             Height="21" Width="159"/>
         <TextBlock 
+            x:Name="DelDate"
             HorizontalAlignment="Left"
-            Margin="169,199,0,0"
+            Margin="338,199,0,0"
             TextWrapping="Wrap" 
-            Text="{Binding ShipDate}" 
+            Text="{Binding DeliveryDate}" 
             VerticalAlignment="Top"
-            Height="21" Width="151"/>
+            Height="21" Width="176"/>
 
         <ListView x:Name="OrderItemView" 
                   ItemsSource="{Binding}"
@@ -115,5 +109,33 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock 
+            x:Name="ShipDate"
+            HorizontalAlignment="Left"
+            Margin="169,199,0,0"
+            TextWrapping="Wrap" 
+            Text="{Binding ShipDate}" 
+            VerticalAlignment="Top"
+            Height="21" Width="151"/>
+        <Grid Name="AdminButton" HorizontalAlignment="Left" Height="213" Margin="94,165,0,0" VerticalAlignment="Top" Width="414" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="64*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="29*"/>
+                <ColumnDefinition Width="192*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="UpdateShip" HorizontalAlignment="Left" Height="31" Margin="55,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateShip_Click" Grid.Column="1" Grid.Row="1">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Order/updateShip.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button Name="UpdateDel" HorizontalAlignment="Left" Height="31" Margin="216,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateDel_Click" Grid.Column="1" Grid.Row="1">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Order/updateDel (2).png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

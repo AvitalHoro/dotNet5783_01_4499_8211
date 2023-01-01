@@ -25,12 +25,21 @@ public partial class OrderTracking : Page
     BO.Order order = new();
     Frame frame;
 
-    public OrderTracking(IBl BL, BO.Order selectedOrder, Frame frame)
+    public OrderTracking(IBl BL, BO.Order selectedOrder, Frame frame, bool isAdmin)
     {
         InitializeComponent();
         bl = BL;
         order = selectedOrder;
         DataContext = order;
+        if (isAdmin&& bl.Order.Tracking(order.ID).State == BO.Status.approved)
+            AdminButton.Visibility = Visibility.Visible;    
+        else if(isAdmin && bl.Order.Tracking(order.ID).State == BO.Status.sent)
+        {
+            AdminButton.Visibility = Visibility.Visible;
+            UpdateShip.Visibility=Visibility.Hidden;    
+        }
+        else
+            AdminButton.Visibility = Visibility.Hidden;
         if (bl.Order.Tracking(order.ID).State == BO.Status.approved)
             approved.Visibility = Visibility.Visible;
         if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
@@ -46,5 +55,32 @@ public partial class OrderTracking : Page
         }
         OrderItemView.ItemsSource = order.Items;
         this.frame = frame; 
+    }
+
+    private void UpdateShip_Click(object sender, RoutedEventArgs e)
+    {
+        if (bl.Order.Tracking(order.ID).State == BO.Status.approved)
+            bl.Order.UpdateShipDate(order.ID);
+        if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
+        {
+            approved.Visibility = Visibility.Visible;
+            shipped.Visibility = Visibility.Visible;
+            ShipDate.Visibility=Visibility.Visible;
+           ShipDate.Text = order.ShipDate.ToString();//הביידיניג לא מתעדכן אוטומטית למרבה הצער..
+        }
+    }
+
+    private void UpdateDel_Click(object sender, RoutedEventArgs e)
+    {
+        if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
+            bl.Order.UpdateDeliveryDate(order.ID);
+        if (bl.Order.Tracking(order.ID).State == BO.Status.delivered)
+        {
+            approved.Visibility = Visibility.Visible;
+            shipped.Visibility = Visibility.Visible;
+            delevired.Visibility = Visibility.Visible;
+            DelDate.Visibility = Visibility.Visible;
+           DelDate.Text = order.DeliveryDate.ToString();
+        }
     }
 }
