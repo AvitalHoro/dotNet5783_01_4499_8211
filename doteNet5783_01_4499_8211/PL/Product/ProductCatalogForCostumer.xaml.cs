@@ -88,7 +88,16 @@ public partial class ProductCatalogForCostumer : Page
     {
         var b = (Button)sender;
         int id = ((ProductForList)b.DataContext).ID;
-        cart = bl.Cart.AddProduct(cart, id);
+        try
+        {
+            cart = bl.Cart.AddProduct(cart, id);
+        }
+        catch (BO.OutOfStockException ex)
+        {
+            MessageBox.Show("!המוצרים שלנו הם כמו שוקולד: נגמרים בלי ששמים לב" +
+                "המוצר הזה אזל במלאי", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
         BO.Product product = bl.Product.GetProductDetails(id);
         //if (product.InStock == 0)
         //{
