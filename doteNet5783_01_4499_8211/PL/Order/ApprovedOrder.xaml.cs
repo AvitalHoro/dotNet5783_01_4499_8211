@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLApi;
+using PO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,14 @@ namespace PL.Order;
 /// </summary>
 public partial class ApprovedOrder : Page
 {
-    public ApprovedOrder()
+    private CartPO cart;
+    private IBl bl;
+    public ApprovedOrder(IBl _bl, CartPO _cart)
     {
         InitializeComponent();
+        bl = _bl;
+        cart = _cart;
+        DataContext = cart;    
+        
     }
 }

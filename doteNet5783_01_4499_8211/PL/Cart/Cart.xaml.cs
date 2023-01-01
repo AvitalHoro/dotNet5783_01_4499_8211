@@ -1,6 +1,7 @@
 ﻿using BLApi;
 using BO;
 using MaterialDesignThemes.Wpf;
+using PL.Order;
 using PO;
 using System;
 using System.Collections.Generic;
@@ -71,6 +72,11 @@ public partial class Cart : Page
             CryBaby.Visibility = Visibility.Hidden;
             All.Visibility = Visibility.Hidden;
         }
+    }
+
+    private void ApproveOrder_Click(object sender, RoutedEventArgs e)
+    {
+        mainWindow.framePage.Content = new ApprovedOrder(bl, myCart);
     }
 
     //public event PropertyChangedEventHandler PropertyChanged;

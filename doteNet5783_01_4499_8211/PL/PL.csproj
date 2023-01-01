@@ -44,12 +44,16 @@
     <None Remove="mainPicture.png" />
     <None Remove="Order\approved.png" />
     <None Remove="Order\deliver.png" />
+    <None Remove="Order\googlepay.png" />
     <None Remove="Order\home.png" />
+    <None Remove="Order\paypal.png" />
     <None Remove="Order\track1.png" />
     <None Remove="Order\updateDel %282%29.png" />
     <None Remove="Order\updateDel.png" />
     <None Remove="Order\updatedel2.png" />
     <None Remove="Order\updateShip.png" />
+    <None Remove="Order\viza.png" />
+    <None Remove="Order\viza.webp" />
     <None Remove="Product\addP.png" />
     <None Remove="Product\crybaby.png" />
   </ItemGroup>
@@ -86,12 +90,16 @@
     <Resource Include="mainPicture.png" />
     <Resource Include="Order\approved.png" />
     <Resource Include="Order\deliver.png" />
+    <Resource Include="Order\googlepay.png" />
     <Resource Include="Order\home.png" />
+    <Resource Include="Order\paypal.png" />
     <Resource Include="Order\track1.png" />
     <Resource Include="Order\updateDel (2).png" />
     <Resource Include="Order\updateDel.png" />
     <Resource Include="Order\updatedel2.png" />
     <Resource Include="Order\updateShip.png" />
+    <Resource Include="Order\viza.png" />
+    <Resource Include="Order\viza.webp" />
     <Resource Include="Product\addP.png" />
     <Resource Include="Product\crybaby.png" />
   </ItemGroup>

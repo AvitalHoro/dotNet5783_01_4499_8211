@@ -82,7 +82,7 @@
                 VerticalAlignment="Top"
                 RenderTransformOrigin="0.473,-0.704" 
                 Width="155" Height="54"
-                FontSize="20"/>
+                FontSize="20" Click="ApproveOrder_Click"/>
 
             <Button Name="GoBackToCatalog"
                 Content="להמשך קניה"
