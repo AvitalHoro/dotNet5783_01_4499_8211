@@ -1,5 +1,8 @@
 ﻿using BO;
+using PL.Cart;
+using PO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,6 +16,14 @@ namespace PL;
 public static class Tools
 {
     public static ObservableCollection<T> IEnumerableToObservable<T>(ObservableCollection<T> ListToCreate ,IEnumerable<T> ExsitingList) 
+    {
+        ListToCreate.Clear();
+        foreach (var item in ExsitingList)
+            ListToCreate.Add(item);
+        return ListToCreate;
+    }
+
+    public static IEnumerable<T> ObservableToList<T>(List<T> ListToCreate,  ObservableCollection<T> ExsitingList)
     {
         ListToCreate.Clear();
         foreach (var item in ExsitingList)
@@ -74,4 +85,17 @@ public static class Tools
         return target;
     }
 
+    public static void PoCartToBoCart(CartPO cartPo, BO.Cart cartBo)
+    {
+        cartBo.OrderItems = new();
+        CopyPropTo(cartPo, cartBo);
+        ObservableToList(cartBo.OrderItems, cartPo.OrderItems);
+    }
+
+    public static void BoCartToPoCart(CartPO cartPo, BO.Cart cartBo)
+    {
+        cartPo.OrderItems = new();
+        CopyPropTo(cartBo, cartPo);
+        IEnumerableToObservable(cartPo.OrderItems, cartBo.OrderItems);
+    }
 }

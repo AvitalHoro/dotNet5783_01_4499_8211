@@ -78,6 +78,8 @@
                     </Grid>
                 </Grid>
             </TabItem>
+            
+            
             <TabItem Header="רשימת מוצרים">
                 <Grid Background="White">
                     <Grid>
@@ -130,21 +132,23 @@
                   SelectionMode="Single" 
                   MouseDoubleClick="ProductsListAdmin_MouseDoubleClick" HorizontalAlignment="Right">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="{materialDesign:PackIcon Kind=Trash}"
+                                <DataGridTemplateColumn x:Name="DeleteProduct" Header="{materialDesign:PackIcon Kind=TrashCanOutline}"
                                     MinWidth="10">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            <Button
+                                                   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                     Height="30" Width="30"
                                                     HorizontalAlignment="Center"
                                                     Click="DeleteProduct_Click">
-                                                <materialDesign:PackIcon Kind="Trash"/>
+                                                <materialDesign:PackIcon Kind="TrashCanOutline"
+                                                                     Width="25" Height="25"/>
                                             </Button>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="האם נמחק" Binding="{Binding Path= IsDeleted}"
-                                    MinWidth="10"/>
+                                <!--<DataGridTextColumn Header="האם נמחק" Binding="{Binding Path= IsDeleted}"
+                                    MinWidth="10"/>-->
                                 <DataGridTextColumn Header="מחיר"  Binding="{Binding Path=Price}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header="קטגוריה" Binding="{Binding Path=Category}"
@@ -164,11 +168,12 @@
                   VerticalAlignment="Center"
                   Width="202" 
                   SelectionChanged="SelectCategory_SelectionChanged" Grid.ColumnSpan="2"/>
-                        <Button Content="מוצרים בארכיון" 
+                        <Button Name="Archives"
+                                Content="מוצרים בארכיון" 
                                 HorizontalAlignment="Left"
                                 
                                 Margin="114,36,0,0" 
-                                VerticalAlignment="Top" Width="124" Click="Button_Click"/>
+                                VerticalAlignment="Top" Width="124" Click="Archives_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>

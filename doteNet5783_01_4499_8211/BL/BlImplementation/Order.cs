@@ -1,5 +1,7 @@
 ﻿using BLApi;
+using BO;
 using Dal;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -68,14 +70,35 @@ internal class Order : IOrder
 
     #region getOrderList
     //מחזירה רשימה של כל ההזמנות
-    public IEnumerable<BO.OrderForList?> getOrderList()
+    public IEnumerable<BO.OrderForList?> getOrderList(Status? state = null)
     {
-        IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
-        return (from DO.Order item in tmp
-                    //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
-                let orderForList = doOrderToOrderForList(item)
-                select orderForList)
-               .ToList();
+        if(state != null)
+        {
+            IEnumerable<DO.Order> tmp =
+           state switch
+           {
+               Status.approved =>
+                 Dal.Order.GetAll(order => order?.ShipDate == null && order?.DeliveryDate == null),
+
+               Status.sent =>
+                   Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate == null),
+
+               Status.delivered =>
+                  Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate != null),
+           };
+            return (from DO.Order item in tmp
+                    let orderForList = doOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
+                    select orderForList)
+              .ToList();
+        }
+        else
+        {
+            IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
+            return (from DO.Order item in tmp
+                    let orderForList = doOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
+                    select orderForList)
+             .ToList();
+        }
     }
     #endregion
 

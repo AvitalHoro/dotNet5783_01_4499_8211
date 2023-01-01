@@ -20,6 +20,7 @@ using PL.Admin;
 using PL.Cart;
 using PL.Order;
 using PL.Product;
+using PO;
 
 namespace PL;
 /// <summary>
@@ -28,6 +29,7 @@ namespace PL;
 public partial class MainWindow : Window
 {
     private IBl bl = BlFactory.GetBl();
+   // private CartPO cart = new();
     private BO.Cart cart = new();
 
     public MainWindow() //החלון הראשי של החנות

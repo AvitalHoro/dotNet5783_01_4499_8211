@@ -10,23 +10,22 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Converters
+namespace Converters;
+
+public class IntToVisibiltyConverter : IValueConverter
 {
-    public class IntToVisibiltyConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            int listCountValue = (int)value;
+        int listCountValue = (int)value;
 
-            if (listCountValue == 0)
-                return Visibility.Hidden;
-            else
-                return Visibility.Visible;
+        if (listCountValue == 0)
+            return Visibility.Hidden;
+        else
+            return Visibility.Visible;
 
-        }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }
