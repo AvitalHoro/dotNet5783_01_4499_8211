@@ -59,28 +59,36 @@ public partial class OrderTracking : Page
 
     private void UpdateShip_Click(object sender, RoutedEventArgs e)
     {
-        if (bl.Order.Tracking(order.ID).State == BO.Status.approved)
+        if (order.State == BO.Status.approved)
+        {
             bl.Order.UpdateShipDate(order.ID);
-        if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
+            order = bl.Order.getDetailsOrder(order.ID);
+        }
+        if (order.State == BO.Status.sent)
         {
             approved.Visibility = Visibility.Visible;
             shipped.Visibility = Visibility.Visible;
             ShipDate.Visibility=Visibility.Visible;
-           ShipDate.Text = order.ShipDate.ToString();//הביידיניג לא מתעדכן אוטומטית למרבה הצער..
+            ShipDate.Text = order.ShipDate.ToString();
+            UpdateShip.Visibility = Visibility.Collapsed;
         }
     }
 
     private void UpdateDel_Click(object sender, RoutedEventArgs e)
     {
-        if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
+        if (order.State == BO.Status.sent)
+        {
             bl.Order.UpdateDeliveryDate(order.ID);
-        if (bl.Order.Tracking(order.ID).State == BO.Status.delivered)
+            order = bl.Order.getDetailsOrder(order.ID);
+        }
+        if (order.State == BO.Status.delivered)
         {
             approved.Visibility = Visibility.Visible;
             shipped.Visibility = Visibility.Visible;
             delevired.Visibility = Visibility.Visible;
             DelDate.Visibility = Visibility.Visible;
-           DelDate.Text = order.DeliveryDate.ToString();
+            DelDate.Text = order.DeliveryDate.ToString();
+            UpdateDel.Visibility = Visibility.Collapsed;
         }
     }
 }
