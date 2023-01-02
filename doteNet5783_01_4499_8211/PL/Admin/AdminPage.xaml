@@ -37,8 +37,8 @@
                        />
                         </StackPanel>
 
-                 <DataGrid x:Name="OrdersListAdmin"
-                  Grid.ColumnSpan="2"
+                        <DataGrid x:Name="OrdersListAdmin"
+                  Grid.ColumnSpan="4"
                   ItemsSource="{Binding}"
                   Cursor="Arrow" Margin="0,0,49,20"
                   CanUserAddRows="False"
@@ -53,7 +53,7 @@
                   IsReadOnly="True"
                   SelectionUnit="FullRow"
                   SelectionMode="Single" MouseDoubleClick="OrdersListAdmin_MouseDoubleClick"
-                 HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3">
+                 HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn x:Name="CanclOrder" Header="בטל הזמנה"
                                     MinWidth="10">
@@ -82,7 +82,7 @@
                                     MinWidth="10"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                  <ComboBox Name="SelectCategoryForOrder"
+                        <ComboBox Name="SelectCategoryForOrder"
                   materialDesign:HintAssist.Hint="(סינון)"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   HorizontalAlignment="Left" 
@@ -93,8 +93,8 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            
-            
+
+
             <TabItem Header="רשימת מוצרים">
                 <Grid Background="White">
                     <Grid>
@@ -128,7 +128,7 @@
                             </Grid>
                         </Button>
 
-                  <DataGrid x:Name="ProductsListAdmin"
+                        <DataGrid x:Name="ProductsListAdmin"
                   Grid.Row="1" Grid.ColumnSpan="2"
                   Cursor="Arrow" 
                   Margin="0,0,51,20"
