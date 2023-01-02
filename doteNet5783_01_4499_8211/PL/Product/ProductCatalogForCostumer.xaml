@@ -21,27 +21,32 @@
                 <ItemsPanelTemplate>
                     <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
                               RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
-                              ItemWidth="{Binding (ListView.View).ItemWidth, 
+                              ItemWidth="{Binding (ListView.View).ItemWidth,
                               RelativeSource={RelativeSource AncestorType=ListView}}"
                               MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
                               ItemHeight="{Binding (ListView.View).ItemHeight, 
-                              RelativeSource={RelativeSource AncestorType=ListView}}" />
+                              RelativeSource={RelativeSource AncestorType=ListView}}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Image Source="{Binding Path}" Width="100"  Height="100"></Image>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <Image Source="{Binding Path}" Width="180"  Height="180"></Image>
+                        <TextBlock Text="{Binding Name}" FontSize="20"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
+                        <TextBlock Text="₪" FontSize="20"></TextBlock>
+                        </StackPanel>
                         <Button 
                             Click="addProductToCart"
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
-                                Height="43" Width="42">
+                                Height="60" Width="60"
+                                HorizontalAlignment="Right">
                                  
                             <materialDesign:PackIcon Name="pack" Tag="{Binding ID}" Kind="CartAdd" 
                                          Foreground="Black"
-                                         Height="25" Width="25"/>
+                                         Height="40" Width="45"
+                                         VerticalAlignment="Center"/>
                         </Button>
                     </StackPanel>
                 </DataTemplate>
