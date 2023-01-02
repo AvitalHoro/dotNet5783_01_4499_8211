@@ -138,4 +138,9 @@ public partial class AdminPage : Page
                    bl.Product.GetProductList(BO.Filters.deleted));
         DeleteProduct.Visibility= Visibility.Collapsed;
     }
+
+    private void CancelOrder_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

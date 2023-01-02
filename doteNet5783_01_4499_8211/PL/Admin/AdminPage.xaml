@@ -55,6 +55,21 @@
                   SelectionMode="Single" MouseDoubleClick="OrdersListAdmin_MouseDoubleClick"
                  HorizontalAlignment="Right" Grid.Row="1" Grid.Column="3">
                             <DataGrid.Columns>
+                                <DataGridTemplateColumn x:Name="CanclOrder" Header="בטל הזמנה"
+                                    MinWidth="10">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    Height="30" Width="30"
+                                                    HorizontalAlignment="Center"
+                                                    Click="CancelOrder_Click">
+                                                <materialDesign:PackIcon Kind="Close"
+                                                                     Width="25" Height="25"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                                 <DataGridTextColumn Header= "מחיר כולל" Binding="{Binding Path= TotalPrice}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header= "מספר פריטים" Binding="{Binding Path= ItemsAmount}"
@@ -132,7 +147,7 @@
                   SelectionMode="Single" 
                   MouseDoubleClick="ProductsListAdmin_MouseDoubleClick" HorizontalAlignment="Right">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn x:Name="DeleteProduct" Header="{materialDesign:PackIcon Kind=TrashCanOutline}"
+                                <DataGridTemplateColumn x:Name="DeleteProduct" Header="מחק מוצר"
                                     MinWidth="10">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -157,7 +172,6 @@
                                     MinWidth="15"/>
                                 <DataGridTextColumn Header="מזהה מוצר" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>
-
                             </DataGrid.Columns>
                         </DataGrid>
                         <ComboBox Name="SelectCategory"

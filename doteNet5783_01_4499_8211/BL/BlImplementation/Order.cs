@@ -45,6 +45,12 @@ internal class Order : IOrder
                        .ToList();
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
         orderBo.TotalPrice = newList.Sum(item => item.TotalPrice); //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
+        if (orderDo?.DeliveryDate != null)
+            orderBo.State = BO.Status.delivered;
+        else if (orderDo?.ShipDate != null)
+            orderBo.State = BO.Status.sent;
+        else
+            orderBo.State = BO.Status.approved;
     }
     #endregion
 
@@ -138,7 +144,7 @@ internal class Order : IOrder
             DO.Order orderDo = Dal.Order.GetById(IdOrder);
             if (orderDo.ShipDate == null) //אם ההזמנה לא נשלחה עדיין
             {
-                Dal.Order.Update(new DO.Order //מעדכן בשכבת הנתונים שההזמנה נשלחה כרגע
+               Dal.Order.Update(new DO.Order //מעדכן בשכבת הנתונים שההזמנה נשלחה כרגע
                 {
                     ID = IdOrder,
                     CostumerName = orderDo.CostumerName,
@@ -149,9 +155,10 @@ internal class Order : IOrder
                     DeliveryDate = null,
                     IsDeleted = false
                 });
+                orderDo = Dal.Order.GetById(IdOrder);
                 BO.Order orderBo = new();
                 orderToboOrder(orderDo, orderBo);
-                orderBo.ShipDate = DateTime.Now;
+                orderBo.State = Status.sent;
                 return orderBo;
             }
             else
@@ -194,7 +201,7 @@ internal class Order : IOrder
                 });
                 BO.Order? orderBo = new BO.Order();
                 orderToboOrder(orderDo, orderBo);
-                orderBo.DeliveryDate = DateTime.Now;
+                orderBo.State = Status.delivered;
                 return orderBo;
             }
             else

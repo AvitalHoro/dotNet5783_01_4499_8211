@@ -29,14 +29,16 @@ public partial class Cart : Page
 {
     IBl bl;
     private CartPO myCart = new();
+    private BO.Cart cartBo = new();
     private int ItemsAmount = 0;
     MainWindow mainWindow;
-    public Cart(IBl BL, BO.Cart cartBo , MainWindow _mainWindow)
+    public Cart(IBl BL, BO.Cart cart , MainWindow _mainWindow)
     {
         InitializeComponent();
         mainWindow = _mainWindow;
         bl = BL;
-        Tools.BoCartToPoCart(myCart, cartBo);
+        cartBo = cart;
+        Tools.BoCartToPoCart(myCart, cart);
         DataContext= myCart;
         ItemsAmount = myCart.OrderItems.Count();
         IsCartEmpty();
@@ -48,9 +50,8 @@ public partial class Cart : Page
     }
 
     private void UpdateAmount_Click(object sender, RoutedEventArgs e)
-    {
-        BO.Cart cartBo= new BO.Cart();  
-        Tools.PoCartToBoCart(myCart, cartBo);
+    { 
+       // Tools.PoCartToBoCart(myCart, cartBo);
         var b = (Button)sender;
         OrderItem item = (OrderItem)b.DataContext;
         bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, 0);

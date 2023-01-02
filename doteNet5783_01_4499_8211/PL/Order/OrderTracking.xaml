@@ -71,6 +71,7 @@
         <Image x:Name="approved" Visibility="Hidden" HorizontalAlignment="Left" Height="97" Margin="32,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
         <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right"><Span FlowDirection="RightToLeft"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="208,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="75" Text="{Binding ID}"/>
+     
         <TextBlock 
             HorizontalAlignment="Left"
             Margin="10,197,0,0"
@@ -78,6 +79,16 @@
             Text="{Binding OrderDate}" 
             VerticalAlignment="Top"
             Height="21" Width="159"/>
+
+        <TextBlock 
+            x:Name="ShipDate"
+            HorizontalAlignment="Left"
+            Margin="169,199,0,0"
+            TextWrapping="Wrap" 
+            Text="{Binding ShipDate}" 
+            VerticalAlignment="Top"
+            Height="21" Width="151"/>
+
         <TextBlock 
             x:Name="DelDate"
             HorizontalAlignment="Left"
@@ -109,14 +120,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock 
-            x:Name="ShipDate"
-            HorizontalAlignment="Left"
-            Margin="169,199,0,0"
-            TextWrapping="Wrap" 
-            Text="{Binding ShipDate}" 
-            VerticalAlignment="Top"
-            Height="21" Width="151"/>
+       
         <Grid Name="AdminButton" HorizontalAlignment="Left" Height="213" Margin="94,165,0,0" VerticalAlignment="Top" Width="414" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
