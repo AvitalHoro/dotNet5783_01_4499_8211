@@ -132,7 +132,7 @@
                   SelectionMode="Single" 
                   MouseDoubleClick="ProductsListAdmin_MouseDoubleClick" HorizontalAlignment="Right">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn x:Name="DeleteProduct" Header="{materialDesign:PackIcon Kind=TrashCanOutline}"
+                                <DataGridTemplateColumn x:Name="DeleteProduct" Header="מחק מוצר"
                                     MinWidth="10">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -157,7 +157,6 @@
                                     MinWidth="15"/>
                                 <DataGridTextColumn Header="מזהה מוצר" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>
-
                             </DataGrid.Columns>
                         </DataGrid>
                         <ComboBox Name="SelectCategory"
