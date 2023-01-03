@@ -42,6 +42,7 @@ public partial class MainWindow : Window
 
     private void SelectAdmin_Click(object sender, RoutedEventArgs e)
     {
+        categories.IsEnabled = false;
         framePage.Content = new PasswordForAdmin(bl, framePage);
     }
 
@@ -63,16 +64,19 @@ public partial class MainWindow : Window
 
     private void showCartDetails(object sender, RoutedEventArgs e)
     {
+        categories.IsEnabled = false;
         framePage.Content = new Cart.Cart(bl, cart, this);
     }
 
     public void ListCategories_Click(object sender, RoutedEventArgs e)   
     {
+        categories.IsEnabled = true;
         framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name, cart);
     }
 
     private void showHomePage(object sender, RoutedEventArgs e)
     {
+        categories.IsEnabled = true;
         framePage.Content = new MainPagePicture();
     }
 
@@ -80,6 +84,7 @@ public partial class MainWindow : Window
 
     private void search()
     {
+        categories.IsEnabled = true;
         if (EnterStringToSearch.Text != null)
             framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart);
     }
@@ -92,6 +97,7 @@ public partial class MainWindow : Window
 
     private void OpenTrackingOrder_Click(object sender, RoutedEventArgs e)
     {
+        categories.IsEnabled = false;
         framePage.Content = new EnterIdOfOrder(bl, framePage);
     }
 }

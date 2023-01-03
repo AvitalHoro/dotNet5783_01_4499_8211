@@ -44,6 +44,7 @@
     <None Remove="mainPicture.png" />
     <None Remove="Order\approved.png" />
     <None Remove="Order\deliver.png" />
+    <None Remove="Order\exist.png" />
     <None Remove="Order\googlepay.png" />
     <None Remove="Order\home.png" />
     <None Remove="Order\paypal.png" />
@@ -54,6 +55,8 @@
     <None Remove="Order\updateShip.png" />
     <None Remove="Order\viza.png" />
     <None Remove="Order\viza.webp" />
+    <None Remove="Order\ברוך הבא מנהל %281%29.png" />
+    <None Remove="Order\ברוך הבא מנהל %28200 × 100 פיקסל%29.png" />
     <None Remove="Product\addP.png" />
     <None Remove="Product\crybaby.png" />
   </ItemGroup>
@@ -90,6 +93,7 @@
     <Resource Include="mainPicture.png" />
     <Resource Include="Order\approved.png" />
     <Resource Include="Order\deliver.png" />
+    <Resource Include="Order\exist.png" />
     <Resource Include="Order\googlepay.png" />
     <Resource Include="Order\home.png" />
     <Resource Include="Order\paypal.png" />
@@ -100,6 +104,8 @@
     <Resource Include="Order\updateShip.png" />
     <Resource Include="Order\viza.png" />
     <Resource Include="Order\viza.webp" />
+    <Resource Include="Order\ברוך הבא מנהל (1).png" />
+    <Resource Include="Order\ברוך הבא מנהל (200 × 100 פיקסל).png" />
     <Resource Include="Product\addP.png" />
     <Resource Include="Product\crybaby.png" />
   </ItemGroup>

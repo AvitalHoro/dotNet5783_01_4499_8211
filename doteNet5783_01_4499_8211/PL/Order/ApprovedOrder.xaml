@@ -11,7 +11,7 @@
       Title="ApprovedOrder">
 
     <Grid>
-        <Grid HorizontalAlignment="Left" Height="112" Margin="381,235,0,0" VerticalAlignment="Top" Width="376">
+        <Grid HorizontalAlignment="Left" Height="112" Margin="381,242,0,0" VerticalAlignment="Top" Width="376">
             <RadioButton Content="RadioButton" HorizontalAlignment="Left" Height="22" Margin="311,0,0,0" VerticalAlignment="Top" Width="18"/>
             <Image HorizontalAlignment="Left" Height="68" Margin="272,0,0,0" VerticalAlignment="Center" Width="98" Source="/Order/viza.png"/>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="265,94,0,0" TextWrapping="Wrap" Text="כרטיס אשראי/חיוב" VerticalAlignment="Top" Width="110" TextAlignment="Center"/>
@@ -27,31 +27,31 @@
             Content=":כתובת מגורים" 
             FontSize="16" 
             HorizontalAlignment="Left" 
-            Margin="649,147,0,0" 
+            Margin="649,158,0,0" 
             VerticalAlignment="Top"/>
         <Label Grid.Column="0"
             Content=":כתובת אימייל" 
             FontSize="16" 
             HorizontalAlignment="Left" 
-            Margin="653,108,0,0" 
+            Margin="653,119,0,0" 
             VerticalAlignment="Top"/>
         <Label Content=":שם" 
             HorizontalAlignment="Left"
             FontSize="16"
-            Margin="719,68,0,0" 
+            Margin="719,79,0,0" 
             VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="612,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח"/></TextBlock>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="133" Margin="368,50,0,0" VerticalAlignment="Top" Width="398"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="612,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח"/></TextBlock>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="133" Margin="368,61,0,0" VerticalAlignment="Top" Width="398"/>
         <materialDesign:Clock HorizontalAlignment="Left" Height="0" Margin="878,65,0,0" VerticalAlignment="Top" Width="8"/>
         <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="-6,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" TextAlignment="Right" Text="סל קניות &gt; בצע הזמנה &gt; ההזמנה הושלמה"/>
         <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="144,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95" TextAlignment="Right" Text="בצע הזמנה" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="608,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="צורת תשלום"/></TextBlock>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="131" Margin="368,227,0,0" VerticalAlignment="Top" Width="397"/>
-        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="613,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="סל קניות"/></TextBlock>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="120" Margin="369,418,0,0" VerticalAlignment="Top" Width="398">
+        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="608,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="צורת תשלום"/></TextBlock>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="131" Margin="368,234,0,0" VerticalAlignment="Top" Width="397"/>
+        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="613,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="סל קניות"/></TextBlock>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="132" Margin="369,406,0,0" VerticalAlignment="Top" Width="398">
             <ListView x:Name="OrderItemView" 
                 ItemsSource="{Binding OrderItems}"
-                Margin="0,0,-1,-1" >
+                Margin="0,-1,-1,-1" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="400">
@@ -81,7 +81,7 @@
             VerticalAlignment="Top"
             Height="36" Width="132"
             FontSize="16" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="סיכום ביניים:"/></TextBlock>
-        <TextBlock x:Name="TotalPriceShow"
+        <TextBlock x:Name="PriceShow"
             HorizontalAlignment="Left" 
             Margin="64,128,0,0" 
             TextWrapping="Wrap" 
@@ -101,7 +101,7 @@
             VerticalAlignment="Top" 
             Text="{Binding Name}"
             Width="210"
-            Margin="385,90,0,0"/>
+            Margin="385,101,0,0"/>
         <TextBox x:Name="UpdateName_Copy"
             FontSize="14"
             Height="40"
@@ -112,7 +112,7 @@
             VerticalAlignment="Top" 
             Text="{Binding Name}"
             Width="210"
-            Margin="385,49,0,0"/>
+            Margin="385,60,0,0"/>
         <TextBox x:Name="UpdateName_Copy1"
             FontSize="14"
             Height="36"
@@ -123,7 +123,7 @@
             VerticalAlignment="Top" 
             Text="{Binding Name}"
             Width="210"
-            Margin="385,130,0,0"/>
+            Margin="385,141,0,0"/>
         <TextBlock x:Name="PaymentLabel_Copy"
             HorizontalAlignment="Left" 
             Margin="159,208,0,0" 
@@ -131,7 +131,7 @@
             VerticalAlignment="Top"
             Height="36" Width="132"
             FontSize="16" TextAlignment="Right" Text=":דמי משלוח"/>
-        <TextBlock x:Name="TotalPriceShow_Copy"
+        <TextBlock x:Name="postage"
             HorizontalAlignment="Left" 
             Margin="64,206,0,0" 
             TextWrapping="Wrap" 
@@ -148,7 +148,7 @@
             VerticalAlignment="Top"
             Height="36" Width="132"
             FontSize="16" TextAlignment="Right" Text=":הנחות ומבצעים"/>
-        <TextBlock x:Name="TotalPriceShow_Copy1"
+        <TextBlock x:Name="sale"
             HorizontalAlignment="Left" 
             Margin="64,164,0,0" 
             TextWrapping="Wrap" 
@@ -165,7 +165,7 @@
             VerticalAlignment="Top"
             Height="36" Width="132"
             FontSize="17" TextAlignment="Right" Text=":סכום כולל" FontWeight="Bold"/>
-        <TextBlock x:Name="TotalPriceShow_Copy2"
+        <TextBlock x:Name="TotalPriceShow"
             HorizontalAlignment="Left" 
             Margin="64,258,0,0" 
             TextWrapping="Wrap" 
@@ -175,11 +175,18 @@
             RenderTransformOrigin="0.933,0.352"
             Height="36" 
             FontSize="17" FontWeight="Bold"/>
-        <TextBox HorizontalAlignment="Left" Height="26" Margin="133,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" BorderBrush="Black"/>
+        <TextBox Name="codeCopoun" HorizontalAlignment="Left" Height="26" Margin="133,374,30,30" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" BorderBrush="Black"/>
         <Rectangle HorizontalAlignment="Left" Height="26" Margin="133,374,0,0" Stroke="Black" VerticalAlignment="Top" Width="181"/>
         <TextBlock HorizontalAlignment="Left" FontSize="18" Margin="201,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="קוד קופון:"/></TextBlock>
         <Button x:Name="code" Content="בוצע" HorizontalAlignment="Left" Height="28" Margin="33,372,0,0" VerticalAlignment="Top" Width="63" FontWeight="Bold" BorderBrush="Black" Background="{x:Null}" BorderThickness="2,2,2,2"/>
         <Button x:Name="approve" Content="בצע הזמנה" HorizontalAlignment="Left" Height="40" Margin="33,438,0,0" VerticalAlignment="Top" Width="281" FontWeight="Bold" BorderBrush="Black" Background="Black" BorderThickness="2,2,2,2" Foreground="#DDFFFFFF" FontSize="16"/>
+        <Image ToolTip="אתה יכול לבטל את ההזמנה שלך, התלוש יחזור אל החשבון שלך" HorizontalAlignment="Left" Height="22" Margin="208,348,0,0" VerticalAlignment="Top" Width="35" Source="/Order/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
+        <Image ToolTip="משלוח חינם בהזמנה של למעלה מ100 שקלים" HorizontalAlignment="Left" Height="16" Margin="191,209,0,0" VerticalAlignment="Top" Width="24" Source="/Order/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
+        <Button HorizontalAlignment="Left" Height="28" Margin="655,2,0,0" VerticalAlignment="Top" Width="179" BorderBrush="{x:Null}" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Order/exist.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Page>
