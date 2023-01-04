@@ -31,10 +31,10 @@ class Program
             case "b":
                 Console.WriteLine("enter the order ID");
                 int.TryParse(Console.ReadLine(), out id);
-                Console.WriteLine(bOrder.Order.getDetailsOrder(id));
+                Console.WriteLine(bOrder.Order.GetDetailsOrder(id));
                 break;
             case "c":
-                foreach (BO.OrderForList? item in bOrder.Order.getOrderList())
+                foreach (BO.OrderForList? item in bOrder.Order.GetOrderList())
                 {
                     Console.WriteLine(item);
                 }

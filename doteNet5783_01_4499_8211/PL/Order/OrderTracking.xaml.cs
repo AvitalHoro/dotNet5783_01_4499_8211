@@ -62,7 +62,7 @@ public partial class OrderTracking : Page
         if (order.State == BO.Status.approved)
         {
             bl.Order.UpdateShipDate(order.ID);
-            order = bl.Order.getDetailsOrder(order.ID);
+            order = bl.Order.GetDetailsOrder(order.ID);
         }
         if (order.State == BO.Status.sent)
         {
@@ -79,7 +79,7 @@ public partial class OrderTracking : Page
         if (order.State == BO.Status.sent)
         {
             bl.Order.UpdateDeliveryDate(order.ID);
-            order = bl.Order.getDetailsOrder(order.ID);
+            order = bl.Order.GetDetailsOrder(order.ID);
         }
         if (order.State == BO.Status.delivered)
         {

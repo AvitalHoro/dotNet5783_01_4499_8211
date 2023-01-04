@@ -13,10 +13,10 @@ internal class Order : IOrder
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
-    #region updateItemListForOrder
+    #region UpdateItemListForOrder
     /// <exception cref="BO.DoesNotExistException"></exception>
     //פונקציה שמקבלת פריט הזמנה מסוג שכבת הנתונים וממירה אותו לפריט הזמנה מסוג שכבת הלוגיקה
-    public BO.OrderItem updateItemListForOrder(DO.OrderItem doOrder)
+    public BO.OrderItem UpdateItemListForOrder(DO.OrderItem doOrder)
     {
         BO.OrderItem boOrder = new BO.OrderItem();
         BO.Tools.CopyPropTo(doOrder, boOrder);
@@ -32,15 +32,15 @@ internal class Order : IOrder
     }
     #endregion
 
-    #region orderToboOrder
+    #region OrderToboOrder
     //ממירה הזמנה משכבת הנתונים להזמנה משכבת הלוגיקה
-    public void orderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
+    public void OrderToboOrder(DO.Order? orderDo, BO.Order? orderBo)
     {
         double total = 0;
         BO.Tools.CopyPropTo(orderDo, orderBo);
-        IEnumerable<DO.OrderItem> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
+        IEnumerable<DO.OrderItem?> list = Dal.OrderItem.GetAll(item=> orderDo?.ID== item?.OrderID); //מבקשים משכבת הנתונים רשימה של כל הפריטים בהזמנה 
         var newList = (from DO.OrderItem item in list
-                       let orderItem = updateItemListForOrder(item)
+                       let orderItem = UpdateItemListForOrder(item)
                        select orderItem)
                        .ToList();
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
@@ -54,15 +54,15 @@ internal class Order : IOrder
     }
     #endregion
 
-    #region doOrderToOrderForList
+    #region DoOrderToOrderForList
     //ממירה הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
-    public BO.OrderForList doOrderToOrderForList(DO.Order doOrder)
+    public BO.OrderForList DoOrderToOrderForList(DO.Order doOrder)
     {
         BO.OrderForList boOrder = new BO.OrderForList();
         BO.Tools.CopyPropTo(doOrder, boOrder);
         var OrderItems = Dal.OrderItem.GetAll(item=> doOrder.ID == item?.OrderID ); //מביא משכבת הנתונים את כל הפריטים של ההזמנה
-        boOrder.ItemsAmount = OrderItems.Sum(item => item.Amount); //מעדכן את כמות המוצרים בהזמנה
-        boOrder.TotalPrice = OrderItems.Sum(item => item.Price * item.Amount); //מעדכן את המחיר הכולל של הזמנה
+        boOrder.ItemsAmount = OrderItems.Sum(item => item?.Amount)??0; //מעדכן את כמות המוצרים בהזמנה
+        boOrder.TotalPrice = OrderItems.Sum(item => item?.Price * item?.Amount)??0; //מעדכן את המחיר הכולל של הזמנה
         //מעדכן את סטטוס ההזמנה
         if (doOrder.DeliveryDate != null)
             boOrder.State = BO.Status.delivered;
@@ -74,13 +74,13 @@ internal class Order : IOrder
     }
     #endregion
 
-    #region getOrderList
+    #region GetOrderList
     //מחזירה רשימה של כל ההזמנות
-    public IEnumerable<BO.OrderForList?> getOrderList(Status? state = null)
+    public IEnumerable<BO.OrderForList?> GetOrderList(Status? state = null)
     {
         if(state != null)
         {
-            IEnumerable<DO.Order> tmp =
+            IEnumerable<DO.Order?> tmp =
            state switch
            {
                Status.approved =>
@@ -93,24 +93,24 @@ internal class Order : IOrder
                   Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate != null),
            };
             return (from DO.Order item in tmp
-                    let orderForList = doOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
+                    let orderForList = DoOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
                     select orderForList)
               .ToList();
         }
         else
         {
-            IEnumerable<DO.Order> tmp = Dal.Order.GetAll();
+            IEnumerable<DO.Order?> tmp = Dal.Order.GetAll();
             return (from DO.Order item in tmp
-                    let orderForList = doOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
+                    let orderForList = DoOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
                     select orderForList)
              .ToList();
         }
     }
     #endregion
 
-    #region getDetailsOrder
+    #region GetDetailsOrder
     //מקבלת מזהה של הזמנה ומחזירה את ההזמנה שזה המזהה שלה
-    public BO.Order getDetailsOrder(int IdOrder)
+    public BO.Order GetDetailsOrder(int IdOrder)
     {
         try //אם הת"ז שלילית, זורקים חריגה
         {
@@ -121,7 +121,7 @@ internal class Order : IOrder
         DO.Order? orderDo = Dal.Order.GetById(IdOrder); //מבקשים משכבת הנתונים את ההזמנה הרצויה
         //עושים המרה מהזמנה מסוג שכבת הנתונים להזמנה מסוג שכבת הלוגיקה
         BO.Order? orderBo = new BO.Order();
-        orderToboOrder(orderDo, orderBo);
+        OrderToboOrder(orderDo, orderBo);
         return orderBo;
     }
     #endregion
@@ -157,7 +157,7 @@ internal class Order : IOrder
                 });
                 orderDo = Dal.Order.GetById(IdOrder);
                 BO.Order orderBo = new();
-                orderToboOrder(orderDo, orderBo);
+                OrderToboOrder(orderDo, orderBo);
                 orderBo.State = Status.sent;
                 return orderBo;
             }
@@ -200,7 +200,7 @@ internal class Order : IOrder
                     IsDeleted = false
                 });
                 BO.Order? orderBo = new BO.Order();
-                orderToboOrder(orderDo, orderBo);
+                OrderToboOrder(orderDo, orderBo);
                 orderBo.State = Status.delivered;
                 return orderBo;
             }

@@ -35,7 +35,7 @@ public partial class AdminPage : Page
         InitializeComponent();
         bl = BL;
         listProducts = Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
-        listOrders = Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+        listOrders = Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
         ProductsListAdmin.DataContext = listProducts;
         OrdersListAdmin.DataContext = listOrders;
         SelectCategory.Items.Add("הכל");
@@ -88,16 +88,16 @@ public partial class AdminPage : Page
        switch(SelectCategoryForOrder.SelectedItem)
         {
             case ("הזמנות שאושרו"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList(Status.approved));
+                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Status.approved));
                 break;
             case ("הזמנות שנשלחו"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList(Status.sent));
+                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Status.sent));
                 break;
             case ("הזמנות שנמסרו"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList(Status.delivered));
+                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Status.delivered));
                 break;
                  case ("הכל"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
                 break;  
         }
     }
@@ -117,8 +117,8 @@ public partial class AdminPage : Page
     private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
     {
         BO.OrderForList order= (BO.OrderForList)((DataGrid)sender).SelectedItem;
-        frame.Content = new PL.Order.OrderTracking(bl, bl.Order.getDetailsOrder(order.ID), frame, true);
-        Tools.IEnumerableToObservable(listOrders, bl.Order.getOrderList());
+        frame.Content = new PL.Order.OrderTracking(bl, bl.Order.GetDetailsOrder(order.ID), frame, true);
+        Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
     }
 
     private void DeleteProduct_Click(object sender, RoutedEventArgs e)
