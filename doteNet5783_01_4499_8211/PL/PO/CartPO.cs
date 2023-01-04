@@ -1,5 +1,6 @@
 ﻿using BO;
 using MaterialDesignThemes.Wpf;
+using PL.PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -74,8 +75,8 @@ public class CartPO : INotifyPropertyChanged
         }
     }
 
-    private ObservableCollection<OrderItem?>? orderItems;
-    public ObservableCollection<OrderItem?>? OrderItems
+    private ObservableCollection<OrderItemPO?>? orderItems;
+    public ObservableCollection<OrderItemPO?>? OrderItems
     {
         get
         { return orderItems; }

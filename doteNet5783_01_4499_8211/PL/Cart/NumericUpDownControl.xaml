@@ -8,23 +8,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-            <Button x:Name="cmdUp"
-                    Click="cmdUp_Click" Padding="0" Width="34" Height="32">
-                <materialDesign:PackIcon Kind="Triangle"
-                       Height="21" Width="56" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Button>
-            <TextBox x:Name="textNumber" 
-                     Margin="1" 
-                     Width="44" 
-                     TextChanged="txtNum_TextChanged"
-                     Height="38" />
+        <StackPanel Orientation="Horizontal">
+            
             <Button x:Name="cmdDown" 
                     Margin="1" Padding="0" 
                     Click="cmdDown_Click" Width="34" Height="32" >
                 <materialDesign:PackIcon Kind="TriangleSmallDown"
                        Height="90" Width="58" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button>
+            
+            <TextBox x:Name="textNumber" 
+                     Margin="1" 
+                     Width="44" 
+                     TextChanged="txtNum_TextChanged"
+                     Height="38" />
+            
+            <Button x:Name="cmdUp"
+                    Click="cmdUp_Click" Padding="0" Width="34" Height="32">
+                <materialDesign:PackIcon Kind="Triangle"
+                       Height="21" Width="56" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Button>
+            
         </StackPanel>
     </Grid>
 </UserControl>

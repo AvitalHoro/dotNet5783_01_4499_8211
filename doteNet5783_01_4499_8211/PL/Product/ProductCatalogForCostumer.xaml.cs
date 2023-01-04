@@ -38,7 +38,7 @@ public partial class ProductCatalogForCostumer : Page
             listProduct = value;
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs("CList"));
+                PropertyChanged(this, new PropertyChangedEventArgs("ListProduct"));
             }
         }
     }

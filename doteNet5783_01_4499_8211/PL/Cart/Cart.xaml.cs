@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,7 +31,7 @@ public partial class Cart : Page
     IBl bl;
     private CartPO myCart = new();
     private BO.Cart cartBo = new();
-    private int ItemsAmount = 0;
+   // private int ItemsAmount = 0;
     MainWindow mainWindow;
     public Cart(IBl BL, BO.Cart cart , MainWindow _mainWindow)
     {
@@ -40,7 +41,7 @@ public partial class Cart : Page
         cartBo = cart;
         Tools.BoCartToPoCart(myCart, cart);
         DataContext= myCart;
-        ItemsAmount = myCart.OrderItems.Count();
+        //ItemsAmount = myCart.OrderItems.Count();
         IsCartEmpty();
     }
 
@@ -50,13 +51,37 @@ public partial class Cart : Page
     }
 
     private void UpdateAmount_Click(object sender, RoutedEventArgs e)
-    { 
-       // Tools.PoCartToBoCart(myCart, cartBo);
-        var b = (Button)sender;
-        OrderItem item = (OrderItem)b.DataContext;
-        bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, 0);
-        Tools.BoCartToPoCart(myCart, cartBo);
-        IsCartEmpty();
+    {
+        UpdateAmount(sender, 0);
+    }
+
+    private void UpdateAmount(object sender, int amount, bool isTextBox = false)
+    {
+        try
+        {
+            PO.OrderItemPO item = new();
+            TextBox t;
+            Button b;
+            if (isTextBox)
+            {
+                t = (TextBox)sender;
+                item = (PO.OrderItemPO)t.DataContext;
+            }
+            else
+            {
+                b = (Button)sender;
+                item = (PO.OrderItemPO)b.DataContext;
+            }
+            bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, amount);
+            Tools.BoCartToPoCart(myCart, cartBo);
+            IsCartEmpty();
+        }
+        catch(BO.OutOfStockException ex)
+        {
+            MessageBox.Show("אין עוד מהמוצר הזה במלאי" +
+               "", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            return;
+        }
     }
 
     private void IsCartEmpty()
@@ -79,6 +104,45 @@ public partial class Cart : Page
     {
         mainWindow.framePage.Content = new ApprovedOrder(bl, myCart);
     }
+
+    private void cmdDown_Click(object sender, RoutedEventArgs e)
+    {
+        var b = (Button)sender;
+        int amount = ((PO.OrderItemPO)b.DataContext).Amount;
+        UpdateAmount(sender, amount-1);
+    }
+
+    private void txtNum_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var t = (TextBox)sender;
+        UpdateAmount(sender, int.Parse(t.Text) , true);
+    }
+
+    private void cmdUp_Click(object sender, RoutedEventArgs e)
+    {
+        var b = (Button)sender;
+        int amount = ((PO.OrderItemPO)b.DataContext).Amount;
+        UpdateAmount(sender, amount+1);
+    }
+
+
+
+
+    //private void UpdateAmountUpDown(object sender, RoutedEventArgs e)
+    //{
+    //    try
+    //    {
+    //        var b = (Button)sender;
+    //        OrderItem item = (OrderItem)b.DataContext;
+    //        bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, );
+    //        Tools.BoCartToPoCart(myCart, cartBo);
+    //        IsCartEmpty();
+    //    }
+    //    catch
+    //    {
+
+    //    }
+    //}
 
     //public event PropertyChangedEventHandler PropertyChanged;
 

@@ -89,13 +89,19 @@ public static class Tools
     {
         cartBo.OrderItems = new();
         CopyPropTo(cartPo, cartBo);
-        ObservableToList(cartBo.OrderItems, cartPo.OrderItems);
+        //  ObservableToList(cartBo.OrderItems, cartPo.OrderItems);
+        cartBo.OrderItems.Clear();
+        foreach (var item in cartBo.OrderItems)
+            cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
     }
 
     public static void BoCartToPoCart(CartPO cartPo, BO.Cart cartBo)
     {
         cartPo.OrderItems = new();
         CopyPropTo(cartBo, cartPo);
-        IEnumerableToObservable(cartPo.OrderItems, cartBo.OrderItems);
+        //   IEnumerableToObservable(cartPo.OrderItems, cartBo.OrderItems);
+        cartPo.OrderItems.Clear();
+        foreach (var item in cartBo.OrderItems)
+            cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
     }
 }

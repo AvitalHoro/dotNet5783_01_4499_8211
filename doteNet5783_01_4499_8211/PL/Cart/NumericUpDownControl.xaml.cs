@@ -22,8 +22,6 @@ namespace PL.Cart;
 /// </summary>
 public partial class NumericUpDownControl : UserControl
 {
-    private OrderItem item;
-    IBl bl;
     public float? Value
     {
         get { return (float?)GetValue(ValueProperty); }
@@ -34,7 +32,6 @@ public partial class NumericUpDownControl : UserControl
     public static readonly DependencyProperty ValueProperty =
         DependencyProperty.Register("Value", typeof(float?), typeof(NumericUpDownControl),
             new PropertyMetadata(null, PropertyChangedCallback, ValueCoerceValueCallback));
-
     public static object ValueCoerceValueCallback(DependencyObject d, object baseValue)
     {
         float? value = baseValue as float?;
@@ -65,12 +62,10 @@ public partial class NumericUpDownControl : UserControl
     public static readonly DependencyProperty MaxValueProperty =
         DependencyProperty.Register("MaxValue", typeof(int), typeof(NumericUpDownControl), new PropertyMetadata(100));
 
-    public NumericUpDownControl(IBl BL, OrderItem orderItem)
+    public NumericUpDownControl()
     {
         InitializeComponent();
-        item = orderItem;
-        bl = BL;
-        MaxValue = bl.Product.GetProductDetails(item.ProductID).InStock;
+        MaxValue = 100;
     }
 
     private void cmdUp_Click(object sender, RoutedEventArgs e)
@@ -98,3 +93,4 @@ public partial class NumericUpDownControl : UserControl
             Value = val;
     }
 }
+
