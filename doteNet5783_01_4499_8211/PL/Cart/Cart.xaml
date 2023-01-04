@@ -38,14 +38,6 @@
                             <TextBlock Text="{Binding NameProduct}" TextAlignment="Center"></TextBlock>
                             <TextBlock Text="{Binding Price}" TextAlignment="Center" FontSize="20"></TextBlock>
                         </StackPanel>
-                        <!--<StackPanel Grid.Column="1">
-                        <local:NumericUpDownControl x:Name="AmountUpDown" 
-                                                    MinValue="0"
-                                                    Value="{Binding Amount}" />
-                            <Button Name="UpdateAmountUpDown"
-                                Click="UpdateAmountUpDown">
-                            </Button>
-                        </StackPanel>-->
                         <StackPanel Orientation="Horizontal" Grid.Column="1">
                             <Button x:Name="cmdDown" 
                                     Margin="1" Padding="0" 
