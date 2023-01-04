@@ -74,7 +74,11 @@ public partial class ProductCatalogForCostumer : Page
                 break;
             case "All":
             case "GoBackToCatalog":
-                ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock:true));
+                ProductListview.ItemsSource = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock: true));
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ProductListview.ItemsSource);
+                PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
+                view.GroupDescriptions.Add(groupDescription);
+               
                 break;
             default:
                 ListProduct = new ObservableCollection<ProductForList>
