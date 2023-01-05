@@ -175,13 +175,14 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <ComboBox Name="SelectCategory"
-                  materialDesign:HintAssist.Hint="(סינון לפי קטגוריות)"
-                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  HorizontalAlignment="Left" 
-                  Margin="259,0,0,0" 
-                  VerticalAlignment="Center"
-                  Width="202" 
-                  SelectionChanged="SelectCategory_SelectionChanged" Grid.ColumnSpan="2">
+                            materialDesign:HintAssist.Hint="(סינון לפי קטגוריות)"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                            HorizontalAlignment="Left" 
+                            Margin="259,0,0,0" 
+                            VerticalAlignment="Center"
+                            Width="202" 
+                            SelectionChanged="SelectCategory_SelectionChanged" 
+                            Grid.ColumnSpan="2">
                         </ComboBox>
                         <Button Name="Archives"
                                 Content="מוצרים בארכיון" 
