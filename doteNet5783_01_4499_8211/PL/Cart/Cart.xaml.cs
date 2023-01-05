@@ -73,9 +73,15 @@ public partial class Cart : Page
                 item = (PO.OrderItemPO)b.DataContext;
             }
             bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, amount);
-            PO.OrderItemPO orderItem = myCart.OrderItems.FirstOrDefault(x => x.ID == item.ID);
-            orderItem.Amount = amount;
+            item = myCart.OrderItems.FirstOrDefault(x => x.ID == item.ID);
             myCart.TotalPrice = cartBo.TotalPrice;
+            if (amount == 0)
+            {
+                myCart.OrderItems.Remove(item);
+                myCart.TotalPrice = cartBo.TotalPrice;
+                return;
+            }
+            item.Amount = amount;
             IsCartEmpty();
         }
         catch (BO.OutOfStockException ex)
