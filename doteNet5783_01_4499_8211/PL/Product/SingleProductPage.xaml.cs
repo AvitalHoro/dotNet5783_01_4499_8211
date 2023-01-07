@@ -26,15 +26,17 @@ namespace PL.Product
         BO.Cart cart;
         Frame mainFrame;
         BO.ProductItem product;
+        string content;
 
-        public SingleProductPage(IBl BL, BO.Cart _cart, int productId, Frame frame)
+        public SingleProductPage(IBl BL, BO.Cart _cart, int productId, Frame frame, string content)
         {
             InitializeComponent();
             bl= BL; 
             this.cart = _cart;
             product = bl.Product.GetProductDetails(productId, cart);
             DataContext= product;
-            frame = mainFrame;
+            this.content = content;
+            mainFrame = frame; ;
             for (int i = 1; i <= product.InStock; i++)
                 SelectedAmount.Items.Add(i);
             SelectedAmount.SelectedItem = 1;
@@ -55,6 +57,11 @@ namespace PL.Product
                     "המוצר הזה אזל במלאי", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
+        }
+
+        private void ReturnBack_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Content = new ProductCatalogForCostumer(bl, content , cart , mainFrame);
         }
     }
 }

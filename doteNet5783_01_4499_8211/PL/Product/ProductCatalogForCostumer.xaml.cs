@@ -28,6 +28,7 @@ public partial class ProductCatalogForCostumer : Page
 {
     IBl bl;
     BO.Cart cart;
+    string content;
     Frame frame;
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -51,7 +52,8 @@ public partial class ProductCatalogForCostumer : Page
         bl = BL;
         this.cart = cart;
         ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock: true));
-        this.frame = frame; 
+        this.frame = frame;
+        content = ButtonName;
 
         switch (ButtonName)
         {
@@ -110,6 +112,6 @@ public partial class ProductCatalogForCostumer : Page
 
     private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        frame.Content = new SingleProductPage(bl, cart, ((BO.ProductForList)ProductListview.SelectedItem).ID, frame);
+        frame.Content = new SingleProductPage(bl, cart, ((BO.ProductForList)ProductListview.SelectedItem).ID, frame, content);
     }
 }
