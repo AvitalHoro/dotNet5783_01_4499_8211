@@ -85,7 +85,7 @@
                 <SolidColorBrush Color="#FFB1BFAD" />
             </Button.Background>
             <Grid>
-                <materialDesign:PackIcon Kind="ArrowLeftThick"
+                <materialDesign:PackIcon Kind="ArrowLeft"
                        Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </Grid>
         </Button>

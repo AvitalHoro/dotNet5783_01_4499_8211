@@ -193,7 +193,11 @@
                                 Content="מוצרים בארכיון" 
                                 HorizontalAlignment="Left"
                                 Margin="114,36,0,0" 
-                                VerticalAlignment="Top" Width="124" Click="Archives_Click"/>
+                                VerticalAlignment="Top" Width="124" Click="Archives_Click">
+                        <Button.Background>
+                            <SolidColorBrush Color="#FFB1BFAD" />
+                        </Button.Background>
+                        </Button>
                     </Grid>
                 </Grid>
             </TabItem>
