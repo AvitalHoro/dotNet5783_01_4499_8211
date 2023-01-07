@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL"
+      xmlns:converter="clr-namspace:Converters"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:BO="clr-namespace:BO;assembly=BL"
-    Style="{StaticResource PageStyle}"
+      Style="{StaticResource PageStyle}"
       mc:Ignorable="d" 
       Title="AdminPage" Height="570" Width="800">
+    <Page.Resources>
+        <local:StateToBoolConverter x:Key="StateToBoolConverter"/>
+    </Page.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="רשימת הזמנות">
@@ -31,10 +35,10 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="163,0,0,0">
                             <TextBlock Height="30"
-                       Text="הזמנות" FontSize="30" 
-                       FontFamily="Candara" 
-                       FontWeight="Bold" Foreground="Black" Width="213"
-                       />
+                                       Text="הזמנות" FontSize="30" 
+                                       TextAlignment="Right"
+                                        FontFamily="Candara" 
+                                        FontWeight="Bold" Foreground="Black" Width="181" />
                         </StackPanel>
 
                         <DataGrid x:Name="OrdersListAdmin"
@@ -63,7 +67,8 @@
                                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                     Height="30" Width="30"
                                                     HorizontalAlignment="Center"
-                                                    Click="CancelOrder_Click">
+                                                    Click="CancelOrder_Click"
+                                                    IsEnabled="{Binding State, Converter=}">
                                                 <materialDesign:PackIcon Kind="Close"
                                                                      Width="25" Height="25"/>
                                             </Button>

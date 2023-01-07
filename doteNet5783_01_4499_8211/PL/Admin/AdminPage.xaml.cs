@@ -141,6 +141,13 @@ public partial class AdminPage : Page
 
     private void CancelOrder_Click(object sender, RoutedEventArgs e)
     {
-
+        var b = sender as Button;
+        int id = ((OrderForList)b.DataContext).ID;
+        var order = listOrders.FirstOrDefault(x => x.ID == id);
+        if(order.State == Status.approved)
+        {
+            listOrders.Remove(order);
+            bl.Order.CancelOrder(id);
+        }
     }
 }

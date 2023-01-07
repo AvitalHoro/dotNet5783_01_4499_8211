@@ -8,15 +8,18 @@
       xmlns:BO="clr-namespace:BO;assembly=BL"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d"              
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="570" Width="800"
       Title="ProductCatalogForCostumer">
     <Page.DataContext>
         <BO:ProductForList/>
     </Page.DataContext>
 
     <Grid>
-        <ListView x:Name="ProductListview"
-                  ItemsSource="{Binding}">
+        <ListView x:Name="ProductListview" 
+                  Width="800"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Right"
+                  ItemsSource="{Binding}" MouseDoubleClick="ProductListview_MouseDoubleClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), 
@@ -31,18 +34,18 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Image Source="{Binding Path}" Width="180"  Height="180"></Image>
+                        <Image Source="{Binding Path}" Width="170"  Height="170"></Image>
                         <TextBlock Text="{Binding Name}" FontSize="20"></TextBlock>
                         <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
-                        <TextBlock Text="₪" FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
+                            <TextBlock Text="₪" FontSize="20"></TextBlock>
                         </StackPanel>
                         <Button 
                             Click="addProductToCart"
                                 Style="{StaticResource MaterialDesignFloatingActionSecondaryDarkButton}" 
                                 Height="60" Width="60"
                                 HorizontalAlignment="Right">
-                                 
+
                             <materialDesign:PackIcon Name="pack" Tag="{Binding ID}" Kind="CartAdd" 
                                          Foreground="Black"
                                          Height="40" Width="45"

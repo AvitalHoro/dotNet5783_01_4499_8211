@@ -1,0 +1,72 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL.Product"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:BO="clr-namespace:BO;assembly=BL"
+      x:Class="PL.Product.SingleProductPage"
+      mc:Ignorable="d" 
+      Style="{StaticResource PageStyle}"
+      Height="570" Width="800"
+      Title="SingleProductPage">
+
+    <Grid>
+
+        <Image x:Name="ProductImage" 
+                   Source="{Binding Path}"
+                   Width="350"
+                   Height="350" Margin="28,44,422,176"/>
+
+
+        <StackPanel Orientation="Horizontal" Margin="585,114,50,387">
+            <TextBlock Text=" ₪" 
+                       FontSize="30"
+                        Width="38"
+                       Height="50"/>
+            <TextBlock Text="{Binding Price}"
+                       FontSize="30"
+                       Width="114"
+                       Height="50"/>
+        </StackPanel>
+
+        <Button x:Name="AddToCart"
+                Content="הוספה לעגלה"
+                FontSize="25"
+                Height="50"
+                Click="AddToCart_Click" 
+                Margin="465,260,94,260"/>
+
+        <TextBlock HorizontalAlignment="Left"
+                   Margin="432,51,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="{Binding Name}"
+                   Width="283"
+                   Height="51"
+                   TextAlignment="Right"
+                   FontSize="30"
+                   VerticalAlignment="Top"/>
+
+        <ComboBox Name="SelectedAmount"
+                  HorizontalAlignment="Left" 
+                  Margin="586,188,0,0"
+                  VerticalAlignment="Top" 
+                  Width="106"
+                  FontSize="20"
+                  HorizontalContentAlignment="Right"
+                  Height="45"/>
+        <TextBlock
+            HorizontalAlignment="Left" 
+            Margin="481,332,0,0"
+            TextWrapping="Wrap"
+            Text=" ₪משלוח חינם עד הבית בקנייה מעל 299" VerticalAlignment="Top" Height="25" Width="225"/>
+        <Expander HorizontalAlignment="Left" Height="165"  Header="משלוחים והחזרות" Margin="481,385,0,0" VerticalAlignment="Top" Width="237">
+            <TextBlock Height="118"
+                       TextWrapping="Wrap" 
+                       TextAlignment="Right"
+                       Width="238"><Span FlowDirection="RightToLeft"/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il" Text=" אספקת ההזמנה עד 10 ימי עסקים"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il" Text="החזרת פריטים תוך 14 ימים מיום קבלת המשלוח"/></TextBlock>
+        </Expander>
+
+    </Grid>
+</Page>
