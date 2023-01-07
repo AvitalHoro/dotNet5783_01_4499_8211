@@ -20,7 +20,7 @@
                    Height="350" Margin="28,44,422,176"/>
 
 
-        <StackPanel Orientation="Horizontal" Margin="585,114,50,387">
+        <StackPanel Orientation="Horizontal" Margin="605,114,30,387">
             <TextBlock Text=" ₪" 
                        FontSize="30"
                         Width="38"
@@ -33,13 +33,12 @@
 
         <Button x:Name="AddToCart"
                 Content="הוספה לעגלה"
-                FontSize="25"
-                Height="50"
+                FontSize="20"
                 Click="AddToCart_Click" 
-                Margin="465,260,94,260"/>
+                Margin="465,318,94,220"/>
 
         <TextBlock HorizontalAlignment="Left"
-                   Margin="432,51,0,0" 
+                   Margin="417,45,0,0" 
                    TextWrapping="Wrap" 
                    Text="{Binding Name}"
                    Width="283"
@@ -50,7 +49,7 @@
 
         <ComboBox Name="SelectedAmount"
                   HorizontalAlignment="Left" 
-                  Margin="586,188,0,0"
+                  Margin="594,240,0,0"
                   VerticalAlignment="Top" 
                   Width="106"
                   FontSize="20"
@@ -58,14 +57,19 @@
                   Height="45"/>
         <TextBlock
             HorizontalAlignment="Left" 
-            Margin="481,332,0,0"
+            Margin="481,355,0,0"
             TextWrapping="Wrap"
             Text=" ₪משלוח חינם עד הבית בקנייה מעל 299" VerticalAlignment="Top" Height="25" Width="225"/>
         <Expander HorizontalAlignment="Left" Height="165"  Header="משלוחים והחזרות" Margin="481,385,0,0" VerticalAlignment="Top" Width="237">
             <TextBlock Height="118"
                        TextWrapping="Wrap" 
                        TextAlignment="Right"
-                       Width="238"><Span FlowDirection="RightToLeft"/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il" Text=" אספקת ההזמנה עד 10 ימי עסקים"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il" Text="החזרת פריטים תוך 14 ימים מיום קבלת המשלוח"/></TextBlock>
+                       Width="238">
+                <Span FlowDirection="RightToLeft"/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/>
+                <Run FlowDirection="RightToLeft" Language="he-il" Text=" אספקת ההזמנה עד 10 ימי עסקים"/>
+                <LineBreak/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/>
+                <Run FlowDirection="RightToLeft" Language="he-il" Text="החזרת פריטים תוך 14 ימים מיום קבלת המשלוח"/>
+            </TextBlock>
         </Expander>
 
     </Grid>
