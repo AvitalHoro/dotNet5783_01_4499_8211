@@ -17,7 +17,7 @@ internal class Product : IProduct
     {
         if (isInStock)
         {
-            IEnumerable<DO.Product> doProductList =
+            IEnumerable<DO.Product?> doProductList =
             enumFilter switch
             {
                 BO.Filters.filterByCategory =>
@@ -39,7 +39,7 @@ internal class Product : IProduct
 
         else
         {
-            IEnumerable<DO.Product> doProductList =
+            IEnumerable<DO.Product?> doProductList =
          enumFilter switch
          {
              BO.Filters.filterByCategory =>
@@ -67,7 +67,7 @@ internal class Product : IProduct
     //מחזיר רשימה של כל המוצרים בשביל הלקוח
     public IEnumerable<BO.Product?> GetCatalog()
     {
-        IEnumerable<DO.Product> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
+        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
         //הלקוח לא צריך לראות מוצרים מחוקים
         var newList = from DO.Product product in tmp
                       select BO.Tools.CopyPropTo(product, new BO.Product());
@@ -111,7 +111,11 @@ internal class Product : IProduct
             DO.Product product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
             BO.Tools.CopyPropTo(product, productItem);
-            productItem.IsInStock = (product.InStock > 0);
+            BO.OrderItem item = cart.OrderItems.FirstOrDefault(x => x.ProductID == productItem.ID);
+            if (item != null)
+                productItem.AmountInCart = item.Amount;
+             else
+                productItem.AmountInCart = 0;
             return productItem;
         }
         catch (BO.DoesNotExistException ex)

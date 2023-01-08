@@ -71,7 +71,7 @@ public partial class MainWindow : Window
     public void ListCategories_Click(object sender, RoutedEventArgs e)   
     {
         categories.IsEnabled = true;
-        framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name, cart);
+        framePage.Content = new ProductCatalogForCostumer(bl, ((Button)sender).Name, cart, framePage);
     }
 
     private void showHomePage(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ public partial class MainWindow : Window
     {
         categories.IsEnabled = true;
         if (EnterStringToSearch.Text != null)
-            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart);
+            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage);
     }
 
     private void EnterPressed_KeyDown(object sender, KeyEventArgs e)

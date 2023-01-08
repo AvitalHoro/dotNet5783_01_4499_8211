@@ -31,7 +31,6 @@ public partial class Cart : Page
     IBl bl;
     private CartPO myCart = new();
     private BO.Cart cartBo = new();
-    // private int ItemsAmount = 0;
     MainWindow mainWindow;
     public Cart(IBl BL, BO.Cart cart, MainWindow _mainWindow)
     {
@@ -41,8 +40,6 @@ public partial class Cart : Page
         cartBo = cart;
         Tools.BoCartToPoCart(myCart, cart);
         DataContext = myCart;
-        //ItemsAmount = myCart.OrderItems.Count();
-        IsCartEmpty();
     }
 
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)
@@ -73,32 +70,21 @@ public partial class Cart : Page
                 item = (PO.OrderItemPO)b.DataContext;
             }
             bl.Cart.UpdateAmountProduct(cartBo, item.ProductID, amount);
-            PO.OrderItemPO orderItem = myCart.OrderItems.FirstOrDefault(x => x.ID == item.ID);
-            orderItem.Amount = amount;
+            item = myCart.OrderItems.FirstOrDefault(x => x.ID == item.ID);
             myCart.TotalPrice = cartBo.TotalPrice;
-            IsCartEmpty();
+            if (amount == 0)
+            {
+                myCart.OrderItems.Remove(item);
+                myCart.TotalPrice = cartBo.TotalPrice;
+                return;
+            }
+            item.Amount = amount;
         }
         catch (BO.OutOfStockException ex)
         {
             MessageBox.Show("אין עוד מהמוצר הזה במלאי" +
                "", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             return;
-        }
-    }
-
-    private void IsCartEmpty()
-    {
-        if (myCart.OrderItems.Count() == 0)
-        {
-            CryBaby.Visibility = Visibility.Visible;
-            All.Visibility = Visibility.Visible;
-            LeftGrid.Visibility = Visibility.Hidden;
-        }
-        else
-        {
-            LeftGrid.Visibility = Visibility.Visible;
-            CryBaby.Visibility = Visibility.Hidden;
-            All.Visibility = Visibility.Hidden;
         }
     }
 

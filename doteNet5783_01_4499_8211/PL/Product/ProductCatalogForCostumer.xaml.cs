@@ -28,6 +28,9 @@ public partial class ProductCatalogForCostumer : Page
 {
     IBl bl;
     BO.Cart cart;
+    string content;
+    Frame frame;
+
     public event PropertyChangedEventHandler PropertyChanged;
     private ObservableCollection<ProductForList> listProduct;
     public ObservableCollection<ProductForList> ListProduct
@@ -43,12 +46,14 @@ public partial class ProductCatalogForCostumer : Page
         }
     }
 
-    public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart)
+    public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart , Frame frame)
     {
         InitializeComponent();
         bl = BL;
         this.cart = cart;
         ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock: true));
+        this.frame = frame;
+        content = ButtonName;
 
         switch (ButtonName)
         {
@@ -103,13 +108,10 @@ public partial class ProductCatalogForCostumer : Page
             return;
         }
         BO.Product product = bl.Product.GetProductDetails(id);
-        //if (product.InStock == 0)
-        //{
-        //    //BO.ProductForList pro = new();
-        //    //Tools.CopyPropTo(product, pro);
-        //    //ListProduct.Remove(pro);
-        //     ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock:true));
-        //}
+    }
+
+    private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        frame.Content = new SingleProductPage(bl, cart, ((BO.ProductForList)ProductListview.SelectedItem).ID, frame, content);
     }
 }
-        

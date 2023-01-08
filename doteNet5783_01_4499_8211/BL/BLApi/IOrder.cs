@@ -5,10 +5,11 @@ namespace BLApi;
 
 public interface IOrder
 {
-    public IEnumerable<BO.OrderForList?> getOrderList(Status? state = null);
-    public BO.Order  getDetailsOrder (int IdOrder);
-    public BO.Order UpdateShipDate (int IdOrder);
-    public BO.Order UpdateDeliveryDate(int IdOrder);
-    public BO.OrderTracking Tracking (int IdOrder);
-    public DO.OrderItem UpdateOrder(int IdOrder, int IdProduct, int newAmount);
+    public IEnumerable<BO.OrderForList?> GetOrderList(Status? state = null);
+    public BO.Order  GetDetailsOrder (int idOrder);
+    public BO.Order UpdateShipDate (int idOrder);
+    public BO.Order UpdateDeliveryDate(int idOrder);
+    public BO.OrderTracking Tracking (int idOrder);
+    public DO.OrderItem UpdateOrder(int idOrder, int IdProduct, int newAmount);
+    public void CancelOrder (int idOrder);  
 }

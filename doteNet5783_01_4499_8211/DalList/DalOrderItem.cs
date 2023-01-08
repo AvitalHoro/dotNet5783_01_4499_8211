@@ -75,13 +75,11 @@ public class DalOrderItem : IOrderItem
     #endregion
 
     #region GetAll
-    public IEnumerable<OrderItem> GetAll(Func<OrderItem?, bool>? filter = null)
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? filter = null)
     {
         if (filter == null)
-            return (from OrderItem orderItem in ds.ListOrderItem
-                    select orderItem)
-                .ToList();
-        return (from OrderItem orderItem in ds.ListOrderItem 
+            return ds.ListOrderItem;
+        return (from OrderItem? orderItem in ds.ListOrderItem 
                 where filter!(orderItem) 
                 select orderItem)
                 .ToList();
