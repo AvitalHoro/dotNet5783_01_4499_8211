@@ -26,14 +26,32 @@ public class IntToVisibiltyConverter : IValueConverter
     }
 }
 
+public class IntToHiddenConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        int listCountValue = (int)value;
+
+        if (listCountValue == 0)
+            return Visibility.Visible;
+        else
+            return Visibility.Hidden;
+
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
 
 public class StateToBoolConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-       string state = (string)value;
+       BO.Status state = (BO.Status)value;
 
-        if (state == "approved")
+        if (state == BO.Status.approved)
             return true;
         else
             return false;
