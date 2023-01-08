@@ -20,58 +20,18 @@
             <RowDefinition Height="239*"/>
             <RowDefinition Height="315*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="33*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" 
-               Content=":כתובת מגורים" 
-               FontSize="16" 
-               HorizontalAlignment="Left" 
-               Margin="674,165,0,0" 
-               VerticalAlignment="Top"/>
-        <TextBlock x:Name="costumerAdressTextBox" 
-                   FontSize="16"
-                   HorizontalAlignment="Left"
-                   Height="NaN" 
-                   Margin="497,169,0,0" 
-                   Text="{Binding CostumerAdress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
-                   VerticalAlignment="Top" 
-                   Width="172"/>
+        <Image HorizontalAlignment="Left" Height="111" Margin="-23,98,0,0" VerticalAlignment="Top" Width="480" Source="/Order/track1.png"/>
+        <Image x:Name="delevired" Visibility="Visible" HorizontalAlignment="Left" Height="117" Margin="234,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/home.png"/>
+        <Image x:Name="shipped" Visibility="Visible" HorizontalAlignment="Left" Height="117" Margin="70,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/deliver.png"/>
+        <Image x:Name="approved" Visibility="Visible" HorizontalAlignment="Left" Height="97" Margin="8,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
+        <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right" Height="26"><Span FlowDirection="RightToLeft"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Margin="0,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="74" Text="{Binding ID}"/>
 
-        <Label Grid.Column="0"
-               Content=":כתובת אימייל" 
-               FontSize="16" 
-               HorizontalAlignment="Left" 
-               Margin="677,122,0,0" 
-               VerticalAlignment="Top"/>
-        <TextBlock x:Name="costumerEmailTextBox" 
-                   HorizontalAlignment="Left"
-                   FontSize="16"
-                   Height="NaN" 
-                   Margin="497,127,0,0" 
-                   Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-                   VerticalAlignment="Top" Width="172"/>
-        <Label Content=":שם" 
-               HorizontalAlignment="Left"
-               FontSize="16"
-               Margin="747,86,0,0" 
-               VerticalAlignment="Top"/>
-        <TextBlock x:Name="costumerNameTextBox"  
-                   HorizontalAlignment="Left"
-                   FontSize="16" 
-                   Height="NaN" 
-                   Margin="497,94,0,0"
-                   Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
-                   VerticalAlignment="Top" 
-                   Width="172"/>
-
-
-        <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="644,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח:"/></TextBlock>
-        <Image HorizontalAlignment="Left" Height="111" Margin="2,98,0,0" VerticalAlignment="Top" Width="480" Source="/Order/track1.png"/>
-        <Image x:Name="delevired" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="256,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/home.png"/>
-        <Image x:Name="shipped" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="94,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/deliver.png"/>
-        <Image x:Name="approved" Visibility="Hidden" HorizontalAlignment="Left" Height="97" Margin="32,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
-        <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right"><Span FlowDirection="RightToLeft"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="208,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="75" Text="{Binding ID}"/>
-     
         <TextBlock 
             HorizontalAlignment="Left"
             Margin="10,197,0,0"
@@ -82,12 +42,12 @@
 
         <TextBlock 
             x:Name="ShipDate"
-            HorizontalAlignment="Left"
-            Margin="169,199,0,0"
+            HorizontalAlignment="Center"
+            Margin="0,199,0,0"
             TextWrapping="Wrap" 
             Text="{Binding ShipDate}" 
             VerticalAlignment="Top"
-            Height="21" Width="151"/>
+            Height="21" Width="150"/>
 
         <TextBlock 
             x:Name="DelDate"
@@ -96,32 +56,49 @@
             TextWrapping="Wrap" 
             Text="{Binding DeliveryDate}" 
             VerticalAlignment="Top"
-            Height="21" Width="176"/>
+            Height="21" Width="176" Grid.ColumnSpan="2"/>
 
         <ListView x:Name="OrderItemView" 
                   ItemsSource="{Binding}"
-                  Margin="0,10,0,-10" 
-                  HorizontalAlignment="Right"
-                  Grid.Row="1">
+                  Margin="8,26,0,29" 
+                  HorizontalAlignment="Left"
+                  Grid.Row="1" Width="434" RenderTransformOrigin="0.5,0.5">
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListView.RenderTransform>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="600">
+                    <Grid Width="400">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Path}" 
-                               Height="100" Grid.Column="1"/>
-                        <StackPanel Grid.Column="0" >
-                            <TextBlock Text="{Binding NameProduct}"/>
-                            <TextBlock Text="{Binding Price}" FontSize="20"/>
+                               Height="100" Grid.Column="2"></Image>
+                        <StackPanel Grid.Column="1" >
+                            <TextBlock Text="{Binding NameProduct}" TextAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding Price}" TextAlignment="Center" FontSize="20"></TextBlock>
                         </StackPanel>
+                        <TextBlock x:Name="textNumber" 
+                                     Grid.Column="0"
+                                     Margin="1" 
+                                     Width="40" 
+                                     TextAlignment="Center"
+                                     FontSize="20"
+                                     Text="{Binding Amount}"
+                                     Height="38" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-       
-        <Grid Name="AdminButton" HorizontalAlignment="Left" Height="213" Margin="94,165,0,0" VerticalAlignment="Top" Width="414" Grid.RowSpan="2">
+
+        <Grid Name="AdminButton" HorizontalAlignment="Left" Height="213" Margin="74,165,0,0" VerticalAlignment="Top" Width="414" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="64*"/>
@@ -155,5 +132,54 @@
                        Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </Grid>
         </Button>
+
+        <Grid Grid.RowSpan="2" Margin="468,0,14,-5" Background="#FFE8E5E5" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="AccountOutline"
+                       Height="133" Width="122"
+                       Margin="111,30,0,0"/>
+            <Label 
+            Content=":כתובת מגורים" 
+            FontSize="16" 
+            HorizontalAlignment="Left" 
+            Margin="189,320,0,0" 
+            VerticalAlignment="Top" Height="26" Width="108"/>
+            <TextBlock x:Name="costumerAdressTextBox" 
+            FontSize="16"
+            HorizontalAlignment="Left"
+            Height="18" 
+            TextAlignment="Right" 
+            Text="{Binding CostumerAdress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+            VerticalAlignment="Top" 
+            Width="134" Margin="50,324,0,0"/>
+            <Label
+            Content=":כתובת אימייל" 
+            FontSize="16" 
+            HorizontalAlignment="Left" 
+            Margin="192,264,0,0" 
+            VerticalAlignment="Top" Height="27" Width="104"/>
+            <TextBlock x:Name="costumerEmailTextBox" 
+            HorizontalAlignment="Left"
+            FontSize="16"
+            Height="19" 
+            Margin="50,269,0,0" 
+            TextAlignment="Right"
+            Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+            VerticalAlignment="Top" Width="137"/>
+            <Label Content=":שם" 
+            HorizontalAlignment="Left"
+            FontSize="16"
+            Margin="262,213,0,0" 
+            VerticalAlignment="Top" Height="27" Width="35"/>
+            <TextBlock x:Name="costumerNameTextBox"  
+            HorizontalAlignment="Left"
+            FontSize="16" 
+            TextAlignment="Right"
+            Height="19" 
+            Margin="86,217,0,0"
+            Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+            VerticalAlignment="Top" 
+            Width="172"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="155,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" FontWeight="Bold" TextAlignment="Right" Height="26"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח:"/></TextBlock>
+        </Grid>
     </Grid>
 </Page>
