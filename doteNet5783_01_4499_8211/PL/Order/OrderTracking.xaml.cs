@@ -44,13 +44,18 @@ public partial class OrderTracking : Page
         else
             AdminButton.Visibility = Visibility.Hidden;
         if (bl.Order.Tracking(order.ID).State == BO.Status.approved)
+        {
             approved.Visibility = Visibility.Visible;
-        if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
+            shipped.Visibility = Visibility.Hidden;
+            delevired.Visibility = Visibility.Hidden;
+        }
+        else if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
         {
             approved.Visibility = Visibility.Visible;
             shipped.Visibility = Visibility.Visible;
+            delevired.Visibility = Visibility.Hidden;
         }
-        if (bl.Order.Tracking(order.ID).State == BO.Status.delivered)
+        else if (bl.Order.Tracking(order.ID).State == BO.Status.delivered)
         {
             approved.Visibility = Visibility.Visible;
             shipped.Visibility = Visibility.Visible;

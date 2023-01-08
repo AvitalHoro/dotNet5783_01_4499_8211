@@ -115,3 +115,4 @@ public partial class ProductCatalogForCostumer : Page
         frame.Content = new SingleProductPage(bl, cart, ((BO.ProductForList)ProductListview.SelectedItem).ID, frame, content);
     }
 }
+ 
