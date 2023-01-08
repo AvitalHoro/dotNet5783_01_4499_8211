@@ -1,0 +1,29 @@
+﻿<Page x:Class="PL.Order.FinishOrder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PL.Order"
+      mc:Ignorable="d" 
+      d:DesignHeight="570" d:DesignWidth="800"
+      Title="FinishOrder">
+
+    <Grid>
+        <Grid HorizontalAlignment="Center" Height="570" VerticalAlignment="Center" Width="800">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Order/thankyou.png"/>
+            </Grid.Background>
+            <Button x:Name="trackOrder" HorizontalAlignment="Center" Height="51" Margin="0,380,0,0" VerticalAlignment="Top" Width="256" Background="{x:Null}" BorderBrush="{x:Null}" Click="trackOrder_Click"/>
+            <TextBlock HorizontalAlignment="Left" Height="34" Margin="566,450,0,0" TextWrapping="Wrap" Text=":מספר הזמנה" VerticalAlignment="Top" Width="180" TextAlignment="Right" FontSize="24" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Height="34" Margin="220,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextAlignment="Right" FontSize="24" FontWeight="Bold"><Run Text=":שיטת תשלום"/><LineBreak/><Run/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Height="34" Margin="566,506,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextAlignment="Right" FontSize="24" FontWeight="Bold"><Run FlowDirection="RightToLeft" Language="he-il" Text="תאריך תשלום:"/><LineBreak/><Run FlowDirection="RightToLeft" Language="he-il"/><LineBreak/><Run/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Height="34" Margin="198,506,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" TextAlignment="Right" FontSize="24" FontWeight="Bold" Text=":כתובת משלוח"/>
+            <TextBlock x:Name="_idOrder" Text="{Binding ID}" HorizontalAlignment="Left" Height="28" Margin="430,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="24" TextAlignment="Right"/>
+            <TextBlock x:Name="payDate" Text="{Binding OrderDate}" HorizontalAlignment="Left" Height="28" Margin="416,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="24" TextAlignment="Right"/>
+            <TextBlock x:Name="pay" HorizontalAlignment="Left" Height="28" Margin="28,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontSize="24" TextAlignment="Right"/>
+            <TextBlock x:Name="adress" Text="{Binding CostumerAdress}" HorizontalAlignment="Left" Height="28" Margin="28,510,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" FontSize="24" TextAlignment="Right"/>
+            <TextBlock x:Name="name" Text="{Binding CostumerName}" HorizontalAlignment="Left" Height="34" Margin="322,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" FontSize="26" TextAlignment="Center" FontWeight="Bold"/>
+        </Grid>
+
+    </Grid>
+</Page>

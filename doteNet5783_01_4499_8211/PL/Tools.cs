@@ -91,8 +91,8 @@ public static class Tools
         CopyPropTo(cartPo, cartBo);
         //  ObservableToList(cartBo.OrderItems, cartPo.OrderItems);
         cartBo.OrderItems.Clear();
-        foreach (var item in cartBo.OrderItems)
-            cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
+        foreach (var item in cartPo.OrderItems)
+            cartBo.OrderItems.Add(CopyPropTo(item, new BO.OrderItem()));
     }
 
     public static void BoCartToPoCart(CartPO cartPo, BO.Cart cartBo)

@@ -181,8 +181,8 @@ internal class Cart : ICart
         catch (BO.NoCostumerNameException ex) { throw new BO.NoCostumerNameException(ex.Message); }
         catch (BO.NoCostumerEmailException ex) { throw new BO.NoCostumerEmailException(ex.Message); }
         catch (BO.NoCostumerAdressException ex) { throw new BO.NoCostumerAdressException(ex.Message); }
-        catch (BO.DoesNotExistException ex) { throw new DO.DoesNotExistException(ex.ID); }
-        catch (BO.AlreadyExistsException ex) { throw new DO.AlreadyExistsException(ex.ID); }
+        catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID); }
+        catch (DO.AlreadyExistsException ex) { throw new BO.AlreadyExistsException(ex.ID); }
         catch (BO.AmountException ex) { throw new BO.AmountException(ex.Message); }
         catch (BO.OutOfStockException ex) { throw new BO.OutOfStockException(ex.ID); }
     }

@@ -184,5 +184,6 @@
                 <ImageBrush ImageSource="/Images/SearchIcon.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
+        <Frame Name="fullFrame" HorizontalAlignment="Left" Height="718" Margin="-2,-84,0,0" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
     </Grid>
 </Window>
