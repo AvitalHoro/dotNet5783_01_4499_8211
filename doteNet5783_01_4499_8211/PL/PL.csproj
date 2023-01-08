@@ -48,6 +48,7 @@
     <None Remove="Order\googlepay.png" />
     <None Remove="Order\home.png" />
     <None Remove="Order\paypal.png" />
+    <None Remove="Order\thankyou.png" />
     <None Remove="Order\track1.png" />
     <None Remove="Order\updateDel %282%29.png" />
     <None Remove="Order\updateDel.png" />
@@ -97,6 +98,7 @@
     <Resource Include="Order\googlepay.png" />
     <Resource Include="Order\home.png" />
     <Resource Include="Order\paypal.png" />
+    <Resource Include="Order\thankyou.png" />
     <Resource Include="Order\track1.png" />
     <Resource Include="Order\updateDel (2).png" />
     <Resource Include="Order\updateDel.png" />

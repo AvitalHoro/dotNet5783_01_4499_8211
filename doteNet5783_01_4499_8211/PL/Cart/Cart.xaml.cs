@@ -90,7 +90,7 @@ public partial class Cart : Page
 
     private void ApproveOrder_Click(object sender, RoutedEventArgs e)
     {
-        mainWindow.framePage.Content = new ApprovedOrder(bl, myCart);
+        mainWindow.fullFrame.Content = new ApprovedOrder(bl, myCart, mainWindow);
     }
 
     private void cmdDown_Click(object sender, RoutedEventArgs e)
