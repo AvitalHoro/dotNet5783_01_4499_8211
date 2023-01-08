@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,13 +41,22 @@ public partial class EnterIdOfOrder : Page
         if (e.Key == Key.Enter) EnterPassword();
     }
 
+  
     private void EnterPassword()
     {
-        int idOrder = int.Parse(OrderIdBox.Text);
-        if (OrderIdBox.Text != "")
+        try
         {
-            BO.Order orderBo = bl.Order.GetDetailsOrder(idOrder);
-            frame.Content = new PL.Order.OrderTracking(bl , orderBo, frame, false);
-        }
+            int idOrder = int.Parse(OrderIdBox.Text);
+            if (OrderIdBox.Text != "")
+            {
+                BO.Order orderBo = bl.Order.GetDetailsOrder(idOrder);
+                frame.Content = new PL.Order.OrderTracking(bl, orderBo, frame, false);
+            }
+        } 
+        catch
+        {
+            MessageBox.Show("מספר הזמנה זה לא קיים במערכת");
+        } 
     }
 }
+

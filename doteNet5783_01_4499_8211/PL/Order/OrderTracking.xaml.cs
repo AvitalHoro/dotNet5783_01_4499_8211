@@ -1,7 +1,9 @@
 ﻿using BLApi;
+using PL.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +26,7 @@ public partial class OrderTracking : Page
     IBl bl;
     BO.Order order = new();
     Frame frame;
+    bool isAdminPage;
 
     public OrderTracking(IBl BL, BO.Order selectedOrder, Frame frame, bool isAdmin)
     {
@@ -54,7 +57,8 @@ public partial class OrderTracking : Page
             delevired.Visibility = Visibility.Visible;
         }
         OrderItemView.ItemsSource = order.Items;
-        this.frame = frame; 
+        this.frame = frame;
+        isAdminPage = isAdmin;
     }
 
     private void UpdateShip_Click(object sender, RoutedEventArgs e)
@@ -90,5 +94,13 @@ public partial class OrderTracking : Page
             DelDate.Text = order.DeliveryDate.ToString();
             UpdateDel.Visibility = Visibility.Collapsed;
         }
+    }
+
+    private void ReturnBack_Click(object sender, RoutedEventArgs e)
+    {
+        if (isAdminPage)
+            frame.Content = new AdminPage(bl, frame);
+        else
+            frame.Content = new MainPagePicture();
     }
 }
