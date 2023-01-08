@@ -10,9 +10,9 @@
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d" 
       Title="AdminPage" Height="570" Width="800">
-    <!--<Page.Resources>
+    <Page.Resources>
         <local:StateToBoolConverter x:Key="StateToBoolConverter"/>
-    </Page.Resources>-->
+    </Page.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="רשימת הזמנות">
@@ -67,8 +67,8 @@
                                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                     Height="30" Width="30"
                                                     HorizontalAlignment="Center"
-                                                    Click="CancelOrder_Click">
-                                                <!--IsEnabled="{Binding State, Converter=}">-->
+                                                    Click="CancelOrder_Click"
+                                                    IsEnabled="{Binding State, Converter=StateToBoolConverter}">
                                                 <materialDesign:PackIcon Kind="Close"
                                                                      Width="25" Height="25"/>
                                             </Button>

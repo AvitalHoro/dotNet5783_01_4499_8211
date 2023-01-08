@@ -27,14 +27,13 @@ public class IntToVisibiltyConverter : IValueConverter
 }
 
 
-
 public class StateToBoolConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        BO.Status state = (BO.Status)value;
+       string state = (string)value;
 
-        if (state == BO.Status.approved)
+        if (state == "approved")
             return true;
         else
             return false;
