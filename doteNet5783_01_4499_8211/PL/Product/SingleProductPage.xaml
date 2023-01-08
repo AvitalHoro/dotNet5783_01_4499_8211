@@ -33,11 +33,12 @@
 
         <Button x:Name="AddToCart"
                 Content="הוספה לעגלה"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 FontSize="20"
                 Click="AddToCart_Click" 
-                Margin="465,318,94,220">
+                Margin="465,318,94,220" BorderBrush="#FF0C0B0B">
             <Button.Background>
-                <SolidColorBrush Color="#FFB1BFAD" />
+                <SolidColorBrush Color="#FFCD1B31" />
             </Button.Background>
         </Button>
 

@@ -49,7 +49,6 @@ public partial class AdminPage : Page
         SelectCategoryForOrder.Items.Add("הזמנות שנשלחו");
         SelectCategoryForOrder.Items.Add("הזמנות שנמסרו");
         this.frame = frame;
-        DeleteProduct.Visibility = Visibility.Visible;
     }
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
