@@ -76,11 +76,4 @@ internal class Product : IProduct
         Add(doProduct);
     }
 
-    public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? filter = null)
-    {
-        var listProducts = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_products)!;
-        return filter == null ? listProducts.OrderBy(lec => ((DO.Product)lec!).ID)
-                              : listProducts.Where(filter).OrderBy(lec => (DO.Product)lec!));
-    }
-
 }
