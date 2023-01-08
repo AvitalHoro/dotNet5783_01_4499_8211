@@ -26,11 +26,11 @@
         </Grid.ColumnDefinitions>
 
         <Image HorizontalAlignment="Left" Height="111" Margin="-23,98,0,0" VerticalAlignment="Top" Width="480" Source="/Order/track1.png"/>
-        <Image x:Name="delevired" Visibility="Visible" HorizontalAlignment="Left" Height="117" Margin="234,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/home.png"/>
-        <Image x:Name="shipped" Visibility="Visible" HorizontalAlignment="Left" Height="117" Margin="70,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/deliver.png"/>
-        <Image x:Name="approved" Visibility="Visible" HorizontalAlignment="Left" Height="97" Margin="8,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
+        <Image x:Name="delevired" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="234,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/home.png"/>
+        <Image x:Name="shipped" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="70,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/deliver.png"/>
+        <Image x:Name="approved" Visibility="Hidden" HorizontalAlignment="Left" Height="97" Margin="8,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
         <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right" Height="26"><Span FlowDirection="RightToLeft"/></TextBlock>
-        <TextBlock HorizontalAlignment="Center" Margin="0,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="74" Text="{Binding ID}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="225,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="74" Text="{Binding ID}"/>
 
         <TextBlock 
             HorizontalAlignment="Left"

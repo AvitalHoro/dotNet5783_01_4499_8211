@@ -61,3 +61,26 @@ public class StateToBoolConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+public class CategoryToHebrew : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Category category = (BO.Category)value;
+
+        if (category == BO.Category.Bottles)
+            return "בקבוקים ומוצצים";
+        if (category == BO.Category.Carts)
+            return "עגלות וטיולונים";
+        if (category == BO.Category.Toys)
+            return "צעצועים ומשחקים";
+        if (category == BO.Category.Clothes)
+            return "ביגוד והנעלה ";
+
+            return "היגיינה והחתלה";
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
