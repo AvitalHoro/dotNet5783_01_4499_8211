@@ -44,7 +44,6 @@ public class IntToHiddenConverter : IValueConverter
     }
 }
 
-
 public class StateToBoolConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -85,27 +84,103 @@ public class CategoryToHebrew : IValueConverter
     }
 }
 
+public class ApprovedToVisibileConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
 
-//public class HebrewToCategory : IValueConverter
-//{
-//    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-//    {
-//        string category = (string)value;
+        if (state == BO.Status.approved || state == BO.Status.sent || state == BO.Status.delivered)
+            return Visibility.Visible;
+        else
+            return Visibility.Hidden;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 
-//        if (category == "בקבוקים ומוצצים")
-//            return BO.Category.Bottles;
-//        if (category == "עגלות וטיולונים")
-//            return BO.Category.Carts;
-//        if (category == "צעצועים ומשחקים")
-//            return BO.Category.Toys;
-//        if (category == "ביגוד והנעלה")
-//            return BO.Category.Clothes;
-//        if (category == "היגיינה והחתלה")
-//            return BO.Category.Diapers;
-//        return null;
-//    }
-//    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-//    {
-//        throw new NotImplementedException();
-//    }
-//}
+public class ApprovedToHiddenConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.approved || state == BO.Status.sent || state == BO.Status.delivered)
+            return Visibility.Hidden;
+        else
+            return Visibility.Visible;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class SentToVisibileConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.sent || state == BO.Status.delivered)
+            return Visibility.Visible;
+        else
+            return Visibility.Hidden;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class SentToHiddenConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.sent || state == BO.Status.delivered)
+            return Visibility.Hidden;
+        else
+            return Visibility.Visible;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class DeliveredToVisibileConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.delivered)
+            return Visibility.Visible;
+        else
+            return Visibility.Hidden;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+public class DeliveredToHiddenConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.delivered)
+            return Visibility.Hidden;
+        else
+            return Visibility.Visible;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

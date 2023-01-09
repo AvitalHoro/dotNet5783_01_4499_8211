@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PO;
 
 namespace PL.Order;
 
@@ -24,42 +25,22 @@ namespace PL.Order;
 public partial class OrderTracking : Page
 {
     IBl bl;
-    BO.Order order = new();
+    OrderPO order = new();
     Frame frame;
     bool isAdminPage;
+
 
     public OrderTracking(IBl BL, BO.Order selectedOrder, Frame frame, bool isAdmin)
     {
         InitializeComponent();
         bl = BL;
-        order = selectedOrder;
+        Tools.CopyPropTo(selectedOrder, order);
+        order.Items = selectedOrder.Items;
         DataContext = order;
-        if (isAdmin&& bl.Order.Tracking(order.ID).State == BO.Status.approved)
-            AdminButton.Visibility = Visibility.Visible;    
-        else if(isAdmin && bl.Order.Tracking(order.ID).State == BO.Status.sent)
+        if(!isAdmin)
         {
-            AdminButton.Visibility = Visibility.Visible;
-            UpdateShip.Visibility=Visibility.Hidden;    
-        }
-        else
             AdminButton.Visibility = Visibility.Hidden;
-        if (bl.Order.Tracking(order.ID).State == BO.Status.approved)
-        {
-            approved.Visibility = Visibility.Visible;
-            shipped.Visibility = Visibility.Hidden;
-            delevired.Visibility = Visibility.Hidden;
-        }
-        else if (bl.Order.Tracking(order.ID).State == BO.Status.sent)
-        {
-            approved.Visibility = Visibility.Visible;
-            shipped.Visibility = Visibility.Visible;
-            delevired.Visibility = Visibility.Hidden;
-        }
-        else if (bl.Order.Tracking(order.ID).State == BO.Status.delivered)
-        {
-            approved.Visibility = Visibility.Visible;
-            shipped.Visibility = Visibility.Visible;
-            delevired.Visibility = Visibility.Visible;
+            UpdateShip.Visibility = Visibility.Hidden;
         }
         OrderItemView.ItemsSource = order.Items;
         this.frame = frame;
@@ -68,19 +49,8 @@ public partial class OrderTracking : Page
 
     private void UpdateShip_Click(object sender, RoutedEventArgs e)
     {
-        if (order.State == BO.Status.approved)
-        {
-            bl.Order.UpdateShipDate(order.ID);
-            order = bl.Order.GetDetailsOrder(order.ID);
-        }
-        if (order.State == BO.Status.sent)
-        {
-            approved.Visibility = Visibility.Visible;
-            shipped.Visibility = Visibility.Visible;
-            ShipDate.Visibility=Visibility.Visible;
-            ShipDate.Text = order.ShipDate.ToString();
-            UpdateShip.Visibility = Visibility.Collapsed;
-        }
+         bl.Order.UpdateShipDate(order.ID);
+         Tools.CopyPropTo(bl.Order.GetDetailsOrder(order.ID), order);
     }
 
     private void UpdateDel_Click(object sender, RoutedEventArgs e)
@@ -88,16 +58,7 @@ public partial class OrderTracking : Page
         if (order.State == BO.Status.sent)
         {
             bl.Order.UpdateDeliveryDate(order.ID);
-            order = bl.Order.GetDetailsOrder(order.ID);
-        }
-        if (order.State == BO.Status.delivered)
-        {
-            approved.Visibility = Visibility.Visible;
-            shipped.Visibility = Visibility.Visible;
-            delevired.Visibility = Visibility.Visible;
-            DelDate.Visibility = Visibility.Visible;
-            DelDate.Text = order.DeliveryDate.ToString();
-            UpdateDel.Visibility = Visibility.Collapsed;
+            Tools.CopyPropTo(bl.Order.GetDetailsOrder(order.ID), order);
         }
     }
 
