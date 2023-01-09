@@ -32,65 +32,27 @@ public partial class ProductCatalogForCostumer : Page
     Frame frame;
 
     public event PropertyChangedEventHandler PropertyChanged;
-    private ObservableCollection<ProductForList> listProduct;
-    public ObservableCollection<ProductForList> ListProduct
-    {
-        get { return listProduct; }
-        set
-        {
-            listProduct = value;
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs("ListProduct"));
-            }
-        }
-    }
+    private ObservableCollection<ProductForList> listProduct = new();
+
 
     public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart , Frame frame)
     {
         InitializeComponent();
         bl = BL;
         this.cart = cart;
-        ListProduct = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock: true));
         this.frame = frame;
         content = ButtonName;
-
-        switch (ButtonName)
+        if (ButtonName == "All")
         {
-            case "Toys":
-                ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys, true));
-                break;
-            case "Carts":
-                ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts, true));
-                break;
-            case "Clothes":
-                ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes, true));
-                break;
-            case "Diapers":
-                ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers, true));
-                break;
-            case "Bottles":
-                ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles, true));
-                break;
-            case "All":
-            case "GoBackToCatalog":
-                ProductListview.ItemsSource = new ObservableCollection<ProductForList>(bl.Product.GetProductList(isInStock: true));
-                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ProductListview.ItemsSource);
-                PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
-                view.GroupDescriptions.Add(groupDescription);
-               
-                break;
-            default:
-                ListProduct = new ObservableCollection<ProductForList>
-                    (bl.Product.GetProductList(BO.Filters.filterByName, ButtonName, true));
-                break;
+            listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetProductList(isInStock: true));
+            ProductListview.ItemsSource = listProduct;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ProductListview.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
+            view.GroupDescriptions.Add(groupDescription);
         }
-        DataContext = ListProduct;
+        else
+            listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetProductList(BO.Filters.filterByCategory, Tools.StringToCategory(ButtonName) , true));
+        DataContext = listProduct;
     }
 
     private void addProductToCart(object sender, RoutedEventArgs e)

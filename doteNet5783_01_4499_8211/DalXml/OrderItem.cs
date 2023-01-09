@@ -49,5 +49,11 @@ internal class OrderItem : IOrderItem
         Add(OrderItem);
     }
 
+    public DO.OrderItem GetItem(int IdOrder, int IdProduct)
+    {
+        var listOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems);
 
+        return listOrderItems.FirstOrDefault(item => item?.ProductID == IdProduct && item?.OrderID == IdOrder)
+            ?? throw new DoesNotExistException(IdOrder); ;
+    }
 }

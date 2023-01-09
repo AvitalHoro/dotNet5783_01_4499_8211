@@ -84,3 +84,28 @@ public class CategoryToHebrew : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+
+//public class HebrewToCategory : IValueConverter
+//{
+//    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+//    {
+//        string category = (string)value;
+
+//        if (category == "בקבוקים ומוצצים")
+//            return BO.Category.Bottles;
+//        if (category == "עגלות וטיולונים")
+//            return BO.Category.Carts;
+//        if (category == "צעצועים ומשחקים")
+//            return BO.Category.Toys;
+//        if (category == "ביגוד והנעלה")
+//            return BO.Category.Clothes;
+//        if (category == "היגיינה והחתלה")
+//            return BO.Category.Diapers;
+//        return null;
+//    }
+//    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+//    {
+//        throw new NotImplementedException();
+//    }
+//}

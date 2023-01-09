@@ -5,17 +5,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace PL;
 public static class Tools
 {
-    public static ObservableCollection<T> IEnumerableToObservable<T>(ObservableCollection<T> ListToCreate ,IEnumerable<T> ExsitingList) 
+    public static ObservableCollection<T> IEnumerableToObservable<T>(ObservableCollection<T> ListToCreate, IEnumerable<T> ExsitingList)
     {
         ListToCreate.Clear();
         foreach (var item in ExsitingList)
@@ -23,7 +25,7 @@ public static class Tools
         return ListToCreate;
     }
 
-    public static IEnumerable<T> ObservableToList<T>(List<T> ListToCreate,  ObservableCollection<T> ExsitingList)
+    public static IEnumerable<T> ObservableToList<T>(List<T> ListToCreate, ObservableCollection<T> ExsitingList)
     {
         ListToCreate.Clear();
         foreach (var item in ExsitingList)
@@ -104,4 +106,38 @@ public static class Tools
         foreach (var item in cartBo.OrderItems)
             cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
     }
+
+
+
+    public static BO.Category? HebrewToCategory(string category)
+    {
+        if (category == "בקבוקים ומוצצים")
+            return BO.Category.Bottles;
+        if (category == "עגלות וטיולונים")
+            return BO.Category.Carts;
+        if (category == "צעצועים ומשחקים")
+            return BO.Category.Toys;
+        if (category == "ביגוד והנעלה")
+            return BO.Category.Clothes;
+        if (category == "היגיינה והחתלה")
+            return BO.Category.Diapers;
+        return null;
+    }
+
+
+    public static BO.Category? StringToCategory(string category)
+    {
+        if (category == "Bottles")
+            return BO.Category.Bottles;
+        if (category == "Carts")
+            return BO.Category.Carts;
+        if (category == "Toys")
+            return BO.Category.Toys;
+        if (category == "Clothes")
+            return BO.Category.Clothes;
+        if (category == "Diapers")
+            return BO.Category.Diapers;
+        return null;
+    }
+
 }
