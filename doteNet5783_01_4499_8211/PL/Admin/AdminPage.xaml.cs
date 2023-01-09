@@ -122,13 +122,17 @@ public partial class AdminPage : Page
 
     private void DeleteProduct_Click(object sender, RoutedEventArgs e)
     {
-        var b = (Button)sender;
-        int id = ((ProductForList)b.DataContext).ID;
-       // BO.ProductForList product = new();
-       // Tools.CopyPropTo(bl.Product.GetProductDetails(id), product);
-        bl.Product.RemoveProduct(id);
-       // listProducts.Remove(product);
-       Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
+        try
+        {
+            var b = (Button)sender;
+            int id = ((ProductForList)b.DataContext).ID;
+            bl.Product.RemoveProduct(id);
+            Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
+        }
+        catch
+        {
+            MessageBox.Show("לא ניתן למחוק את המוצר, הוא הוזמן בהזמנות שעוד לא נשלחו", "מחיקת מוצר", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void Archives_Click(object sender, RoutedEventArgs e)

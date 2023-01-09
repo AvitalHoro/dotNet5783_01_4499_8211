@@ -51,6 +51,14 @@ public partial class ApprovedOrder : Page
         mainWindow.fullFrame.Content = null;
     }
 
+    ///   BO.EmptyCartException"></exception>
+    /// <exception cref="BO.NoCostumerNameException"></exception>
+    /// <exception cref="BO.NoCostumerEmailException"></exception>
+    /// <exception cref="BO.NoCostumerAdressException"></exception>
+    /// <exception cref="DO.DoesNotExistException"></exception>
+    /// <exception cref="DO.AlreadyExistsException"></exception>
+    /// <exception cref="BO.AmountException"></exception>
+    /// <exception cref="BO.OutOfStockException"
     private void approve_Click(object sender, RoutedEventArgs e)
     {
         int idOrder=0;
@@ -71,14 +79,7 @@ public partial class ApprovedOrder : Page
             mainWindow.fullFrame.Content = null;
             mainWindow.framePage.Content = new FinishOrder(bl, order, mainWindow.framePage, paymentMethod);
         }
-        //    BO.EmptyCartException"></exception>
-        ///// <exception cref="BO.NoCostumerNameException"></exception>
-        ///// <exception cref="BO.NoCostumerEmailException"></exception>
-        ///// <exception cref="BO.NoCostumerAdressException"></exception>
-        ///// <exception cref="DO.DoesNotExistException"></exception>
-        ///// <exception cref="DO.AlreadyExistsException"></exception>
-        ///// <exception cref="BO.AmountException"></exception>
-        ///// <exception cref="BO.OutOfStockException"
+      
         catch (BO.EmptyCartException)
         {
             MessageBox.Show("העגלה שלך ריקה", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);

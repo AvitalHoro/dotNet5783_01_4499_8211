@@ -166,9 +166,7 @@ internal class Product : IProduct
     {
         try
         {
-            if (Dal.OrderItem.GetAll(item=> item?.ProductID == idProduct) == null)
-                //אם ההזמנה כבר נשלחה , האם עדיין זה בעייתי למחוק את המוצר?
-                //האם עבור רשימה ריקה, הוא יחזיר באמת נל
+            if (Dal.OrderItem.GetAll(item=> item?.ProductID == idProduct) != null)
                 throw new BO.ProductExistInOrderException(idProduct);
         }
         catch (BO.DoesNotExistException ex)
