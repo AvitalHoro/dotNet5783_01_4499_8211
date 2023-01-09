@@ -157,7 +157,7 @@
             Visibility="{Binding OrderItems.Count , Converter={StaticResource IntToHiddenConverter}}"
             Margin="188,56,0,0" 
             VerticalAlignment="Top" 
-            Width="386" Source="/Cart/sadBaby.png" Grid.ColumnSpan="2"/>
+            Width="386" Source="/Images/sadBaby.png" Grid.ColumnSpan="2"/>
 
         <Button Name="All"
                 HorizontalAlignment="Left"
@@ -167,7 +167,7 @@
                 Visibility="{Binding ElementName=CryBaby, Path=Visibility}"
                 FontSize="20" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
             <Button.Background>
-                <ImageBrush ImageSource="/Cart/start.png" Stretch="Uniform"/>
+                <ImageBrush ImageSource="/Images/start.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
     </Grid>

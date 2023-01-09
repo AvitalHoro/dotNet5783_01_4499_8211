@@ -13,13 +13,13 @@
     <Grid>
         <Grid HorizontalAlignment="Left" Height="112" Margin="381,266,0,0" VerticalAlignment="Top" Width="376">
             <RadioButton x:Name="visa" Content="RadioButton" HorizontalAlignment="Left" Height="22" Margin="311,0,0,0" VerticalAlignment="Top" Width="18"/>
-            <Image HorizontalAlignment="Left" Height="68" Margin="272,0,0,0" VerticalAlignment="Center" Width="98" Source="/Order/viza.png"/>
+            <Image HorizontalAlignment="Left" Height="68" Margin="272,0,0,0" VerticalAlignment="Center" Width="98" Source="/Images/viza.png"/>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="265,94,0,0" TextWrapping="Wrap" Text="כרטיס אשראי/חיוב" VerticalAlignment="Top" Width="110" TextAlignment="Center"/>
             <RadioButton x:Name="payPal" Content="RadioButton" HorizontalAlignment="Left" Height="22" Margin="173,0,0,0" VerticalAlignment="Top" Width="18"/>
-            <Image HorizontalAlignment="Left" Height="68" Margin="133,0,0,0" VerticalAlignment="Center" Width="98" Source="/Order/paypal.png"/>
+            <Image HorizontalAlignment="Left" Height="68" Margin="133,0,0,0" VerticalAlignment="Center" Width="98" Source="/Images/paypal.png"/>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="127,94,0,0" TextWrapping="Wrap" Text="PayPal שלם עם" VerticalAlignment="Top" Width="110" TextAlignment="Center"/>
             <RadioButton x:Name="googlePay" Content="RadioButton" HorizontalAlignment="Left" Height="22" Margin="46,0,0,0" VerticalAlignment="Top" Width="18"/>
-            <Image HorizontalAlignment="Left" Height="68" Margin="8,0,0,0" VerticalAlignment="Center" Width="99" Source="/Order/googlepay.png"/>
+            <Image HorizontalAlignment="Left" Height="68" Margin="8,0,0,0" VerticalAlignment="Center" Width="99" Source="/Images/googlepay.png"/>
             <TextBlock HorizontalAlignment="Left" Height="17" Margin="0,94,0,0" TextWrapping="Wrap" Text="Google Pay" VerticalAlignment="Top" Width="110" TextAlignment="Center"/>
 
         </Grid>
@@ -177,11 +177,11 @@
         <TextBlock HorizontalAlignment="Left" FontSize="18" Margin="201,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" FontWeight="Bold" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="קוד קופון:"/></TextBlock>
         <Button x:Name="code" Content="בוצע" HorizontalAlignment="Left" Height="28" Margin="33,372,0,0" VerticalAlignment="Top" Width="63" FontWeight="Bold" BorderBrush="Black" Background="{x:Null}" BorderThickness="2,2,2,2"/>
         <Button x:Name="approve" Content="בצע הזמנה" HorizontalAlignment="Left" Height="40" Margin="33,438,0,0" VerticalAlignment="Top" Width="281" FontWeight="Bold" BorderBrush="Black" Background="Black" BorderThickness="2,2,2,2" Foreground="#DDFFFFFF" FontSize="16" Click="approve_Click"/>
-        <Image ToolTip="אתה יכול לבטל את ההזמנה שלך, התלוש יחזור אל החשבון שלך" HorizontalAlignment="Left" Height="22" Margin="208,348,0,0" VerticalAlignment="Top" Width="35" Source="/Order/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
-        <Image ToolTip="משלוח חינם בהזמנה של למעלה מ100 שקלים" HorizontalAlignment="Left" Height="16" Margin="191,209,0,0" VerticalAlignment="Top" Width="24" Source="/Order/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
+        <Image ToolTip="אתה יכול לבטל את ההזמנה שלך, התלוש יחזור אל החשבון שלך" HorizontalAlignment="Left" Height="22" Margin="208,348,0,0" VerticalAlignment="Top" Width="35" Source="/Images/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
+        <Image ToolTip="משלוח חינם בהזמנה של למעלה מ100 שקלים" HorizontalAlignment="Left" Height="16" Margin="191,209,0,0" VerticalAlignment="Top" Width="24" Source="/Images/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
         <Button x:Name="exist" HorizontalAlignment="Left" Height="28" Margin="638,11,0,0" VerticalAlignment="Top" Width="179" BorderBrush="{x:Null}" Click="Exist_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/Order/exist.png" Stretch="Uniform"/>
+                <ImageBrush ImageSource="/Images/exist.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
 

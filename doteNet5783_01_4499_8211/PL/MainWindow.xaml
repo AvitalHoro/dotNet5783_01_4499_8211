@@ -44,7 +44,7 @@
                         Click="ListCategories_Click">
                     <StackPanel>
                         <Image
-                        Source="/all.png"
+                        Source="/Images/all.png"
                         Width="105"
                         Height="105"/>
                     </StackPanel>

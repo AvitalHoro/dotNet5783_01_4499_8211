@@ -25,10 +25,10 @@
             <ColumnDefinition Width="33*"/>
         </Grid.ColumnDefinitions>
 
-        <Image HorizontalAlignment="Left" Height="111" Margin="-23,98,0,0" VerticalAlignment="Top" Width="480" Source="/Order/track1.png"/>
-        <Image x:Name="delevired" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="234,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/home.png"/>
-        <Image x:Name="shipped" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="70,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/deliver.png"/>
-        <Image x:Name="approved" Visibility="Hidden" HorizontalAlignment="Left" Height="97" Margin="8,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
+        <Image HorizontalAlignment="Left" Height="111" Margin="-23,98,0,0" VerticalAlignment="Top" Width="480" Source="/Images/track1.png"/>
+        <Image x:Name="delevired" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="234,95,0,0" VerticalAlignment="Top" Width="198" Source="/Images/home.png"/>
+        <Image x:Name="shipped" Visibility="Hidden" HorizontalAlignment="Left" Height="117" Margin="70,95,0,0" VerticalAlignment="Top" Width="198" Source="/Images/deliver.png"/>
+        <Image x:Name="approved" Visibility="Hidden" HorizontalAlignment="Left" Height="97" Margin="8,99,0,0" VerticalAlignment="Top" Width="87" Source="/Images/approved.png"/>
         <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right" Height="26"><Span FlowDirection="RightToLeft"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="225,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="74" Text="{Binding ID}"/>
 
@@ -109,12 +109,12 @@
             </Grid.ColumnDefinitions>
             <Button Name="UpdateShip" HorizontalAlignment="Left" Height="31" Margin="55,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateShip_Click" Grid.Column="1" Grid.Row="1">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Order/updateShip.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/Images/updateShip.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
             <Button Name="UpdateDel" HorizontalAlignment="Left" Height="31" Margin="216,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateDel_Click" Grid.Column="1" Grid.Row="1">
                 <Button.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="/Order/updateDel (2).png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Images/updateDel (2).png"/>
                 </Button.Background>
             </Button>
         </Grid>
