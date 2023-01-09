@@ -1,6 +1,7 @@
 ﻿namespace Dal;
 using DalApi;
 using DO;
+using System;
 using System.Security.Principal;
 
 internal class Order : IOrder
@@ -35,12 +36,33 @@ internal class Order : IOrder
 
     public void Delete(int id)
     {
+        ////var listOrders = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_Orders);
+
+        ////if (listOrders.RemoveAll(p => p?.ID == id) == 0)
+        ////    throw new Exception("missing id"); //new DalMissingIdException(id, "Order");
+
+        ////XMLTools.SaveListToXMLSerializer(listOrders, s_Orders);
+
         var listOrders = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_Orders);
 
-        if (listOrders.RemoveAll(p => p?.ID == id) == 0)
+        var o = listOrders.FirstOrDefault(p => p?.ID == id) ?? throw new Exception("missing id");
+         
+        if (o.IsDeleted)
             throw new Exception("missing id"); //new DalMissingIdException(id, "Order");
 
-        XMLTools.SaveListToXMLSerializer(listOrders, s_Orders);
+        DO.Order order = new()
+        {
+            ID = id,
+            CostumerName = o.CostumerName,
+            CostumerEmail = o.CostumerEmail,
+            CostumerAdress = o.CostumerAdress,
+            OrderDate = o.OrderDate,
+            DeliveryDate = o.DeliveryDate,
+            ShipDate = o.ShipDate,
+            IsDeleted = true
+        };
+
+        Update(order);
     }
 
     public void Update(DO.Order Order)
