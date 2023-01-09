@@ -65,13 +65,11 @@ internal class Product : IProduct
 
     #region GetCatalog
     //מחזיר רשימה של כל המוצרים בשביל הלקוח
-    public IEnumerable<BO.Product?> GetCatalog()
+    public IEnumerable<BO.ProductItem?> GetCatalog(BO.Cart cart, BO.Filters enumFilter = BO.Filters.None,
+        Object? filterValue = null, bool isInStock = false)
     {
-        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
-        //הלקוח לא צריך לראות מוצרים מחוקים
-        var newList = from DO.Product product in tmp
-                      select BO.Tools.CopyPropTo(product, new BO.Product());
-        return newList;
+        IEnumerable<BO.ProductForList> tmp = GetProductList(enumFilter, filterValue, isInStock);
+        return tmp.Select(product => GetProductDetails(product.ID, cart));
     }
     #endregion
 

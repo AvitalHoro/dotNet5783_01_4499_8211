@@ -32,33 +32,38 @@ public partial class ProductCatalogForCostumer : Page
     Frame frame;
 
     public event PropertyChangedEventHandler PropertyChanged;
-    private ObservableCollection<ProductForList> listProduct = new();
+    private ObservableCollection<BO.ProductItem> listProduct = new();
 
 
-    public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart , Frame frame)
+    public ProductCatalogForCostumer(IBl BL, string ButtonName, BO.Cart cart , Frame frame , bool search = false)
     {
         InitializeComponent();
         bl = BL;
         this.cart = cart;
         this.frame = frame;
-        content = ButtonName;
-        if (ButtonName == "All")
+        if (!search)
         {
-            listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetProductList(isInStock: true));
-            ProductListview.ItemsSource = listProduct;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ProductListview.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
-            view.GroupDescriptions.Add(groupDescription);
+            content = ButtonName;
+            if (ButtonName == "All")
+            {
+                listProduct = Tools.IEnumerableToObservable(listProduct!, bl.Product.GetCatalog(cart, isInStock: true))!;
+                ProductListview.ItemsSource = listProduct;
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ProductListview.ItemsSource);
+                PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");
+                view.GroupDescriptions.Add(groupDescription);
+            }
+            else
+                listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetCatalog(cart, BO.Filters.filterByCategory, Tools.StringToCategory(ButtonName), true));
         }
-        else
-            listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetProductList(BO.Filters.filterByCategory, Tools.StringToCategory(ButtonName) , true));
+        if(search)
+           listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetCatalog(cart, BO.Filters.filterByName, ButtonName, true));
         DataContext = listProduct;
     }
 
     private void addProductToCart(object sender, RoutedEventArgs e)
     {
         var b = (Button)sender;
-        int id = ((ProductForList)b.DataContext).ID;
+        int id = ((ProductItem)b.DataContext).ID;
         try
         {
             cart = bl.Cart.AddProduct(cart, id);
@@ -74,7 +79,7 @@ public partial class ProductCatalogForCostumer : Page
 
     private void ProductListview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        frame.Content = new SingleProductPage(bl, cart, ((BO.ProductForList)ProductListview.SelectedItem).ID, frame, content);
+        frame.Content = new SingleProductPage(bl, cart, ((BO.ProductItem)ProductListview.SelectedItem).ID, frame, content);
     }
 }
  

@@ -85,7 +85,7 @@ public partial class MainWindow : Window
     {
         categories.IsEnabled = true;
         if (EnterStringToSearch.Text != null)
-            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage);
+            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage, true);
     }
 
     private void EnterPressed_KeyDown(object sender, KeyEventArgs e)

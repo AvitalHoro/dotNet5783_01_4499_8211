@@ -5,7 +5,8 @@ public interface IProduct
 {
     public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None,
         Object? filterValue = null, bool isInStock= false );
-    public IEnumerable<BO.Product?> GetCatalog(); //לקוח
+    public IEnumerable<BO.ProductItem?> GetCatalog(BO.Cart cart, BO.Filters enumFilter = BO.Filters.None,
+        Object? filterValue = null, bool isInStock = false); //לקוח
     public BO.Product GetProductDetails(int idProduct);//מנהל
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart);//לקוח
     public void AddProduct(BO.Product newProduct);

@@ -59,8 +59,8 @@
                         <Image Source="{Binding Path}" Width="170"  Height="170"></Image>
                         <TextBlock Text="{Binding Name}" FontSize="20"></TextBlock>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
                             <TextBlock Text="₪" FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
                         </StackPanel>
                         <Button 
                             Click="addProductToCart"
