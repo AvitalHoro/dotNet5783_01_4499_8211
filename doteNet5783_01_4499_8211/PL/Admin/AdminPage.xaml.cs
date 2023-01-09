@@ -129,7 +129,7 @@ public partial class AdminPage : Page
             bl.Product.RemoveProduct(id);
             Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
         }
-        catch
+        catch(BO.ProductExistInOrderException)
         {
             MessageBox.Show("לא ניתן למחוק את המוצר, הוא הוזמן בהזמנות שעוד לא נשלחו", "מחיקת מוצר", MessageBoxButton.OK, MessageBoxImage.Error);
         }

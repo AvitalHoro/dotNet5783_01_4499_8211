@@ -86,7 +86,7 @@ public class DalOrderItem : IOrderItem
     }
     #endregion
 
-    #region getItem
+    #region GetItem
     /// <exception cref="DoesNotExistException"></exception>
     public OrderItem GetItem(int IdOrder, int IdProduct)
     {

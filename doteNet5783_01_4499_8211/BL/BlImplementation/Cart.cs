@@ -110,6 +110,7 @@ internal class Cart : ICart
             ProductID = product.ID,
             Amount = item.Amount,
             Price = (item.Price / item.Amount),//מחיר לפריט בודד
+            Path = item.Path,   
             IsDeleted = false,
         };
         Dal.OrderItem.Add(orderItem);//מוסיף לשכבת הנתונים את כל פריטי ההזמנה של ההזמנה החדשה
@@ -120,6 +121,7 @@ internal class Cart : ICart
             Price = product.Price,
             Category = product.Category,
             InStock = (product.InStock - item.Amount),
+            Path = product.Path,    
             IsDeleted = product.IsDeleted,
         };
         Dal.Product.Update(newProduct);//מעדכנים את הכמות של המוצר ברשימה
@@ -157,9 +159,6 @@ internal class Cart : ICart
             DO.Order order = new ()
             {
                 CostumerAdress = cart.CostumerAdress,
-
-
-
                 CostumerEmail = cart.CostumerEmail,
                 CostumerName = cart.CostumerName,
                 OrderDate = DateTime.Now,
