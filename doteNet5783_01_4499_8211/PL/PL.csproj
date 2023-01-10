@@ -22,7 +22,6 @@
   <ItemGroup>
     <None Remove="3.png" />
     <None Remove="all.png" />
-    <None Remove="Cart\crybaby.png" />
     <None Remove="Cart\sadBaby.png" />
     <None Remove="Cart\start.png" />
     <None Remove="Gray Simple Sale Fashion Instagram Post %281%29.png" />
@@ -73,10 +72,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="all.png" />
-    <Resource Include="Cart\crybaby.png" />
-    <Resource Include="Cart\sadBaby.png" />
-    <Resource Include="Cart\start.png" />
+    <Resource Include="Images\all.png" />
+    <Resource Include="Images\sadBaby.png" />
+    <Resource Include="Images\start.png" />
     <Resource Include="Images\3.png" />
     <Resource Include="Images\4.png" />
     <Resource Include="Images\5.png" />
@@ -91,25 +89,24 @@
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\SearchBox.png" />
     <Resource Include="Images\SearchIcon.png" />
-    <Resource Include="mainPicture.png" />
-    <Resource Include="Order\approved.png" />
-    <Resource Include="Order\deliver.png" />
-    <Resource Include="Order\exist.png" />
-    <Resource Include="Order\googlepay.png" />
-    <Resource Include="Order\home.png" />
-    <Resource Include="Order\paypal.png" />
-    <Resource Include="Order\thankyou.png" />
-    <Resource Include="Order\track1.png" />
-    <Resource Include="Order\updateDel (2).png" />
-    <Resource Include="Order\updateDel.png" />
-    <Resource Include="Order\updatedel2.png" />
-    <Resource Include="Order\updateShip.png" />
-    <Resource Include="Order\viza.png" />
-    <Resource Include="Order\viza.webp" />
-    <Resource Include="Order\ברוך הבא מנהל (1).png" />
-    <Resource Include="Order\ברוך הבא מנהל (200 × 100 פיקסל).png" />
-    <Resource Include="Product\addP.png" />
-    <Resource Include="Product\crybaby.png" />
+    <Resource Include="Images\mainPicture.png" />
+    <Resource Include="Images\approved.png" />
+    <Resource Include="Images\deliver.png" />
+    <Resource Include="Images\exist.png" />
+    <Resource Include="Images\googlepay.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\paypal.png" />
+    <Resource Include="Images\thankyou.png" />
+    <Resource Include="Images\track1.png" />
+    <Resource Include="Images\updateDel %282%29.png" />
+    <Resource Include="Images\updateDel.png" />
+    <Resource Include="Images\updatedel2.png" />
+    <Resource Include="Images\updateShip.png" />
+    <Resource Include="Images\viza.png" />
+    <Resource Include="Images\viza.webp" />
+    <Resource Include="Images\ברוך הבא מנהל %281%29.png" />
+    <Resource Include="Images\ברוך הבא מנהל %28200 × 100 פיקסל%29.png" />
+    <Resource Include="Images\addP.png" />
   </ItemGroup>
 
 </Project>

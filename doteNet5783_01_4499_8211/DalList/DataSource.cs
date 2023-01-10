@@ -215,6 +215,7 @@ public class DataSource
                     ProductID = product.ID, //לוקח את הת"ז מהמוצר שהוגרל
                     Price = product.Price, //לוקח את המחיר של המוצר שהוגרל
                     OrderID = order.ID,//לוקח את התז של ההזמנה הנוכחית
+                    Path= product.Path,
                     //מגריל ת"ז רנדומלית של הזמנה , הבאנו לו טווח של מינימום ומקסימום
                     Amount = randNum.Next(1, 5) // מגריל כמות שהוזמנה עד 5 פריטים
                 });

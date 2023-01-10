@@ -11,7 +11,7 @@
     <Grid>
         <Grid HorizontalAlignment="Center" Height="570" VerticalAlignment="Center" Width="800">
             <Grid.Background>
-                <ImageBrush ImageSource="/Order/thankyou.png"/>
+                <ImageBrush ImageSource="/Images/thankyou.png"/>
             </Grid.Background>
             <Button x:Name="trackOrder" HorizontalAlignment="Center" Height="51" Margin="0,380,0,0" VerticalAlignment="Top" Width="256" Background="{x:Null}" BorderBrush="{x:Null}" Click="trackOrder_Click"/>
             <TextBlock HorizontalAlignment="Left" Height="34" Margin="566,450,0,0" TextWrapping="Wrap" Text=":מספר הזמנה" VerticalAlignment="Top" Width="180" TextAlignment="Right" FontSize="24" FontWeight="Bold"/>

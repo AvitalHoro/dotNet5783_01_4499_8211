@@ -267,7 +267,7 @@ internal class Order : IOrder
     {
         if (newAmount < 0)
             throw new BO.AmountException();
-        DO.OrderItem item = Dal.OrderItem.getItem(idOrder, IdProduct);
+        DO.OrderItem item = Dal.OrderItem.GetItem(idOrder, IdProduct);
         Dal.OrderItem.Update(new DO.OrderItem  //מעדכן את המוצר בשכבת הנתונים
         {
             ID = item.ID,
@@ -277,7 +277,7 @@ internal class Order : IOrder
             Amount = newAmount,
             IsDeleted = false
         });
-        return Dal.OrderItem.getItem(idOrder, IdProduct); 
+        return Dal.OrderItem.GetItem(idOrder, IdProduct); 
     }
     #endregion
 }

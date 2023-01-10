@@ -48,13 +48,12 @@ public partial class MainWindow : Window
 
     private void OpenCategories_Click(object sender, RoutedEventArgs e)
     {
-            ListCategories.Visibility = Visibility.Visible;
+        ListCategories.Visibility = Visibility.Visible;
     }
 
     private void showCategory(object sender, RoutedEventArgs e)
     {
         ListCategories.Visibility = Visibility.Visible;
-       // if(framePage.Content == (ContentControl)MainPagePicture)
     }
 
     private void hideCategory(object sender, RoutedEventArgs e)
@@ -86,7 +85,7 @@ public partial class MainWindow : Window
     {
         categories.IsEnabled = true;
         if (EnterStringToSearch.Text != null)
-            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage);
+            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage, true);
     }
 
     private void EnterPressed_KeyDown(object sender, KeyEventArgs e)

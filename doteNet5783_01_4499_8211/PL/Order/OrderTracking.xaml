@@ -4,15 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL.Order"
+      xmlns:converter="clr-namespace:PL"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-      xmlns:BO="clr-namespace:BO;assembly=BL"
+      xmlns:PO="clr-namespace:PO"
       Style="{StaticResource PageStyle}"
       mc:Ignorable="d" 
       d:DesignHeight="570" d:DesignWidth="800"
       Title="OrderTracking">
 
+    <Page.Resources>
+        <converter:ApprovedToVisibileConverter x:Key="ApprovedToVisibileConverter"/>
+        <converter:ApprovedToHiddenConverter x:Key="ApprovedToHiddenConverter"/>
+        <converter:SentToVisibileConverter x:Key="SentToVisibileConverter"/>
+        <converter:SentToHiddenConverter x:Key="SentToHiddenConverter"/>
+        <converter:DeliveredToVisibileConverter x:Key="DeliveredToVisibileConverter"/>
+        <converter:DeliveredToHiddenConverter x:Key="DeliveredToHiddenConverter"/>
+    </Page.Resources>
+
     <Page.DataContext>
-        <BO:Order/>
+        <PO:OrderPO/>
     </Page.DataContext>
 
     <Grid>
@@ -25,16 +35,16 @@
             <ColumnDefinition Width="33*"/>
         </Grid.ColumnDefinitions>
 
-        <Image HorizontalAlignment="Left" Height="111" Margin="-23,98,0,0" VerticalAlignment="Top" Width="480" Source="/Order/track1.png"/>
-        <Image x:Name="delevired" Visibility="Visible" HorizontalAlignment="Left" Height="117" Margin="234,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/home.png"/>
-        <Image x:Name="shipped" Visibility="Visible" HorizontalAlignment="Left" Height="117" Margin="70,95,0,0" VerticalAlignment="Top" Width="198" Source="/Order/deliver.png"/>
-        <Image x:Name="approved" Visibility="Visible" HorizontalAlignment="Left" Height="97" Margin="8,99,0,0" VerticalAlignment="Top" Width="87" Source="/Order/approved.png"/>
+        <Image HorizontalAlignment="Left" Height="111" Margin="-17,98,0,0" VerticalAlignment="Top" Width="480" Source="/Images/track1.png"/>
+        <Image x:Name="delevired"  Visibility="{Binding Path=State , Converter={StaticResource DeliveredToVisibileConverter}}" HorizontalAlignment="Left" Height="117" Margin="238,95,0,0" VerticalAlignment="Top" Width="198" Source="/Images/home.png"/>
+        <Image x:Name="shipped" Visibility="{Binding Path=State, Converter={StaticResource SentToVisibileConverter}}" HorizontalAlignment="Left" Height="117" Margin="78,95,0,0" VerticalAlignment="Top" Width="198" Source="/Images/deliver.png"/>
+        <Image x:Name="approved" Visibility="{Binding Path=State , Converter={StaticResource ApprovedToVisibileConverter}}" HorizontalAlignment="Left" Height="97" Margin="12,99,0,0" VerticalAlignment="Top" Width="87" Source="/Images/approved.png"/>
         <TextBlock HorizontalAlignment="Left" Text=":מספר הזמנה" FontSize="22" Margin="289,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" FontWeight="Bold" TextAlignment="Right" Height="26"><Span FlowDirection="RightToLeft"/></TextBlock>
-        <TextBlock HorizontalAlignment="Center" Margin="0,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="74" Text="{Binding ID}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="225,39,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="74" Text="{Binding ID}"/>
 
         <TextBlock 
             HorizontalAlignment="Left"
-            Margin="10,197,0,0"
+            Margin="4,197,0,0"
             TextWrapping="Wrap" 
             Text="{Binding OrderDate}" 
             VerticalAlignment="Top"
@@ -42,8 +52,8 @@
 
         <TextBlock 
             x:Name="ShipDate"
-            HorizontalAlignment="Center"
-            Margin="0,199,0,0"
+            HorizontalAlignment="Left"
+            Margin="162,199,0,0"
             TextWrapping="Wrap" 
             Text="{Binding ShipDate}" 
             VerticalAlignment="Top"
@@ -52,7 +62,7 @@
         <TextBlock 
             x:Name="DelDate"
             HorizontalAlignment="Left"
-            Margin="338,199,0,0"
+            Margin="330,199,0,0"
             TextWrapping="Wrap" 
             Text="{Binding DeliveryDate}" 
             VerticalAlignment="Top"
@@ -78,17 +88,29 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Path}" 
-                               Height="100" Grid.Column="2"></Image>
-                        <StackPanel Grid.Column="1" >
-                            <TextBlock Text="{Binding NameProduct}" TextAlignment="Center"></TextBlock>
-                            <TextBlock Text="{Binding Price}" TextAlignment="Center" FontSize="20"></TextBlock>
+                               Height="100" Grid.Column="3"></Image>
+                        <TextBlock  VerticalAlignment="Center" Text="{Binding NameProduct}" Grid.Column="2" TextAlignment="Center"></TextBlock>
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="₪" 
+                              FontSize="20" 
+                              Grid.Column="1"/>
+                            <TextBlock Text="{Binding Price}"
+                                   Margin="1" 
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Grid.Column="1" 
+                                   FontSize="20"></TextBlock>
                         </StackPanel>
                         <TextBlock x:Name="textNumber" 
                                      Grid.Column="0"
                                      Margin="1" 
                                      Width="40" 
+                                    VerticalAlignment="Center"
                                      TextAlignment="Center"
                                      FontSize="20"
                                      Text="{Binding Amount}"
@@ -98,7 +120,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Grid Name="AdminButton" HorizontalAlignment="Left" Height="213" Margin="74,165,0,0" VerticalAlignment="Top" Width="414" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <Grid Name="AdminButton" HorizontalAlignment="Left" Height="213" Margin="80,165,0,0" VerticalAlignment="Top" Width="414" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="64*"/>
@@ -107,14 +129,14 @@
                 <ColumnDefinition Width="29*"/>
                 <ColumnDefinition Width="192*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="UpdateShip" HorizontalAlignment="Left" Height="31" Margin="55,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateShip_Click" Grid.Column="1" Grid.Row="1">
+            <Button Name="UpdateShip" Visibility="{Binding Path=State, Converter={StaticResource SentToHiddenConverter}}" HorizontalAlignment="Left" Height="31" Margin="55,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateShip_Click" Grid.Column="1" Grid.Row="1">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Order/updateShip.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/Images/updateShip.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button Name="UpdateDel" HorizontalAlignment="Left" Height="31" Margin="216,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateDel_Click" Grid.Column="1" Grid.Row="1">
+            <Button Name="UpdateDel" Visibility="{Binding Path=State , Converter={StaticResource DeliveredToHiddenConverter}}" HorizontalAlignment="Left" Height="31" Margin="216,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateDel_Click" Grid.Column="1" Grid.Row="1">
                 <Button.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="/Order/updateDel (2).png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="/Images/updateDel (2).png"/>
                 </Button.Background>
             </Button>
         </Grid>
@@ -125,7 +147,7 @@
                            VerticalAlignment="Top" 
                            Margin="10,10,0,0" Height="38" Click="ReturnBack_Click">
             <Button.Background>
-                <SolidColorBrush Color="#FFB1BFAD" />
+                <SolidColorBrush Color="#FFD7DAD6" />
             </Button.Background>
             <Grid>
                 <materialDesign:PackIcon Kind="ArrowLeft"
@@ -161,10 +183,10 @@
             HorizontalAlignment="Left"
             FontSize="16"
             Height="19" 
-            Margin="50,269,0,0" 
+            Margin="27,269,0,0" 
             TextAlignment="Right"
             Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-            VerticalAlignment="Top" Width="137"/>
+            VerticalAlignment="Top" Width="160"/>
             <Label Content=":שם" 
             HorizontalAlignment="Left"
             FontSize="16"
@@ -181,5 +203,8 @@
             Width="172"/>
             <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="155,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" FontWeight="Bold" TextAlignment="Right" Height="26"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח:"/></TextBlock>
         </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="23,5,0,0" TextWrapping="Wrap" Text="כמות בהזמנה" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="151,5,0,0" TextWrapping="Wrap" Text="מחיר" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="225,5,0,0" TextWrapping="Wrap" Text="פריט" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
     </Grid>
 </Page>

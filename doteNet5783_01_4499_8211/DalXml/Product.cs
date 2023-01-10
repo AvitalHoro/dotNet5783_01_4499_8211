@@ -55,7 +55,7 @@ internal class Product : IProduct
         studentsRootElem.Add(new XElement("Product", createStudentElement(product)));
         XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
 
-        return product.ID; ;
+        return product.ID; 
     }
 
     public void Delete(int id)

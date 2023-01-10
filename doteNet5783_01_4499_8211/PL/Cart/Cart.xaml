@@ -22,29 +22,29 @@
         </Grid.ColumnDefinitions>
         <ListView x:Name="OrderItemView" 
                   ItemsSource="{Binding Path=OrderItems}"
-                  Margin="0,10,0,-10" 
-                  Grid.Column="1" >
+                  Margin="309,83,-70,0" Grid.ColumnSpan="2" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="400">
+                    <Grid Width="425">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Path}" 
-                               Height="100" Grid.Column="3"></Image>
-                        <StackPanel Grid.Column="2" >
-                            <TextBlock Text="{Binding NameProduct}" TextAlignment="Center"></TextBlock>
+                               Height="100" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="4"></Image>
+                        <TextBlock Text="{Binding NameProduct}" Grid.Column="3" FontSize="15" TextAlignment="Center"></TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
+                            <TextBlock Text="₪" FontSize="20" TextAlignment="Center"></TextBlock>
                             <TextBlock Text="{Binding Price}" TextAlignment="Center" FontSize="20"></TextBlock>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1">
-                            <Button x:Name="cmdDown" 
-                                    Margin="1" Padding="0" 
-                                    Click="cmdDown_Click" Width="25" Height="32" >
-                                <materialDesign:PackIcon Kind="TriangleSmallDown"
-                                 Height="90" Width="50" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                            <Button x:Name="cmdUp"
+                                    Click="cmdUp_Click" Padding="0" Width="25" Height="32">
+                                <materialDesign:PackIcon Kind="Plus"
+                                    Height="21" Width="50" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Button>
 
                             <TextBox x:Name="textNumber" 
@@ -56,10 +56,12 @@
                                      TextChanged="txtNum_TextChanged"
                                      Height="38" />
 
-                            <Button x:Name="cmdUp"
-                                    Click="cmdUp_Click" Padding="0" Width="25" Height="32">
-                                <materialDesign:PackIcon Kind="Triangle"
-                                    Height="21" Width="50" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button x:Name="cmdDown" 
+                                    Margin="1" Padding="0" 
+                                    Click="cmdDown_Click"
+                                    Width="25" Height="32" >
+                                <materialDesign:PackIcon Kind="Minus"
+                                 Height="21" Width="50" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 
                         </StackPanel>
@@ -76,54 +78,56 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid x:Name="LeftGrid">
+        <Grid x:Name="LeftGrid" Background="#FFF1EBEB" Visibility="{Binding Visibility, ElementName=PaymentLabel}" Margin="0,0,85,0">
             <TextBlock Name="PaymentLabel"
             HorizontalAlignment="Left" 
-            Margin="86,141,0,0" 
+            Margin="20,141,0,0" 
             Visibility="{Binding OrderItems.Count , Converter={StaticResource IntToVisibiltyConverter}}"
             TextWrapping="Wrap" 
             Text="סך הכל לתשלום" 
             VerticalAlignment="Top"
             Height="37" Width="162"
-            FontSize="22" 
-            FontWeight="Bold"/>
+            FontSize="22"/>
 
-            <TextBlock Name="TotalPriceShow"
-                   HorizontalAlignment="Left" 
-                   Margin="231,141,0,0" 
-                   Visibility="{Binding ElementName=PaymentLabel , Path=Visibility}"
+
+            <TextBlock Text="₪" 
+                       FontSize="22" 
+                       Visibility="{Binding Visibility, ElementName=PaymentLabel}"
+                       TextAlignment="Center"
+                       Margin="178,141,68,379"/>
+            <TextBlock x:Name="TotalPriceShow" 
+                   Visibility="{Binding Visibility, ElementName=PaymentLabel}"
                    TextWrapping="Wrap" 
-                   Text="{Binding Path= TotalPrice}" 
-                   VerticalAlignment="Top" 
-                   Width="87" 
-                   RenderTransformOrigin="0.933,0.352"
-                   Height="37" 
+                   Text="{Binding TotalPrice}" 
+                   Width="89" 
                    FontSize="22" 
-                   TextAlignment="Right"/>
+                   TextAlignment="Left" Margin="204,141,-14,377"/>
+
 
             <Button x:Name="ApproveOrder"
                 Content="למעבר לקופה"
                 HorizontalAlignment="Left"
-                Margin="20,311,0,0" 
+                Margin="36,317,0,0" 
                 Visibility="{Binding ElementName=PaymentLabel , Path=Visibility}"
                 VerticalAlignment="Top"
                 RenderTransformOrigin="0.473,-0.704" 
-                Width="155" Height="54"
-                FontSize="20" Click="ApproveOrder_Click"/>
+                Width="196" Height="54"
+                FontSize="20" Click="ApproveOrder_Click" Background="#FFCCB5B5"/>
 
             <Button Name="GoBackToCatalog"
                 Content="להמשך קניה"
                 HorizontalAlignment="Left"
-                Margin="192,311,0,0" 
+                Margin="34,408,0,0" 
                 Visibility="{Binding ElementName=PaymentLabel , Path=Visibility}"
                 VerticalAlignment="Top"
-                Width="148" Height="54"
+                Width="196" Height="54"
                 FontSize="20" 
+                Background="#FFCCB5B5"
                 Click="GoBackToCatalog_Click" RenderTransformOrigin="0.47,1.731"/>
 
             <TextBlock Name="OrderSummery"
                    HorizontalAlignment="Left"
-                   Margin="208,41,0,0" 
+                   Margin="132,41,0,0" 
                    TextWrapping="Wrap"
                    Visibility="{Binding ElementName=PaymentLabel , Path=Visibility}"
                    Text=":סיכום הזמנה" 
@@ -132,7 +136,7 @@
 
             <TextBlock Name="LabelAmount"
             HorizontalAlignment="Left" 
-            Margin="111,96,0,0" 
+            Margin="46,96,0,0" 
             TextWrapping="Wrap" 
             Visibility="{Binding ElementName=PaymentLabel , Path=Visibility}"
             Text="מוצרים בעגלה" 
@@ -142,22 +146,22 @@
 
             <TextBlock  Name="AmountInCart"
             HorizontalAlignment="Left" 
-            Margin="253,96,0,0" 
+            Margin="207,96,0,0" 
             TextWrapping="Wrap" 
             Visibility="{Binding ElementName=PaymentLabel , Path=Visibility}"
             Text="{Binding Path= OrderItems.Count}"
             VerticalAlignment="Top" 
             FontSize="22"
-            Width="66" TextAlignment="Right" RenderTransformOrigin="0.929,0.48"/>
+            Width="66" TextAlignment="Left" RenderTransformOrigin="0.929,0.48"/>
         </Grid>
 
         <Image Name="CryBaby"
             HorizontalAlignment="Left" 
             Height="376" 
             Visibility="{Binding OrderItems.Count , Converter={StaticResource IntToHiddenConverter}}"
-            Margin="188,56,0,0" 
+            Margin="196,57,0,0" 
             VerticalAlignment="Top" 
-            Width="386" Source="/Cart/sadBaby.png" Grid.ColumnSpan="2"/>
+            Width="386" Source="/Images/sadBaby.png" Grid.ColumnSpan="2"/>
 
         <Button Name="All"
                 HorizontalAlignment="Left"
@@ -167,8 +171,15 @@
                 Visibility="{Binding ElementName=CryBaby, Path=Visibility}"
                 FontSize="20" Grid.ColumnSpan="2" BorderBrush="{x:Null}">
             <Button.Background>
-                <ImageBrush ImageSource="/Cart/start.png" Stretch="Uniform"/>
+                <ImageBrush ImageSource="/Images/start.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
+        <TextBlock x:Name="OrderSummery_Copy"
+            HorizontalAlignment="Left"
+            Margin="211,35,0,0" 
+            TextWrapping="Wrap"
+            Visibility="{Binding Visibility, ElementName=PaymentLabel}" 
+            VerticalAlignment="Top"
+            FontSize="22" FontWeight="Bold" Grid.Column="1" Width="153"><Run FlowDirection="RightToLeft" Language="he-il" Text="סיכום פריטים:"/></TextBlock>
     </Grid>
 </Page>

@@ -86,9 +86,9 @@ public class DalOrderItem : IOrderItem
     }
     #endregion
 
-    #region getItem
+    #region GetItem
     /// <exception cref="DoesNotExistException"></exception>
-    public OrderItem getItem(int IdOrder, int IdProduct)
+    public OrderItem GetItem(int IdOrder, int IdProduct)
     {
         return ds.ListOrderItem.FirstOrDefault(item => (item?.OrderID == IdOrder) && 
                                                (item?.ProductID == IdProduct))

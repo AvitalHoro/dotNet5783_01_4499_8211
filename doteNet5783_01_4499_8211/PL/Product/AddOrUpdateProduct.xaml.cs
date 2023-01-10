@@ -30,12 +30,6 @@ namespace PL.Product
             UpdateID.IsEnabled = false; //אין אפשרות לשנות את המזהה של המוצר
             UpdateOrAdd.Content = "עדכן";
             UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-
-            //UpdateID.Text = product.ID.ToString();
-            //UpdateCategory.SelectedItem = product.Category;
-            //UpdateName.Text = product.Name;
-            //UpdatePrice.Text = product.Price.ToString();
-            //UpdateOrAdd.IsEnabled= false;
             productAddOrUp.DataContext = product;
             Title.Text = "עדכון מוצר";
         }

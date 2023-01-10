@@ -36,10 +36,10 @@ namespace PL.Product
             product = bl.Product.GetProductDetails(productId, cart);
             DataContext= product;
             this.content = content;
-            mainFrame = frame; ;
-            for (int i = 1; i <= product.InStock; i++)
-                SelectedAmount.Items.Add(i);
-            SelectedAmount.SelectedItem = 1;
+            mainFrame = frame;
+            int[] arr = Enumerable.Range(0, product.InStock).ToArray();
+            SelectedAmount.ItemsSource = arr;   
+            SelectedAmount.SelectedItem = product.AmountInCart;
         }
 
         private void AddToCart_Click(object sender, RoutedEventArgs e)

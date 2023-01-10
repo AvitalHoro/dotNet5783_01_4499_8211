@@ -65,13 +65,11 @@ internal class Product : IProduct
 
     #region GetCatalog
     //מחזיר רשימה של כל המוצרים בשביל הלקוח
-    public IEnumerable<BO.Product?> GetCatalog()
+    public IEnumerable<BO.ProductItem?> GetCatalog(BO.Cart cart, BO.Filters enumFilter = BO.Filters.None,
+        Object? filterValue = null, bool isInStock = false)
     {
-        IEnumerable<DO.Product?> tmp = Dal.Product.GetAll(product => product?.IsDeleted == false);
-        //הלקוח לא צריך לראות מוצרים מחוקים
-        var newList = from DO.Product product in tmp
-                      select BO.Tools.CopyPropTo(product, new BO.Product());
-        return newList;
+        IEnumerable<BO.ProductForList> tmp = GetProductList(enumFilter, filterValue, isInStock);
+        return tmp.Select(product => GetProductDetails(product.ID, cart));
     }
     #endregion
 
@@ -166,9 +164,11 @@ internal class Product : IProduct
     {
         try
         {
-            if (Dal.OrderItem.GetAll(item=> item?.ProductID == idProduct) == null)
-                //אם ההזמנה כבר נשלחה , האם עדיין זה בעייתי למחוק את המוצר?
-                //האם עבור רשימה ריקה, הוא יחזיר באמת נל
+            var items = Dal.OrderItem.GetAll(item => item?.ProductID == idProduct);
+            var list = from DO.OrderItem item in items
+                       where Dal.Order.GetById(item.OrderID).ShipDate == null
+                       select item;
+            if(list.Count() == 0)
                 throw new BO.ProductExistInOrderException(idProduct);
         }
         catch (BO.DoesNotExistException ex)

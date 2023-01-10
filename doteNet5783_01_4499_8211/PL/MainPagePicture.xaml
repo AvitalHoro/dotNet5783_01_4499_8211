@@ -10,7 +10,7 @@
 
     <Grid>
         <Image
-            Source="/mainPicture.png"
+            Source="/Images/mainPicture.png"
             VerticalAlignment="Top" Height="599"/>
     </Grid>
 </Page>

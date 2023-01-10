@@ -83,7 +83,7 @@
                            VerticalAlignment="Top" 
                            Margin="31,10,0,0" Height="38" Click="ReturnBack_Click">
             <Button.Background>
-                <SolidColorBrush Color="#FFB1BFAD" />
+                <SolidColorBrush Color="#FFD7DAD6" />
             </Button.Background>
             <Grid>
                 <materialDesign:PackIcon Kind="ArrowLeft"

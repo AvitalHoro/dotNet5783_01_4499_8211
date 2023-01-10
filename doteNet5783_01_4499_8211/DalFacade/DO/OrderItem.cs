@@ -11,6 +11,7 @@ public struct OrderItem
     public int OrderID { set; get; }
     public double Price { set; get; }
     public int Amount { set; get; }
+    public string Path { set; get; }    
     public bool IsDeleted { set; get; }
 }
 

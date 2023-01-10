@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL.Product"
+      xmlns:converter="clr-namespace:PL"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:BO="clr-namespace:BO;assembly=BL"
       Style="{StaticResource PageStyle}"
@@ -13,6 +14,27 @@
     <Page.DataContext>
         <BO:ProductForList/>
     </Page.DataContext>
+    <Page.Resources>
+        <converter:CategoryToHebrew x:Key="CategoryToHebrew"/>
+        <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupItem}">
+                    <Expander x:Name="expander" IsExpanded="True"
+                                  Background="Transparent"
+                                  Foreground="#2b331f">
+                        <Expander.Header>
+                            <TextBlock Text="{Binding Name,Converter={StaticResource CategoryToHebrew}}"
+                                               FontSize="20" FontWeight="Bold" Foreground="#FF009BA6" HorizontalAlignment="Right">
+                            </TextBlock>
+                        </Expander.Header>
+                        <ItemsPresenter/>
+                    </Expander>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    </Page.Resources>
 
     <Grid>
         <ListView x:Name="ProductListview" 
@@ -37,8 +59,8 @@
                         <Image Source="{Binding Path}" Width="170"  Height="170"></Image>
                         <TextBlock Text="{Binding Name}" FontSize="20"></TextBlock>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
                             <TextBlock Text="₪" FontSize="20"></TextBlock>
+                            <TextBlock Text="{Binding Price}" FontSize="20"></TextBlock>
                         </StackPanel>
                         <Button 
                             Click="addProductToCart"
@@ -55,13 +77,14 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock FontWeight="Bold" FontSize="25" Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
+                <GroupStyle ContainerStyle="{StaticResource ResourceKey=GroupHeaderStyle}">
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <DataGridRowsPresenter/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
                 </GroupStyle>
+
             </ListView.GroupStyle>
         </ListView>
     </Grid>
