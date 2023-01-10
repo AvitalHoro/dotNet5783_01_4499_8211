@@ -30,7 +30,7 @@ public partial class MainWindow : Window
 {
     private IBl bl = BlFactory.GetBl();
    // private CartPO cart = new();
-    private BO.Cart cart = new();
+    public BO.Cart cart = new();
 
     public MainWindow() //החלון הראשי של החנות
     {

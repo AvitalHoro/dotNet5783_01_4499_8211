@@ -70,6 +70,7 @@ public partial class ApprovedOrder : Page
             BO.Order order=bl.Order.GetDetailsOrder(idOrder);
             mainWindow.fullFrame.Content = null;
             mainWindow.framePage.Content = new FinishOrder(bl, order, mainWindow.framePage, paymentMethod);
+            mainWindow.cart = new();
         }
         //    BO.EmptyCartException"></exception>
         ///// <exception cref="BO.NoCostumerNameException"></exception>

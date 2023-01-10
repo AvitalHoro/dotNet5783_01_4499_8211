@@ -101,7 +101,8 @@ public static class Tools
         CopyPropTo(cartBo, cartPo);
         //   IEnumerableToObservable(cartPo.OrderItems, cartBo.OrderItems);
         cartPo.OrderItems.Clear();
-        foreach (var item in cartBo.OrderItems)
-            cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
+        if(cartBo.OrderItems!=null)
+            foreach (var item in cartBo.OrderItems)
+                cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
     }
 }
