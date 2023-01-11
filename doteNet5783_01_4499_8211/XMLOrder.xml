@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XMLOrder.xml>
 <Order>
-	<ID>1</ID>
+	<ID>1001</ID>
 	<CostumerName>אביטל הורוביץ</CostumerName>
 	<CostumerEmail>avital123@gmail.com</CostumerEmail>
 	<CostumerAddress>בית אל 23</CostumerAddress>
@@ -11,60 +11,20 @@
 	<IsDeleted>false</IsDeleted>
 </Order>
 <Order>
-	<ID>1</ID>
-	<CostumerName>אביטל הורוביץ</CostumerName>
-	<CostumerEmail>avital123@gmail.com</CostumerEmail>
-	<CostumerAddress>בית אל 23</CostumerAddress>
+	<ID>1002</ID>
+	<CostumerName>מוריה דרורי</CostumerName>
+	<CostumerEmail>moriyaDr@gmail.com</CostumerEmail>
+	<CostumerAddress> ירושלים 23</CostumerAddress>
 	<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
 	<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
 	<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
 	<IsDeleted>false</IsDeleted>
 </Order>
 <Order>
-	<ID>1</ID>
-	<CostumerName>אביטל הורוביץ</CostumerName>
-	<CostumerEmail>avital123@gmail.com</CostumerEmail>
-	<CostumerAddress>בית אל 23</CostumerAddress>
-	<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-	<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-	<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-	<IsDeleted>false</IsDeleted>
-</Order>
-<Order>
-	<ID>1</ID>
-	<CostumerName>אביטל הורוביץ</CostumerName>
-	<CostumerEmail>avital123@gmail.com</CostumerEmail>
-	<CostumerAddress>בית אל 23</CostumerAddress>
-	<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-	<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-	<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-	<IsDeleted>false</IsDeleted>
-</Order>
-<Order>
-	<ID>1</ID>
-	<CostumerName>אביטל הורוביץ</CostumerName>
-	<CostumerEmail>avital123@gmail.com</CostumerEmail>
-	<CostumerAddress>בית אל 23</CostumerAddress>
-	<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-	<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-	<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-	<IsDeleted>false</IsDeleted>
-</Order>
-<Order>
-	<ID>1</ID>
-	<CostumerName>אביטל הורוביץ</CostumerName>
-	<CostumerEmail>avital123@gmail.com</CostumerEmail>
-	<CostumerAddress>בית אל 23</CostumerAddress>
-	<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-	<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-	<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-	<IsDeleted>false</IsDeleted>
-</Order>
-<Order>
-	<ID>1</ID>
-	<CostumerName>אביטל הורוביץ</CostumerName>
-	<CostumerEmail>avital123@gmail.com</CostumerEmail>
-	<CostumerAddress>בית אל 23</CostumerAddress>
+	<ID>1003</ID>
+	<CostumerName>רעות צפלביץ</CostumerName>
+	<CostumerEmail>reutZi56@gmail.com</CostumerEmail>
+	<CostumerAddress>נטע 49</CostumerAddress>
 	<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
 	<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
 	<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>

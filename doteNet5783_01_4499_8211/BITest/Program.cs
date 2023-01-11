@@ -242,7 +242,7 @@ class Program
                 bProduct.Product.UpdateProductDetails(tmpProduct2);
                 break;
             case "f":
-                foreach (var item in bProduct.Product.GetCatalog())
+                foreach (var item in bProduct.Product.GetProductList())
                 {
                     Console.WriteLine(item);
                 }
