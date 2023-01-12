@@ -18,7 +18,7 @@ internal class Product : IProduct
             Price = p.ToDoubleNullable("Price")??0,
             InStock = p.ToIntNullable("InStock")??0,
             IsDeleted = (bool)p.Element("IsDeleted"),
-            Path = p.Element("Path").ToString(),
+            Path = (string)p.Element("Path"),
         };
 
     static IEnumerable<XElement> createStudentElement(DO.Product product)
