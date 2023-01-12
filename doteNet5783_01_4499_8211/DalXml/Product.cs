@@ -59,6 +59,9 @@ internal class Product : IProduct
 
     public void Delete(int id)
     {
+        DO.Product product = GetById(id);
+        product.IsDeleted = true;   
+
         XElement studentsRootElem = XMLTools.LoadListFromXMLElement(s_products);
 
         (studentsRootElem.Elements()
@@ -66,6 +69,8 @@ internal class Product : IProduct
             .Remove();
 
         XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
+
+        Add(product);
     }
 
     public void Update(DO.Product doProduct)
