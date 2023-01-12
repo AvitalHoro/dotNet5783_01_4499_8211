@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <ID>0</ID>
+    <CostumerName>אביטל הורביץ</CostumerName>
+    <CostumerEmail>avital123@gmail.com</CostumerEmail>
+    <CostumerAdress>בית אל 12</CostumerAdress>
+    <OrderDate>2023-01-12T01:18:45.7757685+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+</ArrayOfOrder>

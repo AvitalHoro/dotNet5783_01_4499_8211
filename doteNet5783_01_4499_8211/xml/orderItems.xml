@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XMLOrderItem.xml>
+<OrderItems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<OrderItem>
 		<ID>1</ID>
 		<ProductID>100001</ProductID>
@@ -27,4 +27,4 @@
 		<Path>/PL/Images/7.png</Path>
 		<IsDeleted>false</IsDeleted>
 	</OrderItem>
-</XMLOrderItem.xml>
+</OrderItems>

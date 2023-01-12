@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XMLProduct.xml>
+<Products>
 	<Product>
 		<ID>100001</ID>
 		<Name>עגלה שחורה</Name>
@@ -27,4 +27,4 @@
 		<IsDeleted>false</IsDeleted>
 		<Path>/PL/Images/7.png</Path>
 	</Product>
-</XMLProduct.xml>
+</Products>
