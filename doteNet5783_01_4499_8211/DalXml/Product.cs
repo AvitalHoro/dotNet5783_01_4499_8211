@@ -21,7 +21,7 @@ internal class Product : IProduct
             Path = (string)p.Element("Path"),
         };
 
-    static IEnumerable<XElement> createStudentElement(DO.Product product)
+    static IEnumerable<XElement> createProductElement(DO.Product product)
     {
         yield return new XElement("ID", product.ID);
         if (product.Name is not null)
@@ -40,8 +40,8 @@ internal class Product : IProduct
     public DO.Product GetById(int id) =>
         (DO.Product)getProduct(XMLTools.LoadListFromXMLElement(s_products)?.Elements()
         .FirstOrDefault(st => st.ToIntNullable("ID") == id)
-        // fix to: throw new DalMissingIdException(id);
-        ?? throw new Exception("missing id"))!;
+
+        ?? throw new DoesNotExistException(id))!;
 
     public int Add(DO.Product product)
     {
@@ -49,10 +49,9 @@ internal class Product : IProduct
 
         if (XMLTools.LoadListFromXMLElement(s_products)?.Elements()
             .FirstOrDefault(st => st.ToIntNullable("ID") == product.ID) is not null)
-            // fix to: throw new DalMissingIdException(id);;
-            throw new Exception("id already exist");
+             throw new AlreadyExistsException(product.ID);
 
-        studentsRootElem.Add(new XElement("Product", createStudentElement(product)));
+        studentsRootElem.Add(new XElement("Product", createProductElement(product)));
         XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
 
         return product.ID; 
@@ -63,8 +62,7 @@ internal class Product : IProduct
         XElement studentsRootElem = XMLTools.LoadListFromXMLElement(s_products);
 
         (studentsRootElem.Elements()
-            // fix to: throw new DalMissingIdException(id);
-            .FirstOrDefault(st => (int?)st.Element("ID") == id) ?? throw new Exception("missing id"))
+            .FirstOrDefault(st => (int?)st.Element("ID") == id) ?? throw new DoesNotExistException(id))
             .Remove();
 
         XMLTools.SaveListToXMLElement(studentsRootElem, s_products);

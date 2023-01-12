@@ -16,15 +16,14 @@ internal class OrderItem : IOrderItem
 
     public DO.OrderItem GetById(int id) =>
         XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems).FirstOrDefault(p => p?.ID == id)
-        //DalMissingIdException(id, "OrderItem");
-        ?? throw new Exception("missing id");
+        ?? throw new DoesNotExistException(id);
 
     public int Add(DO.OrderItem OrderItem)
     {
         var listOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems);
 
         if (listOrderItems.Exists(lec => lec?.ID == OrderItem.ID))
-            throw new Exception("id already exist");//DalAlreadyExistIdException(OrderItem.ID, "OrderItem");
+            throw new AlreadyExistsException(OrderItem.ID);
 
         listOrderItems.Add(OrderItem);
 
@@ -38,7 +37,7 @@ internal class OrderItem : IOrderItem
         var listOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems);
 
         if (listOrderItems.RemoveAll(p => p?.ID == id) == 0)
-            throw new Exception("missing id"); //new DalMissingIdException(id, "OrderItem");
+            throw new DoesNotExistException(id); //new DalMissingIdException(id, "OrderItem");
 
         XMLTools.SaveListToXMLSerializer(listOrderItems, s_OrderItems);
     }

@@ -3,6 +3,12 @@ using DalApi;
 using DO;
 using System.Diagnostics;
 
+public struct RuningNumbers
+{
+    public double numberSaved { get; set; }
+    public string typeOfnumber { get; set; }
+}
+
 sealed class DalXml : IDal
 {
     public static IDal Instance { get; } = new DalXml();

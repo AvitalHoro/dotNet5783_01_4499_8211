@@ -27,4 +27,12 @@
     <IsDeleted>false</IsDeleted>
     <Path>/Images/7.png</Path>
   </Product>
+  <Product>
+    <ID>123456</ID>
+    <Name>mgmug</Name>
+    <Category>Toys</Category>
+    <Price>45</Price>
+    <InStock>45</InStock>
+    <IsDeleted>false</IsDeleted>
+  </Product>
 </Products>
