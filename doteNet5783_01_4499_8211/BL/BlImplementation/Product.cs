@@ -99,7 +99,7 @@ internal class Product : IProduct
     }
     #endregion
 
-    #region GetProductDetails
+    #region GetProducItemtDetails
     /// <exception cref="DO.DoesNotExistException"></exception>
     //מחזיר ללקוח פרטים של מוצר ספציפי לפי המזהה שלו
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)
@@ -113,7 +113,7 @@ internal class Product : IProduct
             if (item != null)
                 productItem.AmountInCart = item.Amount;
              else
-                productItem.AmountInCart = 0;
+                productItem.AmountInCart = 0; 
             return productItem;
         }
         catch (BO.DoesNotExistException ex)
