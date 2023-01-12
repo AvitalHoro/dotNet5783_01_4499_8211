@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Order>
-    <ID>0</ID>
-    <CostumerName>אביטל הורביץ</CostumerName>
+    <ID>1001</ID>
+    <CostumerName>אביטל הורוביץ</CostumerName>
     <CostumerEmail>avital123@gmail.com</CostumerEmail>
-    <CostumerAdress>בית אל 12</CostumerAdress>
-    <OrderDate>2023-01-12T01:18:45.7757685+02:00</OrderDate>
+    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
+    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
+    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1002</ID>
+    <CostumerName>מוריה דרורי</CostumerName>
+    <CostumerEmail>moriyaDr@gmail.com</CostumerEmail>
+    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
+    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
+    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1003</ID>
+    <CostumerName>רעות צפלביץ</CostumerName>
+    <CostumerEmail>reutZi56@gmail.com</CostumerEmail>
+    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
+    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
+    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>0</ID>
+    <CostumerName>רעות כהן</CostumerName>
+    <CostumerEmail>reutCohen@gmail.com</CostumerEmail>
+    <CostumerAdress>באר שבע, הדודאים 34</CostumerAdress>
+    <OrderDate>2023-01-12T11:00:50.3834081+02:00</OrderDate>
     <ShipDate xsi:nil="true" />
     <DeliveryDate xsi:nil="true" />
     <IsDeleted>false</IsDeleted>

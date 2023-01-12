@@ -1,30 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<OrderItems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<OrderItem>
-		<ID>1</ID>
-		<ProductID>100001</ProductID>
-		<OrderID>1001</OrderID>
-		<Price>290</Price>
-		<Amount>1</Amount>
-		<Path>/PL/Images/4.png</Path>
-		<IsDeleted>false</IsDeleted>
-	</OrderItem>
-	<OrderItem>
-		<ID>2</ID>
-		<ProductID>100002</ProductID>
-		<OrderID>1002</OrderID>
-		<Price>40</Price>
-		<Amount>2</Amount>
-		<Path>/PL/Images/5.png</Path>
-		<IsDeleted>false</IsDeleted>
-	</OrderItem>
-	<OrderItem>
-		<ID>3</ID>
-		<ProductID>100003</ProductID>
-		<OrderID>1003</OrderID>
-		<Price>15</Price>
-		<Amount>6</Amount>
-		<Path>/PL/Images/7.png</Path>
-		<IsDeleted>false</IsDeleted>
-	</OrderItem>
-</OrderItems>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrderItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OrderItem>
+    <ID>1</ID>
+    <ProductID>100001</ProductID>
+    <OrderID>1001</OrderID>
+    <Price>290</Price>
+    <Amount>1</Amount>
+    <Path>/PL/Images/4.png</Path>
+    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+  <OrderItem>
+    <ID>2</ID>
+    <ProductID>100002</ProductID>
+    <OrderID>1002</OrderID>
+    <Price>40</Price>
+    <Amount>2</Amount>
+    <Path>/PL/Images/5.png</Path>
+    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+  <OrderItem>
+    <ID>3</ID>
+    <ProductID>100003</ProductID>
+    <OrderID>1003</OrderID>
+    <Price>15</Price>
+    <Amount>6</Amount>
+    <Path>/PL/Images/7.png</Path>
+    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+  <OrderItem>
+    <ID>0</ID>
+    <ProductID>100001</ProductID>
+    <OrderID>0</OrderID>
+    <Price>58</Price>
+    <Amount>5</Amount>
+    <Path>&lt;Path&gt;/PL/Images/4.png&lt;/Path&gt;</Path>
+    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+</ArrayOfOrderItem>
