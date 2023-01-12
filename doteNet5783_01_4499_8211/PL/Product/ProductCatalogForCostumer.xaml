@@ -84,7 +84,6 @@
                         </ItemsPanelTemplate>
                     </GroupStyle.Panel>
                 </GroupStyle>
-
             </ListView.GroupStyle>
         </ListView>
     </Grid>

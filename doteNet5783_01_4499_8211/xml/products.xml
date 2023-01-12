@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
   <Product>
+    <ID>100001</ID>
+    <Name>עגלה שחורה</Name>
+    <Category>Carts</Category>
+    <Price>290</Price>
+    <InStock>10</InStock>
+    <IsDeleted>false</IsDeleted>
+    <Path>/PL/Images/3.png</Path>
+  </Product>
+  <Product>
     <ID>100002</ID>
     <Name>בגד גוף כחול</Name>
     <Category>Clothes</Category>
@@ -17,13 +26,5 @@
     <InStock>40</InStock>
     <IsDeleted>false</IsDeleted>
     <Path>/PL/Images/7.png</Path>
-  </Product>
-  <Product>
-    <ID>100001</ID>
-    <Name>עגלה שחורה</Name>
-    <Category>Carts</Category>
-    <Price>290</Price>
-    <InStock>10</InStock>
-    <IsDeleted>false</IsDeleted>
   </Product>
 </Products>
