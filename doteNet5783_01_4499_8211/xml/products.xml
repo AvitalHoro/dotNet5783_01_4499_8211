@@ -35,4 +35,12 @@
     <InStock>45</InStock>
     <IsDeleted>false</IsDeleted>
   </Product>
+  <Product>
+    <ID>10005</ID>
+    <Name>טיולון SKETCH תאומים נייבי - אינגלזינה</Name>
+    <Category>Carts</Category>
+    <Price>4569</Price>
+    <InStock>7</InStock>
+    <IsDeleted>false</IsDeleted>
+  </Product>
 </Products>
