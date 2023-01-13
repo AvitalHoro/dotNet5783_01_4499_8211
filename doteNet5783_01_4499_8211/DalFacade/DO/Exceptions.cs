@@ -36,6 +36,24 @@ public class AlreadyExistsException : Exception
     //הדפסה של השגיאה לפי הנתונים שקיבלנו
 }
 
+
+[Serializable]
+public class RuningNumberDoesNotExistException : Exception
+//חריגה שנזרקת כאשר מנסים לגשת לאיבר שלא נמצא בחנות
+{
+    public string TypeNumber { get;  private set; } 
+    public RuningNumberDoesNotExistException(string type) : base() { TypeNumber = type; }
+    //זריקה שנזרקת עם ת"ז של ישות ספציפית
+    public RuningNumberDoesNotExistException(string type, string message) : base(message) { TypeNumber = type; }
+    //זריקה שנזרקת עם ת"ז והודעה ספציפית שנרצה לזרוק
+    public RuningNumberDoesNotExistException(string type, string message, Exception inner) : base(message, inner) { TypeNumber = type; }
+    //
+    protected RuningNumberDoesNotExistException(string type, SerializationInfo info, StreamingContext context) : base(info, context) { TypeNumber = type; }
+    override public string ToString() => "RuningNumberDoesNotExistException: The " + TypeNumber + " does not exist in the system.";
+    //הדפסה של השגיאה לפי הנתונים שקיבלנו
+}
+
+
 [Serializable]
 public class LoadingException : Exception
 {

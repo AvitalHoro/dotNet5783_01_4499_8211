@@ -29,6 +29,7 @@ internal class Product : IProduct
         yield return new XElement("Category", product.Category);
         yield return new XElement("Price", product.Price);
         yield return new XElement("InStock", product.InStock);
+        yield return new XElement("Path", product.Path);
         yield return new XElement("IsDeleted", product.IsDeleted);
     }
 
@@ -48,7 +49,7 @@ internal class Product : IProduct
         XElement studentsRootElem = XMLTools.LoadListFromXMLElement(s_products);
 
         if (XMLTools.LoadListFromXMLElement(s_products)?.Elements()
-            .FirstOrDefault(st => st.ToIntNullable("ID") == product.ID) is not null)
+            .FirstOrDefault(st => st.ToIntNullable("ID") == product.ID && !(bool)st.Element("IsDeleted")) is not null)
              throw new AlreadyExistsException(product.ID);
 
         studentsRootElem.Add(new XElement("Product", createProductElement(product)));
@@ -59,24 +60,27 @@ internal class Product : IProduct
 
     public void Delete(int id)
     {
-        DO.Product product = GetById(id);
-        product.IsDeleted = true;   
-
         XElement studentsRootElem = XMLTools.LoadListFromXMLElement(s_products);
+        DO.Product product = GetById(id);
+
+        product.IsDeleted = true;
 
         (studentsRootElem.Elements()
             .FirstOrDefault(st => (int?)st.Element("ID") == id) ?? throw new DoesNotExistException(id))
             .Remove();
 
-        XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
+        studentsRootElem.Add(new XElement("Product", createProductElement(product)));
 
-        Add(product);
+        XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
     }
 
     public void Update(DO.Product doProduct)
     {
-        Delete(doProduct.ID);
-        Add(doProduct);
+        var listProducts = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_products);
+        var o = listProducts.FirstOrDefault(p => p?.ID == doProduct.ID) ?? throw new DoesNotExistException(doProduct.ID);
+        listProducts.Remove(o);
+        listProducts.Add(doProduct);
+        XMLTools.SaveListToXMLSerializer(listProducts, s_products);
     }
 
 }

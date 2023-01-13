@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
   <Product>
-    <ID>100001</ID>
+    <ID>100003</ID>
     <Name>עגלה שחורה</Name>
-    <Category>Carts</Category>
-    <Price>290</Price>
-    <InStock>10</InStock>
-    <IsDeleted>false</IsDeleted>
+    <Category>Cart</Category>
+    <Price>300</Price>
+    <InStock>20</InStock>
     <Path>/Images/3.png</Path>
+    <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
     <ID>100002</ID>
@@ -15,24 +15,16 @@
     <Category>Clothes</Category>
     <Price>40</Price>
     <InStock>20</InStock>
+    <Path>/Images/3.png</Path>
     <IsDeleted>false</IsDeleted>
-    <Path>/Images/5.png</Path>
   </Product>
   <Product>
     <ID>100003</ID>
     <Name>מוצץ ירוק</Name>
-    <Category>Bottels</Category>
-    <Price>15</Price>
-    <InStock>40</InStock>
-    <IsDeleted>false</IsDeleted>
-    <Path>/Images/7.png</Path>
-  </Product>
-  <Product>
-    <ID>123456</ID>
-    <Name>mgmug</Name>
-    <Category>Toys</Category>
-    <Price>45</Price>
-    <InStock>45</InStock>
+    <Category>Bottles</Category>
+    <Price>40</Price>
+    <InStock>19</InStock>
+    <Path>/Images/3.png</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>

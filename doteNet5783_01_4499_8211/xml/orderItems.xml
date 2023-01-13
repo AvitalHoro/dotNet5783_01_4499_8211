@@ -28,12 +28,30 @@
     <IsDeleted>false</IsDeleted>
   </OrderItem>
   <OrderItem>
-    <ID>0</ID>
+    <ID>10041</ID>
     <ProductID>100001</ProductID>
-    <OrderID>0</OrderID>
-    <Price>58</Price>
-    <Amount>5</Amount>
-    <Path>&lt;Path&gt;/PL/Images/4.png&lt;/Path&gt;</Path>
+    <OrderID>1055</OrderID>
+    <Price>290</Price>
+    <Amount>1</Amount>
+    <Path>/Images/3.png</Path>
+    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+  <OrderItem>
+    <ID>10042</ID>
+    <ProductID>100003</ProductID>
+    <OrderID>1057</OrderID>
+    <Price>15</Price>
+    <Amount>1</Amount>
+    <Path>/Images/7.png</Path>
+    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+  <OrderItem>
+    <ID>10043</ID>
+    <ProductID>100002</ProductID>
+    <OrderID>1055</OrderID>
+    <Price>40</Price>
+    <Amount>1</Amount>
+    <Path>/Images/5.png</Path>
     <IsDeleted>false</IsDeleted>
   </OrderItem>
 </ArrayOfOrderItem>
