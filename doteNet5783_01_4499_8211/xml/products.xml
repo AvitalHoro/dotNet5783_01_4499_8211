@@ -27,13 +27,4 @@
     <Path>/Images/3.png</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
-  <Product>
-    <ID>345678</ID>
-    <Name>jhhg</Name>
-    <Category>Toys</Category>
-    <Price>56</Price>
-    <InStock>78</InStock>
-    <Path></Path>
-    <IsDeleted>true</IsDeleted>
-  </Product>
 </Products>
