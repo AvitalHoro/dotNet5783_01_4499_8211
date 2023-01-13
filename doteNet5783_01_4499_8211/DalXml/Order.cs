@@ -7,6 +7,7 @@ using System.Security.Principal;
 internal class Order : IOrder
 {
     const string s_Orders = "Orders"; //XML Serializer
+    public const string s_Config = "Config";
 
     public IEnumerable<DO.Order?> GetAll(Func<DO.Order?, bool>? filter = null)
     {
@@ -19,18 +20,32 @@ internal class Order : IOrder
         XMLTools.LoadListFromXMLSerializer<DO.Order>(s_Orders).FirstOrDefault(p => p?.ID == id)
         ?? throw new DoesNotExistException(id);
 
-    public int Add(DO.Order Order)
+    public int Add(DO.Order order)
     {
         var listOrders = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_Orders);
 
-        if (listOrders.Exists(lec => lec?.ID == Order.ID))
-            throw new AlreadyExistsException(Order.ID);
+        if (listOrders.Exists(lec => lec?.ID == order.ID && lec?.IsDeleted == false))
+            throw new AlreadyExistsException(order.ID);
 
-        listOrders.Add(Order);
+        var runningList = XMLTools.LoadListFromXMLSerializer<RuningNumber>(s_Config);
+
+
+        RuningNumber runningNum = runningList.FirstOrDefault(num => num?.typeOfnumber == "Order Running Number")
+            ??throw new RuningNumberDoesNotExistException("Order Running Number");
+
+        runningList.Remove(runningNum);
+
+        runningNum.numberSaved++;
+
+        order.ID = (int)runningNum.numberSaved;
+
+        listOrders.Add(order);
+        runningList.Add(runningNum);    
 
         XMLTools.SaveListToXMLSerializer(listOrders, s_Orders);
+        XMLTools.SaveListToXMLSerializer(runningList, s_Config);
 
-        return Order.ID;
+        return order.ID;
     }
 
     public void Delete(int id)
@@ -40,7 +55,9 @@ internal class Order : IOrder
         var o = listOrders.FirstOrDefault(p => p?.ID == id) ?? throw new DoesNotExistException(id);
          
         if (o.IsDeleted)
-            throw new DoesNotExistException(id); 
+            throw new DoesNotExistException(id);
+
+        listOrders.Remove(o);
 
         DO.Order order = new()
         {
@@ -54,12 +71,16 @@ internal class Order : IOrder
             IsDeleted = true
         };
 
-        Update(order);
+        listOrders.Add(order);
+        XMLTools.SaveListToXMLSerializer(listOrders, s_Orders);
     }
 
-    public void Update(DO.Order Order)
+    public void Update(DO.Order order)
     {
-        Delete(Order.ID);
-        Add(Order);
+        var listOrders = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_Orders);
+        var o = listOrders.FirstOrDefault(p => p?.ID == order.ID) ?? throw new DoesNotExistException(order.ID);
+        listOrders.Remove(o);
+        listOrders.Add(order);
+        XMLTools.SaveListToXMLSerializer(listOrders, s_Orders);
     }
 }

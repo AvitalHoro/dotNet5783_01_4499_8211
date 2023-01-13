@@ -166,9 +166,9 @@ internal class Product : IProduct
         {
             var items = Dal.OrderItem.GetAll(item => item?.ProductID == idProduct);
             var list = from DO.OrderItem item in items
-                       where Dal.Order.GetById(item.OrderID).ShipDate == null
+                       where Dal.Order.GetById(item.OrderID).ShipDate != null
                        select item;
-            if(list.Count() == 0)
+            if(list.Count() != 0)
                 throw new BO.ProductExistInOrderException(idProduct);
         }
         catch (BO.DoesNotExistException ex)

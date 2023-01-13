@@ -6,6 +6,7 @@ using System.Security.Principal;
 internal class OrderItem : IOrderItem
 {
     const string s_OrderItems = "OrderItems"; //XML Serializer
+    public const string s_Config = "Config";
 
     public IEnumerable<DO.OrderItem?> GetAll(Func<DO.OrderItem?, bool>? filter = null)
     {
@@ -18,18 +19,28 @@ internal class OrderItem : IOrderItem
         XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems).FirstOrDefault(p => p?.ID == id)
         ?? throw new DoesNotExistException(id);
 
-    public int Add(DO.OrderItem OrderItem)
+    public int Add(DO.OrderItem orderItem)
     {
         var listOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems);
 
-        if (listOrderItems.Exists(lec => lec?.ID == OrderItem.ID))
-            throw new AlreadyExistsException(OrderItem.ID);
+        var runningList = XMLTools.LoadListFromXMLSerializer<RuningNumber>(s_Config);
 
-        listOrderItems.Add(OrderItem);
+        RuningNumber runningNum = runningList.FirstOrDefault(num => num?.typeOfnumber == "OrderItem Running Number")
+            ?? throw new RuningNumberDoesNotExistException("OrderItem Running Number");
+
+        runningList.Remove(runningNum);
+
+        runningNum.numberSaved++;
+
+        orderItem.ID = (int)runningNum.numberSaved;
+
+        listOrderItems.Add(orderItem);
+        runningList.Add(runningNum);
 
         XMLTools.SaveListToXMLSerializer(listOrderItems, s_OrderItems);
+        XMLTools.SaveListToXMLSerializer(runningList, s_Config);
 
-        return OrderItem.ID;
+        return orderItem.ID;
     }
 
     public void Delete(int id)
