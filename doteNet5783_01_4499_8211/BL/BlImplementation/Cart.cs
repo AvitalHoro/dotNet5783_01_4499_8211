@@ -111,7 +111,6 @@ internal class Cart : ICart
             Amount = item.Amount,
             Price = (item.Price / item.Amount),//מחיר לפריט בודד
             Path = item.Path,   
-            IsDeleted = false,
         };
         Dal.OrderItem.Add(orderItem);//מוסיף לשכבת הנתונים את כל פריטי ההזמנה של ההזמנה החדשה
         DO.Product newProduct = new()//כדי לעדכן כמות במוצר שהוזמן, יוצרים אובייקט מוצר חדש עם אותם הערכים, רק בשינוי הכמות.

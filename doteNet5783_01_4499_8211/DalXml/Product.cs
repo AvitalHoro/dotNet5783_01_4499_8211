@@ -76,11 +76,16 @@ internal class Product : IProduct
 
     public void Update(DO.Product doProduct)
     {
-        var listProducts = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_products);
-        var o = listProducts.FirstOrDefault(p => p?.ID == doProduct.ID) ?? throw new DoesNotExistException(doProduct.ID);
-        listProducts.Remove(o);
-        listProducts.Add(doProduct);
-        XMLTools.SaveListToXMLSerializer(listProducts, s_products);
+        XElement studentsRootElem = XMLTools.LoadListFromXMLElement(s_products);
+
+        (studentsRootElem.Elements()
+            .FirstOrDefault(st => (int?)st.Element("ID") == doProduct.ID) 
+            ?? throw new DoesNotExistException(doProduct.ID))
+            .Remove();
+
+        studentsRootElem.Add(new XElement("Product", createProductElement(doProduct)));
+
+        XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
     }
 
 }

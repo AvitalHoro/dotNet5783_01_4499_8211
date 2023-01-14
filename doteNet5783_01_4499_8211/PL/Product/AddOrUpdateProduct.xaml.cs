@@ -22,7 +22,7 @@ namespace PL.Product
     public partial class AddOrUpdateProduct : Window
     {
         IBl bl;
-        string path;
+        string? path;
         public AddOrUpdateProduct(IBl BL, BO.ProductForList product)
         {
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace PL.Product
             UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             productAddOrUp.DataContext = product;
             Title.Text = "עדכון מוצר";
+            path = product.Path;
         }
 
         public AddOrUpdateProduct(IBl BL)
@@ -87,6 +88,7 @@ namespace PL.Product
                         Price = int.Parse(UpdatePrice.Text),
                         InStock = int.Parse(UpdateInStock.Text),
                         IsDeleted = false,
+                        Path = path,
                     });
             }
             catch (BO.InvalidIDException ex)//תפיסת החריגות האפשריות

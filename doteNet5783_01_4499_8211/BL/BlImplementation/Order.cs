@@ -1,6 +1,7 @@
 ﻿using BLApi;
 using BO;
 using Dal;
+using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace BlImplementation;
 
-internal class Order : IOrder
+internal class Order : BLApi.IOrder
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
@@ -130,7 +131,9 @@ internal class Order : IOrder
     {
         try
         {
-            Dal.Order.Delete(idOrder); //מבקשים משכבת הנתונים את ההזמנה הרצויה
+            var items = Dal.OrderItem.GetAll(item => item?.OrderID == idOrder);
+            foreach(DO.OrderItem item in items) Dal.OrderItem.Delete(item.ID);
+            Dal.Order.Delete(idOrder); 
         }
         catch (BO.InvalidIDException ex) { new BO.InvalidIDException(ex.ID); }
     }
@@ -275,7 +278,6 @@ internal class Order : IOrder
             ProductID = IdProduct,
             Price = item.Price,
             Amount = newAmount,
-            IsDeleted = false
         });
         return Dal.OrderItem.GetItem(idOrder, IdProduct); 
     }

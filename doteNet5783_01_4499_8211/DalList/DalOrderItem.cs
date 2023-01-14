@@ -15,7 +15,6 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem? it = ds.ListOrderItem.FirstOrDefault(i => item.ID == i?.ID);
         if (it != null) //checks if the order is already in the system
-            if ((bool)it?.IsDeleted!)
                 ds.ListOrderItem.RemoveAll(i => item.ID == i?.ID);
         item.ID = DataSource.Config.NextOrderItemNumber;
         ds.ListOrderItem.Add(item);
@@ -30,8 +29,6 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem item = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
             ?? throw new DoesNotExistException(id);
-        if (item.IsDeleted) //checks if the item is already in the store
-            throw new DoesNotExistException(id);
         return item;
     }
     #endregion
@@ -43,8 +40,6 @@ public class DalOrderItem : IOrderItem
     {
         OrderItem temp = ds.ListOrderItem.FirstOrDefault(found => found?.ID == item.ID)
             ?? throw new DoesNotExistException(item.ID);
-        if (item.IsDeleted)
-            throw new DoesNotExistException(item.ID);
         ds.ListOrderItem.Remove(temp);
         ds.ListOrderItem.Add(item);
     }
@@ -55,22 +50,23 @@ public class DalOrderItem : IOrderItem
     public void Delete(int id)
     //מוחקת הזמנה מהרשימה לפי הת"ז שהיא מקבלת
     {
-        OrderItem found = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
+        OrderItem item = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
             ?? throw new DoesNotExistException(id);
-        if (found.IsDeleted)
-            //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
-            throw new DoesNotExistException(id);
+        ds.ListOrderItem.Remove(item);
+        //if (found.IsDeleted)
+        //    //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
+        //    throw new DoesNotExistException(id);
 
-        OrderItem item = new()
-        {
-            ID = id,
-            ProductID = found.ProductID,
-            OrderID = found.OrderID,
-            Price = found.Price,
-            Amount = found.Amount,
-            IsDeleted = true
-        };
-        Update(item);
+        //OrderItem item = new()
+        //{
+        //    ID = id,
+        //    ProductID = found.ProductID,
+        //    OrderID = found.OrderID,
+        //    Price = found.Price,
+        //    Amount = found.Amount,
+        //    IsDeleted = true
+        //};
+        //Update(item);
     }
     #endregion
 

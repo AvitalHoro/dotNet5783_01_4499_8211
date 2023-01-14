@@ -109,11 +109,14 @@ internal class Product : IProduct
             DO.Product product = Dal.Product.GetById(idProduct);
             BO.ProductItem productItem = new BO.ProductItem();
             BO.Tools.CopyPropTo(product, productItem);
-            BO.OrderItem? item = cart.OrderItems.FirstOrDefault(x => x.ProductID == productItem.ID);//??throw new BO.DoesNotExistException(productItem.ID);
-            if (item != null)
-                productItem.AmountInCart = item.Amount;
-             else
-                productItem.AmountInCart = 0; 
+            if (cart.OrderItems != null)
+            {
+                BO.OrderItem? item = cart.OrderItems?.FirstOrDefault(x => x.ProductID == productItem.ID);
+                if (item != null)
+                    productItem.AmountInCart = item.Amount;
+            }
+            else
+                productItem.AmountInCart = 0;
             return productItem;
         }
         catch (BO.DoesNotExistException ex)

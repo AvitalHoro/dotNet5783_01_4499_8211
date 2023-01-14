@@ -74,11 +74,12 @@ public partial class ApprovedOrder : Page
         boCart.CostumerEmail = UpdateEmail.Text;
         try
         {
-            idOrder=bl.Cart.MakeOrder(boCart);
+            idOrder = bl.Cart.MakeOrder(boCart);
             BO.Order order=bl.Order.GetDetailsOrder(idOrder);
             mainWindow.fullFrame.Content = null;
             mainWindow.framePage.Content = new FinishOrder(bl, order, mainWindow.framePage, paymentMethod);
             mainWindow.cart = new();
+            mainWindow.cart.OrderItems = new();
         }
       
         catch (BO.EmptyCartException)

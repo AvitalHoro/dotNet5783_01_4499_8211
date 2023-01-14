@@ -7,7 +7,6 @@
     <Price>290</Price>
     <Amount>1</Amount>
     <Path>/PL/Images/4.png</Path>
-    <IsDeleted>false</IsDeleted>
   </OrderItem>
   <OrderItem>
     <ID>2</ID>
@@ -16,7 +15,6 @@
     <Price>40</Price>
     <Amount>2</Amount>
     <Path>/PL/Images/5.png</Path>
-    <IsDeleted>false</IsDeleted>
   </OrderItem>
   <OrderItem>
     <ID>3</ID>
@@ -25,7 +23,6 @@
     <Price>15</Price>
     <Amount>6</Amount>
     <Path>/PL/Images/7.png</Path>
-    <IsDeleted>false</IsDeleted>
   </OrderItem>
   <OrderItem>
     <ID>10041</ID>
@@ -34,16 +31,6 @@
     <Price>290</Price>
     <Amount>1</Amount>
     <Path>/Images/3.png</Path>
-    <IsDeleted>false</IsDeleted>
-  </OrderItem>
-  <OrderItem>
-    <ID>10042</ID>
-    <ProductID>100003</ProductID>
-    <OrderID>1057</OrderID>
-    <Price>15</Price>
-    <Amount>1</Amount>
-    <Path>/Images/7.png</Path>
-    <IsDeleted>false</IsDeleted>
   </OrderItem>
   <OrderItem>
     <ID>10043</ID>
@@ -52,6 +39,29 @@
     <Price>40</Price>
     <Amount>1</Amount>
     <Path>/Images/5.png</Path>
-    <IsDeleted>false</IsDeleted>
+  </OrderItem>
+  <OrderItem>
+    <ID>10049</ID>
+    <ProductID>100002</ProductID>
+    <OrderID>1061</OrderID>
+    <Price>40</Price>
+    <Amount>1</Amount>
+    <Path>/Images/3.png</Path>
+  </OrderItem>
+  <OrderItem>
+    <ID>10050</ID>
+    <ProductID>100003</ProductID>
+    <OrderID>1062</OrderID>
+    <Price>40</Price>
+    <Amount>1</Amount>
+    <Path>/Images/3.png</Path>
+  </OrderItem>
+  <OrderItem>
+    <ID>10051</ID>
+    <ProductID>100001</ProductID>
+    <OrderID>1063</OrderID>
+    <Price>245</Price>
+    <Amount>1</Amount>
+    <Path />
   </OrderItem>
 </ArrayOfOrderItem>
