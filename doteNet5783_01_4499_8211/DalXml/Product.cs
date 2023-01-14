@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 internal class Product : IProduct
 {
-    const string s_products = "products"; //Linq to XML
+    const string s_products = "Products"; //Linq to XML
 
     static DO.Product? getProduct(XElement p) =>
         p.ToIntNullable("ID") is null ? null : new DO.Product()
