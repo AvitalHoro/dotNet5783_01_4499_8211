@@ -1,32 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
-	<Product>
-    <ID>100001</ID>
-    <Name>עגלה ורודה</Name>
-    <Category>Carts</Category>
-    <Price>245</Price>
-    <InStock>20</InStock>
-    <Path></Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100002</ID>
-    <Name>בגד גוף כחול</Name>
-    <Category>Clothes</Category>
-    <Price>40</Price>
-    <InStock>45</InStock>
-    <Path>/Images/3.png</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100003</ID>
-    <Name>מוצץ ירוק</Name>
-    <Category>Bottles</Category>
-    <Price>40</Price>
-    <InStock>16</InStock>
-    <Path>/Images/3.png</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
   <Product>
     <ID>100006</ID>
     <Name>סל קל דונה פלוס כחול רויאל Doona</Name>
