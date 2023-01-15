@@ -1,15 +1,1 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfRuningNumber xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <RuningNumber>
-    <numberSaved>1000050</numberSaved>
-    <typeOfnumber>Product Running Number</typeOfnumber>
-  </RuningNumber>
-  <RuningNumber>
-    <numberSaved>1063</numberSaved>
-    <typeOfnumber>Order Running Number</typeOfnumber>
-  </RuningNumber>
-  <RuningNumber>
-    <numberSaved>10051</numberSaved>
-    <typeOfnumber>OrderItem Running Number</typeOfnumber>
-  </RuningNumber>
-</ArrayOfRuningNumber>
+﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfRuningNumber xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><RuningNumber><numberSaved>1000050</numberSaved><typeOfnumber>Product Running Number</typeOfnumber></RuningNumber><RuningNumber><numberSaved>1064</numberSaved><typeOfnumber>Order Running Number</typeOfnumber></RuningNumber><RuningNumber><numberSaved>10053</numberSaved><typeOfnumber>OrderItem Running Number</typeOfnumber></RuningNumber></ArrayOfRuningNumber>
