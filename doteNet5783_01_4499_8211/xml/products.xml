@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
-  <Product>
-    <ID>123344</ID>
-    <Name>wedwcc4</Name>
-    <Category>Toys</Category>
-    <Price>34</Price>
-    <InStock>45</InStock>
-    <Path></Path>
-    <IsDeleted>true</IsDeleted>
-  </Product>
-  <Product>
+	<Product>
     <ID>100001</ID>
     <Name>עגלה ורודה</Name>
     <Category>Carts</Category>
@@ -42,7 +33,7 @@
     <Category>Carts</Category>
     <Price>450</Price>
     <InStock>20</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts1.jpg</Path>
+    <Path>/Images/productImages/carts1.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -51,7 +42,7 @@
     <Category>Carts</Category>
     <Price>4569</Price>
     <InStock>8</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/cart15.jpg</Path>
+    <Path>/Images/productImages/cart15.jpg</Path>
     <IsDeleted>true</IsDeleted>
   </Product>
   <Product>
@@ -60,7 +51,7 @@
     <Category>Carts</Category>
     <Price>2300</Price>
     <InStock>18</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts2.jpg</Path>
+    <Path>/Images/productImages/carts2.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -69,7 +60,7 @@
     <Category>Carts</Category>
     <Price>2300</Price>
     <InStock>24</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts3.jpg</Path>
+    <Path>/Images/productImages/carts3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -78,7 +69,7 @@
     <Category>Carts</Category>
     <Price>199</Price>
     <InStock>45</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts4.jpg</Path>
+    <Path>/Images/productImages/carts4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -87,7 +78,7 @@
     <Category>Carts</Category>
     <Price>79</Price>
     <InStock>11</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts5.jpg</Path>
+    <Path>/Images/productImages/carts5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -96,7 +87,7 @@
     <Category>Carts</Category>
     <Price>1800</Price>
     <InStock>8</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts7.jpg</Path>
+    <Path>/Images/productImages/carts7.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -105,7 +96,7 @@
     <Category>Carts</Category>
     <Price>3450</Price>
     <InStock>24</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts8.jpg</Path>
+    <Path>/Images/productImages/carts8.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -114,7 +105,7 @@
     <Category>Carts</Category>
     <Price>1990</Price>
     <InStock>23</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts9.jpg</Path>
+    <Path>/Images/productImages/carts9.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -123,7 +114,7 @@
     <Category>Carts</Category>
     <Price>65</Price>
     <InStock>47</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts10.jpg</Path>
+    <Path>/Images/productImages/carts10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -132,7 +123,7 @@
     <Category>Carts</Category>
     <Price>79</Price>
     <InStock>56</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts11.jpg</Path>
+    <Path>Images/productImages/carts11.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -141,7 +132,7 @@
     <Category>Carts</Category>
     <Price>39</Price>
     <InStock>45</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts12.jpg</Path>
+    <Path>/Images/productImages/carts12.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -150,7 +141,7 @@
     <Category>Carts</Category>
     <Price>65</Price>
     <InStock>56</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts13.jpg</Path>
+    <Path>/Images/productImages/carts13.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -159,7 +150,7 @@
     <Category>Carts</Category>
     <Price>4500</Price>
     <InStock>13</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts6.jpg</Path>
+    <Path>/Images/productImages/carts6.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -168,7 +159,7 @@
     <Category>Carts</Category>
     <Price>3900</Price>
     <InStock>8</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/cart15.jpg</Path>
+    <Path>/Images/productImages/cart15.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -177,7 +168,7 @@
     <Category>Carts</Category>
     <Price>1290</Price>
     <InStock>7</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts16.jpg</Path>
+    <Path>/Images/productImages/carts16.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -186,7 +177,7 @@
     <Category>Diapers</Category>
     <Price>159</Price>
     <InStock>28</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip8.jpg</Path>
+    <Path>/Images/productImages/dip8.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -195,7 +186,7 @@
     <Category>Clothes</Category>
     <Price>59</Price>
     <InStock>34</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes1.JPG</Path>
+    <Path>/Images/productImages/clothes1.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -204,7 +195,7 @@
     <Category>Clothes</Category>
     <Price>49</Price>
     <InStock>48</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes2.JPG</Path>
+    <Path>/Images/productImages/clothes2.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -213,7 +204,7 @@
     <Category>Clothes</Category>
     <Price>65</Price>
     <InStock>37</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes3.jpg</Path>
+    <Path>/Images/productImages/clothes3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -222,7 +213,7 @@
     <Category>Clothes</Category>
     <Price>89</Price>
     <InStock>42</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes4.jpg</Path>
+    <Path>/Images/productImages/clothes4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -231,7 +222,7 @@
     <Category>Clothes</Category>
     <Price>39</Price>
     <InStock>56</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes5.JPG</Path>
+    <Path>/Images/productImages/clothes5.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -240,7 +231,7 @@
     <Category>Clothes</Category>
     <Price>45</Price>
     <InStock>54</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes6.JPG</Path>
+    <Path>/Images/productImages/clothes6.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -249,7 +240,7 @@
     <Category>Clothes</Category>
     <Price>45</Price>
     <InStock>39</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes7.JPG</Path>
+    <Path>/Images/productImages/clothes7.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -258,7 +249,7 @@
     <Category>Clothes</Category>
     <Price>49</Price>
     <InStock>38</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes8.JPG</Path>
+    <Path>/Images/productImages/clothes8.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -267,7 +258,7 @@
     <Category>Clothes</Category>
     <Price>59</Price>
     <InStock>76</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes9.JPG</Path>
+    <Path>/Images/productImages/clothes9.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -276,7 +267,7 @@
     <Category>Clothes</Category>
     <Price>68</Price>
     <InStock>49</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes10.jpg</Path>
+    <Path>/Images/productImages/clothes10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -285,7 +276,7 @@
     <Category>Clothes</Category>
     <Price>55</Price>
     <InStock>63</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes11.JPG</Path>
+    <Path>/Images/productImages/clothes11.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -294,7 +285,7 @@
     <Category>Clothes</Category>
     <Price>39</Price>
     <InStock>43</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes12.JPG</Path>
+    <Path>/Images/productImages/clothes12.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -303,7 +294,7 @@
     <Category>Clothes</Category>
     <Price>59</Price>
     <InStock>42</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes13.JPG</Path>
+    <Path>/Images/productImages/clothes13.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -312,7 +303,7 @@
     <Category>Clothes</Category>
     <Price>65</Price>
     <InStock>62</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes14.JPG</Path>
+    <Path>/Images/productImages/clothes14.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -321,7 +312,7 @@
     <Category>Clothes</Category>
     <Price>49</Price>
     <InStock>32</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes15.JPG</Path>
+    <Path>/Images/productImages/clothes15.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -330,7 +321,7 @@
     <Category>Clothes</Category>
     <Price>49</Price>
     <InStock>65</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes16.jpg</Path>
+    <Path>/Images/productImages/clothes16.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -339,7 +330,7 @@
     <Category>Clothes</Category>
     <Price>39</Price>
     <InStock>77</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes17.jpeg</Path>
+    <Path>/Images/productImages/clothes17.jpeg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -348,7 +339,7 @@
     <Category>Clothes</Category>
     <Price>25</Price>
     <InStock>44</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes18.JPG</Path>
+    <Path>/Images/productImages/clothes18.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -357,7 +348,7 @@
     <Category>Clothes</Category>
     <Price>39</Price>
     <InStock>43</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes19.JPG</Path>
+    <Path>/Images/productImages/clothes19.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -366,7 +357,7 @@
     <Category>Clothes</Category>
     <Price>89</Price>
     <InStock>76</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/clothes20.JPG</Path>
+    <Path>/Images/productImages/clothes20.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -375,7 +366,7 @@
     <Category>Toys</Category>
     <Price>120</Price>
     <InStock>67</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play1.JPG</Path>
+    <Path>/Images/productImages/play1.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -384,7 +375,7 @@
     <Category>Toys</Category>
     <Price>79</Price>
     <InStock>54</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play2.JPG</Path>
+    <Path>/Images/productImages/play2.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -393,7 +384,7 @@
     <Category>Toys</Category>
     <Price>45</Price>
     <InStock>64</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play3.jpg</Path>
+    <Path>/Images/productImages/play3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -402,7 +393,7 @@
     <Category>Toys</Category>
     <Price>49</Price>
     <InStock>48</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play5.jpg</Path>
+    <Path>/Images/productImages/play5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -411,7 +402,7 @@
     <Category>Toys</Category>
     <Price>65</Price>
     <InStock>56</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play6.jpg</Path>
+    <Path>/Images/productImages/play6.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -420,7 +411,7 @@
     <Category>Toys</Category>
     <Price>29</Price>
     <InStock>63</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play7.jpg</Path>
+    <Path>/Images/productImages/play7.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -429,7 +420,7 @@
     <Category>Toys</Category>
     <Price>89</Price>
     <InStock>47</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play8.jpg</Path>
+    <Path>/Images/productImages/play8.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -438,7 +429,7 @@
     <Category>Toys</Category>
     <Price>139</Price>
     <InStock>64</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play9.jpg</Path>
+    <Path>/Images/productImages/play9.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -447,7 +438,7 @@
     <Category>Toys</Category>
     <Price>35</Price>
     <InStock>63</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play10.jpg</Path>
+    <Path>/Images/productImages/play10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -456,7 +447,7 @@
     <Category>Toys</Category>
     <Price>59</Price>
     <InStock>59</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play11.jpg</Path>
+    <Path>/Images/productImages/play11.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -465,7 +456,7 @@
     <Category>Toys</Category>
     <Price>79</Price>
     <InStock>72</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play12.jpg</Path>
+    <Path>/Images/productImages/play12.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -474,7 +465,7 @@
     <Category>Toys</Category>
     <Price>59</Price>
     <InStock>69</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play13.jpg</Path>
+    <Path>/Images/productImages/play13.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -483,7 +474,7 @@
     <Category>Toys</Category>
     <Price>49</Price>
     <InStock>42</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/play4.jpg</Path>
+    <Path>/Images/productImages/play4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -492,7 +483,7 @@
     <Category>Diapers</Category>
     <Price>149</Price>
     <InStock>43</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip3.jpg</Path>
+    <Path>/Images/productImages/dip3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -501,7 +492,7 @@
     <Category>Diapers</Category>
     <Price>159</Price>
     <InStock>67</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip4.jpg</Path>
+    <Path>/Images/productImages/dip4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -510,7 +501,7 @@
     <Category>Diapers</Category>
     <Price>29</Price>
     <InStock>77</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip5.jpg</Path>
+    <Path>/Images/productImages/dip5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -519,7 +510,7 @@
     <Category>Diapers</Category>
     <Price>45</Price>
     <InStock>45</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip6.jpg</Path>
+    <Path>/Images/productImages/dip6.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -528,7 +519,7 @@
     <Category>Diapers</Category>
     <Price>25</Price>
     <InStock>67</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip9.jpg</Path>
+    <Path>/Images/productImages/dip9.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -537,7 +528,7 @@
     <Category>Diapers</Category>
     <Price>79</Price>
     <InStock>64</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip7.JPG</Path>
+    <Path>/Images/productImages/dip7.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -546,7 +537,7 @@
     <Category>Diapers</Category>
     <Price>40</Price>
     <InStock>78</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip10.jpg</Path>
+    <Path>/Images/productImages/dip10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -555,7 +546,7 @@
     <Category>Diapers</Category>
     <Price>55</Price>
     <InStock>70</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip11.jpg</Path>
+    <Path>/Images/productImages/dip11.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -564,7 +555,7 @@
     <Category>Diapers</Category>
     <Price>59</Price>
     <InStock>66</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip13.jpg</Path>
+    <Path>/Images/productImages/dip13.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -573,7 +564,7 @@
     <Category>Diapers</Category>
     <Price>99</Price>
     <InStock>48</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip12.JPG</Path>
+    <Path>/Images/productImages/dip12.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -582,7 +573,7 @@
     <Category>Diapers</Category>
     <Price>45</Price>
     <InStock>85</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip14.JPG</Path>
+    <Path>/Images/productImages/dip14.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -591,7 +582,7 @@
     <Category>Diapers</Category>
     <Price>69</Price>
     <InStock>63</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip1.JPG</Path>
+    <Path>/Images/productImages/dip1.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -600,7 +591,7 @@
     <Category>Diapers</Category>
     <Price>89</Price>
     <InStock>42</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/dip2.JPG</Path>
+    <Path>/Images/productImages/dip2.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -609,7 +600,7 @@
     <Category>Bottles</Category>
     <Price>25</Price>
     <InStock>75</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot1.jpg</Path>
+    <Path>/Images/productImages/bot1.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -618,7 +609,7 @@
     <Category>Bottles</Category>
     <Price>39</Price>
     <InStock>73</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot2.jpg</Path>
+    <Path>/Images/productImages/bot2.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -627,7 +618,7 @@
     <Category>Bottles</Category>
     <Price>35</Price>
     <InStock>83</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot3.jpg</Path>
+    <Path>/Images/productImages/bot3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -636,7 +627,7 @@
     <Category>Bottles</Category>
     <Price>13</Price>
     <InStock>82</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot4.jpg</Path>
+    <Path>/Images/productImages/bot4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -645,7 +636,7 @@
     <Category>Bottles</Category>
     <Price>25</Price>
     <InStock>65</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot5.jpg</Path>
+    <Path>/Images/productImages/bot5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -654,7 +645,7 @@
     <Category>Bottles</Category>
     <Price>25</Price>
     <InStock>52</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot6.jpg</Path>
+    <Path>/Images/productImages/bot6.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -663,7 +654,7 @@
     <Category>Bottles</Category>
     <Price>29</Price>
     <InStock>74</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot7.jpg</Path>
+    <Path>/Images/productImages/bot7.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -672,7 +663,7 @@
     <Category>Bottles</Category>
     <Price>189</Price>
     <InStock>47</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot9.jpg</Path>
+    <Path>/Images/productImages/bot9.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -681,7 +672,7 @@
     <Category>Bottles</Category>
     <Price>15</Price>
     <InStock>56</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot10.jpg</Path>
+    <Path>/Images/productImages/bot10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -690,7 +681,7 @@
     <Category>Bottles</Category>
     <Price>29</Price>
     <InStock>53</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot11.jpg</Path>
+    <Path>/Images/productImages/bot11.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -699,7 +690,7 @@
     <Category>Bottles</Category>
     <Price>35</Price>
     <InStock>54</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot12.jpg</Path>
+    <Path>/Images/productImages/bot12.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -708,7 +699,7 @@
     <Category>Bottles</Category>
     <Price>34</Price>
     <InStock>43</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/bot8.jpg</Path>
+    <Path>/Images/productImages/bot8.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -717,7 +708,7 @@
     <Category>Carts</Category>
     <Price>49</Price>
     <InStock>64</InStock>
-    <Path>file:///C:/Users/USER/Desktop/מיניפ/doteNet5783_01_4499_8211/PL/Images/productImages/carts14.jpg</Path>
+    <Path>/Images/productImages/carts14.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>
