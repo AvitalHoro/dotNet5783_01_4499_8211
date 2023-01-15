@@ -1,41 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
-	<Product>
-    <ID>100001</ID>
-    <Name>עגלה ורודה</Name>
-    <Category>Carts</Category>
-    <Price>245</Price>
-    <InStock>20</InStock>
-    <Path></Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100002</ID>
-    <Name>בגד גוף כחול</Name>
-    <Category>Clothes</Category>
-    <Price>40</Price>
-    <InStock>45</InStock>
-    <Path>/Images/3.png</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100003</ID>
-    <Name>מוצץ ירוק</Name>
-    <Category>Bottles</Category>
-    <Price>40</Price>
-    <InStock>16</InStock>
-    <Path>/Images/3.png</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100006</ID>
-    <Name>סל קל דונה פלוס כחול רויאל Doona</Name>
-    <Category>Carts</Category>
-    <Price>450</Price>
-    <InStock>20</InStock>
-    <Path>/Images/productImages/carts1.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
   <Product>
     <ID>10005</ID>
     <Name>טיולון SKETCH תאומים נייבי - אינגלזינה</Name>
@@ -52,15 +16,6 @@
     <Price>2300</Price>
     <InStock>18</InStock>
     <Path>/Images/productImages/carts2.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100005</ID>
-    <Name>עגלת עריסה יויו 2 שלדה שחורה YOYO²</Name>
-    <Category>Carts</Category>
-    <Price>2300</Price>
-    <InStock>24</InStock>
-    <Path>/Images/productImages/carts3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -118,30 +73,12 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100013</ID>
-    <Name>תיק טופי ליויו פלוס - בייבי זן</Name>
-    <Category>Carts</Category>
-    <Price>79</Price>
-    <InStock>56</InStock>
-    <Path>Images/productImages/carts11.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100014</ID>
     <Name>כילה לעגלה</Name>
     <Category>Carts</Category>
     <Price>39</Price>
     <InStock>45</InStock>
     <Path>/Images/productImages/carts12.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100015</ID>
-    <Name>קשת לעגלה חיות באחו</Name>
-    <Category>Carts</Category>
-    <Price>65</Price>
-    <InStock>56</InStock>
-    <Path>/Images/productImages/carts13.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -703,11 +640,74 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
+    <ID>100001</ID>
+    <Name>עגלה ורודה</Name>
+    <Category>Carts</Category>
+    <Price>245</Price>
+    <InStock>20</InStock>
+    <Path></Path>
+    <IsDeleted>true</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100002</ID>
+    <Name>בגד גוף כחול</Name>
+    <Category>Clothes</Category>
+    <Price>40</Price>
+    <InStock>45</InStock>
+    <Path>/Images/3.png</Path>
+    <IsDeleted>true</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100003</ID>
+    <Name>מוצץ ירוק</Name>
+    <Category>Bottles</Category>
+    <Price>40</Price>
+    <InStock>16</InStock>
+    <Path>/Images/3.png</Path>
+    <IsDeleted>true</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100006</ID>
+    <Name>סל קל דונה פלוס כחול רויאל Doona</Name>
+    <Category>Carts</Category>
+    <Price>450</Price>
+    <InStock>20</InStock>
+    <Path>/Images/productImages/carts1.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100013</ID>
+    <Name>תיק טופי ליויו פלוס - בייבי זן</Name>
+    <Category>Carts</Category>
+    <Price>79</Price>
+    <InStock>65</InStock>
+    <Path>/Images/productImages/carts11.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100005</ID>
+    <Name>עגלת עריסה יויו 2 שלדה שחורה YOYO²</Name>
+    <Category>Carts</Category>
+    <Price>2300</Price>
+    <InStock>23</InStock>
+    <Path>/Images/productImages/carts3.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100015</ID>
+    <Name>קשת לעגלה חיות באחו</Name>
+    <Category>Carts</Category>
+    <Price>65</Price>
+    <InStock>55</InStock>
+    <Path>/Images/productImages/carts13.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
     <ID>100078</ID>
     <Name>תיק נתלה לעגלה</Name>
     <Category>Carts</Category>
     <Price>49</Price>
-    <InStock>64</InStock>
+    <InStock>63</InStock>
     <Path>/Images/productImages/carts14.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
