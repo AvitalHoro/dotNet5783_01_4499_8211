@@ -75,7 +75,7 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Header= "מחיר כולל" Binding="{Binding Path= TotalPrice}"
+                                <DataGridTextColumn Header= "(₪) מחיר כולל" Binding="{Binding Path= TotalPrice}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header= "מספר פריטים" Binding="{Binding Path= ItemsAmount}"
                                     MinWidth="10"/>
@@ -133,7 +133,7 @@
                             </Grid>
                         </Button>
 
-                        <DataGrid x:Name="ProductsListAdmin"
+                 <DataGrid x:Name="ProductsListAdmin"
                   Grid.Row="1" Grid.ColumnSpan="2"
                   Cursor="Arrow" 
                   Margin="0,0,51,20"
@@ -178,6 +178,17 @@
                                 <DataGridTextColumn Header="מזהה מוצר" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>
                             </DataGrid.Columns>
+                            
+                                <!--<DataGrid.Columns>
+                                    <DataGridTextColumn>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>-->
+                           
                         </DataGrid>
                         <ComboBox Name="SelectCategory"
                             materialDesign:HintAssist.Hint="(סינון לפי קטגוריות)"

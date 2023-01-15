@@ -109,7 +109,7 @@ internal class Cart : ICart
             OrderID = newOrderId,
             ProductID = product.ID,
             Amount = item.Amount,
-            Price = (item.Price / item.Amount),//מחיר לפריט בודד
+            Price = item.Price,//מחיר לפריט בודד
             Path = item.Path,   
         };
         Dal.OrderItem.Add(orderItem);//מוסיף לשכבת הנתונים את כל פריטי ההזמנה של ההזמנה החדשה

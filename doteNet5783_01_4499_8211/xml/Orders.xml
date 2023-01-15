@@ -1,60 +1,91 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Order>
-		<ID>1001</ID>
-		<CostumerName>אביטל הורוביץ</CostumerName>
-		<CostumerEmail>avital123@gmail.com</CostumerEmail>
-		<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-		<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-		<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-		<IsDeleted>false</IsDeleted>
-	</Order>
-	<Order>
-		<ID>1002</ID>
-		<CostumerName>מוריה דרורי</CostumerName>
-		<CostumerEmail>moriyaDr@gmail.com</CostumerEmail>
-		<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-		<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-		<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-		<IsDeleted>false</IsDeleted>
-	</Order>
-	<Order>
-		<ID>1003</ID>
-		<CostumerName>רעות צפלביץ</CostumerName>
-		<CostumerEmail>reutZi56@gmail.com</CostumerEmail>
-		<CostumerAdress>נטע 34</CostumerAdress>
-		<OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-		<ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-		<DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-		<IsDeleted>false</IsDeleted>
-	</Order>
-	<Order>
-		<ID>1057</ID>
-		<CostumerName>אלון וענונו</CostumerName>
-		<CostumerEmail>AlonTH@wall.org.il</CostumerEmail>
-		<CostumerAdress>זרחיה, רחוב הערבה 23</CostumerAdress>
-		<OrderDate>2023-01-13T12:23:54.7012823+02:00</OrderDate>
-		<ShipDate>2023-01-13T13:05:33.9395828+02:00</ShipDate>
-		<DeliveryDate>2023-01-13T13:05:35.3118991+02:00</DeliveryDate>
-		<IsDeleted>false</IsDeleted>
-	</Order>
-	<Order>
-		<ID>1055</ID>
-		<CostumerName>הדסה שטרנברג</CostumerName>
-		<CostumerEmail>Hadassa@jct.ac.il</CostumerEmail>
-		<CostumerAdress>נתיבות הארזים 12</CostumerAdress>
-		<OrderDate>2023-01-13T12:07:56.3368712+02:00</OrderDate>
-		<ShipDate>2023-01-13T12:46:25.0986726+02:00</ShipDate>
-		<DeliveryDate>2023-01-13T13:07:19.2568379+02:00</DeliveryDate>
-		<IsDeleted>false</IsDeleted>
-	</Order>
-	<Order>
-		<ID>1064</ID>
-		<CostumerName>בר גלר</CostumerName>
-		<CostumerEmail>bargeler4@gmail.com</CostumerEmail>
-		<CostumerAdress>הכלניות 4 מודיעין</CostumerAdress>
-		<OrderDate>2023-01-15T03:21:12.5375727+02:00</OrderDate>
-		<ShipDate xsi:nil="true" />
-		<DeliveryDate xsi:nil="true" />
-		<IsDeleted>true</IsDeleted>
-	</Order>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <ID>1001</ID>
+    <CostumerName>אביטל הורוביץ</CostumerName>
+    <CostumerEmail>avital123@gmail.com</CostumerEmail>
+    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
+    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
+    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1002</ID>
+    <CostumerName>מוריה דרורי</CostumerName>
+    <CostumerEmail>moriyaDr@gmail.com</CostumerEmail>
+    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
+    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
+    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1003</ID>
+    <CostumerName>רעות צפלביץ</CostumerName>
+    <CostumerEmail>reutZi56@gmail.com</CostumerEmail>
+    <CostumerAdress>נטע 34</CostumerAdress>
+    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
+    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
+    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1057</ID>
+    <CostumerName>אלון וענונו</CostumerName>
+    <CostumerEmail>AlonTH@wall.org.il</CostumerEmail>
+    <CostumerAdress>זרחיה, רחוב הערבה 23</CostumerAdress>
+    <OrderDate>2023-01-13T12:23:54.7012823+02:00</OrderDate>
+    <ShipDate>2023-01-13T13:05:33.9395828+02:00</ShipDate>
+    <DeliveryDate>2023-01-13T13:05:35.3118991+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1055</ID>
+    <CostumerName>הדסה שטרנברג</CostumerName>
+    <CostumerEmail>Hadassa@jct.ac.il</CostumerEmail>
+    <CostumerAdress>נתיבות הארזים 12</CostumerAdress>
+    <OrderDate>2023-01-13T12:07:56.3368712+02:00</OrderDate>
+    <ShipDate>2023-01-13T12:46:25.0986726+02:00</ShipDate>
+    <DeliveryDate>2023-01-13T13:07:19.2568379+02:00</DeliveryDate>
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1064</ID>
+    <CostumerName>בר גלר</CostumerName>
+    <CostumerEmail>bargeler4@gmail.com</CostumerEmail>
+    <CostumerAdress>הכלניות 4 מודיעין</CostumerAdress>
+    <OrderDate>2023-01-15T03:21:12.5375727+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>true</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1066</ID>
+    <CostumerName>אלון חבש</CostumerName>
+    <CostumerEmail>alon@Havash.org.il</CostumerEmail>
+    <CostumerAdress>ראש העין, רבין 56</CostumerAdress>
+    <OrderDate>2023-01-15T20:24:40.8059877+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1067</ID>
+    <CostumerName>אהרון רצאבי</CostumerName>
+    <CostumerEmail>ratzabi@gmail.com</CostumerEmail>
+    <CostumerAdress>נטע, גוש קטיף 13</CostumerAdress>
+    <OrderDate>2023-01-15T20:29:05.77459+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1068</ID>
+    <CostumerName>יהודית לוי</CostumerName>
+    <CostumerEmail>YehuditMert@gmail.com</CostumerEmail>
+    <CostumerAdress>פסגות, רחוב נחשון בן עמינדב 41 </CostumerAdress>
+    <OrderDate>2023-01-15T20:31:55.9856562+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
 </ArrayOfOrder>

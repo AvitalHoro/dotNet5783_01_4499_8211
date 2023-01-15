@@ -19,30 +19,12 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100007</ID>
-    <Name>בורד טרמפיסט לבי 5</Name>
-    <Category>Carts</Category>
-    <Price>199</Price>
-    <InStock>45</InStock>
-    <Path>/Images/productImages/carts4.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100008</ID>
     <Name>ריפודית בריזי כחול שמיים Previous</Name>
     <Category>Carts</Category>
     <Price>79</Price>
     <InStock>11</InStock>
     <Path>/Images/productImages/carts5.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100009</ID>
-    <Name>טיולון יויו 2 שלדה שחורה</Name>
-    <Category>Carts</Category>
-    <Price>1800</Price>
-    <InStock>8</InStock>
-    <Path>/Images/productImages/carts7.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -415,15 +397,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100053</ID>
-    <Name>מחמם מגבונים</Name>
-    <Category>Diapers</Category>
-    <Price>149</Price>
-    <InStock>43</InStock>
-    <Path>/Images/productImages/dip3.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100054</ID>
     <Name>סיר מנגן ורוד</Name>
     <Category>Diapers</Category>
@@ -709,6 +682,33 @@
     <Price>49</Price>
     <InStock>63</InStock>
     <Path>/Images/productImages/carts14.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100007</ID>
+    <Name>בורד טרמפיסט לבי 5</Name>
+    <Category>Carts</Category>
+    <Price>199</Price>
+    <InStock>43</InStock>
+    <Path>/Images/productImages/carts4.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100053</ID>
+    <Name>מחמם מגבונים</Name>
+    <Category>Diapers</Category>
+    <Price>149</Price>
+    <InStock>41</InStock>
+    <Path>/Images/productImages/dip3.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100009</ID>
+    <Name>טיולון יויו 2 שלדה שחורה</Name>
+    <Category>Carts</Category>
+    <Price>1800</Price>
+    <InStock>6</InStock>
+    <Path>/Images/productImages/carts7.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>

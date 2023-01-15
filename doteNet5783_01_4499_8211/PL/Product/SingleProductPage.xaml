@@ -47,9 +47,9 @@
                    TextWrapping="Wrap" 
                    Text="{Binding Name}"
                    Width="283"
-                   Height="51"
+                   Height="60"
                    TextAlignment="Right"
-                   FontSize="30"
+                   FontSize="27"
                    VerticalAlignment="Top"/>
 
         <ComboBox Name="SelectedAmount"
