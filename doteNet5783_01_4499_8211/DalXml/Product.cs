@@ -60,18 +60,18 @@ internal class Product : IProduct
 
     public void Delete(int id)
     {
-        XElement studentsRootElem = XMLTools.LoadListFromXMLElement(s_products);
+        XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_products);
         DO.Product product = GetById(id);
 
         product.IsDeleted = true;
 
-        (studentsRootElem.Elements()
+        (productsRootElem.Elements()
             .FirstOrDefault(st => (int?)st.Element("ID") == id) ?? throw new DoesNotExistException(id))
             .Remove();
 
-        studentsRootElem.Add(new XElement("Product", createProductElement(product)));
+        productsRootElem.Add(new XElement("Product", createProductElement(product)));
 
-        XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
+        XMLTools.SaveListToXMLElement(productsRootElem, s_products);
     }
 
     public void Update(DO.Product doProduct)
