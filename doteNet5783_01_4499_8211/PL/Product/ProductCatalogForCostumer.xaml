@@ -15,7 +15,7 @@
         <BO:ProductForList/>
     </Page.DataContext>
     <Page.Resources>
-        <converter:CategoryToHebrew x:Key="CategoryToHebrew"/>
+        <converter:CategoryToHebrewConverter x:Key="CategoryToHebrewConverter"/>
         <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
         <Setter Property="Template">
             <Setter.Value>
@@ -52,7 +52,9 @@
                               ItemHeight="{Binding (ListView.View).ItemHeight, 
                               RelativeSource={RelativeSource AncestorType=ListView}}"/>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+            </ListView.ItemsPanel>c:\users\reutz\onedrive\שולחן העבודה\miniprojectfinal\dotenet5783_01_4499_8211\pl\product\productcatalogforcostumer.xaml.cs
+c:\users\reutz\onedrive\שולחן העבודה\miniprojectfinal\dotenet5783_01_4499_8211\pl\product\productcatalogforcostumer.xaml
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel MaxWidth="200">

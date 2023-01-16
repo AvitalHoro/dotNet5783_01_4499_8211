@@ -61,7 +61,7 @@ public class StateToBoolConverter : IValueConverter
     }
 }
 
-public class CategoryToHebrew : IValueConverter
+public class CategoryToHebrewConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -77,6 +77,24 @@ public class CategoryToHebrew : IValueConverter
             return "ביגוד והנעלה ";
 
             return "היגיינה והחתלה";
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StateToHebrewConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status status = (BO.Status)value;
+        if (status == BO.Status.approved)
+            return "התקבלה";
+        if (status == BO.Status.sent)
+            return "נשלחה";
+
+        return "נמסרה";
     }
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -184,3 +202,4 @@ public class DeliveredToHiddenConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+

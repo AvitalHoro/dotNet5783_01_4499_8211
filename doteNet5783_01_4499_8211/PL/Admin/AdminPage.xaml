@@ -12,6 +12,8 @@
       Title="AdminPage" Height="570" Width="800">
     <Page.Resources>
         <local:StateToBoolConverter x:Key="StateToBoolConverter"/>
+        <local:CategoryToHebrewConverter x:Key="CategoryToHebrewConverter"/>
+        <local:StateToHebrewConverter x:Key="StateToHebrewConverter"/>
     </Page.Resources>
     <Grid>
         <TabControl>
@@ -79,7 +81,7 @@
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header= "מספר פריטים" Binding="{Binding Path= ItemsAmount}"
                                     MinWidth="10"/>
-                                <DataGridTextColumn Header= "מצב הזמנה" Binding="{Binding Path= State}"
+                                <DataGridTextColumn Header= "מצב הזמנה" Binding="{Binding Path= State ,Converter={StaticResource StateToHebrewConverter}}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header= "שם לקוח" Binding="{Binding Path= CostumerName}"
                                     MinWidth="10"/>
@@ -171,7 +173,7 @@
                                     MinWidth="10"/>-->
                                 <DataGridTextColumn Header="מחיר"  Binding="{Binding Path=Price}"
                                     MinWidth="10"/>
-                                <DataGridTextColumn Header="קטגוריה" Binding="{Binding Path=Category}"
+                                <DataGridTextColumn Header="קטגוריה" Binding="{Binding Path=Category, Converter={StaticResource CategoryToHebrewConverter}}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header="שם" Binding="{Binding Path=Name}"
                                     MinWidth="15"/>

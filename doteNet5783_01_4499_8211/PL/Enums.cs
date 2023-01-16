@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PL;
 
-//public enum Category { Clothes, Toys, Carts, Bottles, Diapers, All };
+public enum Category {ביגוד_והנעלה , צעצועים_ומשחקים, עגלות_וטיולונים, בקבוקים_ומוצצים, היגיינה_והחתלה};
+
 
 
