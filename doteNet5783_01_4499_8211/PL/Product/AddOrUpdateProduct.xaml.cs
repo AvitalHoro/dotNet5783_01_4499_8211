@@ -31,6 +31,7 @@ namespace PL.Product
             UpdateOrAdd.Content = "עדכן";
             UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
             productAddOrUp.DataContext = product;
+            UpdateInStock.Text = (bl.Product.GetProductDetails(product.ID).InStock).ToString();
             Title.Text = "עדכון מוצר";
             path = product.Path;
         }

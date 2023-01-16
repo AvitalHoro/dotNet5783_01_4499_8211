@@ -19,15 +19,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100008</ID>
-    <Name>ריפודית בריזי כחול שמיים Previous</Name>
-    <Category>Carts</Category>
-    <Price>79</Price>
-    <InStock>11</InStock>
-    <Path>/Images/productImages/carts5.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100010</ID>
     <Name>עגלת פולד צהוב שחור SPORT LINE FOLD</Name>
     <Category>Carts</Category>
@@ -745,6 +736,15 @@
     <Price>1800</Price>
     <InStock>6</InStock>
     <Path>/Images/productImages/carts7.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100008</ID>
+    <Name>ריפודית בריזי כחול שמיים Previous</Name>
+    <Category>Carts</Category>
+    <Price>79</Price>
+    <InStock>15</InStock>
+    <Path>/Images/productImages/carts5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>

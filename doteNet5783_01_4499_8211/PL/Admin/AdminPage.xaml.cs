@@ -38,6 +38,7 @@ public partial class AdminPage : Page
         listOrders = Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
         ProductsListAdmin.DataContext = listProducts;
         OrdersListAdmin.DataContext = listOrders;
+       // SelectCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
         SelectCategory.Items.Add("הכל");
         SelectCategory.Items.Add("עגלות וטיולונים");
         SelectCategory.Items.Add("צעצועים ומשחקים");
@@ -53,52 +54,21 @@ public partial class AdminPage : Page
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        string select = (string)SelectCategory.SelectedItem;
         DeleteProduct.Visibility = Visibility.Visible;
-        switch (SelectCategory.SelectedItem)
-        {
-            case "הכל":
-                Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
-                break;
-            case "עגלות וטיולונים":
-                Tools.IEnumerableToObservable(listProducts,
-                    bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Carts));
-                break;
-            case "צעצועים ומשחקים":
-                Tools.IEnumerableToObservable(listProducts,
-                    bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Toys));
-                break;
-            case "ביגוד והנעלה":
-                Tools.IEnumerableToObservable(listProducts,
-                    bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Clothes));
-                break;
-            case "היגיינה והחתלה":
-                Tools.IEnumerableToObservable(listProducts,
-                    bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Diapers));
-                break;
-            case "בקבוקים ומוצצים":
-                Tools.IEnumerableToObservable(listProducts,
-                    bl.Product.GetProductList(BO.Filters.filterByCategory, BO.Category.Bottles));
-                break;
-        }
+
+        if(select == "הכל")
+            Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
+        else
+            Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList
+                (BO.Filters.filterByCategory, Tools.HebrewToCategory(select)));
     }
 
     private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-       switch(SelectCategoryForOrder.SelectedItem)
-        {
-            case ("הזמנות שאושרו"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Status.approved));
-                break;
-            case ("הזמנות שנשלחו"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Status.sent));
-                break;
-            case ("הזמנות שנמסרו"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Status.delivered));
-                break;
-                 case ("הכל"):
-                Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
-                break;  
-        }
+        string select = (string)SelectCategoryForOrder.SelectedItem;
+       
+        Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Tools.stringToState(select)));
     }
 
     private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -147,10 +117,7 @@ public partial class AdminPage : Page
         var b = sender as Button;
         int id = ((OrderForList)b.DataContext).ID;
         var order = listOrders.FirstOrDefault(x => x.ID == id);
-        if(order.State == Status.approved)
-        {
-            listOrders.Remove(order);
-            bl.Order.CancelOrder(id);
-        }
+        listOrders.Remove(order);
+        bl.Order.CancelOrder(id);
     }
 }

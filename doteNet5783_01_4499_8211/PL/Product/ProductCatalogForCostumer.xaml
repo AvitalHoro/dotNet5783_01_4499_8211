@@ -11,9 +11,6 @@
       mc:Ignorable="d"              
       Height="570" Width="800"
       Title="ProductCatalogForCostumer">
-    <Page.DataContext>
-        <BO:ProductForList/>
-    </Page.DataContext>
     <Page.Resources>
         <converter:CategoryToHebrewConverter x:Key="CategoryToHebrewConverter"/>
         <Style x:Key="GroupHeaderStyle" TargetType="{x:Type GroupItem}">
@@ -52,9 +49,7 @@
                               ItemHeight="{Binding (ListView.View).ItemHeight, 
                               RelativeSource={RelativeSource AncestorType=ListView}}"/>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>c:\users\reutz\onedrive\שולחן העבודה\miniprojectfinal\dotenet5783_01_4499_8211\pl\product\productcatalogforcostumer.xaml.cs
-c:\users\reutz\onedrive\שולחן העבודה\miniprojectfinal\dotenet5783_01_4499_8211\pl\product\productcatalogforcostumer.xaml
-
+            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel MaxWidth="200">

@@ -69,7 +69,7 @@
                  HorizontalAlignment="Left" 
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
-                 Text="{Binding InStock}"
+                 
                  Width="216" Height="60" Margin="62,311,0,0"
                  TextChanged="IsEnabled_TextChanged"/>
         <Button Name="UpdateOrAdd" 

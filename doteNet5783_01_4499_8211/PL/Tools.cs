@@ -125,7 +125,6 @@ public static class Tools
         return null;
     }
 
-
     public static BO.Category? StringToCategory(string category)
     {
         if (category == "Bottles")
@@ -141,4 +140,14 @@ public static class Tools
         return null;
     }
 
+    public static BO.Status? stringToState(string state)
+    {
+        if (state == "הזמנות שאושרו")
+            return BO.Status.approved;
+        if (state == "הזמנות שנשלחו")
+            return BO.Status.sent;
+        if (state == "הזמנות שנמסרו")
+            return BO.Status.delivered;
+        return null;
+    }
 }

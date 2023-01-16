@@ -38,9 +38,6 @@ public partial class MainWindow : Window
         framePage.Content = new MainPagePicture();
         cart.OrderItems = new();
         ListCategories.Visibility = Visibility.Collapsed;
-
-
-        
     }
 
     private void SelectAdmin_Click(object sender, RoutedEventArgs e)
