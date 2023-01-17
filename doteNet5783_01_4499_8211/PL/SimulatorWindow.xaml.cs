@@ -63,8 +63,9 @@ public partial class SimulatorWindow : Window
 
     private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        throw new NotImplementedException();
-    }
+//לעדכן את הרשימה?
+//לקדם את המטוס
+}
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
     {
@@ -83,14 +84,15 @@ public partial class SimulatorWindow : Window
                 TimeSpan day = new TimeSpan(24, 0, 0);
                 date=date.Add(day);
                 i++;
-                DateTime dateToDel = date.Subtract(day * 5);
+                DateTime dateToDel = date.Subtract(day * 14);
 
-                var del = from PO.OrderPO order in list
-                          let fullOrder = bl.Order.GetDetailsOrder(order.ID)
-                            where (fullOrder.ShipDate <= dateToDel)
-                          select bl.Order.UpdateDeliveryDate(order.ID);
-                del.ToList();
-             
+                var del = (from PO.OrderPO order in list
+                           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                           where (fullOrder.ShipDate <= dateToDel)
+                           select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
+                Thread.Sleep(100);
+                     if (DelivredOrder.WorkerReportsProgress == true)
+                    DelivredOrder.ReportProgress(del.Count());
             }
 
         }
@@ -99,17 +101,47 @@ public partial class SimulatorWindow : Window
 
     private void SentOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (DelivredOrder.IsBusy != true)
+        {
+            this.Cursor = Cursors.Wait;
+            DelivredOrder.RunWorkerAsync();
+        }
     }
 
     private void SentOrder_DoWork(object? sender, DoWorkEventArgs e)
     {
-        throw new NotImplementedException();
+        bool notAllOrderSent = true;
+        int i = 1;
+        while (notAllOrderSent)
+        {
+            List<PO.OrderPO> list = (from PO.OrderPO order in _listOrders
+                                     let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                                     where (fullOrder.State == Status.approved)
+                                     select order).ToList();
+            if (list.Count() == 0)
+                notAllOrderSent = false;
+            else
+            {
+                TimeSpan day = new TimeSpan(24, 0, 0);
+                date = date.Add(day);
+                i++;
+                DateTime dateToShip = date.Subtract(day * 21);
+
+                var del = (from PO.OrderPO order in list
+                           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                           where (fullOrder.OrderDate <= dateToShip)
+                           select bl.Order.UpdateShipDate(order.ID)).ToList();
+                Thread.Sleep(300);
+                if (SentOrder.WorkerReportsProgress == true)
+                    SentOrder.ReportProgress(del.Count());
+            }
+
+        }
     }
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        throw new NotImplementedException();
+//
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
@@ -117,7 +149,7 @@ public partial class SimulatorWindow : Window
         if (DelivredOrder.IsBusy != true)
         {
             this.Cursor = Cursors.Wait;
-            DelivredOrder.RunWorkerAsync();
+            SentOrder.RunWorkerAsync();
         }
     }
 }

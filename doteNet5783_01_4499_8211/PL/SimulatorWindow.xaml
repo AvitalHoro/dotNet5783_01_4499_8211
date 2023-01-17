@@ -59,8 +59,9 @@
                                     MinWidth="20">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Width="100" Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}">
-                                    </Button>
+                                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Right" Height="24" Margin="0,0,0,0" VerticalAlignment="Top" Width="140">
+                                        <Image Height="25" Margin="100,0,0,0" VerticalAlignment="Top" Source="/Images/car.png"/>
+                                    </Border>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
