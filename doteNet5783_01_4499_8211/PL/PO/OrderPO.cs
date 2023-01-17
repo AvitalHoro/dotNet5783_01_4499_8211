@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace PO;
+namespace PL.PO;
 
-class OrderPO : INotifyPropertyChanged
+public class OrderPO : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 

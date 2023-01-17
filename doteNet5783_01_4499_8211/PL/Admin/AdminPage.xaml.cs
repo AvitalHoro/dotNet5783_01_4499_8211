@@ -120,4 +120,7 @@ public partial class AdminPage : Page
         listOrders.Remove(order);
         bl.Order.CancelOrder(id);
     }
+
+    private void OpenSimulator_Click(object sender, RoutedEventArgs e) => new SimulatorWindow(bl).Show();
+    
 }

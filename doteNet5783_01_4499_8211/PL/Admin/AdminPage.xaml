@@ -93,11 +93,18 @@
                   materialDesign:HintAssist.Hint="(סינון)"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                   HorizontalAlignment="Left" 
-                  Margin="37,22,0,0" 
+                  Margin="25,25,0,0" 
                   VerticalAlignment="Top"
                   Width="217" 
-                  SelectionChanged="SelectCategoryForOrder_SelectionChanged" Grid.ColumnSpan="3" Grid.Column="1"/>
+                  SelectionChanged="SelectCategoryForOrder_SelectionChanged" Grid.Column="3"/>
                     </Grid>
+                    <Button Name="OpenSimulator"
+                            Content="סימולטור"
+                            HorizontalAlignment="Left"
+                            Margin="55,29,0,0"
+                            VerticalAlignment="Top"
+                            Click="OpenSimulator_Click" 
+                            Background="#FFB1BFAD"/>
                 </Grid>
             </TabItem>
 
@@ -135,7 +142,7 @@
                             </Grid>
                         </Button>
 
-                 <DataGrid x:Name="ProductsListAdmin"
+                        <DataGrid x:Name="ProductsListAdmin"
                   Grid.Row="1" Grid.ColumnSpan="2"
                   Cursor="Arrow" 
                   Margin="0,0,51,20"
@@ -180,8 +187,8 @@
                                 <DataGridTextColumn Header="מזהה מוצר" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>
                             </DataGrid.Columns>
-                            
-                                <!--<DataGrid.Columns>
+
+                            <!--<DataGrid.Columns>
                                     <DataGridTextColumn>
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
@@ -190,7 +197,7 @@
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
                                 </DataGrid.Columns>-->
-                           
+
                         </DataGrid>
                         <ComboBox Name="SelectCategory"
                             materialDesign:HintAssist.Hint="(סינון לפי קטגוריות)"
@@ -207,9 +214,9 @@
                                 HorizontalAlignment="Left"
                                 Margin="114,36,0,0" 
                                 VerticalAlignment="Top" Width="124" Click="Archives_Click">
-                        <Button.Background>
-                            <SolidColorBrush Color="#FFB1BFAD" />
-                        </Button.Background>
+                            <Button.Background>
+                                <SolidColorBrush Color="#FFB1BFAD" />
+                            </Button.Background>
                         </Button>
                     </Grid>
                 </Grid>
