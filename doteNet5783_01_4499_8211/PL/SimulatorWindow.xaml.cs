@@ -63,9 +63,12 @@ public partial class SimulatorWindow : Window
 
     private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-//לעדכן את הרשימה?
-//לקדם את המטוס
-}
+        int precent = e.ProgressPercentage;
+        Thickness t = new Thickness(100- precent, 0, 0, 0);
+        //car.Margin = t;
+        //לעדכן את הרשימה?
+        //לקדם את המטוס
+    }
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
     {
@@ -86,6 +89,24 @@ public partial class SimulatorWindow : Window
                 i++;
                 DateTime dateToDel = date.Subtract(day * 14);
 
+                foreach(PO.OrderPO order in list)
+                {
+                    BO.Order order1 = bl.Order.GetDetailsOrder(order.ID);
+                    if(order1.ShipDate<=dateToDel)
+                    {
+                        bl.Order.UpdateDeliveryDate(order.ID);
+                        DelivredOrder.ReportProgress(0);
+                    }
+                    else
+                    {
+                        DateTime d = order1.ShipDate??date;
+                        int percent = (d - dateToDel).Days+i;
+                        DelivredOrder.ReportProgress(100/percent);
+
+                    }
+
+
+                }
                 var del = (from PO.OrderPO order in list
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.ShipDate <= dateToDel)
