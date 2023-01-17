@@ -30,11 +30,11 @@ public partial class OrderTracking : Page
     bool isAdminPage;
 
 
-    public OrderTracking(IBl BL, BO.Order selectedOrder, Frame frame, bool isAdmin)
+    public OrderTracking(IBl BL, PO.OrderPO selectedOrder, Frame frame, bool isAdmin)
     {
         InitializeComponent();
         bl = BL;
-        Tools.CopyPropTo(selectedOrder, order);
+        order = selectedOrder;    
         order.Items = selectedOrder.Items;
         DataContext = order;
         if(!isAdmin)

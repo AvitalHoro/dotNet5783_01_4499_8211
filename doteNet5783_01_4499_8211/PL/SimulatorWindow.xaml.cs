@@ -23,14 +23,12 @@ namespace PL;
 public partial class SimulatorWindow : Window
 {
     private IBl bl;
-    ObservableCollection<PO.OrderPO> listOrders = new();
+    //ObservableCollection<PO.OrderPO> listOrders = new();
 
-    public SimulatorWindow(IBl BL)
+    public SimulatorWindow(IBl BL, ObservableCollection<PO.OrderPO> listOrders)
     {
         InitializeComponent();
         bl = BL;
-        var list = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-        Tools.IEnumerableToObservable(listOrders, list);
         DataContext = listOrders;
     }
 }

@@ -13,6 +13,7 @@
         <local:StateToBoolConverter x:Key="StateToBoolConverter"/>
         <local:CategoryToHebrewConverter x:Key="CategoryToHebrewConverter"/>
         <local:StateToHebrewConverter x:Key="StateToHebrewConverter"/>
+        <local:IntToStringConverter x:Key="IntToStringConverter"/>
     </Page.Resources>
     <Grid>
         <TabControl>

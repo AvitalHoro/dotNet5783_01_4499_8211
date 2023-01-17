@@ -147,6 +147,22 @@ public class OrderPO : INotifyPropertyChanged
         }
     }
 
+    private int itemsAmount;
+    public int ItemsAmount
+    {
+        get
+        { return itemsAmount; }
+        set
+        {
+            itemsAmount = value;
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("ItemsAmount"));
+            }
+        }
+    }
+
+
     private List<OrderItem?>? items;
     public List<OrderItem?>?  Items
     {

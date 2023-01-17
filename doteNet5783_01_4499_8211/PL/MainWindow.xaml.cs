@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace PL;
 public partial class MainWindow : Window
 {
     private IBl bl = BlFactory.GetBl();
-   // private CartPO cart = new();
+  
     public BO.Cart cart = new();
 
     public MainWindow() //החלון הראשי של החנות

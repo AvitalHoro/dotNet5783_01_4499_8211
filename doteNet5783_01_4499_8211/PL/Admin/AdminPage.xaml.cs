@@ -20,14 +20,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PL;
-/// <summary>
-/// Interaction logic for AdminPage.xaml
-/// </summary>
+
 public partial class AdminPage : Page
 {
     IBl bl;
     ObservableCollection<ProductForList> listProducts = new();
-    ObservableCollection<OrderForList> listOrders = new();
+    ObservableCollection<PO.OrderPO> listOrders = new();
     Frame frame;
 
     public AdminPage(IBl BL, Frame frame)
@@ -35,7 +33,8 @@ public partial class AdminPage : Page
         InitializeComponent();
         bl = BL;
         listProducts = Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
-        listOrders = Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
+        var list = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+        Tools.IEnumerableToObservable(listOrders, list);
         ProductsListAdmin.DataContext = listProducts;
         OrdersListAdmin.DataContext = listOrders;
        // SelectCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
@@ -67,8 +66,8 @@ public partial class AdminPage : Page
     private void SelectCategoryForOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         string select = (string)SelectCategoryForOrder.SelectedItem;
-       
-        Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList(Tools.stringToState(select)));
+        var list = (bl.Order.GetOrderList(Tools.stringToState(select))).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+        Tools.IEnumerableToObservable(listOrders, list);
     }
 
     private void AddProduct_Click(object sender, RoutedEventArgs e)
@@ -85,9 +84,12 @@ public partial class AdminPage : Page
 
     private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
     {
-        BO.OrderForList order= (BO.OrderForList)((DataGrid)sender).SelectedItem;
-        frame.Content = new PL.Order.OrderTracking(bl, bl.Order.GetDetailsOrder(order.ID), frame, true);
-        Tools.IEnumerableToObservable(listOrders, bl.Order.GetOrderList());
+        PO.OrderPO order= (PO.OrderPO)((DataGrid)sender).SelectedItem;
+        frame.Content = new PL.Order.OrderTracking(bl, order, frame, true);
+        var orderPo = listOrders.FirstOrDefault(o => o.ID == order.ID);
+        BO.Order orderBo = bl.Order.GetDetailsOrder(order.ID);
+        orderPo.ShipDate = orderBo.ShipDate;    
+        orderPo.State= orderBo.State;   
     }
 
     private void DeleteProduct_Click(object sender, RoutedEventArgs e)
@@ -115,12 +117,12 @@ public partial class AdminPage : Page
     private void CancelOrder_Click(object sender, RoutedEventArgs e)
     {
         var b = sender as Button;
-        int id = ((OrderForList)b.DataContext).ID;
+        int id = ((PO.OrderPO)b.DataContext).ID;
         var order = listOrders.FirstOrDefault(x => x.ID == id);
         listOrders.Remove(order);
         bl.Order.CancelOrder(id);
     }
 
-    private void OpenSimulator_Click(object sender, RoutedEventArgs e) => new SimulatorWindow(bl).Show();
+    private void OpenSimulator_Click(object sender, RoutedEventArgs e) => new SimulatorWindow(bl, listOrders).Show();
     
 }

@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SimulatorWindow" Height="450" Width="800">
+        Title="SimulatorWindow" Height="500" Width="850">
     <Window.Resources>
         <local:StateToHebrewConverter x:Key="StateToHebrewConverter"/>
         <local:StateToColorConverter x:Key="StateToColorConverter"/>
@@ -59,7 +59,7 @@
                                     MinWidth="10">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}">
+                                    <Button Width="100" Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}">
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -68,9 +68,8 @@
                                     MinWidth="10">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button 
-                                          Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                          Height="30" Width="30"
+                                    <Button
+                                          Height="30" Width="100"
                                           HorizontalAlignment="Center"
                                           Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}"
                                           Background="{Binding Path= State, Converter={StaticResource StateToColorConverter}}">
@@ -78,7 +77,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header= "(₪) מחיר כולל" Binding="{Binding Path= TotalPrice}"
+                        <DataGridTextColumn Header= "(₪) מחיר" Binding="{Binding Path= TotalPrice}"
                                     MinWidth="10"/>
                         <DataGridTextColumn Header= "מספר פריטים" Binding="{Binding Path= ItemsAmount}"
                                     MinWidth="10"/>
