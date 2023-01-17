@@ -21,7 +21,7 @@
                                   Background="Transparent"
                                   Foreground="#2b331f">
                         <Expander.Header>
-                            <TextBlock Text="{Binding Name,Converter={StaticResource CategoryToHebrew}}"
+                                <TextBlock Text="{Binding Name,Converter={StaticResource CategoryToHebrewConverter}}"
                                                FontSize="20" FontWeight="Bold" Foreground="#FF009BA6" HorizontalAlignment="Right">
                             </TextBlock>
                         </Expander.Header>
