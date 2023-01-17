@@ -37,7 +37,7 @@ public partial class AdminPage : Page
         Tools.IEnumerableToObservable(listOrders, list);
         ProductsListAdmin.DataContext = listProducts;
         OrdersListAdmin.DataContext = listOrders;
-       // SelectCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
+      //SelectCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
         SelectCategory.Items.Add("הכל");
         SelectCategory.Items.Add("עגלות וטיולונים");
         SelectCategory.Items.Add("צעצועים ומשחקים");

@@ -31,7 +31,7 @@ public partial class ProductCatalogForCostumer : Page
     string content;
     Frame frame;
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    //public event PropertyChangedEventHandler PropertyChanged;
     private ObservableCollection<BO.ProductItem> listProduct = new();
 
 
@@ -46,7 +46,7 @@ public partial class ProductCatalogForCostumer : Page
             content = ButtonName;
             if (ButtonName == "All")
             {
-                listProduct = Tools.IEnumerableToObservable(listProduct!, bl.Product.GetCatalog(cart, isInStock: true))!;
+                listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetCatalog(cart, isInStock: true));
                 ProductListview.ItemsSource = listProduct;
                 CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ProductListview.ItemsSource);
                 PropertyGroupDescription groupDescription = new PropertyGroupDescription("Category");

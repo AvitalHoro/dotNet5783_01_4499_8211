@@ -55,7 +55,8 @@ namespace PL.Product
             if (f.ShowDialog() == true)
             {
                 ProductImage.Source = new BitmapImage(new Uri(f.FileName));
-                path = (ProductImage.Source).ToString();
+                string[] strArr = ((ProductImage.Source).ToString()).Split("PL", 2, StringSplitOptions.RemoveEmptyEntries);
+                path = strArr[1];
             }
         }
         private void UpdateOrAdd_Click(object sender, RoutedEventArgs e)

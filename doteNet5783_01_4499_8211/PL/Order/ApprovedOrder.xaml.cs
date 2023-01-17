@@ -2,6 +2,7 @@
 using PO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,8 @@ public partial class ApprovedOrder : Page
     private CartPO cart;
     private IBl bl;
     MainWindow mainWindow;
+    private ObservableCollection<PO.OrderPO> listOrders = new();
+
     public ApprovedOrder(IBl _bl, CartPO _cart, MainWindow _mainWindow)
     {
         InitializeComponent();
@@ -43,7 +46,6 @@ public partial class ApprovedOrder : Page
             postage.Text = "0";
             TotalPriceShow.Text = cart.TotalPrice.ToString();
         }
-
     }
 
     private void Exist_Click(object sender, RoutedEventArgs e)
