@@ -25,7 +25,7 @@ namespace PL.Order;
 public partial class OrderTracking : Page
 {
     IBl bl;
-    OrderPO order = new();
+    PO.OrderPO order = new();
     Frame frame;
     bool isAdminPage;
 

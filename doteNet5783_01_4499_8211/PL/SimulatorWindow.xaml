@@ -9,9 +9,10 @@
         Title="SimulatorWindow" Height="450" Width="800">
     <Window.Resources>
         <local:StateToHebrewConverter x:Key="StateToHebrewConverter"/>
+        <local:StateToColorConverter x:Key="StateToColorConverter"/>
     </Window.Resources>
     <Grid>
-        <Grid Background="White" Margin="-4,0,4,0">
+        <Grid Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="149*"/>
                 <ColumnDefinition Width="645*"/>
@@ -28,12 +29,12 @@
                     <ColumnDefinition Width="251*"/>
                     <ColumnDefinition Width="397*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="163,0,0,0">
+                <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="114,0,49,0">
                     <TextBlock Height="30"
-                                       Text="הזמנות" FontSize="30" 
+                                       FontSize="30" 
                                        TextAlignment="Right"
                                         FontFamily="Candara" 
-                                        FontWeight="Bold" Foreground="Black" Width="181" />
+                                        FontWeight="Bold" Foreground="Black" Width="236" ><Run FlowDirection="RightToLeft" Language="he-il" Text="סימולטור הזמנות"/></TextBlock>
                 </StackPanel>
 
                 <DataGrid x:Name="OrdersListAdmin"
@@ -54,6 +55,16 @@
                   SelectionMode="Single" 
                  HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn x:Name="StateProgress" Header="התקדמות הזמנה"
+                                    MinWidth="10">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ProgressBar  >
+
+                                    </ProgressBar>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn x:Name="State" Header="מצב הזמנה"
                                     MinWidth="10">
                             <DataGridTemplateColumn.CellTemplate>
@@ -62,18 +73,9 @@
                                           Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                           Height="30" Width="30"
                                           HorizontalAlignment="Center"
-                                          Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}">
+                                          Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}"
+                                          Background="{Binding Path= State, Converter={StaticResource StateToColorConverter}}">
                                     </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn x:Name="StateProgress" Header="התקדמות הזמנה"
-                                    MinWidth="10">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ProgressBar  >
-                                        
-                                    </ProgressBar>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -88,6 +90,8 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
+            <Button Content="עצור מעקב" HorizontalAlignment="Left" Margin="37,32,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.291,0.522" Grid.ColumnSpan="2" Background="#FFB1BFAD"/>
+            <Button Content="התחל מעקב" HorizontalAlignment="Left" Margin="43,32,0,0" VerticalAlignment="Top" Width="135" Grid.Column="1" Background="#FFB1BFAD"/>
         </Grid>
     </Grid>
 </Window>

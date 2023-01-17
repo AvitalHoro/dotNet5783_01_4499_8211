@@ -203,3 +203,20 @@ public class DeliveredToHiddenConverter : IValueConverter
     }
 }
 
+public class StateToColorConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.approved)
+            return "#FFBCCCEA";
+        if (state == BO.Status.sent)
+            return "#FF5F82C5";
+        return "#FF294F99";
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

@@ -28,6 +28,9 @@ public partial class SimulatorWindow : Window
     public SimulatorWindow(IBl BL)
     {
         InitializeComponent();
-        bl = BL;   
+        bl = BL;
+        var list = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+        Tools.IEnumerableToObservable(listOrders, list);
+        DataContext = listOrders;
     }
 }
