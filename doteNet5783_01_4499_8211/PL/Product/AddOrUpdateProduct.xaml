@@ -90,5 +90,42 @@
                    FontSize="35"
                    VerticalAlignment="Top"
                    Height="60" Width="314"/>
+        <Label Content="*"
+               HorizontalAlignment="Left" 
+               Margin="62,187,0,0" 
+               VerticalAlignment="Top" 
+               FontSize="24"
+               Height="34" Width="22"
+               RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
+        <Label Content="*"
+            HorizontalAlignment="Left" 
+            Margin="62,278,0,0" 
+            VerticalAlignment="Top" 
+            FontSize="24"
+            Height="34" Width="22"
+            RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
+        <Label Content="*"
+            HorizontalAlignment="Left" 
+            Margin="62,444,0,0" 
+            VerticalAlignment="Top" 
+            FontSize="24"
+            Height="34" Width="22"
+            RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
+        <Label Content="שדה חובה *" HorizontalAlignment="Left" Margin="33,10,0,0" VerticalAlignment="Top" Height="32" Width="101" FontSize="16" Foreground="#DDCE2B1E"/>
+
+
+        <!--<Button 
+                HorizontalAlignment="Left"
+                Margin="69,118,0,0" 
+                VerticalAlignment="Top" 
+                Height="17" Width="18"
+                Background="White"
+                BorderBrush="White">
+            <materialDesign:PackIcon Kind="asterisk"
+                       Height="35" Width="35" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                      Col/>
+        </Button>-->
     </Grid>
 </Window>
