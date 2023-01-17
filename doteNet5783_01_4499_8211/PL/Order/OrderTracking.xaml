@@ -21,10 +21,6 @@
         <converter:DeliveredToHiddenConverter x:Key="DeliveredToHiddenConverter"/>
     </Page.Resources>
 
-    <Page.DataContext>
-        <PO:OrderPO/>
-    </Page.DataContext>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="239*"/>

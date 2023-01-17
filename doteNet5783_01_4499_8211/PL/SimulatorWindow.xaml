@@ -59,9 +59,8 @@
                                     MinWidth="10">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ProgressBar  >
-
-                                    </ProgressBar>
+                                    <Button Content="{Binding Path= State , Converter={StaticResource StateToHebrewConverter}}">
+                                    </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -90,8 +89,21 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-            <Button Content="עצור מעקב" HorizontalAlignment="Left" Margin="37,32,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.291,0.522" Grid.ColumnSpan="2" Background="#FFB1BFAD"/>
-            <Button Content="התחל מעקב" HorizontalAlignment="Left" Margin="43,32,0,0" VerticalAlignment="Top" Width="135" Grid.Column="1" Background="#FFB1BFAD"/>
+            <Button Content="עצור מעקב"
+                    HorizontalAlignment="Left" 
+                    Margin="37,32,0,0"
+                    VerticalAlignment="Top"
+                    Width="135" 
+                    RenderTransformOrigin="0.291,0.522" 
+                    Grid.ColumnSpan="2"
+                    Background="#FFB1BFAD"/>
+            <Button Content="התחל מעקב" 
+                    HorizontalAlignment="Left"
+                    Margin="43,32,0,0"
+                    VerticalAlignment="Top"
+                    Width="135" 
+                    Grid.Column="1"
+                    Background="#FFB1BFAD"/>
         </Grid>
     </Grid>
 </Window>
