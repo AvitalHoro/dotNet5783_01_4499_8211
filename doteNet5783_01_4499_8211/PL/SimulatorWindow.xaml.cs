@@ -23,8 +23,7 @@ namespace PL;
 public partial class SimulatorWindow : Window
 {
     private IBl bl;
-    //ObservableCollection<PO.OrderPO> listOrders = new();
-
+   
     public SimulatorWindow(IBl BL, ObservableCollection<PO.OrderPO> listOrders)
     {
         InitializeComponent();
