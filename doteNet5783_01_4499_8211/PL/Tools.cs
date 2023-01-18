@@ -1,4 +1,5 @@
 ﻿using BO;
+using DO;
 using PL.Cart;
 using PO;
 using System;
@@ -30,6 +31,14 @@ public static class Tools
         ListToCreate.Clear();
         foreach (var item in ExsitingList)
             ListToCreate.Add(item);
+        return ListToCreate;
+    }
+
+    public static ObservableCollection<PO.OrderPO> ListOrderBoToPo(ObservableCollection<PO.OrderPO> ListToCreate, IEnumerable<BO.OrderForList> ExsitingList)
+    {
+        ListToCreate.Clear();
+        foreach (var order in ExsitingList)
+            ListToCreate.Add(Tools.CopyPropTo(order, new PO.OrderPO()));
         return ListToCreate;
     }
 

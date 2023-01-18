@@ -37,8 +37,8 @@ public partial class SimulatorWindow : Window
     {
         InitializeComponent();
         bl = BL;
-        DataContext = listOrders;
         _listOrders = listOrders;
+        DataContext = _listOrders;
         SentOrder = new BackgroundWorker();
         SentOrder.DoWork += SentOrder_DoWork;
         SentOrder.ProgressChanged += SentOrder_ProgressChanged;
@@ -57,7 +57,7 @@ public partial class SimulatorWindow : Window
 
     private void DelivredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
     {
-        MessageBox.Show("התהליך הושלם בהצלחה");
+        MessageBox.Show("כל ההזמנות נשלחו, התהליך הושלם בהצלחה");
     }
 
     private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
@@ -67,6 +67,7 @@ public partial class SimulatorWindow : Window
         //car.Margin = t;
         //לעדכן את הרשימה?
         //לקדם את המטוס
+        Tools.IEnumerableToObservable(_listOrders, bl.Order.GetOrderList().Select(order => Tools.CopyPropTo(order, new PO.OrderPO())));
     }
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
@@ -101,20 +102,18 @@ public partial class SimulatorWindow : Window
                         DateTime d = order1.ShipDate ?? date;
                         int percent = (d - dateToDel).Days + i;
                         DelivredOrder.ReportProgress(100 / percent);
-
                     }
                 }
-                var del = (from PO.OrderPO order in list
-                           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
-                           where (fullOrder.ShipDate <= dateToDel)
-                           select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
-                Thread.Sleep(100);
-                if (DelivredOrder.WorkerReportsProgress == true)
-                    DelivredOrder.ReportProgress(del.Count());
+                //var del = (from PO.OrderPO order in list
+                //           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                //           where (fullOrder.ShipDate <= dateToDel)
+                //           select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
+                //Thread.Sleep(100);
+                //if (DelivredOrder.WorkerReportsProgress == true)
+                //    DelivredOrder.ReportProgress(del.Count());
             }
 
         }
-
     }
 
     private void SentOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -155,11 +154,12 @@ public partial class SimulatorWindow : Window
             }
 
         }
+       
     }
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        //
+        Tools.IEnumerableToObservable(_listOrders, bl.Order.GetOrderList().Select(order => Tools.CopyPropTo(order, new PO.OrderPO())));
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
