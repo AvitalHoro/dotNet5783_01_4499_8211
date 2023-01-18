@@ -55,8 +55,8 @@ public partial class ProductCatalogForCostumer : Page
             else
                 listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetCatalog(cart, BO.Filters.filterByCategory, Tools.StringToCategory(ButtonName), true));
         }
-        if(search)
-           listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetCatalog(cart, BO.Filters.filterByName, ButtonName, true));
+        if (search)
+            listProduct = Tools.IEnumerableToObservable(listProduct, bl.Product.GetCatalog(cart, BO.Filters.filterByName, ButtonName, true));
         DataContext = listProduct;
     }
 

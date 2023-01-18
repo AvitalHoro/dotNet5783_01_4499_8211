@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLApi;
+using PL.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,21 @@ namespace PL;
 /// </summary>
 public partial class NoneProductsToShow : Page
 {
-    public NoneProductsToShow()
+    IBl bl;
+    BO.Cart cartBo;
+    Frame framePage;
+
+    public NoneProductsToShow(IBl BL, string search, BO.Cart cart, Frame frame)
     {
         InitializeComponent();
+        bl = BL;
+        Search.Text = search;
+        cartBo =  cart;
+        framePage = frame;
+    }
+
+    private void GoToCatalog_Click(object sender, RoutedEventArgs e)
+    {
+        framePage.Content = new ProductCatalogForCostumer(bl, "All", cartBo, framePage);
     }
 }
