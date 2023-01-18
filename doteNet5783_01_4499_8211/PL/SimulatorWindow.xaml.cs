@@ -38,7 +38,7 @@ public partial class SimulatorWindow : Window
         InitializeComponent();
         bl = BL;
         _listOrders = listOrders;
-        DataContext = _listOrders;
+        DataContext = listOrders;
         SentOrder = new BackgroundWorker();
         SentOrder.DoWork += SentOrder_DoWork;
         SentOrder.ProgressChanged += SentOrder_ProgressChanged;
