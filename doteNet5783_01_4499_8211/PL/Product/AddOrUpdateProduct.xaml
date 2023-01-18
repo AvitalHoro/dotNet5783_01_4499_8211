@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Product"
+        xmlns:converter="clr-namespace:PL"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AddOrUpdateProduct" Height="570" Width="800">
 
+    <Window.Resources>
+        <converter:UpdateContentToHiddenConverter x:Key="UpdateContentToHiddenConverter"/>
+    </Window.Resources>
+    
     <Grid x:Name="productAddOrUp">
         <StackPanel Width="300" Height="300" Margin="456,85,44,169">
             <Image Name="ProductImage" Source="{Binding Path}"/>
@@ -53,7 +58,7 @@
                   Height="60"
                   materialDesign:HintAssist.Hint="(מחיר)" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 PreviewKeyDown=" EntersOnlyNumbers" 
+                 PreviewKeyDown="EntersOnlyNumbers" 
                  HorizontalAlignment="Left" 
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
@@ -90,16 +95,19 @@
                    FontSize="35"
                    VerticalAlignment="Top"
                    Height="60" Width="314"/>
-        <Label Content="*"
+        <Label Name="asterisk"
+               Content="*"
                HorizontalAlignment="Left" 
                Margin="62,187,0,0" 
                VerticalAlignment="Top" 
                FontSize="24"
+               Visibility="{Binding ElementName=Title, Path=Text , Converter={StaticResource UpdateContentToHiddenConverter}}"
                Height="34" Width="22"
                RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
         <Label Content="*"
             HorizontalAlignment="Left" 
             Margin="62,278,0,0" 
+            Visibility="{Binding ElementName=asterisk, Path=Visibility}"
             VerticalAlignment="Top" 
             FontSize="24"
             Height="34" Width="22"
@@ -107,25 +115,33 @@
         <Label Content="*"
             HorizontalAlignment="Left" 
             Margin="62,444,0,0" 
+            Visibility="{Binding ElementName=asterisk, Path=Visibility}"
             VerticalAlignment="Top" 
             FontSize="24"
             Height="34" Width="22"
             RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
-        <Label Content="שדה חובה *" HorizontalAlignment="Left" Margin="33,10,0,0" VerticalAlignment="Top" Height="32" Width="101" FontSize="16" Foreground="#DDCE2B1E"/>
-
-
-        <!--<Button 
-                HorizontalAlignment="Left"
-                Margin="69,118,0,0" 
-                VerticalAlignment="Top" 
-                Height="17" Width="18"
-                Background="White"
-                BorderBrush="White">
-            <materialDesign:PackIcon Kind="asterisk"
-                       Height="35" Width="35" 
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Right"
-                      Col/>
-        </Button>-->
+        <Label Content="שדה חובה *"
+               HorizontalAlignment="Left"
+               Margin="33,10,0,0" 
+               Visibility="{Binding ElementName=asterisk, Path=Visibility}"
+               VerticalAlignment="Top"
+               Height="32" Width="101"
+               FontSize="16" Foreground="#DDC82D2D"/>
+        <Label Content="*"
+            HorizontalAlignment="Left" 
+            Margin="62,364,0,0" 
+            Visibility="{Binding ElementName=asterisk, Path=Visibility}"
+            VerticalAlignment="Top" 
+            FontSize="24"
+            Height="34" Width="22"
+            RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
+        <Label Content="*"
+            HorizontalAlignment="Left" 
+            Margin="62,101,0,0" 
+            VerticalAlignment="Top" 
+            FontSize="24"
+            Visibility="{Binding ElementName=asterisk, Path=Visibility}"
+            Height="34" Width="22"
+            RenderTransformOrigin="-1.273,-0.283" Foreground="#DDC82D2D"/>
     </Grid>
 </Window>

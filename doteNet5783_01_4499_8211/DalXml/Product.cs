@@ -88,4 +88,20 @@ internal class Product : IProduct
         XMLTools.SaveListToXMLElement(studentsRootElem, s_products);
     }
 
+    public void BackInStock(int id)
+    {
+        XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_products);
+        DO.Product product = GetById(id);
+
+        product.IsDeleted = false;
+
+        (productsRootElem.Elements()
+            .FirstOrDefault(st => (int?)st.Element("ID") == id) ?? throw new DoesNotExistException(id))
+            .Remove();
+
+        productsRootElem.Add(new XElement("Product", createProductElement(product)));
+
+        XMLTools.SaveListToXMLElement(productsRootElem, s_products);
+    }
+
 }

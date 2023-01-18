@@ -23,6 +23,8 @@ namespace PL.Product
     {
         IBl bl;
         string? path;
+
+        //עידכון מוצר
         public AddOrUpdateProduct(IBl BL, BO.ProductForList product)
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace PL.Product
             path = product.Path;
         }
 
+        //הוספת מוצר
         public AddOrUpdateProduct(IBl BL)
         {
             InitializeComponent();
@@ -45,8 +48,8 @@ namespace PL.Product
             //אם הגענו לבנאי הריק, סימן שבאנו לחלון של הוספה
             UpdateID.IsEnabled = true;
             //נותנים אפשרות להכניס את המזהה של המוצר
-            //UpdateOrAdd.IsEnabled = false;
             Title.Text = "הוספת מוצר";
+            path = "/Images/logo.png";
         }
         private void changeImageButton_Click(object sender, RoutedEventArgs e)
         {
@@ -65,7 +68,7 @@ namespace PL.Product
             if (UpdateID.Text.Length == 0 || UpdateCategory.SelectedItem == null || UpdateName.Text.Length == 0
                 || UpdatePrice.Text.Length == 0 || UpdateInStock.Text.Length == 0)
             {
-                MessageBox.Show("Please check all fields are complete", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show("בבקשה למלא את כל שדות החובה", "", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
             try
@@ -95,28 +98,27 @@ namespace PL.Product
             }
             catch (BO.InvalidIDException ex)//תפיסת החריגות האפשריות
             {
-                MessageBox.Show("אופס, מספר המוצר שלך בעייתי בשבילנו", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show("אופס, מספר המוצר שלך בעייתי בשבילנו", "שגיאה", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
             catch (BO.NoNameException ex)
             {
-                MessageBox.Show("אם לא החלטת עדיין על שם לבייבי שלך, כדאי לך לחשוב על זה", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show("אם לא החלטת עדיין על שם לבייבי שלך, כדאי לך לחשוב על זה", "שגיאה", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
             catch (BO.InvalidPriceException ex)
             {
-                MessageBox.Show("(;משהו מוזר לנו במחיר של המוצר, אולי זה בגלל שהוא יקר מדי", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show("(;משהו מוזר לנו במחיר של המוצר, אולי בגלל שהוא יקר מדי", "שגיאה", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
             catch (BO.OutOfStockException ex)
             {
-                MessageBox.Show("!המוצרים שלנו הם כמו שוקולד: נגמרים בלי ששמים לב" +
-                    "המוצר הזה אזל במלאי", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show("!המוצרים שלנו הם כמו שוקולד: נגמרים בלי ששמים לב" , "המוצר אזל במלאי", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
             catch (BO.AlreadyExistsException ex)
             {
-                MessageBox.Show("?אנחנו חושבים שהמוצר כבר קיים במערכת, אולי מדובר בתאומים זהים", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show("?אנחנו חושבים שהמוצר כבר קיים במערכת, אולי מדובר בתאומים זהים", "שגיאה", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return;
             }
             Close();

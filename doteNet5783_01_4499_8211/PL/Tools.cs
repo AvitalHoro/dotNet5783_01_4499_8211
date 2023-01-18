@@ -101,9 +101,8 @@ public static class Tools
     {
         cartPo.OrderItems = new();
         CopyPropTo(cartBo, cartPo);
-        //   IEnumerableToObservable(cartPo.OrderItems, cartBo.OrderItems);
         cartPo.OrderItems.Clear();
-        if(cartBo.OrderItems!=null)
+        if(cartBo.OrderItems != null)
             foreach (var item in cartBo.OrderItems)
                 cartPo.OrderItems.Add(CopyPropTo(item, new PO.OrderItemPO()));
     }
@@ -151,5 +150,26 @@ public static class Tools
         return null;
     }
 
-   
+    public static IEnumerable<string> CategoryToHebrew()
+    {
+        List<string> categories = new List<string>();
+        categories.Add("בקבוקים ומוצצים");
+        categories.Add("עגלות וטיולונים");
+        categories.Add("צעצועים ומשחקים");
+        categories.Add("ביגוד והנעלה");
+        categories.Add("היגיינה והחתלה");
+        categories.Add("הכל");
+        return categories;  
+    }
+
+    public static IEnumerable<string> StateToHebrew()
+    {
+        List<string> states = new List<string>();
+        states.Add("הזמנות שאושרו");
+        states.Add("הזמנות שנשלחו");
+        states.Add("הזמנות שנמסרו");
+        states.Add("הכל");
+        return states;
+    }
+
 }

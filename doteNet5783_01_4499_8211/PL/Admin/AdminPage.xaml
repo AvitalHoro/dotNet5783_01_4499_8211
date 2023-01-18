@@ -14,6 +14,9 @@
         <local:CategoryToHebrewConverter x:Key="CategoryToHebrewConverter"/>
         <local:StateToHebrewConverter x:Key="StateToHebrewConverter"/>
         <local:IntToStringConverter x:Key="IntToStringConverter"/>
+        <local:StringToCollapsedConverter x:Key="StringToCollapsedConverter"/>
+        <local:StringToVisibleConverter x:Key="StringToVisibleConverter"/>
+        <local:StringContentToTitleConverter x:Key="StringContentToTitleConverter"/>
     </Page.Resources>
     <Grid>
         <TabControl>
@@ -120,11 +123,13 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="163,0,0,0">
-                            <TextBlock Height="30"
-                       Text="מוצרים בחנות" FontSize="30" 
-                       FontFamily="Candara" 
-                       FontWeight="Bold" Foreground="Black" Width="213"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="163,10,0,432" Grid.RowSpan="2">
+                            <TextBlock Name="TitleProducts"
+                                Height="46"
+                               Text="{Binding Content, Converter={StaticResource StringContentToTitleConverter}, ElementName=Archives}"
+                               FontSize="30" 
+                               FontFamily="Candara" 
+                               FontWeight="Bold" Foreground="Black" Width="213"/>
                         </StackPanel>
 
                         <Button Name="AddProduct"
@@ -162,10 +167,12 @@
                   MouseDoubleClick="ProductsListAdmin_MouseDoubleClick" HorizontalAlignment="Right">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn x:Name="DeleteProduct" Header="מחק מוצר"
-                                    MinWidth="10">
+                                    MinWidth="10"
+                                    Visibility="{Binding ElementName=Archives , Path=Content , Converter={StaticResource StringToCollapsedConverter}, Mode=OneWay}">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button
+                                                   Visibility="{Binding ElementName=Archives , Path=Content , Converter={StaticResource StringToCollapsedConverter}, Mode=OneWay}"
                                                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                     Height="30" Width="30"
                                                     HorizontalAlignment="Center"
@@ -176,9 +183,24 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <!--<DataGridTextColumn Header="האם נמחק" Binding="{Binding Path= IsDeleted}"
-                                    MinWidth="10"/>-->
-                                <DataGridTextColumn Header="מחיר"  Binding="{Binding Path=Price}"
+                                <DataGridTemplateColumn x:Name="RestoreProduct" Header="החזר מוצר לחנות"
+                                    MinWidth="10"
+                                    Visibility="{Binding ElementName=Archives , Path=Content , Converter={StaticResource StringToVisibleConverter}, Mode=OneWay}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                  Visibility="{Binding ElementName=Archives , Path=Content , Converter={StaticResource StringToVisibleConverter}, Mode=OneWay}"
+                                                   Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    Height="30" Width="30"
+                                                    HorizontalAlignment="Center"
+                                                    Click="RestoreProduct_Click">
+                                                <materialDesign:PackIcon Kind="CheckboxMarkedCirclePlusOutline"
+                                                                     Width="25" Height="25"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="(₪) מחיר"  Binding="{Binding Path=Price}"
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header="קטגוריה" Binding="{Binding Path=Category, Converter={StaticResource CategoryToHebrewConverter}}"
                                     MinWidth="10"/>
@@ -187,16 +209,6 @@
                                 <DataGridTextColumn Header="מזהה מוצר" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>
                             </DataGrid.Columns>
-
-                            <!--<DataGrid.Columns>
-                                    <DataGridTextColumn>
-                                        <DataGridTextColumn.ElementStyle>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="HorizontalAlignment" Value="Center" />
-                                            </Style>
-                                        </DataGridTextColumn.ElementStyle>
-                                    </DataGridTextColumn>
-                                </DataGrid.Columns>-->
 
                         </DataGrid>
                         <ComboBox Name="SelectCategory"
