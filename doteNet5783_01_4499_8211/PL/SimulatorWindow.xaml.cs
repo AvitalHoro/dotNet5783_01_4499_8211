@@ -89,28 +89,31 @@ public partial class SimulatorWindow : Window
                 i++;
                 DateTime dateToDel = date.Subtract(day * 14);
 
-                foreach (PO.OrderPO order in list)
-                {
-                    BO.Order order1 = bl.Order.GetDetailsOrder(order.ID);
-                    if (order1.ShipDate <= dateToDel)
-                    {
-                        bl.Order.UpdateDeliveryDate(order.ID);
-                        DelivredOrder.ReportProgress(0);
-                    }
-                    else
-                    {
-                        DateTime d = order1.ShipDate ?? date;
-                        int percent = (d - dateToDel).Days + i;
-                        DelivredOrder.ReportProgress(100 / percent);
-                    }
-                }
-                //var del = (from PO.OrderPO order in list
-                //           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
-                //           where (fullOrder.ShipDate <= dateToDel)
-                //           select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
-                //Thread.Sleep(100);
-                //if (DelivredOrder.WorkerReportsProgress == true)
-                //    DelivredOrder.ReportProgress(del.Count());
+                //foreach(PO.OrderPO order in list)
+                //{
+                //    BO.Order order1 = bl.Order.GetDetailsOrder(order.ID);
+                //    if(order1.ShipDate<=dateToDel)
+                //    {
+                //        bl.Order.UpdateDeliveryDate(order.ID);
+                //        DelivredOrder.ReportProgress(0);
+                //    }
+                //    else
+                //    {
+                //        DateTime d = order1.ShipDate??date;
+                //        int percent = (d - dateToDel).Days+i;
+                //        DelivredOrder.ReportProgress(100/percent);
+
+                //    }
+
+
+                //}
+                var del = (from PO.OrderPO order in list
+                           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                           where (fullOrder.ShipDate <= dateToDel)
+                           select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
+                Thread.Sleep(100);
+                if (DelivredOrder.WorkerReportsProgress == true)
+                    DelivredOrder.ReportProgress(del.Count());
             }
 
         }
