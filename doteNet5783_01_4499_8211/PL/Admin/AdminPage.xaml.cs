@@ -37,24 +37,16 @@ public partial class AdminPage : Page
         Tools.IEnumerableToObservable(listOrders, list);
         ProductsListAdmin.DataContext = listProducts;
         OrdersListAdmin.DataContext = listOrders;
-      //SelectCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
-        SelectCategory.Items.Add("הכל");
-        SelectCategory.Items.Add("עגלות וטיולונים");
-        SelectCategory.Items.Add("צעצועים ומשחקים");
-        SelectCategory.Items.Add("ביגוד והנעלה");
-        SelectCategory.Items.Add("היגיינה והחתלה");
-        SelectCategory.Items.Add("בקבוקים ומוצצים");
-        SelectCategoryForOrder.Items.Add("הכל");
-        SelectCategoryForOrder.Items.Add("הזמנות שאושרו");
-        SelectCategoryForOrder.Items.Add("הזמנות שנשלחו");
-        SelectCategoryForOrder.Items.Add("הזמנות שנמסרו");
+        SelectCategory.ItemsSource = Tools.CategoryToHebrew();
+        SelectCategoryForOrder.ItemsSource = Tools.StateToHebrew();
         this.frame = frame;
+        RestoreProduct.Visibility = Visibility.Collapsed;
     }
 
     private void SelectCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         string select = (string)SelectCategory.SelectedItem;
-        DeleteProduct.Visibility = Visibility.Visible;
+       // DeleteProduct.Visibility = Visibility.Visible;
 
         if(select == "הכל")
             Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
@@ -73,7 +65,11 @@ public partial class AdminPage : Page
     private void AddProduct_Click(object sender, RoutedEventArgs e)
     {
         new AddOrUpdateProduct(bl).ShowDialog();
+        if(TitleProducts.Text == "מוצרים בחנות")
         Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
+        else
+            Tools.IEnumerableToObservable(listProducts,
+                  bl.Product.GetProductList(BO.Filters.deleted));
     }
 
     private void ProductsListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -107,11 +103,41 @@ public partial class AdminPage : Page
         }
     }
 
+    private void RestoreProduct_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var b = (Button)sender;
+            var product = (ProductForList)b.DataContext;
+            bl.Product.RestoreProduct(product.ID);
+              new AddOrUpdateProduct(bl, product).ShowDialog();
+            Tools.IEnumerableToObservable(listProducts,
+                    bl.Product.GetProductList(BO.Filters.deleted));
+        }
+        catch (BO.ProductExistInOrderException)
+        {
+            MessageBox.Show("המוצר לא נמצא");
+        }
+    }
+
     private void Archives_Click(object sender, RoutedEventArgs e)
     {
-        Tools.IEnumerableToObservable(listProducts,
+        if((string)Archives.Content == "מוצרים בארכיון")
+        {
+            Archives.Content = "כל המוצרים";
+            Tools.IEnumerableToObservable(listProducts,
                    bl.Product.GetProductList(BO.Filters.deleted));
-        DeleteProduct.Visibility= Visibility.Collapsed;
+            DeleteProduct.Visibility = Visibility.Collapsed;
+            RestoreProduct.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            Archives.Content = "מוצרים בארכיון";
+            Tools.IEnumerableToObservable(listProducts, bl.Product.GetProductList());
+            DeleteProduct.Visibility = Visibility.Visible;
+            RestoreProduct.Visibility = Visibility.Collapsed;
+        }
+     
     }
 
     private void CancelOrder_Click(object sender, RoutedEventArgs e)

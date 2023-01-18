@@ -90,7 +90,7 @@ public class StateToHebrewConverter : IValueConverter
     {
         BO.Status status = (BO.Status)value;
         if (status == BO.Status.approved)
-            return "התקבלה";
+            return "אושרה";
         if (status == BO.Status.sent)
             return "נשלחה";
 
@@ -228,6 +228,70 @@ public class IntToStringConverter : IValueConverter
         int num = (int)value;
 
         return num.ToString();
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StringToVisibleConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string str = (string)value;
+        if(str == "מוצרים בארכיון")
+            return Visibility.Collapsed;
+        else
+            return Visibility.Visible;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StringToCollapsedConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string str = (string)value;
+        if (str == "מוצרים בארכיון")
+            return Visibility.Visible;
+        else
+            return Visibility.Collapsed;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class UpdateContentToHiddenConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string str = (string)value;
+        if (str == "הוספת מוצר")
+            return Visibility.Visible;
+        else
+            return Visibility.Collapsed;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StringContentToTitleConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string str = (string)value;
+        if (str == "מוצרים בארכיון")
+            return "מוצרים בחנות";
+        else
+            return "ארכיון מוצרים";
     }
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {

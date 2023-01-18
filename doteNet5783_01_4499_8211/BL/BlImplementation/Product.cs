@@ -220,5 +220,20 @@ internal class Product : IProduct
         catch (DO.DoesNotExistException ex) { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
     }
     #endregion
+
+    #region RemoveProduct
+    /// <exception cref="BO.ProductExistInOrderException"></exception>
+    /// <exception cref="BO.DoesNotExistException"></exception>
+    //מוחק מוצר מהחנות
+    public void RestoreProduct(int idProduct)
+    { 
+        try
+        {
+            Dal.Product.BackInStock(idProduct);
+        }
+        catch (DO.DoesNotExistException ex)
+        { throw new BO.DoesNotExistException(ex.ID, ex.Message, ex); }
+    }
+    #endregion
 }
 

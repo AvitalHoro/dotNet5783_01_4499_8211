@@ -90,5 +90,25 @@ public class DalProduct: IProduct
                 .ToList();
     }
     #endregion
+
+    public void BackInStock(int id)
+    {
+        Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id)
+           ?? throw new DoesNotExistException(id);
+
+        Product product = new() //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
+        {
+            ID = id,
+            Name = found.Name,
+            Category = found.Category,
+            InStock = found.InStock,
+            Price = found.Price,
+            IsDeleted = false,
+            Path = found.Path,
+        };
+
+        ds.ListProduct.Remove(found);
+        ds.ListProduct.Add(product);
+    }
 }
 

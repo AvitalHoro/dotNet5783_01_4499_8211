@@ -747,13 +747,4 @@
     <Path>/Images/productImages/carts5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
-  <Product>
-    <ID>123456</ID>
-    <Name>drc</Name>
-    <Category>Clothes</Category>
-    <Price>23</Price>
-    <InStock>34</InStock>
-    <Path>/Images/7.png</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
 </Products>

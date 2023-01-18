@@ -107,7 +107,7 @@ public partial class Cart : Page
         var t = (TextBox)sender;
         int amount = int.Parse(t.Text);
         if (amount == 0)
-            return;
+            amount = 1;
         UpdateAmount(sender,amount , true);
     }
 

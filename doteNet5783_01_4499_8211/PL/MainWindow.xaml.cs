@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -86,7 +87,13 @@ public partial class MainWindow : Window
     {
         categories.IsEnabled = true;
         if (EnterStringToSearch.Text != null)
-            framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage, true);
+        {
+           if( bl.Product.GetCatalog(cart, BO.Filters.filterByName, EnterStringToSearch.Text, true).Count() == 0)
+                framePage.Content = new NoneProductsToShow(bl, EnterStringToSearch.Text, cart, framePage);
+            EnterStringToSearch.Text = "";
+        }
+        else
+           framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage, true);
     }
 
     private void EnterPressed_KeyDown(object sender, KeyEventArgs e)

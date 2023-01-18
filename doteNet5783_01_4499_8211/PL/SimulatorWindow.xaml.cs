@@ -31,14 +31,14 @@ public partial class SimulatorWindow : Window
 
     private IBl bl;
     ObservableCollection<PO.OrderPO> _listOrders = new();
-    DateTime date=DateTime.Now;
+    DateTime date = DateTime.Now;
 
     public SimulatorWindow(IBl BL, ObservableCollection<PO.OrderPO> listOrders)
     {
         InitializeComponent();
         bl = BL;
         DataContext = listOrders;
-        _listOrders=listOrders;
+        _listOrders = listOrders;
         SentOrder = new BackgroundWorker();
         SentOrder.DoWork += SentOrder_DoWork;
         SentOrder.ProgressChanged += SentOrder_ProgressChanged;
@@ -53,7 +53,6 @@ public partial class SimulatorWindow : Window
 
         DelivredOrder.WorkerReportsProgress = true;
         DelivredOrder.WorkerSupportsCancellation = true;
-
     }
 
     private void DelivredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -64,7 +63,7 @@ public partial class SimulatorWindow : Window
     private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
         int precent = e.ProgressPercentage;
-        Thickness t = new Thickness(100- precent, 0, 0, 0);
+        Thickness t = new Thickness(100 - precent, 0, 0, 0);
         //car.Margin = t;
         //לעדכן את הרשימה?
         //לקדם את המטוס
@@ -77,15 +76,15 @@ public partial class SimulatorWindow : Window
         while (notAllOrderDelivired)
         {
             List<PO.OrderPO> list = (from PO.OrderPO order in _listOrders
-                                                     let fullOrder = bl.Order.GetDetailsOrder(order.ID)
-                                                     where (fullOrder.State == Status.sent)
-                                                     select order).ToList();
+                                     let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                                     where (fullOrder.State == Status.sent)
+                                     select order).ToList();
             if (list.Count() == 0)
                 notAllOrderDelivired = false;
             else
             {
                 TimeSpan day = new TimeSpan(24, 0, 0);
-                date=date.Add(day);
+                date = date.Add(day);
                 i++;
                 DateTime dateToDel = date.Subtract(day * 14);
 
@@ -112,7 +111,7 @@ public partial class SimulatorWindow : Window
                            where (fullOrder.ShipDate <= dateToDel)
                            select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
                 Thread.Sleep(100);
-                     if (DelivredOrder.WorkerReportsProgress == true)
+                if (DelivredOrder.WorkerReportsProgress == true)
                     DelivredOrder.ReportProgress(del.Count());
             }
 
@@ -162,7 +161,7 @@ public partial class SimulatorWindow : Window
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-//
+        //
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
