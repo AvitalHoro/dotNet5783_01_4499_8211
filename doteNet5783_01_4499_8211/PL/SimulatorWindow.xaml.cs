@@ -67,7 +67,7 @@ public partial class SimulatorWindow : Window
         //car.Margin = t;
         //לעדכן את הרשימה?
         //לקדם את המטוס
-        Tools.IEnumerableToObservable(_listOrders, bl.Order.GetOrderList().Select(order => Tools.CopyPropTo(order, new PO.OrderPO())));
+        Tools.ListOrderBoToPo(_listOrders, bl.Order.GetOrderList());
     }
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
@@ -159,7 +159,7 @@ public partial class SimulatorWindow : Window
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        Tools.IEnumerableToObservable(_listOrders, bl.Order.GetOrderList().Select(order => Tools.CopyPropTo(order, new PO.OrderPO())));
+        Tools.ListOrderBoToPo(_listOrders, bl.Order.GetOrderList());
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
