@@ -38,6 +38,7 @@ public partial class SimulatorWindow : Window
     {
         InitializeComponent();
         bl = BL;
+        DataContext = listOrders;
         _listOrders = listOrders;
         progBarTime.Value = 0;
         SentOrder = new BackgroundWorker();
