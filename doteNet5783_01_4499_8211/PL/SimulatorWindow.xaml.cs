@@ -38,7 +38,6 @@ public partial class SimulatorWindow : Window
     {
         InitializeComponent();
         bl = BL;
-        DataContext = listOrders;
         _listOrders = listOrders;
         progBarTime.Value = 0;
         SentOrder = new BackgroundWorker();
@@ -132,7 +131,6 @@ public partial class SimulatorWindow : Window
             }
 
         }
-
     }
 
     private void SentOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -179,6 +177,7 @@ public partial class SimulatorWindow : Window
             }
 
         }
+       
     }
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)

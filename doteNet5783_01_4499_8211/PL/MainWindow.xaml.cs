@@ -89,11 +89,13 @@ public partial class MainWindow : Window
         if (EnterStringToSearch.Text != null)
         {
            if( bl.Product.GetCatalog(cart, BO.Filters.filterByName, EnterStringToSearch.Text, true).Count() == 0)
+           {
                 framePage.Content = new NoneProductsToShow(bl, EnterStringToSearch.Text, cart, framePage);
-            EnterStringToSearch.Text = "";
+                EnterStringToSearch.Text = "";
+           } 
+             else
+                framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage, true);
         }
-        else
-           framePage.Content = new ProductCatalogForCostumer(bl, EnterStringToSearch.Text, cart, framePage, true);
     }
 
     private void EnterPressed_KeyDown(object sender, KeyEventArgs e)
