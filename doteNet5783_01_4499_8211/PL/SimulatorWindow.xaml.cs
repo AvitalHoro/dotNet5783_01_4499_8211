@@ -26,6 +26,7 @@ namespace PL;
 /// </summary>
 public partial class SimulatorWindow : Window
 {
+    Thickness RandNum=new Thickness(100,0,0,0);
     BackgroundWorker SentOrder;
     BackgroundWorker DelivredOrder;
 
@@ -39,6 +40,7 @@ public partial class SimulatorWindow : Window
         bl = BL;
         DataContext = listOrders;
         _listOrders = listOrders;
+        progBarTime.Value = 0;
         SentOrder = new BackgroundWorker();
         SentOrder.DoWork += SentOrder_DoWork;
         SentOrder.ProgressChanged += SentOrder_ProgressChanged;
@@ -57,16 +59,29 @@ public partial class SimulatorWindow : Window
 
     private void DelivredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
     {
+        if (progBarTime.Value < 100)
+        {
+            progBarTime.Value = 100;
+
+        }
         MessageBox.Show("התהליך הושלם בהצלחה");
     }
 
     private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
         int precent = e.ProgressPercentage;
-        Thickness t = new Thickness(100 - precent, 0, 0, 0);
-        //car.Margin = t;
+        Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
+        RandNum = t;
+
         //לעדכן את הרשימה?
         //לקדם את המטוס
+        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+        Tools.IEnumerableToObservable(_listOrders, list1);
+        OrdersListAdmin.DataContext = _listOrders;
+
+        double precent1 = progBarTime.Value + (100 - progBarTime.Value) / 10;
+        progBarTime.Value = precent1;
+
     }
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
@@ -75,7 +90,8 @@ public partial class SimulatorWindow : Window
         int i = 1;
         while (notAllOrderDelivired)
         {
-            List<PO.OrderPO> list = (from PO.OrderPO order in _listOrders
+
+            List<PO.OrderPO> list = (from PO.OrderPO order in (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()))
                                      let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                                      where (fullOrder.State == Status.sent)
                                      select order).ToList();
@@ -112,7 +128,7 @@ public partial class SimulatorWindow : Window
                            select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
                 Thread.Sleep(100);
                 if (DelivredOrder.WorkerReportsProgress == true)
-                    DelivredOrder.ReportProgress(del.Count());
+                    DelivredOrder.ReportProgress(i);
             }
 
         }
@@ -125,6 +141,11 @@ public partial class SimulatorWindow : Window
         {
             this.Cursor = Cursors.Wait;
             DelivredOrder.RunWorkerAsync();
+            if(progBarTime.Value<50)
+            {
+                progBarTime.Value = 50;
+                
+            }
         }
     }
 
@@ -134,7 +155,8 @@ public partial class SimulatorWindow : Window
         int i = 1;
         while (notAllOrderSent)
         {
-            List<PO.OrderPO> list = (from PO.OrderPO order in _listOrders
+          
+            List<PO.OrderPO> list = (from PO.OrderPO order in (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()))
                                      let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                                      where (fullOrder.State == Status.approved)
                                      select order).ToList();
@@ -153,7 +175,7 @@ public partial class SimulatorWindow : Window
                            select bl.Order.UpdateShipDate(order.ID)).ToList();
                 Thread.Sleep(300);
                 if (SentOrder.WorkerReportsProgress == true)
-                    SentOrder.ReportProgress(del.Count());
+                    SentOrder.ReportProgress(i);
             }
 
         }
@@ -161,7 +183,12 @@ public partial class SimulatorWindow : Window
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        //
+        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+        Tools.IEnumerableToObservable(_listOrders, list1);
+        OrdersListAdmin.DataContext = _listOrders;
+
+        double precent = progBarTime.Value + (50 - progBarTime.Value) / 10;
+        progBarTime.Value = precent;
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
