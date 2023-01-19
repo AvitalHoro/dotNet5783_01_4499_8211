@@ -71,9 +71,9 @@ public partial class SimulatorWindow : Window
 
     private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        int precent = e.ProgressPercentage;
-        Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
-        RandNum = t;
+        //int precent = e.ProgressPercentage;
+        //Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
+        //RandNum = t;
 
         //לעדכן את הרשימה?
         //לקדם את המטוס
@@ -88,6 +88,7 @@ public partial class SimulatorWindow : Window
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
     {
+       
         bool notAllOrderDelivired = true;
         int i = 1;
         while (notAllOrderDelivired)
@@ -127,7 +128,7 @@ public partial class SimulatorWindow : Window
                 var del = (from PO.OrderPO order in list
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.ShipDate <= dateToDel)
-                           select bl.Order.UpdateDeliveryDate(order.ID)).ToList();
+                           select bl.Order.UpdateDeliveryDate(order.ID, date)).ToList();
                 Thread.Sleep(100);
                 if (DelivredOrder.WorkerReportsProgress == true)
                     DelivredOrder.ReportProgress(i);

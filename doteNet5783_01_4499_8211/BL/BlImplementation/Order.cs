@@ -146,7 +146,7 @@ internal class Order : BLApi.IOrder
     /// <exception cref="BO.OrderAlreadyShippedExecption"></exception>
     /// <exception cref="BO.DoesNotExistException"></exception>
     //מעדכנת את התאריך שליחה של הזמנה ומחזיר את ההזמנה המעוכנת
-    public BO.Order UpdateShipDate(int idOrder)
+    public BO.Order UpdateShipDate(int idOrder, DateTime? date=null)
     {
         try //אם הת"ז שלילית, זורקים חריגה
         {
@@ -154,6 +154,8 @@ internal class Order : BLApi.IOrder
                 throw new BO.InvalidIDException(idOrder);
         }
         catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
+        if(date==null)
+            date= DateTime.Now;
         try
         {
             DO.Order orderDo = Dal.Order.GetById(idOrder);
@@ -166,7 +168,7 @@ internal class Order : BLApi.IOrder
                     CostumerEmail = orderDo.CostumerEmail,
                     CostumerAdress = orderDo.CostumerAdress,
                     OrderDate = orderDo.OrderDate,
-                    ShipDate = DateTime.Now,
+                    ShipDate = date,
                     DeliveryDate = null,
                     IsDeleted = false
                 });
@@ -190,7 +192,7 @@ internal class Order : BLApi.IOrder
     /// <exception cref="BO.OrderAlreadyDeliveredExecption"></exception>
     /// <exception cref="BO.DoesNotExistException"></exception>
     //מעדכנת את התאריך מסירה של הזמנה ומחזירה את ההזמנה המעוכנת
-    public BO.Order UpdateDeliveryDate(int idOrder)
+    public BO.Order UpdateDeliveryDate(int idOrder, DateTime? date=null)
     {
         try //אם הת"ז שלילית, זורקים חריגה
         {
@@ -198,6 +200,8 @@ internal class Order : BLApi.IOrder
                 throw new BO.InvalidIDException(idOrder);
         }
         catch (BO.InvalidIDException ex) { throw new BO.InvalidIDException(ex.ID); }
+        if (date == null)
+            date = DateTime.Now;
         try
         {
             DO.Order orderDo = Dal.Order.GetById(idOrder);
@@ -211,7 +215,7 @@ internal class Order : BLApi.IOrder
                     CostumerAdress = orderDo.CostumerAdress,
                     OrderDate = orderDo.OrderDate,
                     ShipDate = orderDo.ShipDate,
-                    DeliveryDate = DateTime.Now,
+                    DeliveryDate = date,
                     IsDeleted = false
                 });
                 BO.Order? orderBo = new BO.Order();

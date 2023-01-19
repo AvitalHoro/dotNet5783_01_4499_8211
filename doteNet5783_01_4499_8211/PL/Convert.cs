@@ -221,6 +221,24 @@ public class StateToColorConverter : IValueConverter
     }
 }
 
+public class TruckConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+
+        if (state == BO.Status.approved)
+            return "100,0,0,0";
+        if (state == BO.Status.sent)
+            return "50,0,0,0";
+        return "0,0,0,0";
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
 public class IntToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
