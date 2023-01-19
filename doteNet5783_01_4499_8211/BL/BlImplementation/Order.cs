@@ -85,25 +85,27 @@ internal class Order : BLApi.IOrder
            state switch
            {
                Status.approved =>
-                 Dal.Order.GetAll(order => order?.ShipDate == null && order?.DeliveryDate == null && order?.IsDeleted == false),
+                 Dal.Order.GetAll(order => order?.ShipDate == null && order?.DeliveryDate == null && order?.IsDeleted == false).OrderBy(order=>order?.ID),
 
                Status.sent =>
-                   Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate == null && order?.IsDeleted == false),
+                   Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate == null && order?.IsDeleted == false).OrderBy(order => order?.ID),
 
                Status.delivered =>
-                  Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate != null && order?.IsDeleted == false),
+                  Dal.Order.GetAll(order => order?.ShipDate != null && order?.DeliveryDate != null && order?.IsDeleted == false).OrderBy(order => order?.ID),
            };
             return (from DO.Order item in tmp
                     let orderForList = DoOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
                     select orderForList)
+                    .OrderBy(order => order?.ID)
               .ToList();
         }
         else
         {
-            IEnumerable<DO.Order?> tmp = Dal.Order.GetAll(o => o?.IsDeleted == false); ;
+            IEnumerable<DO.Order?> tmp = Dal.Order.GetAll(o => o?.IsDeleted == false); 
             return (from DO.Order item in tmp
                     let orderForList = DoOrderToOrderForList(item) //ממיר הזמנה מסוג שכבת הנתונים להזמנה לרשימה מסוג שכבת הלוגיקה
                     select orderForList)
+                    .OrderBy(order => order?.ID)
              .ToList();
         }
     }
