@@ -153,6 +153,12 @@
             VerticalAlignment="Top" 
             FontSize="22"
             Width="66" TextAlignment="Left" RenderTransformOrigin="0.929,0.48"/>
+            <Button x:Name="DeleteCart"
+                Content="רוקן סל"
+                Background="#FFCCB5B5"
+                HorizontalAlignment="Left"
+                Margin="20,10,0,0"
+                VerticalAlignment="Top" Width="81" Click="DeleteCart_Click"/>
         </Grid>
 
         <Image Name="CryBaby"

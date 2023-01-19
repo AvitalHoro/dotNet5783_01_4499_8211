@@ -46,6 +46,7 @@ public partial class FinishOrder : Page
 
     private void trackOrder_Click(object sender, RoutedEventArgs e)
     {
-        frame.Content = new PL.Order.OrderTracking(bl, Tools.CopyPropTo(bl.Order.GetDetailsOrder(order.ID), new PO.OrderPO()), frame, false);
+        frame.Content = new PL.Order.OrderTracking
+            (bl, Tools.CopyPropTo(bl.Order.GetDetailsOrder(order.ID), new PO.OrderPO()), frame, false);
     }
 }

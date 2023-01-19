@@ -117,4 +117,12 @@ public partial class Cart : Page
         int amount = ((PO.OrderItemPO)b.DataContext).Amount;
         UpdateAmount(sender, amount + 1);
     }
+
+    private void DeleteCart_Click(object sender, RoutedEventArgs e)
+    {
+        mainWindow.cart = new();
+        mainWindow.cart.OrderItems = new();
+        myCart.OrderItems = new();
+        myCart = new();
+    }
 }
