@@ -33,6 +33,8 @@ public partial class SimulatorWindow : Window
     ObservableCollection<PO.OrderPO> _listOrders = new();
     DateTime date = DateTime.Now;
 
+   //public double Progress { get; set; }
+
     public SimulatorWindow(IBl BL, ObservableCollection<PO.OrderPO> listOrders)
     {
         InitializeComponent();

@@ -298,3 +298,26 @@ public class StringContentToTitleConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+public class  PrecentToThicknessConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        BO.Status state = (BO.Status)value;
+        Random num = new Random();
+        double precent = 0;
+
+        if (state == BO.Status.approved)
+            precent = num.Next(10, 30);
+        if (state == BO.Status.sent)
+            precent = num.Next(50, 70);
+        if (state == BO.Status.delivered)
+            precent = 100;
+        return precent; 
+        //return new Thickness(precent, 0, 0, 0);
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
