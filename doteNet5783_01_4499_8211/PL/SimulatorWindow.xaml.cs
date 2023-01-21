@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Threading;
 using DO;
 using MaterialDesignThemes.Wpf;
+using PL.Order;
 
 namespace PL;
 /// <summary>
@@ -201,6 +202,13 @@ public partial class SimulatorWindow : Window
             this.Cursor = Cursors.Wait;
             SentOrder.RunWorkerAsync();
         }
+    }
+
+    private void OrderTrackingButton_Click(object sender, RoutedEventArgs e)
+    {
+        var b = sender as Button;
+        PO.OrderPO order = (PO.OrderPO)b.DataContext;
+        new SimulatorOrderTracking(bl.Order.Tracking(order.ID)).Show();
     }
 }
 //    //    bwMarry = new BackgroundWorker();

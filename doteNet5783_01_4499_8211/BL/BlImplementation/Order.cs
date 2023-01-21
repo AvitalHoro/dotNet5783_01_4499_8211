@@ -251,16 +251,16 @@ internal class Order : BLApi.IOrder
             List<Tuple<DateTime?, string>> listTuples = new List<Tuple<DateTime?, string>> { }; 
             orderTracking.ID = orderDo.ID;
             orderTracking.State = BO.Status.approved;
-            listTuples.Add(Tuple.Create(orderDo.OrderDate, "The order was approved"));
+            listTuples.Add(Tuple.Create(orderDo.OrderDate, ":אושרה"));
             if (orderDo.ShipDate != null) //אם כבר יש תאריך שליחה, מוסיף לרשימת הצמדים
             {
                 orderTracking.State = BO.Status.sent;
-                listTuples.Add(Tuple.Create(orderDo.ShipDate, "The order was sent"));
+                listTuples.Add(Tuple.Create(orderDo.ShipDate, ":נשלחה"));
             }
             if (orderDo.DeliveryDate != null) //אם כבר יש תאריך מסירה, מוסיף לרשימת הצמדים
             {
                 orderTracking.State = BO.Status.delivered;
-                listTuples.Add(Tuple.Create(orderDo.DeliveryDate, "The order was delivered"));
+                listTuples.Add(Tuple.Create(orderDo.DeliveryDate, ":התקבלה"));
             }
             orderTracking.Tracking = listTuples;
             return orderTracking;
