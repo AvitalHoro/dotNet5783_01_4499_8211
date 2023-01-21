@@ -19,15 +19,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100010</ID>
-    <Name>עגלת פולד צהוב שחור SPORT LINE FOLD</Name>
-    <Category>Carts</Category>
-    <Price>3450</Price>
-    <InStock>24</InStock>
-    <Path>/Images/productImages/carts8.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100011</ID>
     <Name>טיולון בי 6 אפור /אדום שלד אלומניום BUGABOO BEE 6</Name>
     <Category>Carts</Category>
@@ -745,6 +736,15 @@
     <Price>79</Price>
     <InStock>17</InStock>
     <Path>/Images/productImages/carts5.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100010</ID>
+    <Name>עגלת פולד צהוב שחור SPORT LINE FOLD</Name>
+    <Category>Carts</Category>
+    <Price>3450</Price>
+    <InStock>23</InStock>
+    <Path>/Images/productImages/carts8.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>
