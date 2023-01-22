@@ -27,12 +27,31 @@ namespace PL;
 /// </summary>
 public partial class SimulatorWindow : Window
 {
+
     Thickness RandNum=new Thickness(100,0,0,0);
     BackgroundWorker SentOrder;
     BackgroundWorker DelivredOrder;
 
     private IBl bl;
-    ObservableCollection<PO.OrderPO> _listOrders = new();
+    private ObservableCollection<PO.OrderPO> listOrders;
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    public ObservableCollection<PO.OrderPO> ListOrders
+    {
+        get
+        { return listOrders; }
+        set
+        {
+            listOrders = value;
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("ListOrders"));
+            }
+        }
+    }
+
+
+
     DateTime date = DateTime.Now;
 
    //public double Progress { get; set; }
@@ -42,7 +61,7 @@ public partial class SimulatorWindow : Window
         InitializeComponent();
         bl = BL;
         DataContext = listOrders;
-        _listOrders = listOrders;
+        ListOrders = listOrders;
         progBarTime.Value = 0;
         SentOrder = new BackgroundWorker();
         SentOrder.DoWork += SentOrder_DoWork;
@@ -76,15 +95,10 @@ public partial class SimulatorWindow : Window
         //Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
         //RandNum = t;
 
-        //לעדכן את הרשימה?
-        //לקדם את המטוס
-        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-        Tools.IEnumerableToObservable(_listOrders, list1);
-        OrdersListAdmin.DataContext = _listOrders;
-
+        Tools.ListOrderBoToPo(ListOrders, bl.Order.GetOrderList()!);
+      
         double precent1 = progBarTime.Value + (100 - progBarTime.Value) / 10;
         progBarTime.Value = precent1;
-
     }
 
     private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
@@ -107,25 +121,6 @@ public partial class SimulatorWindow : Window
                 date = date.Add(day);
                 i++;
                 DateTime dateToDel = date.Subtract(day * 14);
-
-                //foreach(PO.OrderPO order in list)
-                //{
-                //    BO.Order order1 = bl.Order.GetDetailsOrder(order.ID);
-                //    if(order1.ShipDate<=dateToDel)
-                //    {
-                //        bl.Order.UpdateDeliveryDate(order.ID);
-                //        DelivredOrder.ReportProgress(0);
-                //    }
-                //    else
-                //    {
-                //        DateTime d = order1.ShipDate??date;
-                //        int percent = (d - dateToDel).Days+i;
-                //        DelivredOrder.ReportProgress(100/percent);
-
-                //    }
-
-
-                //}
                 var del = (from PO.OrderPO order in list
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.ShipDate <= dateToDel)
@@ -147,7 +142,6 @@ public partial class SimulatorWindow : Window
             if(progBarTime.Value<50)
             {
                 progBarTime.Value = 50;
-                
             }
         }
     }
@@ -187,9 +181,7 @@ public partial class SimulatorWindow : Window
 
     private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-        Tools.IEnumerableToObservable(_listOrders, list1);
-        OrdersListAdmin.DataContext = _listOrders;
+        Tools.ListOrderBoToPo(ListOrders, bl.Order.GetOrderList()!);
 
         double precent = progBarTime.Value + (50 - progBarTime.Value) / 10;
         progBarTime.Value = precent;
@@ -211,6 +203,12 @@ public partial class SimulatorWindow : Window
         new SimulatorOrderTracking(bl.Order.Tracking(order.ID)).Show();
     }
 }
+
+
+
+
+
+
 //    //    bwMarry = new BackgroundWorker();
 //    //    bwMarry.DoWork += BwMarry_DoWork;
 //    //    bwMarry.ProgressChanged += BwMarry_ProgressChanged;
