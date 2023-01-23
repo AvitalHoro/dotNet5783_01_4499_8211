@@ -50,6 +50,7 @@
                             <TextBox x:Name="textNumber" 
                                      Margin="1" 
                                      Width="40" 
+                                     PreviewKeyDown="EntersOnlyNumbers"
                                      TextAlignment="Center"
                                      FontSize="20"
                                      Text="{Binding Amount}"

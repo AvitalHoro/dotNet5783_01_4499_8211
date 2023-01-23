@@ -102,9 +102,13 @@ public partial class Cart : Page
         UpdateAmount(sender, amount - 1);
     }
 
+    private void EntersOnlyNumbers(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
+
     private void txtNum_TextChanged(object sender, TextChangedEventArgs e)
     {
         var t = (TextBox)sender;
+        if (t.Text == "")
+            return;
         int amount = int.Parse(t.Text);
         if (amount == 0)
             amount = 1;
