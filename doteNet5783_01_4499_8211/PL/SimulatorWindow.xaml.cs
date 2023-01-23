@@ -121,7 +121,7 @@ public partial class SimulatorWindow : Window
                 var ship = (from PO.OrderPO order in list
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.OrderDate <= dateToShip)
-                           select bl.Order.UpdateShipDate(order.ID)).ToList();
+                           select bl.Order.UpdateShipDate(order.ID, date)).ToList();
                 Thread.Sleep(300);
                 if (SentAndDeliveredOrder.WorkerReportsProgress == true)
                     SentAndDeliveredOrder.ReportProgress(i);
