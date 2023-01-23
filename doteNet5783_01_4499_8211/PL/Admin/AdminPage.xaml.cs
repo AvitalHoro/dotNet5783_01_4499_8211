@@ -80,9 +80,13 @@ public partial class AdminPage : Page
 
     private void OrdersListAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
     {
-        PO.OrderPO order= (PO.OrderPO)((DataGrid)sender).SelectedItem;
-        frame.Content = new PL.Order.OrderTracking(bl, order, frame, true);
-        var orderPo = listOrders.FirstOrDefault(o => o.ID == order.ID);
+       
+        PO.OrderPO orderPo = (PO.OrderPO)((DataGrid)sender).SelectedItem;
+        BO.Order order = bl.Order.GetDetailsOrder(orderPo.ID);
+        Tools.CopyPropTo(order, orderPo);
+        orderPo.Items = order.Items;
+        frame.Content = new PL.Order.OrderTracking(bl, orderPo, frame, true);
+        orderPo = listOrders.FirstOrDefault(o => o.ID == order.ID);
         BO.Order orderBo = bl.Order.GetDetailsOrder(order.ID);
         orderPo.ShipDate = orderBo.ShipDate;    
         orderPo.State= orderBo.State;   

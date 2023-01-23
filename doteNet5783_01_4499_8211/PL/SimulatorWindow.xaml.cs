@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Threading;
 using DO;
 using MaterialDesignThemes.Wpf;
+using PL.Order;
 
 namespace PL;
 /// <summary>
@@ -26,11 +27,30 @@ namespace PL;
 /// </summary>
 public partial class SimulatorWindow : Window
 {
+
     Thickness RandNum=new Thickness(100,0,0,0);
     BackgroundWorker SentAndDeliveredOrder;
 
     private IBl bl;
-    ObservableCollection<PO.OrderPO> _listOrders = new();
+    private ObservableCollection<PO.OrderPO> listOrders;
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    public ObservableCollection<PO.OrderPO> ListOrders
+    {
+        get
+        { return listOrders; }
+        set
+        {
+            listOrders = value;
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("ListOrders"));
+            }
+        }
+    }
+
+
+
     DateTime date = DateTime.Now;
 
    //public double Progress { get; set; }
@@ -40,7 +60,7 @@ public partial class SimulatorWindow : Window
         InitializeComponent();
         bl = BL;
         DataContext = listOrders;
-        _listOrders = listOrders;
+        ListOrders = listOrders;
         progBarTime.Value = 0;
         SentAndDeliveredOrder = new BackgroundWorker();
         SentAndDeliveredOrder.DoWork += SentAndDeliveredOrder_DoWork;
@@ -122,9 +142,7 @@ public partial class SimulatorWindow : Window
 
     private void SentAndDeliveredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
-        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-        Tools.IEnumerableToObservable(_listOrders, list1);
-        OrdersListAdmin.DataContext = _listOrders;
+        Tools.ListOrderBoToPo(ListOrders, bl.Order.GetOrderList()!);
 
         double precent = progBarTime.Value + e.ProgressPercentage/8;
         if(precent>100)
@@ -139,6 +157,13 @@ public partial class SimulatorWindow : Window
             this.Cursor = Cursors.Wait;
             SentAndDeliveredOrder.RunWorkerAsync();
         }
+    }
+
+    private void OrderTrackingButton_Click(object sender, RoutedEventArgs e)
+    {
+        var b = sender as Button;
+        PO.OrderPO order = (PO.OrderPO)b.DataContext;
+        new SimulatorOrderTracking(bl.Order.Tracking(order.ID)).Show();
     }
 }
 

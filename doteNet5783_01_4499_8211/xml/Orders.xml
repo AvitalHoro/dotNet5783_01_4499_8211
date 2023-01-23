@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Order>
-    <ID>1001</ID>
-    <CostumerName>אביטל הורוביץ</CostumerName>
-    <CostumerEmail>avital123@gmail.com</CostumerEmail>
-    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-    <IsDeleted>false</IsDeleted>
-  </Order>
-  <Order>
-    <ID>1002</ID>
-    <CostumerName>מוריה דרורי</CostumerName>
-    <CostumerEmail>moriyaDr@gmail.com</CostumerEmail>
-    <OrderDate>2022-01-13T03:16:26.9822115+02:00</OrderDate>
-    <ShipDate>2022-01-13T03:16:26.9872658+02:00</ShipDate>
-    <DeliveryDate>2022-01-13T03:16:26.9873639+02:00</DeliveryDate>
-    <IsDeleted>false</IsDeleted>
-  </Order>
-  <Order>
     <ID>1003</ID>
     <CostumerName>רעות צפלביץ</CostumerName>
     <CostumerEmail>reutZi56@gmail.com</CostumerEmail>
@@ -355,6 +337,16 @@
     <CostumerAdress>קרית משה 10</CostumerAdress>
     <OrderDate>2023-01-15T19:40:26.6293706+02:00</OrderDate>
     <ShipDate>2023-01-17T08:39:23.2353615+02:00</ShipDate>
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1096</ID>
+    <CostumerName>רחלי סבאג</CostumerName>
+    <CostumerEmail>rachelsabag@gmail.com</CostumerEmail>
+    <CostumerAdress>אבני חפץ , רוטשילד 22</CostumerAdress>
+    <OrderDate>2023-01-19T16:29:41.885327+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
     <DeliveryDate xsi:nil="true" />
     <IsDeleted>false</IsDeleted>
   </Order>
