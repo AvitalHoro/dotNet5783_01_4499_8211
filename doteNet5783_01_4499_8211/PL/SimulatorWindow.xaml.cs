@@ -71,6 +71,7 @@ public partial class SimulatorWindow : Window
         SentAndDeliveredOrder.WorkerReportsProgress = true;
         SentAndDeliveredOrder.WorkerSupportsCancellation = true;
 
+        Date.Text = date.ToShortDateString();
     }
 
     private void SentAndDeliveredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -143,6 +144,8 @@ public partial class SimulatorWindow : Window
     private void SentAndDeliveredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
         Tools.ListOrderBoToPo(ListOrders, bl.Order.GetOrderList()!);
+
+        Date.Text = date.ToShortDateString();
 
         double precent = progBarTime.Value + e.ProgressPercentage/8;
         if(precent>100)

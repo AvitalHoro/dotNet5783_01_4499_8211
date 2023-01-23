@@ -120,7 +120,8 @@
                     Background="#FFB1BFAD"
                     Click="Button_Click"
                     Grid.ColumnSpan="2"/>
-            <ProgressBar x:Name="progBarTime" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="126,33,0,0" VerticalAlignment="Top" Width="241"/>
+            <ProgressBar x:Name="progBarTime" Background="CadetBlue" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="126,33,0,0" VerticalAlignment="Top" Width="241"/>
+            <TextBlock x:Name="Date" Text="" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="181,40,0,0" VerticalAlignment="Top" Width="131" TextAlignment="Center" TextWrapping="Wrap" FontSize="14" FontWeight="Bold"/>
         </Grid>
     </Grid>
 </Window>
