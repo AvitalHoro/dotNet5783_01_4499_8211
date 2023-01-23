@@ -9,6 +9,7 @@ public struct Order
     //מדפיס את כל פרטי ההזמנה
     public override string ToString() { return this.ToStringProperty(); }
     public int ID { set; get; }
+    public double TotalPrice { set; get; }
     public string CostumerName { set; get; }
     public string CostumerEmail { set; get; }
     public string CostumerAdress { set; get; }

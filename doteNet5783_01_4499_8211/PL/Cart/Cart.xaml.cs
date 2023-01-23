@@ -44,7 +44,7 @@ public partial class Cart : Page
 
     private void GoBackToCatalog_Click(object sender, RoutedEventArgs e)
     {
-        mainWindow.ListCategories_Click(sender, e);
+        mainWindow.framePage.Content = new Product.ProductCatalogForCostumer(bl, "All", cartBo, mainWindow.framePage);
     }
 
     private void UpdateAmount_Click(object sender, RoutedEventArgs e)

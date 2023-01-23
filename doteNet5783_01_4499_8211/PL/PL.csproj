@@ -118,6 +118,7 @@
     <None Remove="Images\productImages\play9.jpg" />
     <None Remove="Images\SearchBox.png" />
     <None Remove="Images\SearchIcon.png" />
+    <None Remove="logo.png" />
     <None Remove="mainPicture.png" />
     <None Remove="Order\approved.png" />
     <None Remove="Order\deliver.png" />
@@ -140,6 +141,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Gray Simple Sale Fashion Instagram Post (8).png" />
     <Resource Include="Images\car.png" />
     <Resource Include="Images\happyBabyForOrderId.png" />
     <Resource Include="Images\passwordAdmin.png" />
@@ -266,6 +268,7 @@
     <Resource Include="Images\ברוך הבא מנהל %281%29.png" />
     <Resource Include="Images\ברוך הבא מנהל %28200 × 100 פיקסל%29.png" />
     <Resource Include="Images\addP.png" />
+    <Resource Include="logo.png" />
   </ItemGroup>
 
 </Project>

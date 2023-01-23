@@ -88,7 +88,7 @@
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Path}" 
                                Height="100" Grid.Column="3"></Image>
-                        <TextBlock  VerticalAlignment="Center" Text="{Binding NameProduct}" Grid.Column="2" TextAlignment="Center"></TextBlock>
+                        <TextBlock  VerticalAlignment="Center" Text="{Binding NameProduct}" Grid.Column="2" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
 
                         <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Text="₪" 

@@ -34,7 +34,7 @@ internal class Product : IProduct
 
             return (from DO.Product doProduct in doProductList
                     select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
-                   .ToList();
+                   .ToList().OrderBy(x => x?.ID);
         }
 
         else
@@ -58,7 +58,7 @@ internal class Product : IProduct
 
             return (from DO.Product doProduct in doProductList
                     select BO.Tools.CopyPropTo(doProduct, new BO.ProductForList()))
-                   .ToList();
+                   .ToList().OrderBy(x => x?.ID);
         }
     }
     #endregion
