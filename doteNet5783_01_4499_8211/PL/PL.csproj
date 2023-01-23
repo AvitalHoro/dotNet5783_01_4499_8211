@@ -21,9 +21,6 @@
 
   <ItemGroup>
     <None Remove="3.png" />
-    <None Remove="Admin\Pink Beige Modern Watercolor Letter Paper With Delicate Floral - A4 Document.png" />
-    <None Remove="Admin\הזמנה לחתונה לרשת חברתית %281%29.png" />
-    <None Remove="Admin\הזמנה לחתונה לרשת חברתית.png" />
     <None Remove="all.png" />
     <None Remove="Cart\sadBaby.png" />
     <None Remove="Cart\start.png" />
@@ -37,11 +34,13 @@
     <None Remove="Images\car.png" />
     <None Remove="Images\crybaby.png" />
     <None Remove="Images\Gray Simple Sale Fashion Instagram Post %288%29.png" />
+    <None Remove="Images\happyBabyForOrderId.png" />
     <None Remove="Images\iconAdmin.png" />
     <None Remove="Images\iconCart.png" />
     <None Remove="Images\iconCategory.png" />
     <None Remove="Images\iconOrder.png" />
     <None Remove="Images\logo.png" />
+    <None Remove="Images\passwordAdmin.png" />
     <None Remove="Images\productImages\bot1.jpg" />
     <None Remove="Images\productImages\bot10.jpg" />
     <None Remove="Images\productImages\bot11.jpg" />
@@ -136,18 +135,14 @@
     <None Remove="Order\viza.webp" />
     <None Remove="Order\ברוך הבא מנהל %281%29.png" />
     <None Remove="Order\ברוך הבא מנהל %28200 × 100 פיקסל%29.png" />
-    <None Remove="Order\לרעות %281%29.png" />
-    <None Remove="Order\לרעות %282%29.png" />
-    <None Remove="Order\לרעות.png" />
     <None Remove="Product\addP.png" />
     <None Remove="Product\crybaby.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Admin\Pink Beige Modern Watercolor Letter Paper With Delicate Floral - A4 Document.png" />
-    <Resource Include="Admin\הזמנה לחתונה לרשת חברתית (1).png" />
-    <Resource Include="Admin\הזמנה לחתונה לרשת חברתית.png" />
     <Resource Include="Images\car.png" />
+    <Resource Include="Images\happyBabyForOrderId.png" />
+    <Resource Include="Images\passwordAdmin.png" />
     <Resource Include="Images\productImages\play7.jpg" />
   </ItemGroup>
 
@@ -271,9 +266,6 @@
     <Resource Include="Images\ברוך הבא מנהל %281%29.png" />
     <Resource Include="Images\ברוך הבא מנהל %28200 × 100 פיקסל%29.png" />
     <Resource Include="Images\addP.png" />
-    <Resource Include="Order\לרעות (1).png" />
-    <Resource Include="Order\לרעות (2).png" />
-    <Resource Include="Order\לרעות.png" />
   </ItemGroup>
 
 </Project>
