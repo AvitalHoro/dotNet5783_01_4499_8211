@@ -67,7 +67,6 @@ public partial class SimulatorWindow : Window
         SentAndDeliveredOrder.ProgressChanged += SentAndDeliveredOrder_ProgressChanged;
         SentAndDeliveredOrder.RunWorkerCompleted += SentAndDeliveredOrder_RunWorkerCompleted;
 
-
         SentAndDeliveredOrder.WorkerReportsProgress = true;
         SentAndDeliveredOrder.WorkerSupportsCancellation = true;
 
@@ -82,7 +81,6 @@ public partial class SimulatorWindow : Window
         if (progBarTime.Value < 100)
         {
             progBarTime.Value = 100;
-
         }
         MessageBox.Show("התהליך הושלם בהצלחה");
     }
@@ -122,7 +120,7 @@ public partial class SimulatorWindow : Window
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.OrderDate <= dateToShip)
                            select bl.Order.UpdateShipDate(order.ID)).ToList();
-                Thread.Sleep(300);
+                Thread.Sleep(1000);
                 if (SentAndDeliveredOrder.WorkerReportsProgress == true)
                     SentAndDeliveredOrder.ReportProgress(i);
 
@@ -131,14 +129,11 @@ public partial class SimulatorWindow : Window
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.ShipDate <= dateToDel)
                            select bl.Order.UpdateDeliveryDate(order.ID, date)).ToList();
-                Thread.Sleep(300);
+                Thread.Sleep(1000);
                 if (SentAndDeliveredOrder.WorkerReportsProgress == true)
                     SentAndDeliveredOrder.ReportProgress(i);
-
             }
-
         }
-       
     }
 
     private void SentAndDeliveredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
@@ -176,24 +171,7 @@ public partial class SimulatorWindow : Window
             this.Cursor = Cursors.Wait;
             SentAndDeliveredOrder.CancelAsync();
             MessageBox.Show("ישנן הזמנות שעוד לא נמסרו");
-
         }
     }
 }
 
-//private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
-//{
-//    //int precent = e.ProgressPercentage;
-//    //Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
-//    //RandNum = t;
-
-//    //לעדכן את הרשימה?
-//    //לקדם את המטוס
-//    var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-//    Tools.IEnumerableToObservable(_listOrders, list1);
-//    OrdersListAdmin.DataContext = _listOrders;
-
-//    double precent1 = progBarTime.Value + (100 - progBarTime.Value) / 10;
-//    progBarTime.Value = precent1;
-
-//}

@@ -24,7 +24,7 @@
             <StackPanel Name="managetLogin"  
                             Orientation="Vertical" 
                             HorizontalAlignment="Left" 
-                            VerticalAlignment="Top" Margin="40,161,0,0">
+                            VerticalAlignment="Top" Margin="20,197,0,0">
 
                 <TextBlock HorizontalAlignment="Right"
                                Foreground="#FF2B331F"
