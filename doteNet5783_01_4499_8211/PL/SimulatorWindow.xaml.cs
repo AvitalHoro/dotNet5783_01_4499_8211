@@ -28,7 +28,7 @@ namespace PL;
 public partial class SimulatorWindow : Window
 {
 
-    Thickness RandNum=new Thickness(100,0,0,0);
+    Thickness RandNum = new Thickness(100,0,0,0);
     BackgroundWorker SentOrder;
     BackgroundWorker DelivredOrder;
 
@@ -199,7 +199,7 @@ public partial class SimulatorWindow : Window
     private void OrderTrackingButton_Click(object sender, RoutedEventArgs e)
     {
         var b = sender as Button;
-        PO.OrderPO order = (PO.OrderPO)b.DataContext;
+        PO.OrderPO order = (PO.OrderPO)b!.DataContext;
         new SimulatorOrderTracking(bl.Order.Tracking(order.ID)).Show();
     }
 }

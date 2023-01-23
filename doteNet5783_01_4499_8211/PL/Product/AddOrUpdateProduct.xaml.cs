@@ -12,7 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;   
+using static System.Net.Mime.MediaTypeNames;
+using PO;
 
 namespace PL.Product
 {
@@ -23,17 +24,18 @@ namespace PL.Product
     {
         IBl bl;
         string? path;
+        private ProductPO productPo = new();
 
         //עידכון מוצר
         public AddOrUpdateProduct(IBl BL, BO.ProductForList product)
         {
             InitializeComponent();
             bl = BL;
+            Tools.CopyPropTo(bl.Product.GetProductDetails(product.ID), productPo);
             UpdateID.IsEnabled = false; //אין אפשרות לשנות את המזהה של המוצר
             UpdateOrAdd.Content = "עדכן";
-            UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            productAddOrUp.DataContext = product;
-            UpdateInStock.Text = (bl.Product.GetProductDetails(product.ID).InStock).ToString();
+            UpdateCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
+            productAddOrUp.DataContext = productPo;
             Title.Text = "עדכון מוצר";
             path = product.Path;
         }
@@ -43,7 +45,7 @@ namespace PL.Product
         {
             InitializeComponent();
             bl = BL;
-            UpdateCategory.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            UpdateCategory.ItemsSource = Enum.GetValues(typeof(PL.Category));
             UpdateOrAdd.Content = "הוסף";
             //אם הגענו לבנאי הריק, סימן שבאנו לחלון של הוספה
             UpdateID.IsEnabled = true;
@@ -78,7 +80,7 @@ namespace PL.Product
                     {
                         ID = int.Parse(UpdateID.Text),
                         Name = UpdateName.Text,
-                        Category = (BO.Category)UpdateCategory.SelectedItem,
+                        Category = (BO.Category)(Tools.PLCategoryToBL((PL.Category)UpdateCategory.SelectedItem))!,
                         Price = int.Parse(UpdatePrice.Text),
                         InStock = int.Parse(UpdateInStock.Text),
                         IsDeleted = false,
@@ -89,7 +91,7 @@ namespace PL.Product
                     {
                         ID = int.Parse(UpdateID.Text),
                         Name = UpdateName.Text,
-                        Category = (BO.Category)UpdateCategory.SelectedItem,
+                        Category = (BO.Category)(Tools.PLCategoryToBL((PL.Category)UpdateCategory.SelectedItem))!,
                         Price = int.Parse(UpdatePrice.Text),
                         InStock = int.Parse(UpdateInStock.Text),
                         IsDeleted = false,
@@ -122,14 +124,6 @@ namespace PL.Product
                 return;
             }
             Close();
-        }
-
-        private void IsEnabled_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (UpdateID.Text.Length == 0 || UpdateCategory.SelectedItem == null || UpdateName.Text.Length == 0
-                || UpdatePrice.Text.Length == 0 || UpdateInStock.Text.Length == 0)
-                return;
-            UpdateOrAdd.IsEnabled = true;   
         }
 
         private void EntersOnlyNumbers(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);

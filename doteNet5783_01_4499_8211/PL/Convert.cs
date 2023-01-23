@@ -158,11 +158,12 @@ public class SentToHiddenConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         BO.Status state = (BO.Status)value;
+        string isAdmin = (string)parameter;
 
-        if (state == BO.Status.sent || state == BO.Status.delivered)
-            return Visibility.Hidden;
-        else
+        if (isAdmin == "true" && state == BO.Status.approved)
             return Visibility.Visible;
+        else
+            return Visibility.Hidden;
     }
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -191,11 +192,12 @@ public class DeliveredToHiddenConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         BO.Status state = (BO.Status)value;
+        string isAdmin = (string)parameter;
 
-        if (state == BO.Status.delivered)
-            return Visibility.Hidden;
-        else
+        if (isAdmin == "true" && state != BO.Status.delivered)
             return Visibility.Visible;
+        else
+            return Visibility.Hidden;
     }
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -339,3 +341,22 @@ public class  PrecentToThicknessConverter : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+public class AllFieldsAreFullToEnabled : IMultiValueConverter
+{
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        bool flag = true;
+        foreach(var val in values)  
+        {
+            if(string.IsNullOrEmpty(val as string))
+                flag = false;
+        }
+        return flag;
+    }
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
