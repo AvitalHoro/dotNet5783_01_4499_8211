@@ -230,10 +230,10 @@ public class TruckConverter : IValueConverter
         BO.Status state = (BO.Status)value;
 
         if (state == BO.Status.approved)
-            return "100,0,0,0";
+            return "60,0,0,0";
         if (state == BO.Status.sent)
-            return "50,0,0,0";
-        return "0,0,0,0";
+            return "0,0,0,0";
+        return "-60,0,0,0";
     }
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
