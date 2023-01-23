@@ -79,12 +79,18 @@ public partial class SimulatorWindow : Window
         var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
         Tools.IEnumerableToObservable(ListOrders, list1);
         OrdersListAdmin.DataContext = ListOrders;
-        if (progBarTime.Value < 100)
+        if(!e.Cancelled)
         {
-            progBarTime.Value = 100;
+            if (progBarTime.Value < 100)
+            {
+                progBarTime.Value = 100;
 
+            }
+            Date.Text = date.ToShortDateString();
+
+            MessageBox.Show("התהליך הושלם בהצלחה");
         }
-        MessageBox.Show("התהליך הושלם בהצלחה");
+
     }
 
 
@@ -96,7 +102,12 @@ public partial class SimulatorWindow : Window
         int i = 1;
         while (notAllOrderSent||notAllOrderDelivired)
         {
-          
+            if (SentAndDeliveredOrder.CancellationPending == true)
+            {
+                e.Cancel = true;
+                break;
+            }
+
             List<PO.OrderPO> list = (from PO.OrderPO order in (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()))
                                      let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                                      where (fullOrder.State == Status.approved)
@@ -171,7 +182,7 @@ public partial class SimulatorWindow : Window
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        if (SentAndDeliveredOrder.IsBusy == true)
+        if (SentAndDeliveredOrder.IsBusy&&SentAndDeliveredOrder.WorkerSupportsCancellation)
         {
             this.Cursor = Cursors.Wait;
             SentAndDeliveredOrder.CancelAsync();
