@@ -39,8 +39,8 @@ public class ProductPO : INotifyPropertyChanged
         }
     }
 
-    private Category category;
-    public Category Category
+    private PL.Category category;
+    public PL.Category Category
     {
         get
         { return category; }
@@ -113,7 +113,6 @@ public class ProductPO : INotifyPropertyChanged
             }
         }
     }
-
 }
 
  

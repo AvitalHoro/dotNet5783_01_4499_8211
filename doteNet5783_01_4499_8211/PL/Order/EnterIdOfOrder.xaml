@@ -14,26 +14,17 @@
         <materialDesign:Card
                 materialDesign:ShadowAssist.ShadowDepth="Depth5"
                 Padding="32"
-                Background="#26E8E5E5"
-                Width="614" Height="474" 
+                Width="800" Height="634" 
                 HorizontalAlignment="Left" 
-                VerticalAlignment="Center" Margin="91,0,0,0">
+                VerticalAlignment="Center" Margin="-2,0,0,0">
+            <materialDesign:Card.Background>
+                <ImageBrush ImageSource="/Order/לרעות (2).png"/>
+            </materialDesign:Card.Background>
 
             <StackPanel Name="managetLogin"  
                             Orientation="Vertical" 
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center">
-
-                <Button
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Bottom"  Margin="0,-20,0,0">
-
-                    <materialDesign:PackIcon Kind="ArrowLeftThin"
-                                                 Height="30" Width="30" HorizontalAlignment="Center"/>
-
-                </Button>
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" Margin="40,161,0,0">
 
                 <TextBlock HorizontalAlignment="Right"
                                Foreground="#FF2B331F"
@@ -49,7 +40,6 @@
                           materialDesign:TextFieldAssist.UnderlineBrush="Black"
                           FontSize="20"
                           KeyDown="EnterPressed_KeyDown">
-
                 </TextBox>
 
                 <Button Grid.Column="1"

@@ -120,15 +120,15 @@ public static class Tools
 
     public static BO.Category? HebrewToCategory(string category)
     {
-        if (category == "בקבוקים ומוצצים")
+        if (category == "בקבוקים ומוצצים" || category == "בקבוקים_ומוצצים")
             return BO.Category.Bottles;
-        if (category == "עגלות וטיולונים")
+        if (category == "עגלות וטיולונים" || category == "עגלות_וטיולונים")
             return BO.Category.Carts;
-        if (category == "צעצועים ומשחקים")
+        if (category == "צעצועים ומשחקים" || category == "צעצועים_ומשחקים")
             return BO.Category.Toys;
-        if (category == "ביגוד והנעלה")
+        if (category == "ביגוד והנעלה" || category == "ביגוד_והנעלה")
             return BO.Category.Clothes;
-        if (category == "היגיינה והחתלה")
+        if (category == "היגיינה והחתלה" || category == "היגיינה_והחתלה")
             return BO.Category.Diapers;
         return null;
     }
@@ -181,4 +181,17 @@ public static class Tools
         return states;
     }
 
+    public static BO.Category PLCategoryToBL(PL.Category category)
+    {
+        if(category == PL.Category.בקבוקים_ומוצצים)
+            return BO.Category.Bottles;
+        if (category == PL.Category.עגלות_וטיולונים)
+            return BO.Category.Carts;
+        if (category == PL.Category.צעצועים_ומשחקים)
+            return BO.Category.Toys;
+        if (category == PL.Category.ביגוד_והנעלה)
+            return BO.Category.Clothes;
+        else 
+            return BO.Category.Diapers;
+    }
 }

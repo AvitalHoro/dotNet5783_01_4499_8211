@@ -125,7 +125,7 @@
                 <ColumnDefinition Width="29*"/>
                 <ColumnDefinition Width="192*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="UpdateShip" Visibility="{Binding Path=State, Converter={StaticResource SentToHiddenConverter}}" HorizontalAlignment="Left" Height="31" Margin="55,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateShip_Click" Grid.Column="1" Grid.Row="1">
+            <Button Name="UpdateShip" Visibility="{Binding Path=State, Converter={StaticResource SentToHiddenConverter}, ConverterParameter=isAdminPage}" HorizontalAlignment="Left" Height="31" Margin="55,25,0,0" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" Click="UpdateShip_Click" Grid.Column="1" Grid.Row="1">
                 <Button.Background>
                     <ImageBrush ImageSource="/Images/updateShip.png" Stretch="Uniform"/>
                 </Button.Background>
