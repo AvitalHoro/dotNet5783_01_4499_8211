@@ -27,8 +27,7 @@ namespace PL;
 public partial class SimulatorWindow : Window
 {
     Thickness RandNum=new Thickness(100,0,0,0);
-    BackgroundWorker SentOrder;
-    BackgroundWorker DelivredOrder;
+    BackgroundWorker SentAndDeliveredOrder;
 
     private IBl bl;
     ObservableCollection<PO.OrderPO> _listOrders = new();
@@ -43,24 +42,22 @@ public partial class SimulatorWindow : Window
         DataContext = listOrders;
         _listOrders = listOrders;
         progBarTime.Value = 0;
-        SentOrder = new BackgroundWorker();
-        SentOrder.DoWork += SentOrder_DoWork;
-        SentOrder.ProgressChanged += SentOrder_ProgressChanged;
-        SentOrder.RunWorkerCompleted += SentOrder_RunWorkerCompleted;
-        DelivredOrder = new BackgroundWorker();
-        DelivredOrder.DoWork += DelivredOrder_DoWork;
-        DelivredOrder.ProgressChanged += DelivredOrder_ProgressChanged;
-        DelivredOrder.RunWorkerCompleted += DelivredOrder_RunWorkerCompleted;
+        SentAndDeliveredOrder = new BackgroundWorker();
+        SentAndDeliveredOrder.DoWork += SentAndDeliveredOrder_DoWork;
+        SentAndDeliveredOrder.ProgressChanged += SentAndDeliveredOrder_ProgressChanged;
+        SentAndDeliveredOrder.RunWorkerCompleted += SentAndDeliveredOrder_RunWorkerCompleted;
 
-        SentOrder.WorkerReportsProgress = true;
-        SentOrder.WorkerSupportsCancellation = true;
 
-        DelivredOrder.WorkerReportsProgress = true;
-        DelivredOrder.WorkerSupportsCancellation = true;
+        SentAndDeliveredOrder.WorkerReportsProgress = true;
+        SentAndDeliveredOrder.WorkerSupportsCancellation = true;
+
     }
 
-    private void DelivredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+    private void SentAndDeliveredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
     {
+        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+        Tools.IEnumerableToObservable(_listOrders, list1);
+        OrdersListAdmin.DataContext = _listOrders;
         if (progBarTime.Value < 100)
         {
             progBarTime.Value = 100;
@@ -69,218 +66,95 @@ public partial class SimulatorWindow : Window
         MessageBox.Show("התהליך הושלם בהצלחה");
     }
 
-    private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
+
+
+    private void SentAndDeliveredOrder_DoWork(object? sender, DoWorkEventArgs e)
     {
-        //int precent = e.ProgressPercentage;
-        //Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
-        //RandNum = t;
-
-        //לעדכן את הרשימה?
-        //לקדם את המטוס
-        var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-        Tools.IEnumerableToObservable(_listOrders, list1);
-        OrdersListAdmin.DataContext = _listOrders;
-
-        double precent1 = progBarTime.Value + (100 - progBarTime.Value) / 10;
-        progBarTime.Value = precent1;
-
-    }
-
-    private void DelivredOrder_DoWork(object? sender, DoWorkEventArgs e)
-    {
-       
         bool notAllOrderDelivired = true;
-        int i = 1;
-        while (notAllOrderDelivired)
-        {
-
-            List<PO.OrderPO> list = (from PO.OrderPO order in (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()))
-                                     let fullOrder = bl.Order.GetDetailsOrder(order.ID)
-                                     where (fullOrder.State == Status.sent)
-                                     select order).ToList();
-            if (list.Count() == 0)
-                notAllOrderDelivired = false;
-            else
-            {
-                TimeSpan day = new TimeSpan(24, 0, 0);
-                date = date.Add(day);
-                i++;
-                DateTime dateToDel = date.Subtract(day * 14);
-
-                //foreach(PO.OrderPO order in list)
-                //{
-                //    BO.Order order1 = bl.Order.GetDetailsOrder(order.ID);
-                //    if(order1.ShipDate<=dateToDel)
-                //    {
-                //        bl.Order.UpdateDeliveryDate(order.ID);
-                //        DelivredOrder.ReportProgress(0);
-                //    }
-                //    else
-                //    {
-                //        DateTime d = order1.ShipDate??date;
-                //        int percent = (d - dateToDel).Days+i;
-                //        DelivredOrder.ReportProgress(100/percent);
-
-                //    }
-
-
-                //}
-                var del = (from PO.OrderPO order in list
-                           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
-                           where (fullOrder.ShipDate <= dateToDel)
-                           select bl.Order.UpdateDeliveryDate(order.ID, date)).ToList();
-                Thread.Sleep(100);
-                if (DelivredOrder.WorkerReportsProgress == true)
-                    DelivredOrder.ReportProgress(i);
-            }
-
-        }
-    }
-
-    private void SentOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
-    {
-        if (DelivredOrder.IsBusy != true)
-        {
-            this.Cursor = Cursors.Wait;
-            DelivredOrder.RunWorkerAsync();
-            if(progBarTime.Value<50)
-            {
-                progBarTime.Value = 50;
-                
-            }
-        }
-    }
-
-    private void SentOrder_DoWork(object? sender, DoWorkEventArgs e)
-    {
         bool notAllOrderSent = true;
         int i = 1;
-        while (notAllOrderSent)
+        while (notAllOrderSent||notAllOrderDelivired)
         {
           
             List<PO.OrderPO> list = (from PO.OrderPO order in (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()))
                                      let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                                      where (fullOrder.State == Status.approved)
                                      select order).ToList();
+
+            List<PO.OrderPO> list1 = (from PO.OrderPO order in (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()))
+                                     let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                                     where (fullOrder.State == Status.sent)
+                                     select order).ToList();
+
+            if (list1.Count() == 0)
+                notAllOrderDelivired = false;
             if (list.Count() == 0)
                 notAllOrderSent = false;
-            else
+            if (notAllOrderSent || notAllOrderDelivired)
             {
                 TimeSpan day = new TimeSpan(24, 0, 0);
                 date = date.Add(day);
                 i++;
-                DateTime dateToShip = date.Subtract(day * 21);
+                DateTime dateToShip = date.Subtract(day * 14);
 
-                var del = (from PO.OrderPO order in list
+                var ship = (from PO.OrderPO order in list
                            let fullOrder = bl.Order.GetDetailsOrder(order.ID)
                            where (fullOrder.OrderDate <= dateToShip)
                            select bl.Order.UpdateShipDate(order.ID)).ToList();
                 Thread.Sleep(300);
-                if (SentOrder.WorkerReportsProgress == true)
-                    SentOrder.ReportProgress(i);
+                if (SentAndDeliveredOrder.WorkerReportsProgress == true)
+                    SentAndDeliveredOrder.ReportProgress(i);
+
+                DateTime dateToDel = date.Subtract(day * 21);
+                var del = (from PO.OrderPO order in list1
+                           let fullOrder = bl.Order.GetDetailsOrder(order.ID)
+                           where (fullOrder.ShipDate <= dateToDel)
+                           select bl.Order.UpdateDeliveryDate(order.ID, date)).ToList();
+                Thread.Sleep(300);
+                if (SentAndDeliveredOrder.WorkerReportsProgress == true)
+                    SentAndDeliveredOrder.ReportProgress(i);
+
             }
 
         }
        
     }
 
-    private void SentOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
+    private void SentAndDeliveredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
     {
         var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
         Tools.IEnumerableToObservable(_listOrders, list1);
         OrdersListAdmin.DataContext = _listOrders;
 
-        double precent = progBarTime.Value + (50 - progBarTime.Value) / 10;
+        double precent = progBarTime.Value + e.ProgressPercentage/8;
+        if(precent>100)
+            precent=progBarTime.Value;
         progBarTime.Value = precent;
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        if (DelivredOrder.IsBusy != true)
+        if (SentAndDeliveredOrder.IsBusy != true)
         {
             this.Cursor = Cursors.Wait;
-            SentOrder.RunWorkerAsync();
+            SentAndDeliveredOrder.RunWorkerAsync();
         }
     }
 }
-//    //    bwMarry = new BackgroundWorker();
-//    //    bwMarry.DoWork += BwMarry_DoWork;
-//    //    bwMarry.ProgressChanged += BwMarry_ProgressChanged;
-//    //    bwMarry.RunWorkerCompleted += BwMarry_RunWorkerCompleted;
 
-//    //bwMarry.WorkerReportsProgress = true;
-//    //    bwMarry.WorkerSupportsCancellation = true;
+//private void DelivredOrder_ProgressChanged(object? sender, ProgressChangedEventArgs e)
+//{
+//    //int precent = e.ProgressPercentage;
+//    //Thickness t = new Thickness(100 - precent*10, 0, 0, 0);
+//    //RandNum = t;
 
-//    //}
+//    //לעדכן את הרשימה?
+//    //לקדם את המטוס
+//    var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
+//    Tools.IEnumerableToObservable(_listOrders, list1);
+//    OrdersListAdmin.DataContext = _listOrders;
 
-//    //private void BwMarry_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-//    //{
-//    //    if (e.Cancelled == true)
-//    //    {
-//    //        Thickness t = new Thickness(0, 0, 0, 0);
-//    //        airplane.Margin = t;
-//    //        MessageBox.Show("Try next time...");
-//    //    }
-//    //    else
-//    //    {
+//    double precent1 = progBarTime.Value + (100 - progBarTime.Value) / 10;
+//    progBarTime.Value = precent1;
 
-//    //        MessageBox.Show("Mazal Tov!!");
-//    //    }
-//    //    this.Cursor = Cursors.Arrow;
-//    //}
-
-//    //private void BwMarry_ProgressChanged(object sender, ProgressChangedEventArgs e)
-//    //{
-//    //    int precent = e.ProgressPercentage;
-//    //    Thickness t = new Thickness(precent, 0, 0, 0);
-//    //    airplane.Margin = t;
-//    //    //int precent = e.ProgressPercentage;
-//    //    //progBarTime.Value = precent;
-//    //    if (precent > 50)
-//    //    {
-//    //    }
-//    //}
-
-//    //private void BwMarry_DoWork(object sender, DoWorkEventArgs e)
-//    //{
-//    //    //bl.simultor(cuurent drone, e.Argument, bw ) // 
-//    //    int timeToMarry = 30;
-//    //    for (int i = 0; i <= timeToMarry; i++)
-//    //    {
-//    //        if (bwMarry.CancellationPending == true)
-//    //        {
-//    //            e.Cancel = true;
-//    //            break;
-//    //        }
-//    //        else
-//    //        {
-//    //            Thread.Sleep(500);
-//    //            if (bwMarry.WorkerReportsProgress == true)
-//    //                bwMarry.ReportProgress(i * 100 / timeToMarry);
-
-//    //        }
-//    //    }
-//    //}
-
-//    //private void btnMarry_Click(object sender, RoutedEventArgs e)
-//    //{
-//        if (bwMarry.IsBusy != true)
-//        {
-//            this.Cursor = Cursors.Wait;
-//            bwMarry.RunWorkerAsync(30);
-//        }
-//    }
-
-//    private void btnCancel_Click(object sender, RoutedEventArgs e)
-//    {
-//        if (bwMarry.WorkerSupportsCancellation == true)
-//            bwMarry.CancelAsync(); // Cancel the asynchronous operation.
-//    }
-
-//    private void Window_Closing(object sender, CancelEventArgs e)
-//    {
-//        if (bwMarry.WorkerSupportsCancellation == true)
-//            bwMarry.CancelAsync(); // Cancel the asynchronous operation.
-//        Thread.Sleep(1000);
-//    }
 //}
