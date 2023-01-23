@@ -111,7 +111,7 @@
                     VerticalAlignment="Top"
                     Width="100" 
                     RenderTransformOrigin="0.291,0.522"
-                    Background="#FFB1BFAD"/>
+                    Background="#FFB1BFAD" Click="Button_Click_1"/>
             <Button Content="התחל מעקב" 
                     HorizontalAlignment="Left"
                     Margin="158,32,0,0"

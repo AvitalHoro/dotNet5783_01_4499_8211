@@ -76,8 +76,8 @@ public partial class SimulatorWindow : Window
     private void SentAndDeliveredOrder_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
     {
         var list1 = (bl.Order.GetOrderList()).Select(order => Tools.CopyPropTo(order, new PO.OrderPO()));
-        Tools.IEnumerableToObservable(_listOrders, list1);
-        OrdersListAdmin.DataContext = _listOrders;
+        Tools.IEnumerableToObservable(ListOrders, list1);
+        OrdersListAdmin.DataContext = ListOrders;
         if (progBarTime.Value < 100)
         {
             progBarTime.Value = 100;
@@ -164,6 +164,17 @@ public partial class SimulatorWindow : Window
         var b = sender as Button;
         PO.OrderPO order = (PO.OrderPO)b.DataContext;
         new SimulatorOrderTracking(bl.Order.Tracking(order.ID)).Show();
+    }
+
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        if (SentAndDeliveredOrder.IsBusy == true)
+        {
+            this.Cursor = Cursors.Wait;
+            SentAndDeliveredOrder.CancelAsync();
+            MessageBox.Show("ישנן הזמנות שעוד לא נמסרו");
+
+        }
     }
 }
 
