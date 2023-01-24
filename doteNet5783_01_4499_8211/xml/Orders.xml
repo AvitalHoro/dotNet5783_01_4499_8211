@@ -386,12 +386,45 @@
     <IsDeleted>false</IsDeleted>
   </Order>
   <Order>
+    <ID>1098</ID>
+    <TotalPrice>2062.5</TotalPrice>
+    <CostumerName>חנה בורכוב</CostumerName>
+    <CostumerEmail>Hanah@borachov.org.il</CostumerEmail>
+    <CostumerAdress>פרדס חנה, רחוב הבארות 81</CostumerAdress>
+    <OrderDate>2023-01-24T09:33:30.5339462+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1099</ID>
+    <TotalPrice>91.9</TotalPrice>
+    <CostumerName>שבות מרדכי</CostumerName>
+    <CostumerEmail>mordechay@walla.co</CostumerEmail>
+    <CostumerAdress>ירושלים פסגת זאב, הערבות 56</CostumerAdress>
+    <OrderDate>2023-01-24T09:36:08.8822655+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
     <ID>1097</ID>
-    <TotalPrice>2428.45</TotalPrice>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>מרים פרץ</CostumerName>
     <CostumerEmail>miryamPeretz@gmail.com</CostumerEmail>
     <CostumerAdress>אביבים , השעורה 32</CostumerAdress>
     <OrderDate>2023-01-23T23:45:30.1687105+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>true</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1100</ID>
+    <TotalPrice>183</TotalPrice>
+    <CostumerName>ראשית פרל</CostumerName>
+    <CostumerEmail>Pearl@walla.co</CostumerEmail>
+    <CostumerAdress>יד בנימין , הערבה 3</CostumerAdress>
+    <OrderDate>2023-01-24T09:39:37.3488826+02:00</OrderDate>
     <ShipDate xsi:nil="true" />
     <DeliveryDate xsi:nil="true" />
     <IsDeleted>false</IsDeleted>

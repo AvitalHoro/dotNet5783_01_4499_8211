@@ -20,8 +20,8 @@
             <TextBlock HorizontalAlignment="Left" Height="34" Margin="198,506,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" TextAlignment="Right" FontSize="24" FontWeight="Bold" Text=":כתובת משלוח"/>
             <TextBlock x:Name="_idOrder" Text="{Binding ID}" HorizontalAlignment="Left" Height="28" Margin="430,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="24" TextAlignment="Right"/>
             <TextBlock x:Name="payDate" Text="{Binding OrderDate}" HorizontalAlignment="Left" Height="28" Margin="416,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="24" TextAlignment="Right"/>
-            <TextBlock x:Name="pay" HorizontalAlignment="Left" Height="28" Margin="28,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontSize="24" TextAlignment="Right"/>
-            <TextBlock x:Name="adress" Text="{Binding CostumerAdress}" HorizontalAlignment="Left" Height="28" Margin="28,510,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" FontSize="24" TextAlignment="Right"/>
+            <TextBlock x:Name="pay" HorizontalAlignment="Left" Height="32" Margin="28,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontSize="24" TextAlignment="Right"/>
+            <TextBlock x:Name="adress" Text="{Binding CostumerAdress}" HorizontalAlignment="Left" Height="32" Margin="28,510,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" FontSize="24" TextAlignment="Right"/>
             <TextBlock x:Name="name" Text="{Binding CostumerName}" HorizontalAlignment="Left" Height="34" Margin="322,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" FontSize="26" TextAlignment="Center" FontWeight="Bold"/>
         </Grid>
 
