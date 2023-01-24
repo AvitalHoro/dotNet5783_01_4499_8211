@@ -56,17 +56,6 @@
     <IsDeleted>false</IsDeleted>
   </Order>
   <Order>
-    <ID>1067</ID>
-    <TotalPrice>0</TotalPrice>
-    <CostumerName>שאול בילינקי</CostumerName>
-    <CostumerEmail>shaulbi12@gmail.com</CostumerEmail>
-    <CostumerAdress>עמרם גאון 10</CostumerAdress>
-    <OrderDate>2023-01-15T19:40:24.1793886+02:00</OrderDate>
-    <ShipDate xsi:nil="true" />
-    <DeliveryDate xsi:nil="true" />
-    <IsDeleted>false</IsDeleted>
-  </Order>
-  <Order>
     <ID>1068</ID>
     <TotalPrice>0</TotalPrice>
     <CostumerName>גיל ברגמן</CostumerName>
@@ -426,6 +415,17 @@
     <CostumerAdress>יד בנימין , הערבה 3</CostumerAdress>
     <OrderDate>2023-01-24T09:39:37.3488826+02:00</OrderDate>
     <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1067</ID>
+    <TotalPrice>0</TotalPrice>
+    <CostumerName>שאול בילינקי</CostumerName>
+    <CostumerEmail>shaulbi12@gmail.com</CostumerEmail>
+    <CostumerAdress>עמרם גאון 10</CostumerAdress>
+    <OrderDate>2023-01-15T19:40:24.1793886+02:00</OrderDate>
+    <ShipDate>2023-01-24T10:36:31.2696575+02:00</ShipDate>
     <DeliveryDate xsi:nil="true" />
     <IsDeleted>false</IsDeleted>
   </Order>
