@@ -10,48 +10,12 @@
     <IsDeleted>true</IsDeleted>
   </Product>
   <Product>
-    <ID>100004</ID>
-    <Name>עגלת עריסה יויו 2 שלדה לבנה YOYO²</Name>
-    <Category>Carts</Category>
-    <Price>2300</Price>
-    <InStock>18</InStock>
-    <Path>/Images/productImages/carts2.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100011</ID>
-    <Name>טיולון בי 6 אפור /אדום שלד אלומניום BUGABOO BEE 6</Name>
-    <Category>Carts</Category>
-    <Price>1990</Price>
-    <InStock>23</InStock>
-    <Path>/Images/productImages/carts9.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100021</ID>
-    <Name>אוברול ג'וגר</Name>
-    <Category>Clothes</Category>
-    <Price>49</Price>
-    <InStock>48</InStock>
-    <Path>/Images/productImages/clothes2.JPG</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100034</ID>
     <Name>ווסט קפוצ'ון פו הדב</Name>
     <Category>Clothes</Category>
     <Price>49</Price>
     <InStock>32</InStock>
     <Path>/Images/productImages/clothes15.JPG</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100038</ID>
-    <Name>כובע חורפי בהדפס מנומר</Name>
-    <Category>Clothes</Category>
-    <Price>39</Price>
-    <InStock>43</InStock>
-    <Path>/Images/productImages/clothes19.JPG</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -70,24 +34,6 @@
     <Price>35</Price>
     <InStock>63</InStock>
     <Path>/Images/productImages/play10.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100056</ID>
-    <Name>מברשת שיניים אצבע סיליקון</Name>
-    <Category>Diapers</Category>
-    <Price>45</Price>
-    <InStock>45</InStock>
-    <Path>/Images/productImages/dip6.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100059</ID>
-    <Name>חיתולי בייביסיטר NB </Name>
-    <Category>Diapers</Category>
-    <Price>40</Price>
-    <InStock>78</InStock>
-    <Path>/Images/productImages/dip10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -172,15 +118,6 @@
     <IsDeleted>true</IsDeleted>
   </Product>
   <Product>
-    <ID>100005</ID>
-    <Name>עגלת עריסה יויו 2 שלדה שחורה YOYO²</Name>
-    <Category>Carts</Category>
-    <Price>2300</Price>
-    <InStock>23</InStock>
-    <Path>/Images/productImages/carts3.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100078</ID>
     <Name>תיק נתלה לעגלה</Name>
     <Category>Carts</Category>
@@ -205,15 +142,6 @@
     <Price>3900</Price>
     <InStock>7</InStock>
     <Path>/Images/productImages/cart15.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100022</ID>
-    <Name>חליפת בנות טוניקה וטייץ</Name>
-    <Category>Clothes</Category>
-    <Price>65</Price>
-    <InStock>36</InStock>
-    <Path>/Images/productImages/clothes3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -370,15 +298,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100029</ID>
-    <Name>זוג אוברולים בהדפס כלבים</Name>
-    <Category>Clothes</Category>
-    <Price>68</Price>
-    <InStock>48</InStock>
-    <Path>/Images/productImages/clothes10.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100033</ID>
     <Name>שמלת סרפן משובצת</Name>
     <Category>Clothes</Category>
@@ -403,15 +322,6 @@
     <Price>59</Price>
     <InStock>33</InStock>
     <Path>/Images/productImages/clothes1.JPG</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100004</ID>
-    <Name>עגלת עריסה יויו 2 שלדה לבנה YOYO²</Name>
-    <Category>Carts</Category>
-    <Price>2300</Price>
-    <InStock>16</InStock>
-    <Path>/Images/productImages/carts2.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -559,15 +469,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100006</ID>
-    <Name>סל קל דונה פלוס כחול רויאל Doona</Name>
-    <Category>Carts</Category>
-    <Price>450</Price>
-    <InStock>17</InStock>
-    <Path>/Images/productImages/carts1.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100057</ID>
     <Name>סבון עדין לתינוק TOGO</Name>
     <Category>Diapers</Category>
@@ -592,15 +493,6 @@
     <Price>159</Price>
     <InStock>66</InStock>
     <Path>/Images/productImages/dip4.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100055</ID>
-    <Name>מספריים לתינוק תכלת</Name>
-    <Category>Diapers</Category>
-    <Price>29</Price>
-    <InStock>75</InStock>
-    <Path>/Images/productImages/dip5.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -745,6 +637,105 @@
     <Price>3450</Price>
     <InStock>23</InStock>
     <Path>/Images/productImages/carts8.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100038</ID>
+    <Name>כובע חורפי בהדפס מנומר</Name>
+    <Category>Clothes</Category>
+    <Price>39</Price>
+    <InStock>42</InStock>
+    <Path>/Images/productImages/clothes19.JPG</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100029</ID>
+    <Name>זוג אוברולים בהדפס כלבים</Name>
+    <Category>Clothes</Category>
+    <Price>68</Price>
+    <InStock>47</InStock>
+    <Path>/Images/productImages/clothes10.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100011</ID>
+    <Name>טיולון בי 6 אפור /אדום שלד אלומניום BUGABOO BEE 6</Name>
+    <Category>Carts</Category>
+    <Price>1990</Price>
+    <InStock>23</InStock>
+    <Path>/Images/productImages/carts9.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100004</ID>
+    <Name>עגלת עריסה יויו 2 שלדה לבנה YOYO²</Name>
+    <Category>Carts</Category>
+    <Price>2400</Price>
+    <InStock>18</InStock>
+    <Path>/Images/productImages/carts2.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100005</ID>
+    <Name>עגלת עריסה יויו 2 שלדה שחורה YOYO²</Name>
+    <Category>Carts</Category>
+    <Price>2300</Price>
+    <InStock>21</InStock>
+    <Path>/Images/productImages/carts3.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100006</ID>
+    <Name>סל קל דונה פלוס כחול רויאל Doona</Name>
+    <Category>Carts</Category>
+    <Price>450</Price>
+    <InStock>15</InStock>
+    <Path>/Images/productImages/carts1.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100056</ID>
+    <Name>מברשת שיניים אצבע סיליקון</Name>
+    <Category>Diapers</Category>
+    <Price>45</Price>
+    <InStock>44</InStock>
+    <Path>/Images/productImages/dip6.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100055</ID>
+    <Name>מספריים לתינוק תכלת</Name>
+    <Category>Diapers</Category>
+    <Price>29</Price>
+    <InStock>74</InStock>
+    <Path>/Images/productImages/dip5.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100059</ID>
+    <Name>חיתולי בייביסיטר NB </Name>
+    <Category>Diapers</Category>
+    <Price>40</Price>
+    <InStock>77</InStock>
+    <Path>/Images/productImages/dip10.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100021</ID>
+    <Name>אוברול ג'וגר</Name>
+    <Category>Clothes</Category>
+    <Price>49</Price>
+    <InStock>47</InStock>
+    <Path>/Images/productImages/clothes2.JPG</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100022</ID>
+    <Name>חליפת בנות טוניקה וטייץ</Name>
+    <Category>Clothes</Category>
+    <Price>65</Price>
+    <InStock>35</InStock>
+    <Path>/Images/productImages/clothes3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>

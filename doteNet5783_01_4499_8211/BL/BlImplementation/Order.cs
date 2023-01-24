@@ -44,7 +44,8 @@ internal class Order : BLApi.IOrder
                        select orderItem)
                        .ToList();
         orderBo.Items = newList; //מעדכנים את הרשימה של הפריטים שיש בהזמנה
-        orderBo.TotalPrice = newList.Sum(item => item.TotalPrice); //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
+        if(orderDo?.TotalPrice == 0)
+             orderBo.TotalPrice = newList.Sum(item => item.TotalPrice); //המחיר הכללי של ההזמנה שווה לסך מחיר כל הפריטים
         if (orderDo?.DeliveryDate != null)
             orderBo.State = BO.Status.delivered;
         else if (orderDo?.ShipDate != null)
@@ -62,7 +63,9 @@ internal class Order : BLApi.IOrder
         BO.Tools.CopyPropTo(doOrder, boOrder);
         var OrderItems = Dal.OrderItem.GetAll(item=> doOrder.ID == item?.OrderID ); //מביא משכבת הנתונים את כל הפריטים של ההזמנה
         boOrder.ItemsAmount = OrderItems.Sum(item => item?.Amount)??0; //מעדכן את כמות המוצרים בהזמנה
-        boOrder.TotalPrice = OrderItems.Sum(item => item?.Price * item?.Amount)??0; //מעדכן את המחיר הכולל של הזמנה
+        if (doOrder.TotalPrice == 0)
+            boOrder.TotalPrice = OrderItems.Sum(item => item?.Price * item?.Amount) ?? 0; //מעדכן את המחיר הכולל של הזמנה
+        else boOrder.TotalPrice = doOrder.TotalPrice;
         //מעדכן את סטטוס ההזמנה
         if (doOrder.DeliveryDate != null)
             boOrder.State = BO.Status.delivered;

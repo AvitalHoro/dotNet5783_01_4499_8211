@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="650" Width="800">
+        Title="MainWindow" Height="650" Width="800" Icon="/Gray Simple Sale Fashion Instagram Post (8).png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="519*"/>
@@ -185,6 +185,6 @@
                 <ImageBrush ImageSource="/Images/SearchIcon.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Frame Name="fullFrame" HorizontalAlignment="Left" Height="718" Margin="-2,-84,0,0" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+        <Frame Name="fullFrame" HorizontalAlignment="Left" Height="624" Margin="-2,10,0,0" VerticalAlignment="Top" Width="800"  NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
     </Grid>
 </Window>

@@ -359,4 +359,53 @@ public class AllFieldsAreFullToEnabled : IMultiValueConverter
         throw new NotImplementedException();
     }
 }
+public class CouponToDiscountConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string cupon = (string)value;
+        if (cupon == "AVITAL")
+            return "15%";
+        if (cupon == "REUT")
+            return "25%";
+        return "";
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 
+public class SumToFreightCostConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string val = (string)value;
+        double sum = double.Parse(val);
+
+        if (sum < 299)
+            return ("₪"+ (sum +29).ToString());
+        else return ("₪"+ sum.ToString());
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class SumToFreightConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        string val = (string)value;
+        double sum = double.Parse(val);
+
+        if (sum < 299)
+            return "₪29";
+        else return "₪0";
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

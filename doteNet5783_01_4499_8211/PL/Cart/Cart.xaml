@@ -50,6 +50,7 @@
                             <TextBox x:Name="textNumber" 
                                      Margin="1" 
                                      Width="40" 
+                                     PreviewKeyDown="EntersOnlyNumbers"
                                      TextAlignment="Center"
                                      FontSize="20"
                                      Text="{Binding Amount}"
@@ -157,8 +158,8 @@
                 Content="רוקן סל"
                 Background="#FFCCB5B5"
                 HorizontalAlignment="Left"
-                Margin="20,10,0,0"
-                VerticalAlignment="Top" Width="81" Click="DeleteCart_Click"/>
+                Margin="38,522,0,0"
+                VerticalAlignment="Top" Width="82" Click="DeleteCart_Click"/>
         </Grid>
 
         <Image Name="CryBaby"

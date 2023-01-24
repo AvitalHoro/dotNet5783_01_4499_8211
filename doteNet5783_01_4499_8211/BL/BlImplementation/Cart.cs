@@ -156,6 +156,7 @@ internal class Cart : ICart
 
             DO.Order order = new ()
             {
+                TotalPrice = cart.TotalPrice, 
                 CostumerAdress = cart.CostumerAdress,
                 CostumerEmail = cart.CostumerEmail,
                 CostumerName = cart.CostumerName,

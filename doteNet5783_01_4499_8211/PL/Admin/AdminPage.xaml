@@ -204,7 +204,7 @@
                                     MinWidth="10"/>
                                 <DataGridTextColumn Header="קטגוריה" Binding="{Binding Path=Category, Converter={StaticResource CategoryToHebrewConverter}}"
                                     MinWidth="10"/>
-                                <DataGridTextColumn Header="שם" Binding="{Binding Path=Name}"
+                                <DataGridTextColumn Header="שם" Binding="{Binding Path=Name}" 
                                     MinWidth="15"/>
                                 <DataGridTextColumn Header="מזהה מוצר" Binding="{Binding Path=ID}"
                                     MinWidth="10"/>

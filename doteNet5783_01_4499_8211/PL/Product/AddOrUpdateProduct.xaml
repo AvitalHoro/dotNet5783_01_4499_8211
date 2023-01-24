@@ -24,7 +24,7 @@
                 Click="changeImageButton_Click"/>
         </StackPanel>
         <TextBox x:Name="UpdateID"
-                   PreviewKeyDown=" EntersOnlyNumbers" 
+                   PreviewKeyDown="EntersOnlyNumbers" 
                    Height="60"
                    FontSize="20"
                    materialDesign:HintAssist.Hint="(מזהה מוצר)" 

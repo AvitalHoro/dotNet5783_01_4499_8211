@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,7 @@ namespace PL.Order;
 public partial class ApprovedOrder : Page
 {
     int _postage = 29;
+    double discount = 0;
     private CartPO cart;
     private IBl bl;
     MainWindow mainWindow;
@@ -35,17 +37,11 @@ public partial class ApprovedOrder : Page
         bl = _bl;
         cart = _cart;
         DataContext = cart;
-        sale.Text = "0";
-        if(cart.TotalPrice< 299)
-        {
-            postage.Text = _postage.ToString();
+        if (cart.TotalPrice < 299)
             TotalPriceShow.Text = (cart.TotalPrice + _postage).ToString();
-        }
-        else        
-        {
-            postage.Text = "0";
+        
+        else
             TotalPriceShow.Text = cart.TotalPrice.ToString();
-        }
     }
 
     private void Exist_Click(object sender, RoutedEventArgs e)
@@ -63,27 +59,28 @@ public partial class ApprovedOrder : Page
     /// <exception cref="BO.OutOfStockException"
     private void approve_Click(object sender, RoutedEventArgs e)
     {
-        int idOrder=0;
+        int idOrder = 0;
         BO.Cart boCart = new();
         int paymentMethod = 0;
-        if (payPal.IsChecked==true)
+        if (payPal.IsChecked == true)
             paymentMethod = 1;
         else if (googlePay.IsChecked == true)
-            paymentMethod=2; 
+            paymentMethod = 2;
         Tools.PoCartToBoCart(cart, boCart);
         boCart.CostumerName = UpdateName.Text;
         boCart.CostumerAdress = UpdateAdress.Text;
         boCart.CostumerEmail = UpdateEmail.Text;
+        boCart.TotalPrice = double.Parse(TotalPriceShow.Text);
         try
         {
             idOrder = bl.Cart.MakeOrder(boCart);
-            BO.Order order=bl.Order.GetDetailsOrder(idOrder);
+            BO.Order order = bl.Order.GetDetailsOrder(idOrder);
             mainWindow.fullFrame.Content = null;
             mainWindow.framePage.Content = new FinishOrder(bl, order, mainWindow.framePage, paymentMethod);
             mainWindow.cart = new();
             mainWindow.cart.OrderItems = new();
         }
-      
+
         catch (BO.EmptyCartException)
         {
             MessageBox.Show("העגלה שלך ריקה", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
@@ -119,5 +116,38 @@ public partial class ApprovedOrder : Page
             MessageBox.Show("אחד מהמוצרים שבחרת לא קיים במערכת", "Error", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             return;
         }
+    }
+
+    private void code_Click(object sender, RoutedEventArgs e)
+    {
+        string cupon = codeCopoun.Text;
+        double price = cart.TotalPrice;
+        InvalidCupon.Text = "";
+
+        if (cupon == "AVITAL")
+        {
+            sale.Text = "15%";
+            price = cart.TotalPrice * 0.85;
+        }
+
+        else if (cupon == "REUT")
+        {
+            sale.Text = "25%";
+            price = cart.TotalPrice * 0.75;
+        }
+
+        else
+        {
+            InvalidCupon.Text = "קוד הקופון שהזנת אינו זמין. נסה שנית";
+            sale.Text = "0";
+            postage.Text = "₪0";
+        }
+
+        if (price < 299)
+        {
+            price += _postage;
+            postage.Text = "₪29";
+        }
+        TotalPriceShow.Text = price.ToString();
     }
 }

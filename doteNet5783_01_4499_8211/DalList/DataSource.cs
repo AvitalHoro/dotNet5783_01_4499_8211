@@ -148,6 +148,7 @@ public class DataSource
             ListOrder.Add(new Order
             {
                 ID = Config.NextOrderNumber, //מספר רץ
+                TotalPrice = 0, 
                 CostumerName = costumerName[randNum.Next(costumerName.Length)], //מגריל שם של לקוח רנדומלי מהמערך של השמות
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)], //מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],  //מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
@@ -166,6 +167,7 @@ public class DataSource
             ListOrder.Add(new Order
             {
                 ID = Config.NextOrderNumber,//מספר רץ
+                TotalPrice = 0,
                 CostumerName = costumerName[randNum.Next(costumerName.Length)],//מגריל שם של לקוח רנדומלי מהמערך של השמות
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)], //מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],//מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות
@@ -183,6 +185,7 @@ public class DataSource
             ListOrder.Add(new Order
             {
                 ID = Config.NextOrderNumber,//מספר רץ
+                TotalPrice = 0,
                 CostumerName = costumerName[randNum.Next(costumerName.Length)],//מגריל שם של לקוח רנדומלי מהמערך של השמות
                 CostumerEmail = costumerEmail[randNum.Next(costumerEmail.Length)],//מגריל אימייל של לקוח רנדומלי מהמערך של האימיילים
                 CostumerAdress = costumerAdress[randNum.Next(costumerAdress.Length)],//מגריל כתובת של לקוח רנדומלי מהמערך של הכתובות

@@ -2,6 +2,7 @@
 <ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Order>
     <ID>1003</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>רעות צפלביץ</CostumerName>
     <CostumerEmail>reutZi56@gmail.com</CostumerEmail>
     <CostumerAdress>נטע 34</CostumerAdress>
@@ -12,6 +13,7 @@
   </Order>
   <Order>
     <ID>1057</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>אלון וענונו</CostumerName>
     <CostumerEmail>AlonTH@wall.org.il</CostumerEmail>
     <CostumerAdress>זרחיה, רחוב הערבה 23</CostumerAdress>
@@ -22,6 +24,7 @@
   </Order>
   <Order>
     <ID>1055</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>הדסה שטרנברג</CostumerName>
     <CostumerEmail>Hadassa@jct.ac.il</CostumerEmail>
     <CostumerAdress>נתיבות הארזים 12</CostumerAdress>
@@ -32,6 +35,7 @@
   </Order>
   <Order>
     <ID>1064</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>בר גלר</CostumerName>
     <CostumerEmail>bargeler4@gmail.com</CostumerEmail>
     <CostumerAdress>הכלניות 4 מודיעין</CostumerAdress>
@@ -42,6 +46,7 @@
   </Order>
   <Order>
     <ID>1066</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>גלי אסרף</CostumerName>
     <CostumerEmail>galiasa@gmail.com</CostumerEmail>
     <CostumerAdress>הכלנית 16</CostumerAdress>
@@ -52,6 +57,7 @@
   </Order>
   <Order>
     <ID>1067</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>שאול בילינקי</CostumerName>
     <CostumerEmail>shaulbi12@gmail.com</CostumerEmail>
     <CostumerAdress>עמרם גאון 10</CostumerAdress>
@@ -62,6 +68,7 @@
   </Order>
   <Order>
     <ID>1068</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>גיל ברגמן</CostumerName>
     <CostumerEmail>gilhamelech@walla.co.il</CostumerEmail>
     <CostumerAdress>נזר דוד 32</CostumerAdress>
@@ -72,6 +79,7 @@
   </Order>
   <Order>
     <ID>1069</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>מאור זלמנוביץ'</CostumerName>
     <CostumerEmail>maorz2001@gmail.com</CostumerEmail>
     <CostumerAdress>קהתי 20</CostumerAdress>
@@ -82,6 +90,7 @@
   </Order>
   <Order>
     <ID>1070</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>ציון זלצמן</CostumerName>
     <CostumerEmail>theking@acad.il</CostumerEmail>
     <CostumerAdress>חיים ויטאל 35ב</CostumerAdress>
@@ -92,6 +101,7 @@
   </Order>
   <Order>
     <ID>1071</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>אביב טוקר</CostumerName>
     <CostumerEmail>avivtoker@gmail.com</CostumerEmail>
     <CostumerAdress>זאב חקלאי 14</CostumerAdress>
@@ -102,6 +112,7 @@
   </Order>
   <Order>
     <ID>1072</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>רונן ישראולביץ</CostumerName>
     <CostumerEmail>roneny@gmail.com</CostumerEmail>
     <CostumerAdress>ריינס 6</CostumerAdress>
@@ -112,6 +123,7 @@
   </Order>
   <Order>
     <ID>1073</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>הראל כהן</CostumerName>
     <CostumerEmail>harelcohen863@gmail.com</CostumerEmail>
     <CostumerAdress>ימימה 7</CostumerAdress>
@@ -122,6 +134,7 @@
   </Order>
   <Order>
     <ID>1074</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>ערן כהנא</CostumerName>
     <CostumerEmail>erankahana@walla.co.il</CostumerEmail>
     <CostumerAdress>הנופך 242</CostumerAdress>
@@ -132,6 +145,7 @@
   </Order>
   <Order>
     <ID>1075</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>הדר לוינשטיין</CostumerName>
     <CostumerEmail>hadarlevinshtern@gmail.com</CostumerEmail>
     <CostumerAdress>הרב צבי יהודה 18</CostumerAdress>
@@ -142,6 +156,7 @@
   </Order>
   <Order>
     <ID>1076</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>שיר לוינסקי</CostumerName>
     <CostumerEmail>levinski54@gmail.com</CostumerEmail>
     <CostumerAdress>מרגלית 306ב</CostumerAdress>
@@ -152,6 +167,7 @@
   </Order>
   <Order>
     <ID>1077</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>גילת מורביה</CostumerName>
     <CostumerEmail>gilat@gmail.com</CostumerEmail>
     <CostumerAdress>קרית משה 10/8</CostumerAdress>
@@ -162,6 +178,7 @@
   </Order>
   <Order>
     <ID>1078</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>נועה מגורי</CostumerName>
     <CostumerEmail>noamagory3@gmail.com</CostumerEmail>
     <CostumerAdress>נגארה 18</CostumerAdress>
@@ -172,6 +189,7 @@
   </Order>
   <Order>
     <ID>1079</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>אורי מלכא</CostumerName>
     <CostumerEmail>turhnkft@gmail.com</CostumerEmail>
     <CostumerAdress>גת 12א</CostumerAdress>
@@ -182,6 +200,7 @@
   </Order>
   <Order>
     <ID>1080</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>ליאל מרציאנו</CostumerName>
     <CostumerEmail>liel174@gmail.com</CostumerEmail>
     <CostumerAdress>יקינטון 576</CostumerAdress>
@@ -192,6 +211,7 @@
   </Order>
   <Order>
     <ID>1081</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>שולה גנץ</CostumerName>
     <CostumerEmail>sholamitganz@gmail.com</CostumerEmail>
     <CostumerAdress>בית חורון</CostumerAdress>
@@ -202,6 +222,7 @@
   </Order>
   <Order>
     <ID>1082</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>הילה סבן</CostumerName>
     <CostumerEmail>hilasaban1@gmail.com</CostumerEmail>
     <CostumerAdress>עמרם גאון 3</CostumerAdress>
@@ -212,6 +233,7 @@
   </Order>
   <Order>
     <ID>1083</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>יגאל סגרון</CostumerName>
     <CostumerEmail>igalsigron@gmail.com</CostumerEmail>
     <CostumerAdress>בית חורון</CostumerAdress>
@@ -222,6 +244,7 @@
   </Order>
   <Order>
     <ID>1084</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>דורון פיטוסי</CostumerName>
     <CostumerEmail>doron999@gmail.com</CostumerEmail>
     <CostumerAdress>העילוי 10</CostumerAdress>
@@ -232,6 +255,7 @@
   </Order>
   <Order>
     <ID>1085</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>עדן בן ארי</CostumerName>
     <CostumerEmail>edenbenari@gmail.com</CostumerEmail>
     <CostumerAdress>הפסגה 15</CostumerAdress>
@@ -242,6 +266,7 @@
   </Order>
   <Order>
     <ID>1086</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>עופר פרץ</CostumerName>
     <CostumerEmail>oferperez3@gmail.com</CostumerEmail>
     <CostumerAdress>הברון הירש 14</CostumerAdress>
@@ -252,6 +277,7 @@
   </Order>
   <Order>
     <ID>1088</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>ארז כהן</CostumerName>
     <CostumerEmail>erezcohen123@gmail.com</CostumerEmail>
     <CostumerAdress>מעלות דפנה 117</CostumerAdress>
@@ -262,6 +288,7 @@
   </Order>
   <Order>
     <ID>1089</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>דנה לביא</CostumerName>
     <CostumerEmail>danalavi@gmail.com</CostumerEmail>
     <CostumerAdress>יונתן בן עוזיאל 15</CostumerAdress>
@@ -272,6 +299,7 @@
   </Order>
   <Order>
     <ID>1090</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>רן לוי</CostumerName>
     <CostumerEmail>barlevi@gmail.com</CostumerEmail>
     <CostumerAdress>גבעת שאול 32</CostumerAdress>
@@ -282,6 +310,7 @@
   </Order>
   <Order>
     <ID>1091</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>אליה ששון</CostumerName>
     <CostumerEmail>eliya143@gmail.com</CostumerEmail>
     <CostumerAdress>שדרות המאירי 3</CostumerAdress>
@@ -292,6 +321,7 @@
   </Order>
   <Order>
     <ID>1092</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>בר גליס</CostumerName>
     <CostumerEmail>bargeliss@gmail.com</CostumerEmail>
     <CostumerAdress>חייט תורן 1</CostumerAdress>
@@ -302,6 +332,7 @@
   </Order>
   <Order>
     <ID>1093</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>דור שטרית</CostumerName>
     <CostumerEmail>dshitrit@gmail.com</CostumerEmail>
     <CostumerAdress>אליעזר הלוי 32</CostumerAdress>
@@ -312,6 +343,7 @@
   </Order>
   <Order>
     <ID>1094</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>ישי אליאס</CostumerName>
     <CostumerEmail>ishayelias@gmail.com</CostumerEmail>
     <CostumerAdress>ארבעת המינים 10</CostumerAdress>
@@ -322,6 +354,7 @@
   </Order>
   <Order>
     <ID>1095</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>עזרא מזרחי</CostumerName>
     <CostumerEmail>ezramizrachi@gmail.com</CostumerEmail>
     <CostumerAdress>חפץ חיים 37</CostumerAdress>
@@ -332,6 +365,7 @@
   </Order>
   <Order>
     <ID>1087</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>ירון אלמוג</CostumerName>
     <CostumerEmail>yaronalmog@gmail.com</CostumerEmail>
     <CostumerAdress>קרית משה 10</CostumerAdress>
@@ -342,10 +376,55 @@
   </Order>
   <Order>
     <ID>1096</ID>
+    <TotalPrice>0</TotalPrice>
     <CostumerName>רחלי סבאג</CostumerName>
     <CostumerEmail>rachelsabag@gmail.com</CostumerEmail>
     <CostumerAdress>אבני חפץ , רוטשילד 22</CostumerAdress>
     <OrderDate>2023-01-19T16:29:41.885327+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1098</ID>
+    <TotalPrice>2062.5</TotalPrice>
+    <CostumerName>חנה בורכוב</CostumerName>
+    <CostumerEmail>Hanah@borachov.org.il</CostumerEmail>
+    <CostumerAdress>פרדס חנה, רחוב הבארות 81</CostumerAdress>
+    <OrderDate>2023-01-24T09:33:30.5339462+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1099</ID>
+    <TotalPrice>91.9</TotalPrice>
+    <CostumerName>שבות מרדכי</CostumerName>
+    <CostumerEmail>mordechay@walla.co</CostumerEmail>
+    <CostumerAdress>ירושלים פסגת זאב, הערבות 56</CostumerAdress>
+    <OrderDate>2023-01-24T09:36:08.8822655+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1097</ID>
+    <TotalPrice>0</TotalPrice>
+    <CostumerName>מרים פרץ</CostumerName>
+    <CostumerEmail>miryamPeretz@gmail.com</CostumerEmail>
+    <CostumerAdress>אביבים , השעורה 32</CostumerAdress>
+    <OrderDate>2023-01-23T23:45:30.1687105+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>true</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1100</ID>
+    <TotalPrice>183</TotalPrice>
+    <CostumerName>ראשית פרל</CostumerName>
+    <CostumerEmail>Pearl@walla.co</CostumerEmail>
+    <CostumerAdress>יד בנימין , הערבה 3</CostumerAdress>
+    <OrderDate>2023-01-24T09:39:37.3488826+02:00</OrderDate>
     <ShipDate xsi:nil="true" />
     <DeliveryDate xsi:nil="true" />
     <IsDeleted>false</IsDeleted>
