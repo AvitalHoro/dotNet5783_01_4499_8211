@@ -91,6 +91,7 @@ public class DalProduct: IProduct
     }
     #endregion
 
+    #region BackInStock
     public void BackInStock(int id)
     {
         Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id)
@@ -110,5 +111,6 @@ public class DalProduct: IProduct
         ds.ListProduct.Remove(found);
         ds.ListProduct.Add(product);
     }
+    #endregion
 }
 
