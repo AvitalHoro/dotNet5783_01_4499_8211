@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Products>
   <Product>
-    <ID>10005</ID>
-    <Name>טיולון SKETCH תאומים נייבי - אינגלזינה</Name>
-    <Category>Carts</Category>
-    <Price>4569</Price>
-    <InStock>8</InStock>
-    <Path>/Images/productImages/cart15.jpg</Path>
-    <IsDeleted>true</IsDeleted>
-  </Product>
-  <Product>
     <ID>100034</ID>
     <Name>ווסט קפוצ'ון פו הדב</Name>
     <Category>Clothes</Category>
@@ -64,15 +55,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100074</ID>
-    <Name>פטמה למזון סמיך</Name>
-    <Category>Bottles</Category>
-    <Price>15</Price>
-    <InStock>56</InStock>
-    <Path>/Images/productImages/bot10.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100077</ID>
     <Name>בקבוק כחול</Name>
     <Category>Bottles</Category>
@@ -80,33 +62,6 @@
     <InStock>43</InStock>
     <Path>/Images/productImages/bot8.jpg</Path>
     <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100001</ID>
-    <Name>עגלה ורודה</Name>
-    <Category>Carts</Category>
-    <Price>245</Price>
-    <InStock>20</InStock>
-    <Path></Path>
-    <IsDeleted>true</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100002</ID>
-    <Name>בגד גוף כחול</Name>
-    <Category>Clothes</Category>
-    <Price>40</Price>
-    <InStock>45</InStock>
-    <Path>/Images/3.png</Path>
-    <IsDeleted>true</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100003</ID>
-    <Name>מוצץ ירוק</Name>
-    <Category>Bottles</Category>
-    <Price>40</Price>
-    <InStock>16</InStock>
-    <Path>/Images/3.png</Path>
-    <IsDeleted>true</IsDeleted>
   </Product>
   <Product>
     <ID>100078</ID>
@@ -718,6 +673,15 @@
     <Price>159</Price>
     <InStock>43</InStock>
     <Path>/Images/productImages/carts4.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100074</ID>
+    <Name>פטמה למזון סמיך</Name>
+    <Category>Bottles</Category>
+    <Price>15</Price>
+    <InStock>56</InStock>
+    <Path>/Images/productImages/bot10.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>

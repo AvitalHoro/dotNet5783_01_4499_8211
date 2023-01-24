@@ -48,7 +48,7 @@ internal class OrderItem : IOrderItem
         var listOrderItems = XMLTools.LoadListFromXMLSerializer<DO.OrderItem>(s_OrderItems);
 
         if (listOrderItems.RemoveAll(p => p?.ID == id) == 0)
-            throw new DoesNotExistException(id); //new DalMissingIdException(id, "OrderItem");
+            throw new DoesNotExistException(id); 
 
         XMLTools.SaveListToXMLSerializer(listOrderItems, s_OrderItems);
     }

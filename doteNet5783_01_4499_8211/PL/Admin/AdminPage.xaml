@@ -218,6 +218,7 @@
                             Margin="259,0,0,0" 
                             VerticalAlignment="Center"
                             Width="202" 
+                            Visibility="{Binding ElementName=Archives , Path=Content , Converter={StaticResource StringToCollapsedConverter}, Mode=OneWay}"
                             SelectionChanged="SelectCategory_SelectionChanged" 
                             Grid.ColumnSpan="2">
                         </ComboBox>

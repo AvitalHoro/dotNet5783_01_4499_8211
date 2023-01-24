@@ -53,20 +53,6 @@ public class DalOrderItem : IOrderItem
         OrderItem item = ds.ListOrderItem.FirstOrDefault(item => item?.ID == id)
             ?? throw new DoesNotExistException(id);
         ds.ListOrderItem.Remove(item);
-        //if (found.IsDeleted)
-        //    //בודק אם ההזמנה לא נמצאת ברשימה, ואם לא נמצאת זורק חריגה
-        //    throw new DoesNotExistException(id);
-
-        //OrderItem item = new()
-        //{
-        //    ID = id,
-        //    ProductID = found.ProductID,
-        //    OrderID = found.OrderID,
-        //    Price = found.Price,
-        //    Amount = found.Amount,
-        //    IsDeleted = true
-        //};
-        //Update(item);
     }
     #endregion
 
