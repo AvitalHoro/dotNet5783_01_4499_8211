@@ -20,6 +20,7 @@ using System.Threading;
 using DO;
 using MaterialDesignThemes.Wpf;
 using PL.Order;
+using System.IO;
 
 namespace PL;
 /// <summary>
@@ -87,7 +88,12 @@ public partial class SimulatorWindow : Window
             }
             Date.Text = date.ToShortDateString();
 
+            string path = @"..\PL\Images\277022__sandermotions__applause-1.wav";
+            string file = System.IO.Path.Combine(Environment.CurrentDirectory, path);
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(file);
+            player.Play();
             MessageBox.Show("התהליך הושלם בהצלחה");
+            
         }
 
     }
@@ -172,8 +178,8 @@ public partial class SimulatorWindow : Window
     private void OrderTrackingButton_Click(object sender, RoutedEventArgs e)
     {
         var b = sender as Button;
-        PO.OrderPO order = (PO.OrderPO)b!.DataContext;
-        new SimulatorOrderTracking(bl.Order.Tracking(order.ID)).Show();
+        int id = ((PO.OrderPO)b!.DataContext).ID;                                                                                                                                     
+        new SimulatorOrderTracking(bl.Order.Tracking(id)).Show();
     }
 
     private void Button_Click_1(object sender, RoutedEventArgs e)

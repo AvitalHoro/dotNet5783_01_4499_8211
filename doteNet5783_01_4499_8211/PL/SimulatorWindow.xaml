@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="SimulatorWindow" Height="500" Width="850">
     <Window.Resources>
         <local:StateToHebrewConverter x:Key="StateToHebrewConverter"/>
