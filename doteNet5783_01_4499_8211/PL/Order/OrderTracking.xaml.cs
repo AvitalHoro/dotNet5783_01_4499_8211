@@ -37,11 +37,11 @@ public partial class OrderTracking : Page
         order = selectedOrder;    
         order.Items = selectedOrder.Items;
         DataContext = order;
-        //if(!isAdmin)
-        //{
-        //    AdminButton.Visibility = Visibility.Hidden;
-        //    UpdateShip.Visibility = Visibility.Hidden;
-        //}
+        if (!isAdmin)
+        {
+            AdminButton.Visibility = Visibility.Hidden;
+            UpdateShip.Visibility = Visibility.Hidden;
+        }
         OrderItemView.ItemsSource = order.Items;
         this.frame = frame;
         isAdminPage = isAdmin;

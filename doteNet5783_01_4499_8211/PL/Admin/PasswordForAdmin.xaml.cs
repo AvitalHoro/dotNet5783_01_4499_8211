@@ -47,6 +47,7 @@ public partial class PasswordForAdmin : Page
             PasswordBox.Password = "";
             frame.Content = new AdminPage(bl, frame);
         }
+
     }
 }
 

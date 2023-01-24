@@ -124,13 +124,13 @@ public partial class ApprovedOrder : Page
         double price = cart.TotalPrice;
         InvalidCupon.Text = "";
 
-        if (cupon == "AVITAL")
+        if (cupon == "BABY")
         {
             sale.Text = "15%";
             price = cart.TotalPrice * 0.85;
         }
 
-        else if (cupon == "REUT")
+        else if (cupon == "CUTEBABY")
         {
             sale.Text = "25%";
             price = cart.TotalPrice * 0.75;
