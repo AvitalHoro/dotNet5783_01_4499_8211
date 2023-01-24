@@ -13,9 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BlApi;
-using BLApi;
 using BO;
 using MaterialDesignThemes.Wpf;
 using PL.Admin;
@@ -30,7 +27,7 @@ namespace PL;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private IBl bl = BlFactory.GetBl();
+    private BLApi.IBl bl = BLApi.BlFactory.GetBl();
   
     public BO.Cart cart = new();
 

@@ -1,5 +1,4 @@
-﻿using BLApi;
-using BO;
+﻿using BO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +31,7 @@ public partial class SimulatorWindow : Window
     Thickness RandNum=new Thickness(100,0,0,0);
     BackgroundWorker SentAndDeliveredOrder;
 
-    private IBl bl;
+    private BLApi.IBl bl;
     private ObservableCollection<PO.OrderPO> listOrders;
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -56,7 +55,7 @@ public partial class SimulatorWindow : Window
 
    //public double Progress { get; set; }
 
-    public SimulatorWindow(IBl BL, ObservableCollection<PO.OrderPO> listOrders)
+    public SimulatorWindow(BLApi.IBl BL, ObservableCollection<PO.OrderPO> listOrders)
     {
         InitializeComponent();
         bl = BL;

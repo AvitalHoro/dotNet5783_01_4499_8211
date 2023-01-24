@@ -1,7 +1,7 @@
 ﻿using BLApi;
 using BlImplementation;
 
-namespace BlApi;
+namespace BLApi;
 
 public static class BlFactory
 {
