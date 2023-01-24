@@ -217,7 +217,7 @@
                 FontSize="16" 
                 Click="approve_Click"/>
         <Image ToolTip="אתה יכול לבטל את ההזמנה שלך, התלוש יחזור אל החשבון שלך" HorizontalAlignment="Left" Height="22" Margin="208,348,0,0" VerticalAlignment="Top" Width="35" Source="/Images/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
-        <Image ToolTip="משלוח חינם בהזמנה של למעלה מ100 שקלים" HorizontalAlignment="Left" Height="16" Margin="191,209,0,0" VerticalAlignment="Top" Width="24" Source="/Images/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
+        <Image ToolTip="משלוח חינם בהזמנה של למעלה מ299 שקלים" HorizontalAlignment="Left" Height="16" Margin="191,209,0,0" VerticalAlignment="Top" Width="24" Source="/Images/ברוך הבא מנהל (200 × 100 פיקסל).png"/>
         <Button x:Name="exist" HorizontalAlignment="Left" Height="28" Margin="638,11,0,0" VerticalAlignment="Top" Width="179" BorderBrush="{x:Null}" Click="Exist_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/exist.png" Stretch="Uniform"/>

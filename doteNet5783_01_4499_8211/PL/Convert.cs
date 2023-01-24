@@ -158,9 +158,8 @@ public class SentToHiddenConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         BO.Status state = (BO.Status)value;
-        string isAdmin = (string)parameter;
 
-        if (isAdmin == "true" && state == BO.Status.approved)
+        if (state == BO.Status.approved)
             return Visibility.Visible;
         else
             return Visibility.Hidden;
@@ -192,9 +191,8 @@ public class DeliveredToHiddenConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         BO.Status state = (BO.Status)value;
-        string isAdmin = (string)parameter;
 
-        if (isAdmin == "true" && state != BO.Status.delivered)
+        if (state != BO.Status.delivered)
             return Visibility.Visible;
         else
             return Visibility.Hidden;
