@@ -352,15 +352,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100015</ID>
-    <Name>קשת לעגלה חיות באחו</Name>
-    <Category>Carts</Category>
-    <Price>65</Price>
-    <InStock>52</InStock>
-    <Path>/Images/productImages/carts13.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100027</ID>
     <Name>אובורל בדמויות דיסני</Name>
     <Category>Clothes</Category>
@@ -403,24 +394,6 @@
     <Price>69</Price>
     <InStock>62</InStock>
     <Path>/Images/productImages/dip1.JPG</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100053</ID>
-    <Name>מחמם מגבונים</Name>
-    <Category>Diapers</Category>
-    <Price>149</Price>
-    <InStock>42</InStock>
-    <Path>/Images/productImages/dip3.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100007</ID>
-    <Name>בורד טרמפיסט לבי 5</Name>
-    <Category>Carts</Category>
-    <Price>199</Price>
-    <InStock>44</InStock>
-    <Path>/Images/productImages/carts4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -586,15 +559,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100007</ID>
-    <Name>בורד טרמפיסט לבי 5</Name>
-    <Category>Carts</Category>
-    <Price>199</Price>
-    <InStock>43</InStock>
-    <Path>/Images/productImages/carts4.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100053</ID>
     <Name>מחמם מגבונים</Name>
     <Category>Diapers</Category>
@@ -646,15 +610,6 @@
     <Price>68</Price>
     <InStock>47</InStock>
     <Path>/Images/productImages/clothes10.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100011</ID>
-    <Name>טיולון בי 6 אפור /אדום שלד אלומניום BUGABOO BEE 6</Name>
-    <Category>Carts</Category>
-    <Price>1990</Price>
-    <InStock>23</InStock>
-    <Path>/Images/productImages/carts9.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -736,6 +691,33 @@
     <Price>79</Price>
     <InStock>47</InStock>
     <Path>/Images/productImages/play8.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100011</ID>
+    <Name>טיולון בי 6 אפור /אדום שלד אלומניום BUGABOO BEE 6</Name>
+    <Category>Carts</Category>
+    <Price>1990</Price>
+    <InStock>22</InStock>
+    <Path>/Images/productImages/carts9.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100015</ID>
+    <Name>קשת לעגלה חיות באחו</Name>
+    <Category>Carts</Category>
+    <Price>65</Price>
+    <InStock>51</InStock>
+    <Path>/Images/productImages/carts13.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100007</ID>
+    <Name>בורד טרמפיסט לבי 5</Name>
+    <Category>Carts</Category>
+    <Price>159</Price>
+    <InStock>43</InStock>
+    <Path>/Images/productImages/carts4.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>

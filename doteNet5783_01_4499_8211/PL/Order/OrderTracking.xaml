@@ -198,6 +198,20 @@
             VerticalAlignment="Top" 
             Width="172"/>
             <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="155,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" FontWeight="Bold" TextAlignment="Right" Height="26"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח:"/></TextBlock>
+            <Border BorderBrush="Black" BorderThickness="3,3,3,3" HorizontalAlignment="Left" Height="40" Margin="28,488,0,0" VerticalAlignment="Top" Width="214" Background="#FFBBBBBB"/>
+            <Label 
+                Content=":לתשלום" 
+                FontSize="18" 
+                HorizontalAlignment="Left" 
+                Margin="122,494,0,0" 
+                VerticalAlignment="Top" Height="26" Width="108" HorizontalContentAlignment="Right" FontWeight="Bold"/>
+            <TextBlock x:Name="price" 
+                FontSize="18"
+                HorizontalAlignment="Left"
+                Height="35" 
+                Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                VerticalAlignment="Top" 
+                Width="109" Margin="44,498,0,0" FontWeight="Bold"/>
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="23,5,0,0" TextWrapping="Wrap" Text="כמות בהזמנה" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="151,5,0,0" TextWrapping="Wrap" Text="מחיר" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
