@@ -81,7 +81,7 @@ namespace PL.Product
                         ID = int.Parse(UpdateID.Text),
                         Name = UpdateName.Text,
                         Category = (BO.Category)(Tools.PLCategoryToBL((PL.Category)UpdateCategory.SelectedItem))!,
-                        Price = int.Parse(UpdatePrice.Text),
+                        Price = double.Parse(UpdatePrice.Text),
                         InStock = int.Parse(UpdateInStock.Text),
                         IsDeleted = false,
                         Path= path,
@@ -92,7 +92,7 @@ namespace PL.Product
                         ID = int.Parse(UpdateID.Text),
                         Name = UpdateName.Text,
                         Category = (BO.Category)(Tools.PLCategoryToBL((PL.Category)UpdateCategory.SelectedItem))!,
-                        Price = int.Parse(UpdatePrice.Text),
+                        Price = double.Parse(UpdatePrice.Text),
                         InStock = int.Parse(UpdateInStock.Text),
                         IsDeleted = false,
                         Path = path,
@@ -127,6 +127,9 @@ namespace PL.Product
         }
 
         private void EntersOnlyNumbers(object sender, KeyEventArgs e) => Tools.EnterNumbersOnly(sender, e);
+
+         private void EntersPrice(object sender, KeyEventArgs e) => Tools.EnterOnlyNumbersAndPoint(sender, e);
+       
 
         private void UpdateCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

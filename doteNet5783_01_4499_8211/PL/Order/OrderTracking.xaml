@@ -159,59 +159,63 @@
             Content=":כתובת מגורים" 
             FontSize="16" 
             HorizontalAlignment="Left" 
-            Margin="189,320,0,0" 
+            Margin="201,320,0,0" 
             VerticalAlignment="Top" Height="26" Width="108"/>
             <TextBlock x:Name="costumerAdressTextBox" 
             FontSize="16"
             HorizontalAlignment="Left"
-            Height="18" 
+            Height="64" 
+            TextWrapping="Wrap"
             TextAlignment="Right" 
             Text="{Binding CostumerAdress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
             VerticalAlignment="Top" 
-            Width="134" Margin="50,324,0,0"/>
+            Width="186" Margin="10,324,0,0"/>
             <Label
             Content=":כתובת אימייל" 
             FontSize="16" 
             HorizontalAlignment="Left" 
-            Margin="192,264,0,0" 
+            Margin="204,264,0,0" 
             VerticalAlignment="Top" Height="27" Width="104"/>
             <TextBlock x:Name="costumerEmailTextBox" 
             HorizontalAlignment="Left"
             FontSize="16"
-            Height="19" 
-            Margin="27,269,0,0" 
+            TextWrapping="Wrap"
+            Height="32" 
+            Margin="0,269,0,0" 
             TextAlignment="Right"
             Text="{Binding CostumerEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-            VerticalAlignment="Top" Width="160"/>
+            VerticalAlignment="Top" Width="199"/>
             <Label Content=":שם" 
             HorizontalAlignment="Left"
             FontSize="16"
-            Margin="262,213,0,0" 
+            Margin="274,213,0,0" 
             VerticalAlignment="Top" Height="27" Width="35"/>
             <TextBlock x:Name="costumerNameTextBox"  
             HorizontalAlignment="Left"
             FontSize="16" 
+            TextWrapping="Wrap"
             TextAlignment="Right"
             Height="19" 
-            Margin="86,217,0,0"
+            Margin="28,217,0,0"
             Text="{Binding CostumerName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
             VerticalAlignment="Top" 
-            Width="172"/>
+            Width="242"/>
             <TextBlock HorizontalAlignment="Left" FontSize="22" Margin="155,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" FontWeight="Bold" TextAlignment="Right" Height="26"><Run FlowDirection="RightToLeft" Language="he-il" Text="פרטי לקוח:"/></TextBlock>
-            <Border BorderBrush="Black" BorderThickness="3,3,3,3" HorizontalAlignment="Left" Height="40" Margin="28,488,0,0" VerticalAlignment="Top" Width="214" Background="#FFBBBBBB"/>
+            <Border BorderBrush="Black" BorderThickness="3,3,3,3" HorizontalAlignment="Left" Height="40" Margin="100,488,0,0" VerticalAlignment="Top" Width="184" Background="#FFD7BEBE"/>
             <Label 
-                Content=":לתשלום" 
+                Content=":מחיר סופי" 
                 FontSize="18" 
                 HorizontalAlignment="Left" 
-                Margin="122,494,0,0" 
+                Margin="172,494,0,0" 
                 VerticalAlignment="Top" Height="26" Width="108" HorizontalContentAlignment="Right" FontWeight="Bold"/>
             <TextBlock x:Name="price" 
                 FontSize="18"
                 HorizontalAlignment="Left"
                 Height="35" 
+                TextAlignment="Right"
                 Text="{Binding TotalPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
                 VerticalAlignment="Top" 
-                Width="109" Margin="44,498,0,0" FontWeight="Bold"/>
+                Width="83" Margin="100,498,0,0" FontWeight="Bold"/>
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="23,5,0,0" TextWrapping="Wrap" Text="כמות בהזמנה" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="151,5,0,0" TextWrapping="Wrap" Text="מחיר" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>

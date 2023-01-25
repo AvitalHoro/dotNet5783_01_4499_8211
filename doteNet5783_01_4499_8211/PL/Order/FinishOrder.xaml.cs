@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PO;
 
 namespace PL.Order;
 /// <summary>
@@ -46,7 +47,11 @@ public partial class FinishOrder : Page
 
     private void trackOrder_Click(object sender, RoutedEventArgs e)
     {
+        PO.OrderPO orderPo = new();
+        order = bl.Order.GetDetailsOrder(order.ID);
+        Tools.CopyPropTo(order, orderPo);
+        orderPo.Items = order.Items;    
         frame.Content = new PL.Order.OrderTracking
-            (bl, Tools.CopyPropTo(bl.Order.GetDetailsOrder(order.ID), new PO.OrderPO()), frame, false);
+            (bl, orderPo, frame, false);
     }
 }

@@ -60,7 +60,7 @@
                   Height="60"
                   materialDesign:HintAssist.Hint="(מחיר)" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 PreviewKeyDown="EntersOnlyNumbers" 
+                 PreviewKeyDown="EntersPrice" 
                  HorizontalAlignment="Left" 
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"

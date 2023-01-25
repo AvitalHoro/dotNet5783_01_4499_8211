@@ -253,7 +253,7 @@ class Program
     static void Main(string[] args)
     {
         IBl bl = BlFactory.GetBl();
-       // IDal dal = DalFactory.GetDal();
+
         BO.Cart? myCart = new BO.Cart();
         int num = 1;
         while (num != 0)
