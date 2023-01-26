@@ -27,6 +27,8 @@ namespace PL;
 /// </summary>
 public partial class MainWindow : Window
 {
+
+    //baby - תתכוננו להתאהב!
     private BLApi.IBl bl = BLApi.BlFactory.GetBl();
   
     public BO.Cart cart = new();
