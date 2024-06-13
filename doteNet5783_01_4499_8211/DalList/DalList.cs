@@ -2,8 +2,8 @@
 
 namespace Dal;
 
-//מחלקת "גג". מטרתה לרכז את תפקוד כל ישויות הגישה לנתונים.
-//דרכה ניתן לייצר גישה לכל סוגי הנתונים
+// An "umbrella" class. Its purpose is to centralize the functionality of all data access entities.
+// Through it, access to all types of data can be created.
 
 sealed internal class DalList: IDal
 {

@@ -11,7 +11,7 @@ internal class Product : IProduct
 {
     private DalApi.IDal Dal = DalApi.DalFactory.GetDal() ?? throw new NullReferenceException("Missing Dal");
 
-    #region GetProductList
+   #region GetProductList
     public IEnumerable<BO.ProductForList> GetProductList(BO.Filters enumFilter = BO.Filters.None, 
         Object? filterValue = null, bool isInStock= false)
     {
@@ -63,8 +63,8 @@ internal class Product : IProduct
     }
     #endregion
 
-    #region GetCatalog
-    //מחזיר רשימה של כל המוצרים בשביל הלקוח
+   #region GetCatalog
+    // Returns a list of all products for the customer
     public IEnumerable<BO.ProductItem?> GetCatalog(BO.Cart cart, BO.Filters enumFilter = BO.Filters.None,
         Object? filterValue = null, bool isInStock = false)
     {
@@ -76,7 +76,7 @@ internal class Product : IProduct
     #region GetProductDetails
     /// <exception cref="BO.InvalidIDException"></exception>
     /// <exception cref="DO.DoesNotExistException"></exception>
-    //מחזיר למנהל פרטים של מוצר ספציפי לפי המזהה שלו
+    // Returns details of a specific product to the manager based on its ID
     public BO.Product GetProductDetails(int idProduct)
     {
         try
@@ -101,7 +101,7 @@ internal class Product : IProduct
 
     #region GetProducItemtDetails
     /// <exception cref="DO.DoesNotExistException"></exception>
-    //מחזיר ללקוח פרטים של מוצר ספציפי לפי המזהה שלו
+    // Returns details of a specific product to the customer based on its ID
     public BO.ProductItem GetProductDetails(int idProduct, BO.Cart cart)
     {
         try
@@ -124,7 +124,7 @@ internal class Product : IProduct
             throw new DO.DoesNotExistException(ex.ID, ex.Message, ex);
         }
     }
-    #endregion 
+    #endregion
 
     #region AddProduct
     /// <exception cref="BO.InvalidIDException"></exception>
@@ -132,7 +132,6 @@ internal class Product : IProduct
     /// <exception cref="BO.InvalidPriceException"></exception>
     /// <exception cref="BO.OutOfStockException"></exception>
     /// <exception cref="BO.AlreadyExistsException"></exception>
-    //מוסיף מוצר חדש לחנות
     public void AddProduct(BO.Product? newProduct)
     {
         try
@@ -162,7 +161,6 @@ internal class Product : IProduct
     #region RemoveProduct
     /// <exception cref="BO.ProductExistInOrderException"></exception>
     /// <exception cref="BO.DoesNotExistException"></exception>
-    //מוחק מוצר מהחנות
     public void RemoveProduct(int idProduct)
     {
         try
@@ -188,18 +186,18 @@ internal class Product : IProduct
     }
     #endregion
 
-    #region UpdateProductDetails
+   #region UpdateProductDetails
     /// <exception cref="BO.InvalidIDException"></exception>
     /// <exception cref="BO.NoNameException"></exception>
     /// <exception cref="BO.InvalidPriceException"></exception>
     /// <exception cref="BO.OutOfStockException"></exception>
     /// <exception cref="BO.DoesNotExistException"></exception>
-    //מקבל מוצר ולפי המזהה שלו מעדכן את המוצר בחנות
+    // Receives a product and updates the product in the store based on its ID
     public void UpdateProductDetails(BO.Product? product)
     {
         try
         {
-            //בדיקות תקינות לערכי מוצר
+            // Validate product values
             if (product?.ID < 0)
                 throw new BO.InvalidIDException(product.ID);
             if (product?.Name == null)
@@ -224,7 +222,7 @@ internal class Product : IProduct
     #region RemoveProduct
     /// <exception cref="BO.ProductExistInOrderException"></exception>
     /// <exception cref="BO.DoesNotExistException"></exception>
-    //מוחק מוצר מהחנות
+    // Deletes a product from the store
     public void RestoreProduct(int idProduct)
     { 
         try
@@ -236,4 +234,3 @@ internal class Product : IProduct
     }
     #endregion
 }
-

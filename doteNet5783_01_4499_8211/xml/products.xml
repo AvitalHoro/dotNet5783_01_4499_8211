@@ -118,15 +118,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100032</ID>
-    <Name>שמלה פרחונית</Name>
-    <Category>Clothes</Category>
-    <Price>59</Price>
-    <InStock>41</InStock>
-    <Path>/Images/productImages/clothes13.JPG</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100023</ID>
     <Name>סט ביגוד לברית</Name>
     <Category>Clothes</Category>
@@ -181,30 +172,12 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100049</ID>
-    <Name>מוריד גשם אלקטרוני</Name>
-    <Category>Toys</Category>
-    <Price>59</Price>
-    <InStock>57</InStock>
-    <Path>/Images/productImages/play11.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100020</ID>
     <Name>סווטשירט מודפס</Name>
     <Category>Clothes</Category>
     <Price>59</Price>
     <InStock>33</InStock>
     <Path>/Images/productImages/clothes1.JPG</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100042</ID>
-    <Name>דובי בז' עם פפיון 18 סמ</Name>
-    <Category>Toys</Category>
-    <Price>45</Price>
-    <InStock>62</InStock>
-    <Path>/Images/productImages/play3.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -424,15 +397,6 @@
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
-    <ID>100004</ID>
-    <Name>עגלת עריסה יויו 2 שלדה לבנה YOYO²</Name>
-    <Category>Carts</Category>
-    <Price>2400</Price>
-    <InStock>18</InStock>
-    <Path>/Images/productImages/carts2.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
     <ID>100005</ID>
     <Name>עגלת עריסה יויו 2 שלדה שחורה YOYO²</Name>
     <Category>Carts</Category>
@@ -538,15 +502,6 @@
     <Price>189</Price>
     <InStock>46</InStock>
     <Path>/Images/productImages/bot9.jpg</Path>
-    <IsDeleted>false</IsDeleted>
-  </Product>
-  <Product>
-    <ID>100071</ID>
-    <Name>זוג מוצצים מיקי מאוס</Name>
-    <Category>Bottles</Category>
-    <Price>25</Price>
-    <InStock>50</InStock>
-    <Path>/Images/productImages/bot6.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
   <Product>
@@ -682,6 +637,51 @@
     <Price>45</Price>
     <InStock>43</InStock>
     <Path>/Images/productImages/dip6.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100032</ID>
+    <Name>שמלה פרחונית</Name>
+    <Category>Clothes</Category>
+    <Price>59</Price>
+    <InStock>35</InStock>
+    <Path>/Images/productImages/clothes13.JPG</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100049</ID>
+    <Name>מוריד גשם אלקטרוני</Name>
+    <Category>Toys</Category>
+    <Price>59</Price>
+    <InStock>56</InStock>
+    <Path>/Images/productImages/play11.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100071</ID>
+    <Name>זוג מוצצים מיקי מאוס</Name>
+    <Category>Bottles</Category>
+    <Price>25</Price>
+    <InStock>49</InStock>
+    <Path>/Images/productImages/bot6.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100042</ID>
+    <Name>דובי בז' עם פפיון 18 סמ</Name>
+    <Category>Toys</Category>
+    <Price>45</Price>
+    <InStock>60</InStock>
+    <Path>/Images/productImages/play3.jpg</Path>
+    <IsDeleted>false</IsDeleted>
+  </Product>
+  <Product>
+    <ID>100004</ID>
+    <Name>עגלת עריסה יויו 2 שלדה לבנה YOYO²</Name>
+    <Category>Carts</Category>
+    <Price>2400</Price>
+    <InStock>17</InStock>
+    <Path>/Images/productImages/carts2.jpg</Path>
     <IsDeleted>false</IsDeleted>
   </Product>
 </Products>

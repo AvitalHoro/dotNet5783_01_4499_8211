@@ -5,7 +5,6 @@ namespace BO;
 
 public class OrderForList
 {
-    //להדפסת הזמנות ברשימה עם הפרטים הרלוונטים
     public int ID { get; set; }
     public string? CostumerName { get; set; }
     public Status State { get; set; }

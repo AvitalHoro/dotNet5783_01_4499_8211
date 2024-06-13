@@ -6,8 +6,8 @@ namespace BO;
 
 public static class Tools
 {
-    //פונקציה שיוצרת מחרוזת להדפסה של ישויות לפי הפרופרטיז שלהם
-    //בודקת לכל פרופרטי מה השם שלו ומה הערך שבתוכו, מכניסה הכל למחרוזת ומחזיר את המחרוזת
+    // Function that creates a string for printing entities based on their properties
+    // Checks for each property its name and value, adds everything to a string, and returns the string
     public static string ToStringProperty<T>(this T t, string suffix = "")
     {
         string str = "";
@@ -15,7 +15,7 @@ public static class Tools
         {
             var value = prop.GetValue(t, null);
             if (value is IEnumerable && value is not string)
-                //אם קיבלנו אוסף צריך לעבור על כל עצם באוסף ולהפעיל עליו גם את הפונקציה הזאת
+                // If we received a collection, we need to iterate over each object in the collection and apply this function to it as well
             {
                 str+= "\n"+ prop.Name + ":";
                 foreach (var item in (IEnumerable)value)
@@ -28,14 +28,14 @@ public static class Tools
         return str;
     }
 
-    //פונקצית הרחבה שמעתיקה שדות עם שם דומה מעצם מקור לעצם אחר  
+    // Extension function that copies fields with similar names from a source object to another object
     public static Target CopyPropTo<Source, Target>(this Source source, Target target)
     {
 
-        if (source is not null && target is not null) //אם שני העצמים לא ריקים
+        if (source is not null && target is not null) // If both objects are not null
         {
             Dictionary<string, PropertyInfo> propertiesInfoTarget = target.GetType().GetProperties()
-                .ToDictionary(p => p.Name, p => p); //יוצר מילון של צמדים עם שם של שדה והערך בו
+                .ToDictionary(p => p.Name, p => p); // Creates a dictionary of pairs with the field name and its value
 
             IEnumerable<PropertyInfo> propertiesInfoSource = source.GetType().GetProperties();
 
@@ -51,12 +51,11 @@ public static class Tools
         return target;
     }
 
-    //הפונקציה מקבלת עצם מקור שממנו אנו רוצים להעתיק ואת הסוג של העצם שאליו אנחנו רוצים להעתיק
-     public static object CopyPropToStruct<S>(this S from, Type type)//get the typy we want to copy to 
-     {
-            object? to = Activator.CreateInstance(type); // new object of the Type
-            from.CopyPropTo(to);//copy all value of properties with the same name to the new object 
-            return to!; //מחזירה את העצם אובגקט החדש
-     }
+    // The function takes a source object from which we want to copy and the type of the object we want to copy to
+    public static object CopyPropToStruct<S>(this S from, Type type)// Get the type we want to copy to
+    {
+        object? to = Activator.CreateInstance(type); // New object of the Type
+        from.CopyPropTo(to); // Copy all values of properties with the same name to the new object
+        return to!; // Returns the new object
+    }
 }
-

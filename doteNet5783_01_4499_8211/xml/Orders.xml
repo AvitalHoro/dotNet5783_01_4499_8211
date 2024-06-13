@@ -495,4 +495,26 @@
     <DeliveryDate xsi:nil="true" />
     <IsDeleted>false</IsDeleted>
   </Order>
+  <Order>
+    <ID>1107</ID>
+    <TotalPrice>294.5</TotalPrice>
+    <CostumerName>צפיה גדות</CostumerName>
+    <CostumerEmail>tzfiuli@gmail.com</CostumerEmail>
+    <CostumerAdress>נגוהות השליו 9</CostumerAdress>
+    <OrderDate>2023-02-06T20:44:09.5622889+02:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
+  <Order>
+    <ID>1108</ID>
+    <TotalPrice>2187.9</TotalPrice>
+    <CostumerName>רעות ברוך</CostumerName>
+    <CostumerEmail>reut@gmail.com</CostumerEmail>
+    <CostumerAdress>בני ברק 30</CostumerAdress>
+    <OrderDate>2024-06-13T11:29:22.4141974+03:00</OrderDate>
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <IsDeleted>false</IsDeleted>
+  </Order>
 </ArrayOfOrder>

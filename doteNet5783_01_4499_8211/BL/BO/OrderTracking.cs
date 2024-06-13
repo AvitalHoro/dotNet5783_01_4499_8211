@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BO;
 
+// Entity that displays the relevant details for tracking the order
 public class OrderTracking
 {
-    //ישות המציגה את הפרטים הרלוונטים למעקב אחר ההזמנה
     public int ID { get; set; }
     public Status State { get; set; }
-    public List<Tuple<DateTime?, string>>? Tracking { set; get; }//מעקב הזמנה - רשימה של צמדים המכילה תאריך והסבר מה קרה בתאריך זה
+    public List<Tuple<DateTime?, string>>? Tracking { set; get; } // Order tracking - a list of pairs containing a date and an explanation of what happened on that date
     public override string ToString() { return this.ToStringProperty(); }
 }

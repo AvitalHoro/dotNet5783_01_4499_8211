@@ -3,114 +3,144 @@ using DO;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-namespace Dal;
-
-public class DalProduct: IProduct
-//realizes all the methods of the products
+namespace Dal
 {
-    readonly DataSource ds = DataSource.s_instance; //כדי שלא ניצור כל פעם עצם חדש של נתונים
-
-    #region Add
-    /// <exception cref="AlreadyExistsException"></exception>
-    public int Add(Product product)
-     //פונקציה להוספת מוצר חדש לרשימת המוצרים
+    public class DalProduct : IProduct
     {
-        Product? newProduct = ds.ListProduct.FirstOrDefault(p => product.ID == p?.ID);
-        if (newProduct != null)
-            if ((bool)newProduct?.IsDeleted!)
-                ds.ListOrder.RemoveAll(p => product.ID == p?.ID);
-            else
-                throw new AlreadyExistsException(product.ID);
-        ds.ListProduct.Add(product);
-        return product.ID;
-    }
-    #endregion
+        readonly DataSource ds = DataSource.Instance;
 
-    #region GetById
-    /// <exception cref="DoesNotExistException"></exception>
-    public Product GetById(int id)
-     //מקבל ת"ז ומחזיר את המוצר שזה הת"ז שלו
-    {
-        Product product = ds.ListProduct.FirstOrDefault(p => p?.ID == id)
-            ?? throw new DoesNotExistException(id);
-        if (product.IsDeleted) throw new DoesNotExistException(id);//checks if the product is already in the store
-        return product;
-    }
-    #endregion
-
-    #region Update
-    /// <exception cref="DoesNotExistException"></exception>
-    public void Update(Product product)
-        //הפונקציה מעדכנת מוצר מסוים ברשימת הפרודוקטים, ומוצאת את הקודם ע"י הת"ז שנשארת אותו הדבר
-    {
-        Product newProduct = ds.ListProduct.FirstOrDefault(found => found?.ID == product.ID)
-            ?? throw new DoesNotExistException(product.ID);
-        if (newProduct.IsDeleted)
-            throw new DoesNotExistException(product.ID);
-        ds.ListProduct.Remove(newProduct);
-        ds.ListProduct.Add(product);
-    }
-    #endregion
-
-    #region Delete
-    /// <exception cref="DoesNotExistException"></exception>
-    public void Delete(int id)
-    //מוחק מוצר מהרשימה
-   //הפונקציה לא באמת מוחקת את ההזמנה אלא רק מעדכנת בפרטים שלה שהיא מחוקה
-    {
-        Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id) 
-            ?? throw new DoesNotExistException(id);
-
-        if (found.IsDeleted)
-                    //בודק אם ההזמנה מחוקה כבר ברשימה, ואם כן זורק חריגה
-            throw new DoesNotExistException(id);
-   
-        Product product = new() //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
+        #region Add
+        /// <summary>
+        /// Adds a new product to the list of products.
+        /// </summary>
+        /// <param name="product">The product to add.</param>
+        /// <returns>The ID of the added product.</returns>
+        /// <exception cref="AlreadyExistsException">Thrown when a product with the same ID already exists.</exception>
+        public int Add(Product product)
         {
-            ID = id,
-            Name = found.Name,
-            Category = found.Category,
-            InStock = found.InStock,
-            Price = found.Price,
-            IsDeleted = true,
-            Path = found.Path,
-        };
-        Update(product); //מעדכן ברשימה את ההזמנה המחוקה
-    }
-    #endregion
+            Product newProduct = ds.ListProduct.FirstOrDefault(p => product.ID == p?.ID);
+            if (newProduct != null)
+            {
+                if (newProduct.IsDeleted)
+                    ds.ListProduct.RemoveAll(p => product.ID == p?.ID);
+                else
+                    throw new AlreadyExistsException(product.ID);
+            }
 
-    #region GetAll
-    public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
-    {
-        if (filter == null)
-            return ds.ListProduct;
-        return (from Product? product in ds.ListProduct 
-                where filter!(product)
-                select product)
-                .ToList();
-    }
-    #endregion
+            ds.ListProduct.Add(product);
+            return product.ID;
+        }
+        #endregion
 
-    #region BackInStock
-    public void BackInStock(int id)
-    {
-        Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id)
-           ?? throw new DoesNotExistException(id);
-
-        Product product = new() //בונה מוצר חדש עם אותם ערכים בדיוק, משנה רק את הערך של המחיקה
+        #region GetById
+        /// <summary>
+        /// Retrieves a product by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the product to retrieve.</param>
+        /// <returns>The product object.</returns>
+        /// <exception cref="DoesNotExistException">Thrown when the product with the given ID does not exist.</exception>
+        public Product GetById(int id)
         {
-            ID = id,
-            Name = found.Name,
-            Category = found.Category,
-            InStock = found.InStock,
-            Price = found.Price,
-            IsDeleted = false,
-            Path = found.Path,
-        };
+            Product product = ds.ListProduct.FirstOrDefault(p => p?.ID == id)
+                ?? throw new DoesNotExistException(id);
 
-        ds.ListProduct.Remove(found);
-        ds.ListProduct.Add(product);
+            if (product.IsDeleted)
+                throw new DoesNotExistException(id);
+
+            return product;
+        }
+        #endregion
+
+        #region Update
+        /// <summary>
+        /// Updates an existing product.
+        /// </summary>
+        /// <param name="product">The updated product object.</param>
+        /// <exception cref="DoesNotExistException">Thrown when the product with the given ID does not exist.</exception>
+        public void Update(Product product)
+        {
+            Product existingProduct = ds.ListProduct.FirstOrDefault(found => found?.ID == product.ID)
+                ?? throw new DoesNotExistException(product.ID);
+
+            if (existingProduct.IsDeleted)
+                throw new DoesNotExistException(product.ID);
+
+            ds.ListProduct.Remove(existingProduct);
+            ds.ListProduct.Add(product);
+        }
+        #endregion
+
+        #region Delete
+        /// <summary>
+        /// Marks a product as deleted.
+        /// </summary>
+        /// <param name="id">The ID of the product to mark as deleted.</param>
+        /// <exception cref="DoesNotExistException">Thrown when the product with the given ID does not exist.</exception>
+        public void Delete(int id)
+        {
+            Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id)
+                ?? throw new DoesNotExistException(id);
+
+            if (found.IsDeleted)
+                throw new DoesNotExistException(id);
+
+            Product product = new()
+            {
+                ID = id,
+                Name = found.Name,
+                Category = found.Category,
+                InStock = found.InStock,
+                Price = found.Price,
+                IsDeleted = true,
+                Path = found.Path,
+            };
+
+            Update(product);
+        }
+        #endregion
+
+        #region GetAll
+        /// <summary>
+        /// Retrieves all products optionally filtered by a predicate.
+        /// </summary>
+        /// <param name="filter">Optional filter predicate.</param>
+        /// <returns>A collection of products.</returns>
+        public IEnumerable<Product?> GetAll(Func<Product?, bool>? filter = null)
+        {
+            if (filter == null)
+                return ds.ListProduct;
+
+            return (from Product? product in ds.ListProduct
+                    where filter(product)
+                    select product)
+                    .ToList();
+        }
+        #endregion
+
+        #region BackInStock
+        /// <summary>
+        /// Restores a product back to stock by marking it as not deleted.
+        /// </summary>
+        /// <param name="id">The ID of the product to restore.</param>
+        public void BackInStock(int id)
+        {
+            Product found = ds.ListProduct.FirstOrDefault(item => item?.ID == id)
+               ?? throw new DoesNotExistException(id);
+
+            Product product = new()
+            {
+                ID = id,
+                Name = found.Name,
+                Category = found.Category,
+                InStock = found.InStock,
+                Price = found.Price,
+                IsDeleted = false,
+                Path = found.Path,
+            };
+
+            ds.ListProduct.Remove(found);
+            ds.ListProduct.Add(product);
+        }
+        #endregion
     }
-    #endregion
 }
-
