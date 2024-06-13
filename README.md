@@ -36,3 +36,11 @@ As a **client**, you can:
 
 Use these coupons during checkout to save on your orders.
 
+![image](https://github.com/AvitalHoro/dotNet5783_01_4499_8211/assets/116683111/26e6942c-eadb-414f-8519-124e717ffa4f)
+
+
+![image](https://github.com/AvitalHoro/dotNet5783_01_4499_8211/assets/116683111/df0fbce2-ee0d-4cc3-b70e-31cdf49039a0)
+
+
+
+
